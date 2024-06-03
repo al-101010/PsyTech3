@@ -27,3 +27,10 @@ Exercise 6:
 130! / (45! (130 - 45)!) = 191901512241261388062735129272180800
 
 Exercise 7:
+
+Volgorde maakt uit, er kan niet herhaald worden.
+
+N! / (N - r)!
+
+N = aantal zaalsloten per week
+r = aantal in te plannen activiteiten (hoorcolleges, werkgroepen, practica)
