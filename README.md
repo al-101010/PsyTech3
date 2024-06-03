@@ -1,2 +1,4 @@
 # PsyTech3
-Algoritmen en Heuristieken - werkgroep Daimy, Daantje, Alexandra  
+Algoritmen en Heuristieken - werkgroep Daimy, Daantje, Alexandra
+
+## Case : Lectures & Lesroosters
