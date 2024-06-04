@@ -34,3 +34,5 @@ N! / (N - r)!
 
 N = aantal zaalsloten per week
 r = aantal in te plannen activiteiten (hoorcolleges, werkgroepen, practica)
+
+versimpelende aannames: elke activiteit kan in elke ruimte plaatsvinden. In werkelijkheid, heeft elke ruimte een maximale capaciteit en sommige vakken hebben een grotere aantal deelnemers. Dus er zijn eigenlijk minder opties dan in de formule.  
