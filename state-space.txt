@@ -21,6 +21,7 @@ Als volgorde wel uitmaakt:
 Exercise 5:
 
 26! / (26 - 7)! = 3315312000
+Dus de kans dat het lot met DBFAECG wint is 1/3315312000
 
 Exercise 6:
 
