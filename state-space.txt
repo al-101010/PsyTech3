@@ -36,3 +36,26 @@ N = aantal zaalsloten per week
 r = aantal in te plannen activiteiten (hoorcolleges, werkgroepen, practica)
 
 versimpelende aannames: elke activiteit kan in elke ruimte plaatsvinden. In werkelijkheid, heeft elke ruimte een maximale capaciteit en sommige vakken hebben een grotere aantal deelnemers. Dus er zijn eigenlijk minder opties dan in de formule.  
+
+Klein voorbeeld: 
+Zalen: 
+- C0.110, capaciteit 117
+
+Vakken:
+- Advanced Heuristics
+- total activiteiten: 2
+
+N = 2x4 = 4 
+r = 2
+
+Mogelikheden = 4! / (4-2)! = 4! / (2)! = 12
+
+
+State space probleem berekening 
+
+N = 7 x 20 + 5 = 145
+r1 = 72 (zonder E(studenten))
+r2 = 129 (met E(studenten))
+
+Probleem instantie 1: 145! / (145-72)! = 1.80 x 10^146
+Probleem instantie 2: 145! / (145-129)! = 3.85 x 10^238
