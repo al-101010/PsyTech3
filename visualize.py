@@ -16,10 +16,10 @@ def print_timetable_for_student(timetable_file, student_name: str) -> None:
     timetable_df = pd.read_csv(timetable_file)
 
     # filter for student
-    student_df = timetable_df[timetable_df['student'] == student_name]
-    student_df['alle_info'] = student_df['vak'] + ' - ' + student_df['activiteit'] + ' - ' + student_df['zaal']
+    student_df = timetable_df[timetable_df['Student'] == student_name]
+    student_df['alle_info'] = student_df['Vak'] + ' - ' + student_df['Activiteit'] + ' - ' + student_df['Zaal']
 
-    schedule = pd.pivot_table(student_df, values='alle_info', index='tijdslot', columns='dag', aggfunc=lambda x: '\n'.join(x))
+    schedule = pd.pivot_table(student_df, values='alle_info', index='Tijdslot', columns='Dag', aggfunc=lambda x: '\n'.join(x))
     schedule = schedule.reindex(index=timeslots, columns=days)
     schedule.fillna('', inplace=True)
 
@@ -39,11 +39,10 @@ def obtain_course_schedule(timetable_file, course_name):
     # load in data
     df = pd.read_csv(timetable_file)
 
-    course_df = df.groupby('vak').get_group(course_name)
-    course_df['alle_info'] = course_df['activiteit'] + ' - ' + course_df['zaal']
+    course_df = df.groupby('Vak').get_group(course_name)
+    course_df['alle_info'] = course_df['Activiteit'] + ' - ' + course_df['Zaal']
 
-    # TO DO: implement way to avoid duplicates
-    course_schedule = pd.pivot_table(course_df, values='alle_info', index='tijdslot', columns='dag', aggfunc=lambda x: '\n'.join(x))
+    course_schedule = pd.pivot_table(course_df, values='alle_info', index='Tijdslot', columns='Dag', aggfunc=lambda x: '\n'.join(set(x)))
     course_schedule = course_schedule.reindex(index=timeslots, columns=days)
     course_schedule.fillna('', inplace=True)
 
@@ -53,5 +52,5 @@ def obtain_course_schedule(timetable_file, course_name):
     print(table)
 
 
-print_timetable_for_student('test.csv', 'Marleen')
-obtain_course_schedule('test.csv', 'Algoritmen en complexiteit')
+print_timetable_for_student('test_output.csv', 'Yanick Abbing')
+obtain_course_schedule('test_output.csv', 'Software engineering')
