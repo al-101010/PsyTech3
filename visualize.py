@@ -78,7 +78,6 @@ def show_activity_heatmap(timetable_file: str, save: bool = False, output_file: 
     unique_activity_count = unique_activity_count.reindex(index=timeslots, columns=days)
 
     # plot heatmap: higher value darker
-    plt.figure(figsize=(8, 6))
     sns.heatmap(unique_activity_count, annot=True, cmap=sns.cubehelix_palette(as_cmap=True), linewidths=.5, linecolor='k')
     plt.title("Unieke Activiteiten per Tijdslot")
     plt.xlabel("Dag")
@@ -87,7 +86,7 @@ def show_activity_heatmap(timetable_file: str, save: bool = False, output_file: 
     
     if save:
         plt.savefig(output_file)
-
+    
     plt.show()
 
 
