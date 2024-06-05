@@ -13,7 +13,12 @@ study activities for each course as effectively as possible.
 ## Authors: 
 - Daimy van Loo 
 - Daantje de Laaf
-- Alexandra Genis 
+- Alexandra Genis
+
+## Installatie
+
+- `git clone https://github.com/al-101010/PsyTech3.git`
+- `pip install -r requirements.txt`
 
 ## Dankwoord (Acknowledgments):
 
