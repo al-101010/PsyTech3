@@ -51,9 +51,17 @@ class Room:
         self.room_number = room_number
         self.capacity = capacity
 
-
-
-
+    def get_empty_schedule(self, days : list[str] = ['ma', 'di', 'wo', 'do', 'vr'], timeslots : list[str] = ['9', '11', '13', '15']):
         
+        if self.room_number == 'C0.110':
+            timeslots.append('17')
+
+        self.schedule = {}
+
+        for day in days:
+            for timeslot in timeslots:
+                self.schedule[day][timeslot] = 'Free'
+
+   
 class Day:
     pass
