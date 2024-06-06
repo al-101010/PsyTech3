@@ -10,9 +10,14 @@ class Student:
         self.course_names = course_names
         self.courses = set()
 
+    
+    def __repr__(self) -> str:
+        return self.name
+
+
     def add_courses(self, all_courses : set):
         """
-        Add a student's courses to the set of courses as a course class.
+        Add a student's courses to the set of courses as course class instances.
         Also removes NA values.
         """
         for course in all_courses:
@@ -31,29 +36,55 @@ class Course:
         self.add_activities(activity_amounts)
 
 
-    def add_activities(self, activity_amounts : dict):
-        for activity_name, (amount, capacity) in activity_amounts.items():
+    def __repr__(self) -> str:
+        return self.name
+    
+
+    def add_activities(self, activity_amounts : dict[str : int]):
+        """
+        Add all course activities to a dictionary. Accepts a dictionary
+        with activities ('h', 'w', 'p') as keys and an amount as value.
+        """
+        # loop over all activity types to be created
+        for activity_type, (amount, capacity) in activity_amounts.items():
+            # do not add activities with 0 amount
             if amount == 0:
                 continue
+            
+            # lectures do not have a capacity so next line not needed
+            if not 'h' in activity_type:
 
-            if not 'h' in activity_name:
+                # calculate how many activities of this type are needed by capacity
                 amount = math.ceil(len(self.students) / capacity)
-        
+
+            # loop over number of activities of this type
             for i in range(1, amount + 1):
-                name = f'{activity_name}{i}'
-                if activity_name in self.activities:
-                    self.activities[activity_name].append(Activity(name, capacity))
+                name = f'{activity_type}{i}'
+
+                # create dictionary key for this activity type and append activity instance to list
+                if activity_type in self.activities:
+                    self.activities[activity_type].append(Activity(name, capacity, self))
                 else:
-                    self.activities[activity_name] = [(Activity(name, capacity))]
+                    self.activities[activity_type] = [(Activity(name, capacity, self))]
 
 
 class Activity:
-    def __init__(self, name : str, capacity : str) -> None:
+
+    def __init__(self, name : str, capacity : str, course : Course) -> None:
         self.name = name
         self.capacity = capacity
+        self.course = course
         self.scheduled = False
 
+
+    def __repr__(self) -> str:
+        return f'{self.name} from {self.course}'
+    
+
     def schedule(self, room, day, time):
+        """
+        Schedule this activity on the given day and time to given room.
+        """
         self.room = room
         self.day = day
         self.time = time
@@ -65,10 +96,19 @@ class Room:
         self.room_number = room_number
         self.capacity = capacity
 
-        self.get_empty_schedule()
+        self.create_empty_schedule()
 
-    def get_empty_schedule(self, days : list[str] = ['ma', 'di', 'wo', 'do', 'vr'], timeslots : list[str] = ['9', '11', '13', '15']):
-        
+
+    def __repr__(self) -> str:
+        return self.room_number
+
+
+    def create_empty_schedule(self, days : list[str] = ['ma', 'di', 'wo', 'do', 'vr'], timeslots : list[str] = ['9', '11', '13', '15']):
+        """
+        Create an empty schedule for this room, all timeslots are labeled 'free'.
+        """
+
+        # give evening slot to biggest room
         if self.room_number == 'C0.110':
             timeslots.append('17')
         else:
@@ -76,12 +116,14 @@ class Room:
 
         self.schedule = {}
 
+        # loop over each day and create a key
         for day in days:
             self.schedule[day] = {}
+
+            # loop over each time slot and label it 'free'
             for timeslot in timeslots:
                 self.schedule[day][timeslot] = 'Free'
 
-   
 class Day:
     pass
 
