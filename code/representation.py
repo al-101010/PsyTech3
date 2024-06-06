@@ -33,7 +33,7 @@ class Course:
         for activity_name, (amount, capacity) in activity_amounts.items():
             if amount == 0:
                 continue
-            
+
             if not 'h' in activity_name:
                 amount = math.ceil(len(self.students) / capacity)
         
@@ -122,6 +122,20 @@ def get_courses_list(data : pd.DataFrame, all_students : list[Student]) -> list[
 
     return courses_list
 
+def get_rooms_list(data : pd.DataFrame) -> list[Room]:
+    rooms_list = []
+    for index, columns in data.iterrows():
+        rooms_list.append(Room(columns['Zaalnummber'], columns['Max. capaciteit']))
+
+    return rooms_list
+
+def add_students_subjects(students_list : list[Student], courses_list : list[Course]):
+    """
+    Add courses to students in the form of Subject classes.
+    """
+    for student in students_list:
+        student.add_courses(courses_list)
+
 
 # read students and subjects as dataframe
 students = pd.read_csv('../data/studenten_en_vakken.csv')
@@ -130,6 +144,7 @@ rooms = pd.read_csv('../data/zalen.csv')
 
 students_list = get_students_list(students)
 courses_list = get_courses_list(courses, students_list)
+rooms_list = get_rooms_list(rooms)
+add_students_subjects(students_list, courses_list)
 
-for course in courses_list:
-    print(course.activities)
+
