@@ -65,3 +65,9 @@ class Room:
    
 class Day:
     pass
+
+
+# read students and subjects as dataframe
+students = pd.read_csv('../data/studenten_en_vakken.csv')
+subjects = pd.read_csv('../data/vakken.csv')
+rooms = pd.read_csv('../data/zalen.csv')
