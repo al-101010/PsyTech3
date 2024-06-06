@@ -9,6 +9,7 @@ class Student:
         self.student_number = number
         self.course_names = course_names
         self.courses = set()
+        self.activities = set()
 
     
     def __repr__(self) -> str:
@@ -203,20 +204,25 @@ def schedule_courses(courses : list[Course], rooms : list[Room]):
                                     break
         
 
-def get_output(students : list[Student]):
-    rows = []
+def schedule_students(students : list[Student]):
 
     for student in students:
         for course in student.courses:
             for activity_type, activities in course.activities.items():
                 if activity_type != 'h':
                     activity = random.choice(activities)
-                    rows.append([student.name, course.name, activity.name, activity.room.room_number, activity.day, activity.time])
+                    student.activities.add(activity)
                 else:
                     for activity in activities:
-                        rows.append([student.name, course.name, activity.name, activity.room.room_number, activity.day, activity.time])
+                        student.activities.add(activity)
+                        
+def get_output(students : list[Student]):
+    rows = []
 
-        
+    for student in students:
+        for activity in student.activities:
+            rows.append([student.name, activity.course, activity.name, activity.room.room_number, activity.day, activity.time])
+              
     # create dataframe of schedule
     schedule = pd.DataFrame(rows, columns=['Student', 'Vak', 'Activiteit', 'Zaal', 'Dag', 'Tijdslot'])
 
@@ -236,5 +242,6 @@ rooms_list = get_rooms_list(rooms)
 add_students_subjects(students_list, courses_list)
 
 schedule_courses(courses_list, rooms_list)
-print(get_output(students_list))
+schedule_students(students_list)
+
 
