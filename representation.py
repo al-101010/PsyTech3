@@ -36,8 +36,14 @@ class Course:
         
 
 class Activity:
-    def __init__(self, name : str, max_students : str) -> None:
-        pass
+    def __init__(self, name : str, capacity : str) -> None:
+        self.name = name
+        self.capacity = capacity
+
+    def schedule(self, room, day, time):
+        self.room = room
+        self.day = day
+        self.time = time
 
 class Room:
 
