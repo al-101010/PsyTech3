@@ -29,6 +29,8 @@ class Course:
 
         self.add_activities(activity_amounts)
 
+
+
     def add_activities(self, activity_amounts : dict):
         for activity_name, (amount, capacity) in activity_amounts.items():
             if amount == 0:
@@ -46,11 +48,13 @@ class Activity:
     def __init__(self, name : str, capacity : str) -> None:
         self.name = name
         self.capacity = capacity
+        self.scheduled = False
 
     def schedule(self, room, day, time):
         self.room = room
         self.day = day
         self.time = time
+        self.scheduled = True
 
 class Room:
 
@@ -64,10 +68,13 @@ class Room:
         
         if self.room_number == 'C0.110':
             timeslots.append('17')
+        else:
+            timeslots = ['9', '11', '13', '15']
 
         self.schedule = {}
 
         for day in days:
+            self.schedule[day] = {}
             for timeslot in timeslots:
                 self.schedule[day][timeslot] = 'Free'
 
@@ -136,8 +143,38 @@ def add_students_subjects(students_list : list[Student], courses_list : list[Cou
     for student in students_list:
         student.add_courses(courses_list)
 
+def schedule_courses(courses : list[Course], rooms : list[Room]):
+    for course in courses:
+        for activity_instance in course.activities.values():
+                for room in rooms:
+                    for day, timeslots in room.schedule.items():
+                        for timeslot, availability in timeslots.items():
+                            while activity_instance.scheduled == False:
+                                if availability == 'Free':
+                                    room.schedule[day][timeslot] = 'Occupied'
+                                    activity_instance.schedule(room, day, timeslot)
+                                else:
+                                    break
+        
 
-# read students and subjects as dataframe
+def get_output(students : list[Student]):
+    rows = []
+
+    for student in students:
+        for course in student.courses:
+            for activity_instance in course.activities.values():
+                rows.append([student.name, course.name, activity_instance.name, activity_instance.room.room_number, activity_instance.day, activity_instance.time])
+
+        
+    # create dataframe of schedule
+    schedule = pd.DataFrame(rows, columns=['Student', 'Vak', 'Activiteit', 'Zaal', 'Dag', 'Tijdslot'])
+
+    schedule.to_csv('../data/test_output.csv', index=False)
+
+    return schedule
+
+
+# read students and courses as dataframe
 students = pd.read_csv('../data/studenten_en_vakken.csv')
 courses = pd.read_csv('../data/vakken.csv')
 rooms = pd.read_csv('../data/zalen.csv')
@@ -147,4 +184,6 @@ courses_list = get_courses_list(courses, students_list)
 rooms_list = get_rooms_list(rooms)
 add_students_subjects(students_list, courses_list)
 
+schedule_courses(courses_list, rooms_list)
+print(get_output(students_list))
 
