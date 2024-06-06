@@ -66,6 +66,23 @@ class Room:
 class Day:
     pass
 
+def get_students_list(data : pd.DataFrame) -> list[Student]:
+    """
+    Iterate through students dataframe and create a Student class for each student.
+    Returns a list of students in the form of Student classes.
+    """
+    # add students' full name and subjects as column
+    data['full_name'] = data['Voornaam'] + ' ' + data['Achternaam']
+    data['subjects'] = data[['Vak1', 'Vak2', 'Vak3', 'Vak4', 'Vak5']].values.tolist()   
+    
+    students_list = []
+
+    # loop over rows of dataframe and add Student class to list.
+    for index, columns in data.iterrows():
+        students_list.append(Student(columns['full_name'], columns['Stud.Nr.'], set(columns['subjects'])))
+
+    return students_list
+
 
 # read students and subjects as dataframe
 students = pd.read_csv('../data/studenten_en_vakken.csv')
