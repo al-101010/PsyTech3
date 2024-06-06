@@ -21,19 +21,26 @@ class Student:
 
 class Course:
     
-    def __init__(self, name : str, students : list[Student]) -> None:
+    def __init__(self, name : str, students : list[Student], activity_amounts : dict) -> None:
         self.name = name
         self.students = students
+        self.activity_amounts = activity_amounts
         self.activities = {}
 
-    def add_activities(self, name : str, amount : int, capacity : int):
-        if not 'h' in name:
-            amount = math.ceil(len(self.students) / capacity)
+        self.add_activities(activity_amounts)
 
-        for i in range(1, amount + 1):
-            name = f'{name}{i}'
-            self.activities[name] = Activity(name, capacity)
+    def add_activities(self, activity_amounts : dict):
+        for activity_name, (amount, capacity) in activity_amounts.items():
+            if amount == 0:
+                continue
+            
+            if not 'h' in activity_name:
+                amount = math.ceil(len(self.students) / capacity)
         
+            for i in range(1, amount + 1):
+                name = f'{activity_name}{i}'
+                self.activities[name] = Activity(name, capacity)
+
 
 class Activity:
     def __init__(self, name : str, capacity : str) -> None:
@@ -50,6 +57,8 @@ class Room:
     def __init__(self, room_number : str, capacity : str) -> None:
         self.room_number = room_number
         self.capacity = capacity
+
+        self.get_empty_schedule()
 
     def get_empty_schedule(self, days : list[str] = ['ma', 'di', 'wo', 'do', 'vr'], timeslots : list[str] = ['9', '11', '13', '15']):
         
@@ -71,20 +80,56 @@ def get_students_list(data : pd.DataFrame) -> list[Student]:
     Iterate through students dataframe and create a Student class for each student.
     Returns a list of students in the form of Student classes.
     """
-    # add students' full name and subjects as column
+    # add students' full name and courses as column
     data['full_name'] = data['Voornaam'] + ' ' + data['Achternaam']
-    data['subjects'] = data[['Vak1', 'Vak2', 'Vak3', 'Vak4', 'Vak5']].values.tolist()   
+    data['courses'] = data[['Vak1', 'Vak2', 'Vak3', 'Vak4', 'Vak5']].values.tolist()   
     
     students_list = []
 
     # loop over rows of dataframe and add Student class to list.
     for index, columns in data.iterrows():
-        students_list.append(Student(columns['full_name'], columns['Stud.Nr.'], set(columns['subjects'])))
+        students_list.append(Student(columns['full_name'], columns['Stud.Nr.'], set(columns['courses'])))
 
     return students_list
+
+def get_courses_list(data : pd.DataFrame, all_students : list[Student]) -> list[Course]:
+    """
+    Iterate through courses dataframe and create a Course class for each Course.
+    Returns a list of courses in the form of Course classes.
+    """
+    courses_list = []
+
+    # loop over rows of dataframe (courses)
+    for index, columns in data.iterrows():
+    
+        course_students = []
+
+        # loop over all students in any course
+        for student in all_students:
+            
+            # add student to this course list if they follow the course
+            if columns['Vak'] in student.course_names:
+                course_students.append(student)
+
+        lectures = (columns['#Hoorcolleges'], math.inf)
+        tutorials = (columns['#Werkcolleges'], columns['Max. stud. Werkcollege'])
+        practicals = (columns['#Practica'], columns['Max. stud. Practicum'])
+
+        activity_amounts = {'h' : lectures, 'w' : tutorials, 'p' : practicals}
+
+        # add course to courses list
+        courses_list.append(Course(columns['Vak'], course_students, activity_amounts))
+
+    return courses_list
 
 
 # read students and subjects as dataframe
 students = pd.read_csv('../data/studenten_en_vakken.csv')
-subjects = pd.read_csv('../data/vakken.csv')
+courses = pd.read_csv('../data/vakken.csv')
 rooms = pd.read_csv('../data/zalen.csv')
+
+students_list = get_students_list(students)
+courses_list = get_courses_list(courses, students_list)
+
+for course in courses_list:
+    print(course.activities)
