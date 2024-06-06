@@ -149,16 +149,16 @@ def add_students_subjects(students_list : list[Student], courses_list : list[Cou
 def schedule_courses(courses : list[Course], rooms : list[Room]):
     for course in courses:
         for activities in course.activities.values():
-                for activity_instance in activities:
-                    for room in rooms:
-                        for day, timeslots in room.schedule.items():
-                            for timeslot, availability in timeslots.items():
-                                while activity_instance.scheduled == False:
-                                    if availability == 'Free':
-                                        room.schedule[day][timeslot] = 'Occupied'
-                                        activity_instance.schedule(room, day, timeslot)
-                                    else:
-                                        break
+            for activity_instance in activities:
+                for room in rooms:
+                    for day, timeslots in room.schedule.items():
+                        for timeslot, availability in timeslots.items():
+                            while activity_instance.scheduled == False:
+                                if availability == 'Free':
+                                    room.schedule[day][timeslot] = 'Occupied'
+                                    activity_instance.schedule(room, day, timeslot)
+                                else:
+                                    break
         
 
 def get_output(students : list[Student]):
