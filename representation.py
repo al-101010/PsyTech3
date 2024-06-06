@@ -1,28 +1,39 @@
+import math
+import pandas as pd
+
 class Student:
     
-    def __init__(self, name : str, number : str, subject_names = set[str]) -> None:
+    def __init__(self, name : str, number : str, course_names = set[str]) -> None:
         self.name = name
         self.student_number = number
-        self.subject_names = subject_names
-        self.subjects = set()
+        self.course_names = course_names
+        self.courses = set()
 
-    def add_subjects(self, all_subjects : set):
+    def add_courses(self, all_courses : set):
         """
-        Add a student's subjects to the set of subjects as a Subject class.
+        Add a student's courses to the set of courses as a course class.
         Also removes NA values.
         """
-        for subject in all_subjects:
-            if subject.name in self.subject_names:
-                self.subjects.add(subject)
+        for course in all_courses:
+            if course.name in self.course_names:
+                self.courses.add(course)
 
 
-class Subject:
+class Course:
     
     def __init__(self, name : str, students : list[Student]) -> None:
         self.name = name
+        self.students = students
+        self.activities = {}
 
-    def add_activities(self):
-        pass
+    def add_activities(self, name : str, amount : int, capacity : int):
+        if not 'h' in name:
+            amount = math.ceil(len(self.students) / capacity)
+
+        for i in range(1, amount + 1):
+            name = f'{name}{i}'
+            self.activities[name] = Activity(name, capacity)
+        
 
 class Activity:
     def __init__(self, name : str, max_students : str) -> None:
