@@ -1,5 +1,6 @@
 import math
 import pandas as pd
+import random
 
 class Student:
     
@@ -30,7 +31,6 @@ class Course:
         self.add_activities(activity_amounts)
 
 
-
     def add_activities(self, activity_amounts : dict):
         for activity_name, (amount, capacity) in activity_amounts.items():
             if amount == 0:
@@ -41,7 +41,10 @@ class Course:
         
             for i in range(1, amount + 1):
                 name = f'{activity_name}{i}'
-                self.activities[name] = Activity(name, capacity)
+                if activity_name in self.activities:
+                    self.activities[activity_name].append(Activity(name, capacity))
+                else:
+                    self.activities[activity_name] = [(Activity(name, capacity))]
 
 
 class Activity:
@@ -145,16 +148,17 @@ def add_students_subjects(students_list : list[Student], courses_list : list[Cou
 
 def schedule_courses(courses : list[Course], rooms : list[Room]):
     for course in courses:
-        for activity_instance in course.activities.values():
-                for room in rooms:
-                    for day, timeslots in room.schedule.items():
-                        for timeslot, availability in timeslots.items():
-                            while activity_instance.scheduled == False:
-                                if availability == 'Free':
-                                    room.schedule[day][timeslot] = 'Occupied'
-                                    activity_instance.schedule(room, day, timeslot)
-                                else:
-                                    break
+        for activities in course.activities.values():
+                for activity_instance in activities:
+                    for room in rooms:
+                        for day, timeslots in room.schedule.items():
+                            for timeslot, availability in timeslots.items():
+                                while activity_instance.scheduled == False:
+                                    if availability == 'Free':
+                                        room.schedule[day][timeslot] = 'Occupied'
+                                        activity_instance.schedule(room, day, timeslot)
+                                    else:
+                                        break
         
 
 def get_output(students : list[Student]):
@@ -162,8 +166,13 @@ def get_output(students : list[Student]):
 
     for student in students:
         for course in student.courses:
-            for activity_instance in course.activities.values():
-                rows.append([student.name, course.name, activity_instance.name, activity_instance.room.room_number, activity_instance.day, activity_instance.time])
+            for activity_type, activities in course.activities.items():
+                if activity_type != 'h':
+                    activity = random.choice(activities)
+                    rows.append([student.name, course.name, activity.name, activity.room.room_number, activity.day, activity.time])
+                else:
+                    for activity in activities:
+                        rows.append([student.name, course.name, activity.name, activity.room.room_number, activity.day, activity.time])
 
         
     # create dataframe of schedule
