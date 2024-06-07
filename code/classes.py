@@ -16,11 +16,21 @@ class Student:
     
     def __repr__(self) -> str:
         return self.name
+    
+
+    def add_courses(self, all_courses : set):
+        """
+        Add a student's courses to the set of courses as course class instances.
+        Also removes NA values.
+        """
+        for course in all_courses:
+            if course.name in self.course_names:
+                self.courses.add(course)
 
 
     def empty_schedule(self, days : list[str] = ['ma', 'di', 'wo', 'do', 'vr'], timeslots : list[str] = ['9', '11', '13', '15', '17']):
         """
-        Create an empty schedule for this room, all timeslots are labeled 'free'.
+        Returns an empty schedule for this student, all timeslots are labeled 'free'.
         """
 
         schedule = {}
@@ -37,20 +47,15 @@ class Student:
 
     
     def personal_schedule(self):
+        """
+        Add student's activities to their schedule and return this schedule.
+        """
+        # loop over all activities of this student and add it to relevant day and time in schedule.
         for activity in self.activities:
             self.schedule[activity.day][activity.time] = activity
 
         return self.schedule
 
-
-    def add_courses(self, all_courses : set):
-        """
-        Add a student's courses to the set of courses as course class instances.
-        Also removes NA values.
-        """
-        for course in all_courses:
-            if course.name in self.course_names:
-                self.courses.add(course)
 
 
 class Course:
