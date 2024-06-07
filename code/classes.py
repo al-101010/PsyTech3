@@ -11,10 +11,36 @@ class Student:
         self.course_names = course_names
         self.courses = set()
         self.activities = set()
+        self.schedule = self.empty_schedule()
 
     
     def __repr__(self) -> str:
         return self.name
+
+
+    def empty_schedule(self, days : list[str] = ['ma', 'di', 'wo', 'do', 'vr'], timeslots : list[str] = ['9', '11', '13', '15', '17']):
+        """
+        Create an empty schedule for this room, all timeslots are labeled 'free'.
+        """
+
+        schedule = {}
+
+        # loop over each day and create a key
+        for day in days:
+            schedule[day] = {}
+
+            # loop over each time slot and label it 'free'
+            for timeslot in timeslots:
+                schedule[day][timeslot] = 'Free'
+
+        return schedule
+
+    
+    def personal_schedule(self):
+        for activity in self.activities:
+            self.schedule[activity.day][activity.time] = activity
+
+        return self.schedule
 
 
     def add_courses(self, all_courses : set):
