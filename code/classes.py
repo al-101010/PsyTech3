@@ -98,14 +98,14 @@ class Room:
         self.room_number = room_number
         self.capacity = capacity
 
-        self.create_empty_schedule()
+        self.empty_schedule()
 
 
     def __repr__(self) -> str:
         return self.room_number
 
 
-    def create_empty_schedule(self, days : list[str] = ['ma', 'di', 'wo', 'do', 'vr'], timeslots : list[str] = ['9', '11', '13', '15']):
+    def empty_schedule(self, days : list[str] = ['ma', 'di', 'wo', 'do', 'vr'], timeslots : list[str] = ['9', '11', '13', '15']):
         """
         Create an empty schedule for this room, all timeslots are labeled 'free'.
         """
@@ -136,7 +136,7 @@ class Schedule:
         self.courses = self.get_courses_list(courses_data, self.students)
         self.rooms = self.get_rooms_list(rooms_data)
 
-        self.add_students_subjects(self.students, self.courses)
+        self.add_students_courses(self.students, self.courses)
 
 
     def get_students_list(self, data : pd.DataFrame) -> list[Student]:
@@ -199,7 +199,7 @@ class Schedule:
 
         return rooms_list
 
-    def add_students_subjects(self, students_list : list[Student], courses_list : list[Course]):
+    def add_students_courses(self, students_list : list[Student], courses_list : list[Course]):
         """
         Add courses to students in the form of Subject classes.
         """
