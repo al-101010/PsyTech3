@@ -3,7 +3,19 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import tabulate
 from tabulate import tabulate as tabulate_data
+import textwrap
 
+def wrap_text(text: str, width: int = 40) -> str:
+    """
+    Function that takes a text and wraps it within the specified width
+    """
+    wrapped_lines = []
+    
+    for line in text.split('\n'):
+        wrapped_lines.append(textwrap.fill(line, width))
+    
+    return '\n'.join(wrapped_lines)
+    
 def print_timetable_for_student(timetable_file: str, student_name: str) -> None:
     """
     Function that takes a csv file containing all scheduling information, as well
@@ -27,8 +39,11 @@ def print_timetable_for_student(timetable_file: str, student_name: str) -> None:
     schedule = schedule.reindex(index=timeslots, columns=days)
     schedule.fillna('', inplace=True)
 
+    # wrap text
+    for column in schedule.columns:
+        schedule[column] = schedule[column].apply(lambda x: wrap_text(x))
+        
     # create table 
-    # TO DO: Layout fixen zodat timetable altijd op scherm past OF afkortingen van vakken gebruiken
     tabulated_schedule = tabulate_data(schedule, headers='keys', tablefmt='fancy_grid', showindex='always')
     
     print(f"Weekrooster voor {student_name}:\n")
@@ -57,6 +72,10 @@ def obtain_course_schedule(timetable_file: str, course_name: str) -> None:
     course_schedule = course_schedule.reindex(index=timeslots, columns=days)
     course_schedule.fillna('', inplace=True)
 
+    # wrap text
+    for column in course_schedule.columns:
+        course_schedule[column] = course_schedule[column].apply(lambda x: wrap_text(x))
+    
     table = tabulate_data(course_schedule, headers='keys', tablefmt='fancy_grid', showindex='always')
 
     print(f"Weekrooster voor {course_name} \n")
@@ -84,7 +103,7 @@ def show_activity_heatmap(timetable_file: str, save: bool = False, output_file: 
     plt.ylabel("Tijdslot")
     plt.yticks(rotation=0)
     
-    if save:
+    if save and output_file:
         plt.savefig(output_file)
     
     plt.show()
