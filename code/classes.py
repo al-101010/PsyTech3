@@ -108,7 +108,61 @@ class Student:
             self.maluspoints += day_malus
 
         return self.maluspoints
+    
+    def get_free_period_malus_points(self):
+        """
+        Method that takes a students schedule and calculates the amount of malus points resulting
+        from the number of free periods between classes for this specific student
+        """
+        # intialize maluspoint counter
+        free_period_maluspoints = 0
 
+        # loop over all days and respective timeslots
+        for day, timeslots in self.schedule.items():
+            
+            # initialize variables
+            occupied_timeslots_indices = []
+            free_period_count = 0
+
+            # get list of statuses
+            slots = list(timeslots.values())
+            
+            # loop over all indices and statuses of timeslots
+            for i, status in enumerate(slots):
+
+                # obtain indices of all occupied timeslots
+                if status != 'Free':
+                    occupied_timeslots_indices.append(i)
+            
+            if occupied_timeslots_indices:
+
+                # obtain indices of first and last occupied timeslots
+                first_activity_index = occupied_timeslots_indices[0]
+                final_activity_index = occupied_timeslots_indices[-1]
+
+                # obtain number of free timeslots between first and last occupied ones
+                for i in range(first_activity_index, final_activity_index + 1):
+                    if slots[i] == 'Free':
+                        free_period_count += 1
+            
+            # convert into maluspoints for the day and add to total number
+            todays_maluspoints = self.maluspoints_converter(free_period_count)
+            free_period_maluspoints += todays_maluspoints
+
+        return free_period_maluspoints
+
+    def get_double_booking_malus_points(self):
+        double_booking_maluspoints = 0
+
+        for day, timeslots in self.schedule.items():
+            for timeslot, activities in timeslots.items():
+
+                # if activities 
+                if activities != 'Free' and len(activities) > 1:
+                    double_booking_maluspoints += 1
+        
+        return double_booking_maluspoints
+    
     def maluspoints_converter(self, number_empty_slots: int):
         """
         Converts empty slots of one day into malus points.
@@ -125,6 +179,12 @@ class Student:
             print(f'{number_empty_slots} empty slots is not allowed! Change algorithm!')
 
         return malus
+
+    def total_maluspoints(self):
+        """
+        Sets total number of maluspoints --> INCOMPLETE 
+        """
+        self.maluspoints = self.get_free_period_malus_points() + self.get_double_booking_malus_points()
 
 class Course:
 
