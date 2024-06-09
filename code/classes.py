@@ -52,7 +52,14 @@ class Student:
         """
         # loop over all activities of this student and add it to relevant day and time in schedule.
         for activity in self.activities:
-            self.schedule[activity.day][activity.time] = activity
+            
+            # initialize list for timeslot if labelled free
+            if self.schedule[activity.day][activity.time] == 'Free':
+                self.schedule[activity.day][activity.time] = []
+            
+            # add activity to list
+            self.schedule[activity.day][activity.time].append(activity)
+
         return self.schedule
 
     def get_malus_points(self, schedule):
