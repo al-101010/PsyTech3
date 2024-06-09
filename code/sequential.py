@@ -18,7 +18,7 @@ class Sequential:
                                         activity_instance.schedule(room, day, timeslot)
                                     else:
                                         break
-        
+
 
     def schedule_students(self):
 
@@ -31,3 +31,7 @@ class Sequential:
                     else:
                         for activity in activities:
                             student.activities.add(activity)
+            student.personal_schedule()
+
+            # calculate malus_points
+            student.get_malus_points(student.schedule)

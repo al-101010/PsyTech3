@@ -4,7 +4,7 @@ import pandas as pd
 import random
 
 class Student:
-    
+
     def __init__(self, name : str, number : str, course_names = set[str]) -> None:
         self.name = name
         self.student_number = number
@@ -13,10 +13,10 @@ class Student:
         self.activities = set()
         self.schedule = self.empty_schedule()
 
-    
+
     def __repr__(self) -> str:
         return self.name
-    
+
 
     def add_courses(self, all_courses : set):
         """
@@ -45,7 +45,7 @@ class Student:
 
         return schedule
 
-    
+
     def personal_schedule(self):
         """
         Add student's activities to their schedule and return this schedule.
@@ -53,13 +53,74 @@ class Student:
         # loop over all activities of this student and add it to relevant day and time in schedule.
         for activity in self.activities:
             self.schedule[activity.day][activity.time] = activity
-
         return self.schedule
 
+    def get_malus_points(self, schedule):
+        """
+        Takes in the student's schedule and calculates their amount of maluspoints.
+        Add double bookings! 
+        """
+        # initialise empty counter for total maluspoints
+        self.maluspoints = 0
 
+        # loop over each day
+        for day, timeslots in schedule.items():
+
+            # initialise helpers
+            occupied_count = 0
+            empty_count = 0
+            switch = False
+
+            #initialise daily malus counter
+            day_empty_slots = 0
+
+            # loop over timeslots
+            for slot, status in timeslots.items():
+                if status != 'Free' and switch == False and occupied_count == 0:
+                    switch = True
+                    occupied_count += 1
+                    empty_count = 0
+
+                elif status == 'Free' and empty_count > 0:
+                    empty_count += 1
+                    day_empty_slots += 1
+
+                elif status == 'Free' and switch == True:
+                    occupied_count = 0
+                    empty_count += 1
+                    switch = False
+                    day_empty_slots += 1
+
+            # if free slots were at tail end of the day
+            if switch == False and day_empty_slots > 0:
+                # remove the empty slots counted since last occupied
+                day_empty_slots -= empty_count
+
+            # get malus points for the day and add to total
+            day_malus = self.maluspoints_converter(day_empty_slots)
+            self.maluspoints += day_malus
+
+        return self.maluspoints
+
+    def maluspoints_converter(self, number_empty_slots: int):
+        """
+        Converts empty slots of one day into malus points.
+        """
+
+        malus = 0
+        if number_empty_slots == 1:
+            malus = 1
+        elif number_empty_slots == 2:
+            malus = 3
+        elif number_empty_slots > 2:
+            # not allowed but for now just make cost very high
+            malus = 10
+            print(f'{number_empty_slots} empty slots is not allowed! Change algorithm!')
+
+        return malus
 
 class Course:
-    
+
     def __init__(self, name : str, students : list[Student], activity_amounts : dict) -> None:
         self.name = name
         self.students = students
@@ -71,7 +132,7 @@ class Course:
 
     def __repr__(self) -> str:
         return self.name
-    
+
 
     def add_activities(self, activity_amounts : dict[str : int]):
         """
@@ -83,7 +144,7 @@ class Course:
             # do not add activities with 0 amount
             if amount == 0:
                 continue
-            
+
             # lectures do not have a capacity so next line not needed
             if not 'h' in activity_type:
 
@@ -112,7 +173,7 @@ class Activity:
 
     def __repr__(self) -> str:
         return f'{self.name} from {self.course}'
-    
+
 
     def schedule(self, room, day, time):
         """
@@ -179,8 +240,8 @@ class Schedule:
 
         # add students' full name and courses as column
         data['full_name'] = data['Voornaam'] + ' ' + data['Achternaam']
-        data['courses'] = data[['Vak1', 'Vak2', 'Vak3', 'Vak4', 'Vak5']].values.tolist()   
-        
+        data['courses'] = data[['Vak1', 'Vak2', 'Vak3', 'Vak4', 'Vak5']].values.tolist()
+
         students_list = []
 
         # loop over rows of dataframe and add Student class to list.
@@ -200,12 +261,12 @@ class Schedule:
 
         # loop over rows of dataframe (courses)
         for index, columns in data.iterrows():
-        
+
             course_students = []
 
             # loop over all students in any course
             for student in all_students:
-                
+
                 # add student to this course list if they follow the course
                 if columns['Vak'] in student.course_names:
                     course_students.append(student)
@@ -223,7 +284,7 @@ class Schedule:
 
     def get_rooms_list(self, data : pd.DataFrame) -> list[Room]:
         data = pd.read_csv(data)
-        
+
         rooms_list = []
         for index, columns in data.iterrows():
             rooms_list.append(Room(columns['Zaalnummber'], columns['Max. capaciteit']))
@@ -237,8 +298,29 @@ class Schedule:
         for student in students_list:
             student.add_courses(courses_list)
 
+class Maluspoints:
+    def __init__(self, students: list):
+        self.total_maluspoints = 0
 
-                        
+        # for now only calculated from empty slots
+        self.students_maluspoints(students)
+        self.evening_room_maluspoints()
 
+    def students_maluspoints(self, students: list):
+        """
+        Takes in a list of scheduled students and calculates the total amount
+        of maluspoints. Add double bookings!
+        """
 
+        # loop over each student
+        for student in students:
+            # add their maluspoints to the total
+            self.total_maluspoints += student.maluspoints
 
+        return self.total_maluspoints
+
+    def evening_room_maluspoints(self):
+        """
+        Calculates maluspoints for usage of evening slot. Finalize.
+        """
+        pass

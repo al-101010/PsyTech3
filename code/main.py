@@ -12,7 +12,7 @@ def get_output(students : list[cl.Student]):
         for student in students:
             for activity in student.activities:
                 rows.append([student.name, activity.course, activity.name, activity.room.room_number, activity.day, activity.time])
-                
+
         # create dataframe of schedule
         schedule = pd.DataFrame(rows, columns=['Student', 'Vak', 'Activiteit', 'Zaal', 'Dag', 'Tijdslot'])
 
@@ -29,4 +29,9 @@ if __name__ == "__main__":
     sequential_schedule = seq.Sequential(test_schedule)
     sequential_schedule.schedule_courses()
     sequential_schedule.schedule_students()
+
+    # calculate malus points
+    maluspoints = cl.Maluspoints(sequential_schedule.schedule.students)
+    print(f"This schedule resulted in {maluspoints.total_maluspoints} maluspoints from empty time slots.")
+
     print(get_output(test_schedule.students))
