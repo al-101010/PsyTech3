@@ -4,6 +4,8 @@ class Sequential:
 
     def __init__(self, schedule) -> None:
         self.schedule = schedule
+        self.schedule_courses()
+        self.schedule_students()
 
     def schedule_courses(self):
         for course in self.schedule.courses:

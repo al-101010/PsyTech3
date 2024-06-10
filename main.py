@@ -23,23 +23,15 @@ def get_output(students : list, output : str):
 
 
 if __name__ == "__main__":
-    # represent empty schedule from data
     test_schedule = Schedule('data/studenten_en_vakken.csv', 'data/vakken.csv', 'data/zalen.csv')
-
-    # create schedule using sequential algorithm
-    sequential_schedule = Sequential(test_schedule)
-    sequential_schedule.schedule_courses()
-    sequential_schedule.schedule_students()
 
     # create schedule using random algorithm
     random_schedule = Random(test_schedule)
 
     # calculate malus points
-    maluspoints = sequential_schedule.schedule.get_total_maluspoints()
+    maluspoints = random_schedule.schedule.get_total_maluspoints()
     print(f"This schedule resulted in {maluspoints} maluspoints.")
-    print(f"Evening room usage: {sequential_schedule.schedule.get_evening_room_maluspoints()}")
-
-    # print(get_output(test_schedule.students, 'data/test_output.csv'))
+    print(f"Evening room usage: {random_schedule.schedule.get_evening_room_maluspoints()}")
 
     print(get_output(test_schedule.students, 'data/random_output.csv'))
 
