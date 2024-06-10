@@ -1,8 +1,9 @@
-import sequential as seq
-import classes as cl
+from code.algorithms.sequential import Sequential # Ignore : True
+from code.classes.schedule import Schedule
+from code.classes.maluspoints import Maluspoints
 import pandas as pd
 
-def get_output(students : list[cl.Student]):
+def get_output(students : list):
         """
         Print output schedule as data frame and convert to csv.
         """
@@ -16,22 +17,22 @@ def get_output(students : list[cl.Student]):
         # create dataframe of schedule
         schedule = pd.DataFrame(rows, columns=['Student', 'Vak', 'Activiteit', 'Zaal', 'Dag', 'Tijdslot'])
 
-        schedule.to_csv('../data/test_output.csv', index=False)
+        schedule.to_csv('data/test_output.csv', index=False)
 
         return schedule
 
 
 if __name__ == "__main__":
     # represent empty schedule from data
-    test_schedule = cl.Schedule('../data/studenten_en_vakken.csv', '../data/vakken.csv', '../data/zalen.csv')
+    test_schedule = Schedule('data/studenten_en_vakken.csv', 'data/vakken.csv', 'data/zalen.csv')
 
     # create schedule using sequential algorithm
-    sequential_schedule = seq.Sequential(test_schedule)
+    sequential_schedule = Sequential(test_schedule)
     sequential_schedule.schedule_courses()
     sequential_schedule.schedule_students()
 
     # calculate malus points
-    maluspoints = cl.Maluspoints(sequential_schedule.schedule.students)
+    maluspoints = Maluspoints(sequential_schedule.schedule.students)
     print(f"This schedule resulted in {maluspoints.total_maluspoints} maluspoints from empty time slots.")
 
     print(get_output(test_schedule.students))

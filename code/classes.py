@@ -228,7 +228,6 @@ class Course:
                 else:
                     self.activities[activity_type] = [(Activity(name, capacity, self))]
 
-
 class Activity:
 
     def __init__(self, name : str, capacity : str, course : Course) -> None:
