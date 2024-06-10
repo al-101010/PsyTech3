@@ -21,7 +21,6 @@ class Sequential:
 
 
     def schedule_students(self):
-
         for student in self.schedule.students:
             for course in student.courses:
                 for activity_type, activities in course.activities.items():
