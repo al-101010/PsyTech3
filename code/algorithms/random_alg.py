@@ -5,7 +5,7 @@ class Random:
     def __init__(self, schedule) -> None:
         self.schedule = schedule
         self.schedule_courses()
-        self.schedule_students
+        self.schedule_students()
 
     def schedule_courses(self):
         archive = []
@@ -31,10 +31,16 @@ class Random:
                 for activity_type, activities in course.activities.items():
                     if activity_type != 'h':
                         activity = random.choice(activities)
+
+                        while len(activity.students) == activity.capacity:
+                            activity = random.choice(activities)
+
                         student.activities.add(activity)
+                        activity.students.add(student)
                     else:
                         for activity in activities:
                             student.activities.add(activity)
+                            activity.students.add(student)
             
             student.personal_schedule()
 

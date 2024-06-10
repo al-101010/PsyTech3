@@ -4,6 +4,7 @@ class Activity:
         self.name = name
         self.capacity = capacity
         self.course = course
+        self.students = set()
         self.scheduled = False
 
 
