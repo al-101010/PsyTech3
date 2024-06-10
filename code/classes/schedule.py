@@ -115,6 +115,15 @@ class Schedule:
         self.room_maluspoints = evening_room_points
 
         return self.room_maluspoints
+    
+    def get_overcapacity_maluspoints(self):
+        over_capacity_maluspoints = 0
+        
+        for activity in self.activities:
+            if len(activity.students) > activity.room.capacity:
+                over_capacity_maluspoints += (len(activity.students) - activity.room.capacity)
+        
+        return over_capacity_maluspoints
 
     def get_student_maluspoints(self):
         total_student_maluspoints = 0
@@ -128,6 +137,6 @@ class Schedule:
         """
         Calculates total amount of malus points. IMPLEMENT MALUS POINTS FOR TOO MANY STUDENTS
         """
-        self.total_maluspoints = self.get_evening_room_maluspoints() + self.get_student_maluspoints()
+        self.total_maluspoints = self.get_evening_room_maluspoints() + self.get_student_maluspoints() + self.get_overcapacity_maluspoints()
 
         return self.total_maluspoints
