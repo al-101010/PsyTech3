@@ -15,6 +15,8 @@ class Schedule:
         self.rooms = self.get_rooms_list(rooms_data)
         self.activities = self.get_activities_list(self.courses)
         self.room_maluspoints = 0
+        self.student_maluspoints = 0
+        self.total_maluspoints = 0
 
         self.add_students_courses(self.students, self.courses)
 
@@ -97,12 +99,31 @@ class Schedule:
         for student in students_list:
             student.add_courses(courses_list)
 
-    def get_room_maluspoints(self):
-        """ Calculates malus points for using C0.110. """
+    def get_evening_room_maluspoints(self):
+        """ 
+        Calculates malus points for using C0.110. 
+        """
 
         for room in self.rooms:
             if room.room_number == 'C0.110':
                 for day, timeslots in room.schedule.items():
                     if timeslots.get('17') != 'Free':
                         self.room_maluspoints += 5
+
         return self.room_maluspoints
+
+    def get_student_maluspoints(self):
+        total_student_maluspoints = 0
+
+        for student in self.students:
+            total_student_maluspoints += student.maluspoints
+        
+        return total_student_maluspoints
+    
+    def get_total_maluspoints(self):
+        """
+        Calculates total amount of malus points. IMPLEMENT MALUS POINTS FOR TOO MANY STUDENTS
+        """
+        self.total_maluspoints = self.get_evening_room_maluspoints() + self.get_student_maluspoints()
+
+        return self.total_maluspoints
