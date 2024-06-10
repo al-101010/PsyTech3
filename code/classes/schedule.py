@@ -12,6 +12,7 @@ class Schedule:
         self.students = self.get_students_list(students_data)
         self.courses = self.get_courses_list(courses_data, self.students)
         self.rooms = self.get_rooms_list(rooms_data)
+        self.room_maluspoints = 0
 
         self.add_students_courses(self.students, self.courses)
 
@@ -82,3 +83,13 @@ class Schedule:
         """
         for student in students_list:
             student.add_courses(courses_list)
+
+    def get_room_maluspoints(self):
+        """ Calculates malus points for using C0.110. """
+
+        for room in self.rooms:
+            if room.room_number == 'C0.110':
+                for day, timeslots in room.schedule.items():
+                    if timeslots.get('17') != 'Free':
+                        self.room_maluspoints += 5
+        return self.room_maluspoints
