@@ -1,7 +1,6 @@
 from code.algorithms.sequential import Sequential # Ignore : True
 from code.algorithms.random_alg import Random
 from code.classes.schedule import Schedule
-from code.classes.maluspoints import Maluspoints
 import pandas as pd
 
 def get_output(students : list, output : str):
@@ -36,8 +35,9 @@ if __name__ == "__main__":
     random_schedule = Random(test_schedule)
 
     # calculate malus points
-    maluspoints = Maluspoints(sequential_schedule.schedule.students)
-    print(f"This schedule resulted in {maluspoints.total_maluspoints} maluspoints from empty time slots.")
+    maluspoints = sequential_schedule.schedule.get_total_maluspoints()
+    print(f"This schedule resulted in {maluspoints} maluspoints.")
+    print(f"Evening room usage: {sequential_schedule.schedule.get_evening_room_maluspoints()}")
 
     # print(get_output(test_schedule.students, 'data/test_output.csv'))
 

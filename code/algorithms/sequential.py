@@ -4,7 +4,6 @@ class Sequential:
 
     def __init__(self, schedule) -> None:
         self.schedule = schedule
-        self.maluspoints = 0
 
     def schedule_courses(self):
         for course in self.schedule.courses:
@@ -20,10 +19,6 @@ class Sequential:
                                     else:
                                         break
 
-        # get maluspoints for using the evening slot
-        room_maluspoints = self.schedule.get_room_maluspoints()
-        self.maluspoints += room_maluspoints
-
 
     def schedule_students(self):
         for student in self.schedule.students:
@@ -37,6 +32,3 @@ class Sequential:
                             student.activities.add(activity)
             student.personal_schedule()
 
-            # calculate malus_points
-            student_maluspoints = student.get_malus_points(student.schedule)
-            self.maluspoints += student_maluspoints

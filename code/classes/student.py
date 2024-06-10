@@ -9,7 +9,7 @@ class Student:
         self.courses = set()
         self.activities = set()
         self.schedule = self.empty_schedule()
-
+        self.maluspoints = 0
 
     def __repr__(self) -> str:
         return self.name
@@ -158,6 +158,7 @@ class Student:
                 if activities != 'Free' and len(activities) > 1:
                     double_booking_maluspoints += 1
         
+        print(f"{self.name} - Double Booking Malus Points: {double_booking_maluspoints}")
         return double_booking_maluspoints
     
     def maluspoints_converter(self, number_empty_slots: int):
@@ -177,8 +178,10 @@ class Student:
 
         return malus
 
-    def total_maluspoints(self):
+    def get_total_maluspoints(self):
         """
         Sets total number of maluspoints --> INCOMPLETE 
         """
         self.maluspoints = self.get_free_period_malus_points() + self.get_double_booking_malus_points()
+
+        return self.maluspoints
