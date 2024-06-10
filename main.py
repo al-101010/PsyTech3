@@ -35,5 +35,5 @@ if __name__ == "__main__":
 
     print(get_output(test_schedule.students, 'data/random_output.csv'))
 
-    for activity in test_schedule.activities:
-         print(activity.capacity, len(activity.students))
+    # for activity in test_schedule.activities:
+    #      print(activity.capacity, len(activity.students))

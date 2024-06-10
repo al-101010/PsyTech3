@@ -19,4 +19,6 @@ class Activity:
         self.room = room
         self.day = day
         self.time = time
+
+        room.schedule[day][time] = 'Occupied' 
         self.scheduled = True
