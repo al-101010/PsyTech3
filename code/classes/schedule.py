@@ -4,6 +4,7 @@ import random
 from .student import Student
 from .course import Course
 from .room import Room
+from .activity import Activity
 
 
 class Schedule:
@@ -12,6 +13,7 @@ class Schedule:
         self.students = self.get_students_list(students_data)
         self.courses = self.get_courses_list(courses_data, self.students)
         self.rooms = self.get_rooms_list(rooms_data)
+        self.activities = self.get_activities_list(self.courses)
         self.room_maluspoints = 0
 
         self.add_students_courses(self.students, self.courses)
@@ -76,6 +78,17 @@ class Schedule:
             rooms_list.append(Room(columns['Zaalnummber'], columns['Max. capaciteit']))
 
         return rooms_list
+    
+    def get_activities_list(self, courses : list[Course]) -> list[Activity]:
+        activities_list = []
+
+        for course in courses:
+            for activities in course.activities.values():
+                for activity in activities:
+                    activities_list.append(activity)
+
+        return activities_list
+
 
     def add_students_courses(self, students_list : list[Student], courses_list : list[Course]):
         """

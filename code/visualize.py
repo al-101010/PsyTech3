@@ -110,6 +110,6 @@ def show_activity_heatmap(timetable_file: str, save: bool = False, output_file: 
 
 
 
-print_timetable_for_student('../data/test_output.csv', 'Yanick Abbing')
-obtain_course_schedule('../data/test_output.csv', 'Software engineering')
-show_activity_heatmap('../data/test_output.csv')
+print_timetable_for_student('../data/random_output.csv', 'Yanick Abbing')
+obtain_course_schedule('../data/random_output.csv', 'Software engineering')
+show_activity_heatmap('../data/random_output.csv')

@@ -24,6 +24,9 @@ class Room:
         else:
             timeslots = ['9', '11', '13', '15']
 
+        self.timeslots = timeslots
+        self.days = days
+
         self.schedule = {}
 
         # loop over each day and create a key

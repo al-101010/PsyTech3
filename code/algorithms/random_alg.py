@@ -8,15 +8,16 @@ class Random:
         self.schedule_students
 
     def schedule_courses(self):
+        #TO DO: add set of all combinations
+        archive = set()
         
-        for course in self.schedule.courses:
-            for activities in course.activities.values():
-                for activity_instance in activities:
-                    room = random.choice(self.schedule.rooms)
-                    day = random.choice(['Ma', 'Di', 'Wo', 'Do', 'Vr'])
-                    time = random.choice(['9', '11', '13', '15'])
+        for activity in self.schedule.activities:    
+            room = random.choice(self.schedule.rooms)
+            day = random.choice(room.days)
+            time = random.choice(room.timeslots)
 
-                    activity_instance.schedule(room, day, time)
+            activity.schedule(room, day, time)
+            archive.add((room, day, time))
 
     def schedule_students(self):
         for student in self.schedule.students:
