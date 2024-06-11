@@ -5,7 +5,7 @@ import tabulate
 from tabulate import tabulate as tabulate_data
 import textwrap
 
-def wrap_text(text: str, width: int = 40) -> str:
+def wrap_text(text: str, width: int = 35) -> str:
     """
     Function that takes a text and wraps it within the specified width
     """
@@ -81,6 +81,35 @@ def obtain_course_schedule(timetable_file: str, course_name: str) -> None:
     print(f"Weekrooster voor {course_name} \n")
     print(table)
 
+def obtain_room_schedule(timetable_file: str, room_id: str) -> None:
+    """
+    Function that takes a csv file containing all scheduling information, as well as a 
+    string containing a room id, and prints the weekly schedule for said room
+    """
+
+    # initialize variables
+    timeslots = [9, 11, 13, 15, 17]
+    days = ['ma', 'di', 'wo', 'do', 'vr']
+
+    # load in data
+    df = pd.read_csv(timetable_file)
+
+    room_df = df.groupby('Zaal').get_group(room_id)
+    room_df['alle_info'] = room_df['Vak'] + ' - ' + room_df['Activiteit']
+
+    room_schedule = pd.pivot_table(room_df, values='alle_info', index='Tijdslot', columns='Dag', aggfunc=lambda x: '\n'.join(set(x)))
+    room_schedule = room_schedule.reindex(index=timeslots, columns=days)
+    room_schedule.fillna('', inplace=True)
+
+    # wrap text
+    for column in room_schedule.columns:
+        room_schedule[column] = room_schedule[column].apply(lambda x: wrap_text(x))
+
+    table = tabulate_data(room_schedule, headers='keys', tablefmt='fancy_grid', showindex='always')
+
+    print(f"Weekrooster voor zaal {room_id} \n")
+    print(table)
+
 def show_activity_heatmap(timetable_file: str, save: bool = False, output_file: str = None) -> None:
     """
     Function that plots the number of unique activities scheduled per timeslot, using a heatmap
@@ -113,3 +142,4 @@ def show_activity_heatmap(timetable_file: str, save: bool = False, output_file: 
 print_timetable_for_student('../data/random_output.csv', 'Rhona Vromans')
 obtain_course_schedule('../data/random_output.csv', 'Software engineering')
 show_activity_heatmap('../data/random_output.csv')
+obtain_room_schedule('../data/random_output.csv', 'C0.110')
