@@ -146,6 +146,8 @@ class Student:
             todays_maluspoints = self.maluspoints_converter(free_period_count)
             free_period_maluspoints += todays_maluspoints
 
+        print(f"{self.name} - Free Period Malus Points: {free_period_maluspoints}")
+
         return free_period_maluspoints
 
     def get_double_booking_malus_points(self):
@@ -180,7 +182,7 @@ class Student:
 
     def get_total_maluspoints(self):
         """
-        Sets total number of maluspoints --> INCOMPLETE 
+        Sets total number of maluspoints
         """
         self.maluspoints = self.get_free_period_malus_points() + self.get_double_booking_malus_points()
 
