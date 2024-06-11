@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 from classes.schedule import Schedule
 from algorithms.random_alg import Random
@@ -15,7 +16,7 @@ def run_algorithm(algorithm, schedule, iterations):
 
 def visualize_maluspoints_barplot(algorithm, schedule, iterations):
     maluspoints = run_algorithm(algorithm, schedule, iterations)
-    plt.hist(maluspoints, 50)
+    sns.histplot(maluspoints, bins=50, kde=True, edgecolor='black')
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
     plt.title('Distribution of maluspoints over randomly generated schedules')
