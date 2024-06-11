@@ -16,10 +16,8 @@ def run_algorithm(algorithm, schedule, iterations):
 def visualize_maluspoints_barplot(algorithm, schedule, iterations):
     maluspoints = run_algorithm(algorithm, schedule, iterations)
     plt.hist(maluspoints, 50)
-    plt.show()
+    plt.savefig('../data/random_cost.png')
         
 
-
-
 schedule = Schedule('../data/studenten_en_vakken.csv', '../data/vakken.csv', '../data/zalen.csv')
-visualize_maluspoints_barplot(Random, schedule, 1000)
+visualize_maluspoints_barplot(Random, schedule, 10000)
