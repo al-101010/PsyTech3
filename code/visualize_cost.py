@@ -16,8 +16,9 @@ def run_algorithm(algorithm, schedule, iterations):
 def visualize_maluspoints_barplot(algorithm, schedule, iterations):
     maluspoints = run_algorithm(algorithm, schedule, iterations)
     plt.hist(maluspoints, 50)
-    plt.xlabel('Number Iterations')
-    plt.ylabel('Number Maluspoints')
+    plt.xlabel('Number Maluspoints')
+    plt.ylabel('Number Generated Schedules')
+    plt.title('Distribution of maluspoints over randomly generated schedules')
     plt.savefig('../data/random_cost.png')
 
 
