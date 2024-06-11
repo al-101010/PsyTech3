@@ -33,5 +33,5 @@ if __name__ == "__main__":
     print(f"This schedule resulted in {maluspoints} maluspoints.")
     print(f"Evening room usage: {random_schedule.schedule.get_evening_room_maluspoints()}")
 
-    print(get_output(test_schedule.students, 'data/random_output.csv'))
+    print(get_output(random_schedule.schedule.students, 'data/random_output.csv'))
 

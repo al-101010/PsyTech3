@@ -1,9 +1,10 @@
 import random
+import copy
 
 class Random:
 
     def __init__(self, schedule) -> None:
-        self.schedule = schedule
+        self.schedule = copy.deepcopy(schedule)
         self.schedule_courses()
         self.schedule_students()
 

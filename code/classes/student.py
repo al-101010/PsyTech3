@@ -146,8 +146,6 @@ class Student:
             todays_maluspoints = self.maluspoints_converter(free_period_count)
             free_period_maluspoints += todays_maluspoints
 
-        print(f"{self.name} - Free Period Malus Points: {free_period_maluspoints}")
-
         return free_period_maluspoints
 
     def get_double_booking_malus_points(self):
@@ -160,7 +158,6 @@ class Student:
                 if activities != 'Free' and len(activities) > 1:
                     double_booking_maluspoints += 1
         
-        print(f"{self.name} - Double Booking Malus Points: {double_booking_maluspoints}")
         return double_booking_maluspoints
     
     def maluspoints_converter(self, number_empty_slots: int):
@@ -176,7 +173,6 @@ class Student:
         elif number_empty_slots > 2:
             # not allowed but for now just make cost very high
             malus = 10
-            print(f'{number_empty_slots} empty slots is not allowed! Change algorithm!')
 
         return malus
 
