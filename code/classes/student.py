@@ -185,5 +185,5 @@ class Student:
         Sets total number of maluspoints
         """
         self.maluspoints = self.get_free_period_malus_points() + self.get_double_booking_malus_points()
-
+        
         return self.maluspoints

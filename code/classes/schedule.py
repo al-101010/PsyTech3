@@ -131,6 +131,9 @@ class Schedule:
         return over_capacity_maluspoints
 
     def get_student_maluspoints(self):
+        """
+        Get total number of student related maluspoints (double bookings + free periods)
+        """
         total_student_maluspoints = 0
 
         for student in self.students:
@@ -140,7 +143,7 @@ class Schedule:
     
     def get_total_maluspoints(self):
         """
-        Calculates total amount of malus points. IMPLEMENT MALUS POINTS FOR TOO MANY STUDENTS
+        Calculates total amount of malus points.
         """
         self.total_maluspoints = self.get_evening_room_maluspoints() + self.get_student_maluspoints() + self.get_overcapacity_maluspoints()
 
