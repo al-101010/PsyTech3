@@ -14,8 +14,10 @@ class Schedule:
         self.courses = self.get_courses_list(courses_data, self.students)
         self.rooms = self.get_rooms_list(rooms_data)
         self.activities = self.get_activities_list(self.courses)
+        # TO DO: We still need to update some of these maluspoints
         self.room_maluspoints = 0
         self.student_maluspoints = 0
+        self.overcapacity_maluspoints = 0
         self.total_maluspoints = 0
 
         self.add_students_courses(self.students, self.courses)
@@ -117,6 +119,9 @@ class Schedule:
         return self.room_maluspoints
     
     def get_overcapacity_maluspoints(self):
+        """
+        Get malus points for overcapacity (too many students in a room).
+        """
         over_capacity_maluspoints = 0
         
         for activity in self.activities:
