@@ -1,7 +1,9 @@
-class Hillclimber():
+from algorithm import Algorithm
+
+class Hillclimber(Algorithm):
+    
     def __init__(self, schedule):
-        self.final_schedule = schedule
-        self.final_maluspoints = schedule.total_maluspoints
+        super.__init__(schedule)
 
 
     def improve_schedule(self, iters=10):
