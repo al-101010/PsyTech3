@@ -1,5 +1,3 @@
-from .random_alg import Random
-
 # make class Hillclimber(takes a random schedule?)
 # self.final_schedule = get a random schedule
 # self.final_maluspoints = get maluspoints of random schedule
@@ -17,4 +15,4 @@ from .random_alg import Random
 
 # output final schedule and maluspoints
 
-# define method to replace room for activity  
+# define method to replace room for activity
