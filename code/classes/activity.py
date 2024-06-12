@@ -5,7 +5,6 @@ class Activity:
         self.capacity = capacity
         self.course = course
         self.students = set()
-        self.scheduled = False
 
 
     def __repr__(self) -> str:
@@ -20,5 +19,4 @@ class Activity:
         self.day = day
         self.time = time
 
-        room.schedule[day][time] = 'Occupied' 
-        self.scheduled = True
+        room.schedule[day][time] = self
