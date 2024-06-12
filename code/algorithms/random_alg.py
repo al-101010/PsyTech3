@@ -34,7 +34,7 @@ class Random:
         """
         Schedule all activities on random days, timeslots and rooms.
         """
-        archive = self.get_room_slots()
+        archive = self.schedule.roomslots
 
         random.shuffle(self.schedule.activities)
 

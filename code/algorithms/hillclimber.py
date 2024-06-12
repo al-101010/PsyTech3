@@ -19,6 +19,8 @@ class Hillclimber():
 
         # output final schedule
 
+    
+    # IDEA: switch roomslots instead of activities?
     def switch_course(self):
         """
         Switches the room, day, and timeslot of two random activities.

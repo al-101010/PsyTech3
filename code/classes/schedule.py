@@ -14,6 +14,7 @@ class Schedule:
         self.courses = self.get_courses_list(courses_data, self.students)
         self.rooms = self.get_rooms_list(rooms_data)
         self.activities = self.get_activities_list(self.courses)
+        self.roomslots = self.get_room_slots()
         # TO DO: We still need to update some of these maluspoints
         self.room_maluspoints = 0
         self.student_maluspoints = 0
@@ -92,6 +93,20 @@ class Schedule:
                     activities_list.append(activity)
 
         return activities_list
+    
+
+    def get_room_slots(self):
+        """Create archive of all possible roomslots"""
+        # empty list for archive of all room-slots
+        room_slots = []
+
+        # add all room-slots to archive
+        for room in self.rooms:
+            for day in room.days:
+                for time in room.timeslots:
+                    room_slots.append((room, day, time))
+
+        return room_slots
 
 
     def add_students_courses(self, students_list : list[Student], courses_list : list[Course]):
