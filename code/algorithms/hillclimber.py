@@ -69,8 +69,6 @@ class Hillclimber(Algorithm):
     def plot_graph(self, save=False):
         """
         plot maluspoints as a function of number of iterations (for hillclimber)
-        ACTUALLY SEEMED GOOD TO ADD THESE TO EACH ALGORITHM SEPARATELY, AS THE PLOT 
-        WILL DIFFER BETWEEN ALGORITHMS (E.G., RANDOM AND HILLCLIMBER)
         """
         iters = len(self.maluspoint_stats)
         plt.plot(self.maluspoint_stats)
