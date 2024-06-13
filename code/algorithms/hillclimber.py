@@ -74,7 +74,8 @@ class Hillclimber(Algorithm):
         plt.plot(self.maluspoint_stats)
         plt.xlabel('iteration')
         plt.ylabel('maluspoints')
-        plt.title(f"number of iterations: {iters} & minimum maluspoints: {min(self.maluspoint_stats)}")
+        plt.suptitle(f"Hillclimber Algorithm", fontsize=12)
+        plt.title(f"number of iterations = {iters} & minimum maluspoints = {min(self.maluspoint_stats)}")
 
         if save:
             plt.savefig('data/hillclimber_cost.png')
