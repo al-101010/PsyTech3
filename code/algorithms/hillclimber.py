@@ -18,23 +18,31 @@ class Hillclimber(Algorithm):
         self.early_stopping_counter = 0
 
     def check_improvement(self, previous_schedule):
-            # compute maluspoints for previous and current state 
-            previous_maluspoints = previous_schedule.get_total_maluspoints()
-            new_maluspoints = self.schedule.get_total_maluspoints()
-            print(previous_maluspoints, new_maluspoints)
+        """
+        Checks whether the new schedule improves upon previous schedule (referencing maluspoints) 
+        and adds the relevant maluspoints to statistics.
+        If no improvement was made, resets schedule to previous state  
+        """
+        # compute maluspoints for previous and current state 
+        previous_maluspoints = previous_schedule.get_total_maluspoints()
+        new_maluspoints = self.schedule.get_total_maluspoints()
+        print(previous_maluspoints, new_maluspoints)
 
-            # if improvement, reset counter and add number of maluspoint of new schedule to stats
-            if new_maluspoints < previous_maluspoints:
-                self.early_stopping_counter = 0
-                self.maluspoint_stats.append(new_maluspoints)
+        # if improvement, reset counter and add number of maluspoint of new schedule to stats
+        if new_maluspoints < previous_maluspoints:
+            self.early_stopping_counter = 0
+            self.maluspoint_stats.append(new_maluspoints)
 
-            # else, increase counter and revert changes to schedule
-            else:
-                self.early_stopping_counter += 1
-                self.schedule = previous_schedule
-                self.maluspoint_stats.append(previous_maluspoints)
+        # else, increase counter and revert changes to schedule
+        else:
+            self.early_stopping_counter += 1
+            self.schedule = previous_schedule
+            self.maluspoint_stats.append(previous_maluspoints)
 
-    def check_stagnation(self):
+    def check_stagnation(self) -> bool:
+        """
+        Checks whether improvements have stagnated
+        """    
         return self.early_stopping_limit == self.early_stopping_counter
             
 
@@ -52,6 +60,7 @@ class Hillclimber(Algorithm):
             if i % 100 == 0:
                 print(i)
 
+            # stop if no general improvements made
             if self.check_stagnation():
                 print("stopping early due to a stagnation of improvements")
                 self.final_schedule = self.schedule
@@ -66,11 +75,14 @@ class Hillclimber(Algorithm):
         self.final_schedule = self.schedule
         self.final_maluspoints = self.schedule.get_total_maluspoints()
 
-    def plot_graph(self, save=False):
+    def plot_graph(self, save: bool =False):
         """
-        plot maluspoints as a function of number of iterations (for hillclimber)
+        Plot maluspoints as a function of number of iterations (for hillclimber)
         """
+        # intialize variables
         iters = len(self.maluspoint_stats)
+
+        # plot graph
         plt.plot(self.maluspoint_stats)
         plt.xlabel('iteration')
         plt.ylabel('maluspoints')
