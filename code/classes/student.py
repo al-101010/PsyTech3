@@ -45,6 +45,7 @@ class Student:
         """
         Add student's activities to their schedule and return this schedule.
         """
+        self.schedule = self.empty_schedule()
         # loop over all activities of this student and add it to relevant day and time in schedule.
         for activity in self.activities:
 

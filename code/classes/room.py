@@ -35,4 +35,4 @@ class Room:
 
             # loop over each time slot and label it 'free'
             for timeslot in timeslots:
-                self.schedule[day][timeslot] = []
+                self.schedule[day][timeslot] = None
