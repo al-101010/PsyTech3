@@ -26,7 +26,7 @@ class Hillclimber(Algorithm):
         # output final schedule
 
         previous_schedule = copy.deepcopy(self.schedule)
-        early_stopping_limit = 1000
+        early_stopping_limit = 500
         early_stopping_counter = 0
 
         # run through all iterations

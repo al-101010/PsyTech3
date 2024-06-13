@@ -30,12 +30,13 @@ class Algorithm:
         = Useful when we have multiple ways of altering the schedule (as we don't want to make every
         single alteration at ones)
         """
+
+        schedule = self.schedule 
+
         chance = random.random()
 
-        if chance:
+        if chance < 1:
             self.switch_activities()
-
-
         # elif 0.5 <= chance < 0.8:
         #     move student to other practical
         #     or redistribute all students
