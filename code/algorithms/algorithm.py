@@ -15,30 +15,13 @@ class Algorithm:
         random_roomslot1 = random.choice(self.schedule.roomslots)
         random_roomslot2 = random.choice(self.schedule.roomslots)
 
-        room_1 = random_roomslot1[0]
-        day_1 = random_roomslot1[1]
-        time_1 = random_roomslot1[2]
-
-        room_2 = random_roomslot2[0]
-        day_2 = random_roomslot2[1]
-        time_2 = random_roomslot2[2]
-
         # save activities as variables
-        activity_1 = room_1.schedule[day_1][time_1]
-        activity_2 = room_2.schedule[day_2][time_2]
-
-        if activity_1:
-            activity_1.schedule(room_2, day_2, time_2)
-
-        if activity_2:
-            activity_2.schedule(room_1, day_1, time_1)
+        activity_1 = random_roomslot1[0].schedule[random_roomslot1[1]][random_roomslot1[2]]
+        activity_2 = random_roomslot2[0].schedule[random_roomslot2[1]][random_roomslot2[2]]
 
         # switch the activities to the other roomslot
-        random_roomslot1[0].schedule[random_roomslot1[1]][random_roomslot1[2]] = activity_1
-        random_roomslot2[0].schedule[random_roomslot2[1]][random_roomslot2[2]] = activity_2 
-
-        for student in self.schedule.students:
-            student.personal_schedule()
+        random_roomslot1[0].schedule[random_roomslot1[1]][random_roomslot1[2]] = activity_2
+        random_roomslot2[0].schedule[random_roomslot2[1]][random_roomslot2[2]] = activity_1
 
     def mutate_schedule(self):
         """
@@ -48,10 +31,13 @@ class Algorithm:
         single alteration at ones)
         """
 
-        # chance = random.random()
+        chance = random.random()
 
-        # if chance < 1:
-        self.switch_activities()
+        if chance < 1:
+            self.switch_activities()
         # elif 0.5 <= chance < 0.8:
         #     move student to other practical
         #     or redistribute all students
+
+    def run(self):
+        raise NotImplementedError
