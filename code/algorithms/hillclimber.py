@@ -43,18 +43,9 @@ class Hillclimber(Algorithm):
         Improves the initial schedule for a number of iterations.
         Returns the final schedule when finished.
         """
-        # define nr iterations or threshold
-        # loop for x iterations or until threshold is reached
-            # temp_schedule = switch_course()
-            # temp_maluspoints = calculate maluspoints for temp schedule
-            # if maluspoints are < than final_maluspoints
-                # make this schedule the final schedule
-                # make this schedule's maluspoints final maluspoints
-
-        # output final schedule
-
         # run through all iterations
         for i in range(iters):
+
             # update "previous schedule"
             previous_schedule = copy.deepcopy(self.schedule)
 
