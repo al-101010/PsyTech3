@@ -2,7 +2,7 @@ import random
 import copy
 
 class Random:
-    random.seed(1)
+    # random.seed(1)
 
     def __init__(self, schedule) -> None:
         self.schedule = copy.deepcopy(schedule)
@@ -24,7 +24,7 @@ class Random:
 
     def pick_random_room_slot(self, archive):
         """Pick random roomslot from archive"""
-        random.seed(1)
+        # random.seed(1)
 
         return random.choice(archive)  
 
@@ -37,7 +37,7 @@ class Random:
         """
         Schedule all activities on random days, timeslots and rooms.
         """
-        random.seed(1)
+        # random.seed(1)
         archive = copy.copy(self.schedule.roomslots)
 
         random.shuffle(self.schedule.activities)
@@ -50,7 +50,7 @@ class Random:
             self.remove_room_slot(archive, room_slot)
 
     def get_random_tutorial(self, activities):
-        random.seed(1)
+        # random.seed(1)
 
         # if activity is not a lecture, pick a random group
         activity = random.choice(activities)
@@ -78,7 +78,7 @@ class Random:
         """
         Schedule all students in random activities for the courses they follow.
         """
-        random.seed(1)
+        # random.seed(1)
 
         random.shuffle(self.schedule.students)
         # loop over all students and their courses

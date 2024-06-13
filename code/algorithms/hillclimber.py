@@ -1,13 +1,18 @@
-from algorithm import Algorithm
+from .algorithm import Algorithm
 import copy
 import matplotlib.pyplot as plt
-from random_alg import Random
+from .random_alg import Random
+
+# importing the sys module
+import sys
+ 
+sys.setrecursionlimit(10**6)
 
 class Hillclimber(Algorithm):
     
     def __init__(self, empty_schedule):
-        super.__init__(empty_schedule)
-        self.schedule = Random(empty_schedule)
+        super().__init__(empty_schedule)
+        self.schedule = Random(empty_schedule).schedule
         self.maluspoint_stats = []
 
     def improve_schedule(self, iters=10):
@@ -31,6 +36,8 @@ class Hillclimber(Algorithm):
 
         # run through all iterations
         for i in range(iters):
+            if i % 100 == 0:
+                print(i)
 
             # check whether stagnates
             if early_stopping_limit == early_stopping_counter:
@@ -46,15 +53,15 @@ class Hillclimber(Algorithm):
             new_maluspoints = self.schedule.get_total_maluspoints()
 
             # if improvement, reset counter and add number of maluspoint of new schedule to stats
-            if new_maluspoints <= previous_maluspoints:
+            if new_maluspoints < previous_maluspoints:
                 early_stopping_counter = 0
-                self.statistics.append(new_maluspoints)
+                self.maluspoint_stats.append(new_maluspoints)
 
             # else, increase counter and revert changes to schedule
             else:
                 early_stopping_counter += 1
                 self.schedule = previous_schedule
-                self.statistics.append(previous_maluspoints)
+                self.maluspoint_stats.append(previous_maluspoints)
 
             # update "previous schedule"
             previous_schedule = copy.deepcopy(self.schedule)
@@ -70,7 +77,7 @@ class Hillclimber(Algorithm):
         WILL DIFFER BETWEEN ALGORITHMS (E.G., RANDOM AND HILLCLIMBER)
         """
         iters = len(self.maluspoint_stats)
-        plt.plot(range(1, iters + 1), self.maluspoint_stats)
+        plt.plot(self.maluspoint_stats)
         plt.xlabel('iteration')
         plt.ylabel('maluspoints')
         plt.title(f"number of iterations: {iters} & minimum maluspoints: {min(self.maluspoint_stats)}")

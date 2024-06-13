@@ -3,6 +3,7 @@ from code.algorithms.random_alg import Random
 from code.algorithms.hillclimber import Hillclimber
 from code.classes.schedule import Schedule
 import pandas as pd
+import time
 
 def get_output(students : list, output : str):
         """
@@ -37,7 +38,14 @@ if __name__ == "__main__":
     # print(get_output(random_schedule.schedule.students, 'data/random_output.csv'))
 
     # create hillclimber schedule
-    hillclimber_schedule = Hillclimber(test_schedule)
-    print(hillclimber_schedule.maluspoint_stats)
+    start_time = time.time()
 
+    hillclimber_schedule = Hillclimber(test_schedule)
+    hillclimber_schedule.improve_schedule(5000)
+
+    print("--- %s seconds ---" % (time.time() - start_time))
+
+    hillclimber_schedule.plot_graph()
+
+    
 
