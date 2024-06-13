@@ -36,7 +36,7 @@ class Student:
 
             # loop over each time slot and label it 'free'
             for timeslot in timeslots:
-                schedule[day][timeslot] = 'Free'
+                schedule[day][timeslot] = []
 
         return schedule
 
@@ -48,60 +48,11 @@ class Student:
         # loop over all activities of this student and add it to relevant day and time in schedule.
         for activity in self.activities:
 
-            # initialize list for timeslot if labelled free
-            if self.schedule[activity.day][activity.time] == 'Free':
-                self.schedule[activity.day][activity.time] = []
-
             # add activity to list
             self.schedule[activity.day][activity.time].append(activity)
 
         return self.schedule
 
-    def get_malus_points(self, schedule):
-        """
-        Takes in the student's schedule and calculates their amount of maluspoints.
-        """
-        # initialise empty counter for total maluspoints
-        self.maluspoints = 0
-
-        # loop over each day
-        for day, timeslots in schedule.items():
-
-            # initialise helpers
-            occupied_count = 0
-            empty_count = 0
-            switch = False
-
-            #initialise daily malus counter
-            day_empty_slots = 0
-
-            # loop over timeslots
-            for slot, status in timeslots.items():
-                if status != 'Free' and switch == False and occupied_count == 0:
-                    switch = True
-                    occupied_count += 1
-                    empty_count = 0
-
-                elif status == 'Free' and empty_count > 0:
-                    empty_count += 1
-                    day_empty_slots += 1
-
-                elif status == 'Free' and switch == True:
-                    occupied_count = 0
-                    empty_count += 1
-                    switch = False
-                    day_empty_slots += 1
-
-            # if free slots were at tail end of the day
-            if switch == False and day_empty_slots > 0:
-                # remove the empty slots counted since last occupied
-                day_empty_slots -= empty_count
-
-            # get malus points for the day and add to total
-            day_malus = self.maluspoints_converter(day_empty_slots)
-            self.maluspoints += day_malus
-
-        return self.maluspoints
 
     def get_free_period_malus_points(self):
         """
@@ -122,10 +73,10 @@ class Student:
             slots = list(timeslots.values())
 
             # loop over all indices and statuses of timeslots
-            for i, status in enumerate(slots):
+            for i, occupied in enumerate(slots):
 
                 # obtain indices of all occupied timeslots
-                if status != 'Free':
+                if occupied:
                     occupied_timeslots_indices.append(i)
 
             if occupied_timeslots_indices:
@@ -136,7 +87,7 @@ class Student:
 
                 # obtain number of free timeslots between first and last occupied ones
                 for i in range(first_activity_index, final_activity_index + 1):
-                    if slots[i] == 'Free':
+                    if not slots[i]:
                         free_period_count += 1
 
             # convert into maluspoints for the day and add to total number
@@ -156,7 +107,7 @@ class Student:
             for timeslot, activities in timeslots.items():
 
                 # if more than one activity is scheduled in timeslot
-                if activities != 'Free' and len(activities) > 1:
+                if len(activities) > 1:
                     # add malus point
                     double_booking_maluspoints += 1
 

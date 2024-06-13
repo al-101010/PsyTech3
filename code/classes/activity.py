@@ -19,4 +19,4 @@ class Activity:
         self.day = day
         self.time = time
 
-        room.schedule[day][time] = self
+        room.schedule[day][time].append(self)

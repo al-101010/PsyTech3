@@ -126,7 +126,7 @@ class Schedule:
         for room in self.rooms:
             if room.room_number == 'C0.110':
                 for day, timeslots in room.schedule.items():
-                    if timeslots.get('17') != 'Free':
+                    if timeslots.get('17'):
                         evening_room_points += 5
 
         self.room_maluspoints = evening_room_points
