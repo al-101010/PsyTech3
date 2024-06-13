@@ -6,6 +6,10 @@ class Algorithm:
         self.final_schedule = schedule
         self.final_maluspoints = schedule.total_maluspoints
 
+    def update_student_schedules(self):
+        for student in self.schedule.students:
+            student.personal_schedule()
+
     def switch_activities(self):
         """
         Switches the activities from two randomly chosen roomslots. Activity may
@@ -37,8 +41,7 @@ class Algorithm:
         random_roomslot1[0].schedule[random_roomslot1[1]][random_roomslot1[2]] = activity_2
         random_roomslot2[0].schedule[random_roomslot2[1]][random_roomslot2[2]] = activity_1
 
-        for student in self.schedule.students:
-            student.personal_schedule()
+        self.update_student_schedules()
 
     def mutate_schedule(self):
         """
