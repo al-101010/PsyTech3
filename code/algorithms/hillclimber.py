@@ -10,11 +10,11 @@ sys.setrecursionlimit(10**6)
 
 class Hillclimber(Algorithm):
     
-    def __init__(self, empty_schedule):
+    def __init__(self, empty_schedule, early_stopping_limit=1000):
         super().__init__(empty_schedule)
         self.schedule = Random(empty_schedule).schedule
         self.maluspoint_stats = []
-        self.early_stopping_limit = 1000
+        self.early_stopping_limit = early_stopping_limit
         self.early_stopping_counter = 0
 
     def check_improvement(self, previous_schedule):
