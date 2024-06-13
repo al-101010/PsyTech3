@@ -35,8 +35,10 @@ class Algorithm:
 
         chance = random.random()
 
-        # if chance < 0.5:
-        #     switch activities/roomslots
+        if chance:
+            self.switch_activities()
+
+            
         # elif 0.5 <= chance < 0.8:
         #     move student to other practical
         #     or redistribute all students
