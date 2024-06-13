@@ -14,7 +14,7 @@ class Hillclimber(Algorithm):
         super().__init__(empty_schedule)
         self.schedule = Random(empty_schedule).schedule
         self.maluspoint_stats = []
-        self.early_stopping_limit = 500
+        self.early_stopping_limit = 1000
         self.early_stopping_counter = 0
 
     def check_improvement(self, previous_schedule):
@@ -64,6 +64,7 @@ class Hillclimber(Algorithm):
             if self.check_stagnation():
                 print("stopping early due to a stagnation of improvements")
                 self.final_schedule = self.schedule
+                return
 
             # make random change to schedule
             self.mutate_schedule()
@@ -87,6 +88,6 @@ class Hillclimber(Algorithm):
         plt.title(f"number of iterations: {iters} & minimum maluspoints: {min(self.maluspoint_stats)}")
 
         if save:
-            plt.savefig('../data/hillclimber_cost.png')
+            plt.savefig('data/hillclimber_cost.png')
 
         plt.show()
