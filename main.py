@@ -41,7 +41,7 @@ if __name__ == "__main__":
     start_time = time.time()
 
     hillclimber_schedule = Hillclimber(test_schedule)
-    hillclimber_schedule.improve_schedule(5000)
+    hillclimber_schedule.run(500)
 
     print("--- %s seconds ---" % (time.time() - start_time))
 
