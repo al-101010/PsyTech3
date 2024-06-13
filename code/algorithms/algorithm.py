@@ -31,8 +31,6 @@ class Algorithm:
         single alteration at ones)
         """
 
-        schedule = self.schedule 
-
         chance = random.random()
 
         if chance < 1:
