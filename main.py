@@ -1,5 +1,6 @@
 from code.algorithms.sequential import Sequential # Ignore : True
 from code.algorithms.random_alg import Random
+from code.algorithms.hillclimber import Hillclimber
 from code.classes.schedule import Schedule
 import pandas as pd
 
@@ -25,13 +26,18 @@ def get_output(students : list, output : str):
 if __name__ == "__main__":
     test_schedule = Schedule('data/studenten_en_vakken.csv', 'data/vakken.csv', 'data/zalen.csv')
 
-    # create schedule using random algorithm
-    random_schedule = Random(test_schedule)
+    # # create schedule using random algorithm
+    # random_schedule = Random(test_schedule)
 
-    # calculate malus points
-    maluspoints = random_schedule.schedule.get_total_maluspoints()
-    print(f"This schedule resulted in {maluspoints} maluspoints.")
-    print(f"Evening room usage: {random_schedule.schedule.get_evening_room_maluspoints()}")
+    # # calculate malus points
+    # maluspoints = random_schedule.schedule.get_total_maluspoints()
+    # print(f"This schedule resulted in {maluspoints} maluspoints.")
+    # print(f"Evening room usage: {random_schedule.schedule.get_evening_room_maluspoints()}")
 
-    print(get_output(random_schedule.schedule.students, 'data/random_output.csv'))
+    # print(get_output(random_schedule.schedule.students, 'data/random_output.csv'))
+
+    # create hillclimber schedule
+    hillclimber_schedule = Hillclimber(test_schedule)
+    print(hillclimber_schedule.maluspoint_stats)
+
 
