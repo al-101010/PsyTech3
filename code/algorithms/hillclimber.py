@@ -1,12 +1,13 @@
 from algorithm import Algorithm
 import copy
 import matplotlib.pyplot as plt
+from random_alg import Random
 
 class Hillclimber(Algorithm):
     
-    def __init__(self, schedule):
-        super.__init__(schedule)
-        self.schedule = schedule
+    def __init__(self, empty_schedule):
+        super.__init__(empty_schedule)
+        self.schedule = Random(empty_schedule)
         self.maluspoint_stats = []
 
     def improve_schedule(self, iters=10):
