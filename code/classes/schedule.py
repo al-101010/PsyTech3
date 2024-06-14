@@ -15,9 +15,11 @@ class Schedule:
         self.rooms = self.get_rooms_list(rooms_data)
         self.activities = self.get_activities_list(self.courses)
         self.roomslots = self.get_room_slots()
-        # TO DO: We still need to update some of these maluspoints
+        
+        # initialise all maluspoints 
         self.room_maluspoints = 0
-        self.student_maluspoints = 0
+        self.double_booking_maluspoints = 0
+        self.free_period_maluspoints = 0  
         self.overcapacity_maluspoints = 0
         self.total_maluspoints = 0
 
@@ -121,15 +123,12 @@ class Schedule:
         Calculates malus points for using C0.110. 
         """
 
-        evening_room_points = 0
-
         for room in self.rooms:
             if room.room_number == 'C0.110':
                 for day, timeslots in room.schedule.items():
                     if timeslots.get('17'):
-                        evening_room_points += 5
-
-        self.room_maluspoints = evening_room_points
+                        #evening_room_points += 5
+                        self.room_maluspoints += 5 
 
         return self.room_maluspoints
     
@@ -137,29 +136,34 @@ class Schedule:
         """
         Get malus points for overcapacity (too many students in a room).
         """
-        over_capacity_maluspoints = 0
         
         for activity in self.activities:
             if len(activity.students) > activity.room.capacity:
-                over_capacity_maluspoints += (len(activity.students) - activity.room.capacity)
-        
-        return over_capacity_maluspoints
+                self.overcapacity_maluspoints += (len(activity.students) - activity.room.capacity)
+
+        return self.overcapacity_maluspoints
 
     def get_student_maluspoints(self):
         """
         Get total number of student related maluspoints (double bookings + free periods)
         """
-        total_student_maluspoints = 0
 
+        # loop over students and collect maluspoints 
         for student in self.students:
-            total_student_maluspoints += student.get_total_maluspoints()
-        
-        return total_student_maluspoints
+
+            self.double_booking_maluspoints += student.get_double_booking_malus_points()
+            self.free_period_maluspoints += student.get_free_period_malus_points()
+
+        return (self.free_period_maluspoints, self.double_booking_maluspoints)
     
     def get_total_maluspoints(self):
         """
         Calculates total amount of malus points.
         """
-        self.total_maluspoints = self.get_evening_room_maluspoints() + self.get_student_maluspoints() + self.get_overcapacity_maluspoints()
+        
+        # separate double bookings from free periods 
+        student_maluspoints = self.get_student_maluspoints()
+
+        self.total_maluspoints = self.get_evening_room_maluspoints() + student_maluspoints[0] + student_maluspoints[1] + self.get_overcapacity_maluspoints()
 
         return self.total_maluspoints
