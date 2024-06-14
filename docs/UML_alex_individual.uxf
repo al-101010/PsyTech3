@@ -1,20 +1,32 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>50</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Random&gt;&gt;
+<diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>0</y><w>231</w><h>209</h></coordinates><panel_attributes>&lt;&lt;Random&gt;&gt;
 --
-schedule:  
+schedule: dictionary  
 --
 /schedule_courses()/
-/schedule_students()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>50</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Algorithm&gt;&gt;
+/schedule_students()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>352</x><y>0</y><w>231</w><h>209</h></coordinates><panel_attributes>&lt;&lt;Algorithm&gt;&gt;
 --
-schedule: dict? 
+schedule: Random(schedule) 
 maluspoints: int
 --
 /switch_activities()/
 /mutate_schedule()/
-/run()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>290</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Hillclimber&gt;&gt;
+/run()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>352</x><y>264</y><w>231</w><h>209</h></coordinates><panel_attributes>&lt;&lt;Hillclimber&gt;&gt;
 --
 maluspoints_stats = list
 early_stopping_limit
 --
-/switch_activities()/
-/mutate_schedule()/
-/run()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>380</x><y>230</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element></diagram>
+/check_improvement()/
+/check_stagnation()/
+/run()/
+/plot_graph()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>451</x><y>198</y><w>33</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>88</y><w>154</w><h>33</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>352</x><y>528</y><w>231</w><h>209</h></coordinates><panel_attributes>*&lt;&lt;ExhaustiveHillclimber&gt;&gt;*
+--
+*split_activity() *
+*fill_schedule() *
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>451</x><y>462</y><w>33</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>528</y><w>231</w><h>209</h></coordinates><panel_attributes>* &lt;&lt;BusyHillclimber&gt;&gt; *
+--
+* schedule: BusyRandom(schedule)*
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>176</x><y>462</y><w>308</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>260;10;260;40;10;40;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>264</y><w>231</w><h>209</h></coordinates><panel_attributes>*&lt;&lt;BusyRandom&gt;&gt;*
+--
+*schedule: dictionary *
+--
+*schedule_courses() *</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>99</x><y>198</y><w>33</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>99</x><y>462</y><w>33</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element></diagram>
