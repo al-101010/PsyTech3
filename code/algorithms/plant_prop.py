@@ -63,9 +63,9 @@ class PlantProp(Algorithm):
             self.maluspoint_stats.append(current_best_maluspoints)
 
             if self.check_improvement(previous_best_maluspoints, current_best_maluspoints):
-                self.no_improvement_counter = 0
+                self.no_change_counter = 0
             else:
-                self.no_improvement_counter += 1
+                self.no_change_counter += 1
 
             if self.check_stagnation():
                 self.maluspoints = current_best_maluspoints
