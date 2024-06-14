@@ -68,6 +68,7 @@ class PlantProp(Algorithm):
                 self.no_improvement_counter += 1
 
             if self.check_stagnation():
+                self.maluspoints = current_best_maluspoints
                 print("stopping early due to a stagnation of improvements")
                 return
 
