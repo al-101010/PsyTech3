@@ -1,11 +1,11 @@
-<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><element><id>UMLClass</id><coordinates><x>52</x><y>279</y><w>234</w><h>171</h></coordinates><panel_attributes>Course
+<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><element><id>UMLClass</id><coordinates><x>147</x><y>448</y><w>182</w><h>133</h></coordinates><panel_attributes>Course
 --
 name : string
 students : [Student]
 activity_amounts : {str : int}
 activities : {str : [Activity]}
 --
-add_activities(activity_amounts) : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>430</x><y>279</y><w>261</w><h>171</h></coordinates><panel_attributes>Student
+add_activities(activity_amounts) : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>441</x><y>448</y><w>203</w><h>133</h></coordinates><panel_attributes>Student
 --
 name : string
 student_number : string
@@ -17,20 +17,20 @@ schedule : {str : {str : str}}
 add_courses(all_courses) : None
 empty_schedule(days, timeslots) : {str : {str : str}}
 personal_schedule() : {str : {str : str}}
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>52</x><y>504</y><w>234</w><h>171</h></coordinates><panel_attributes>Activity
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>147</x><y>623</y><w>182</w><h>133</h></coordinates><panel_attributes>Activity
 --
 name : string
 capacity : int
 course : Course
 scheduled : bool
 --
-schedule(room, day, time) : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>817</x><y>279</y><w>243</w><h>171</h></coordinates><panel_attributes>Room
+schedule(room, day, time) : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>742</x><y>448</y><w>189</w><h>133</h></coordinates><panel_attributes>Room
 --
 room_number : string
 capacity : int
 schedule : {str : {str : str}}
 --
-empty_schedule(days, timeslots) : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>385</x><y>27</y><w>324</w><h>171</h></coordinates><panel_attributes>Schedule
+empty_schedule(days, timeslots) : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>406</x><y>252</y><w>252</w><h>133</h></coordinates><panel_attributes>Schedule
 --
 students : [Student]
 courses : [Course]
@@ -39,4 +39,31 @@ rooms : [Room]
 get_students_list(data) : [Student]
 get courses_list(data, students) : [Course]
 get_rooms_list(data) : [Room]
-add_students_courses(students_list, courses_list) : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>441</y><w>27</w><h>81</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>189</y><w>405</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;100;10;50;430;50;430;10</additional_attributes></element><element><id>Relation</id><coordinates><x>538</x><y>189</y><w>414</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>440;100;440;50;10;50;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>538</x><y>189</y><w>27</w><h>108</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>277</x><y>333</y><w>171</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;170;10</additional_attributes></element><element><id>Relation</id><coordinates><x>277</x><y>441</y><w>675</w><h>189</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>730;10;730;190;10;190</additional_attributes></element><element><id>Relation</id><coordinates><x>277</x><y>351</y><w>171</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>170;10;10;10</additional_attributes></element></diagram>
+add_students_courses(students_list, courses_list) : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>231</x><y>574</y><w>21</w><h>63</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>231</x><y>378</y><w>315</w><h>84</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;100;10;50;430;50;430;10</additional_attributes></element><element><id>Relation</id><coordinates><x>525</x><y>378</y><w>322</w><h>84</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>440;100;440;50;10;50;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>525</x><y>378</y><w>21</w><h>84</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>322</x><y>490</y><w>133</w><h>21</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;170;10</additional_attributes></element><element><id>Relation</id><coordinates><x>322</x><y>574</y><w>525</w><h>147</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>730;10;730;190;10;190</additional_attributes></element><element><id>Relation</id><coordinates><x>322</x><y>504</y><w>133</w><h>21</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>170;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>896</x><y>126</y><w>147</w><h>133</h></coordinates><panel_attributes>&lt;&lt;Random&gt;&gt;
+--
+schedule: dictionary  
+--
+/schedule_courses()/
+/schedule_students()/
+/get_room_slots()/
+/pick_random_room_slot()/
+/remove_room_slot()/
+/get_random_tutorial()/
+/schedule_student_activity()/
+/schedule_student_activities()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1120</x><y>126</y><w>147</w><h>133</h></coordinates><panel_attributes>&lt;&lt;Algorithm&gt;&gt;
+--
+schedule: Random(schedule) 
+maluspoints: int
+--
+/switch_activities()/
+/mutate_schedule()/
+/run()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1036</x><y>182</y><w>98</w><h>21</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>525</x><y>175</y><w>385</w><h>91</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>530;10;10;10;10;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1120</x><y>315</y><w>147</w><h>133</h></coordinates><panel_attributes>&lt;&lt;Hillclimber&gt;&gt;
+--
+maluspoints_stats = list
+early_stopping_limit
+early_stopping_counter
+--
+/check_improvement()/
+/check_stagnation()/
+/run()/
+/plot_graph()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1183</x><y>252</y><w>21</w><h>77</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element></diagram>
