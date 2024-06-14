@@ -122,6 +122,7 @@ class Schedule:
         """ 
         Calculates malus points for using C0.110. 
         """
+        self.room_maluspoints = 0
 
         for room in self.rooms:
             if room.room_number == 'C0.110':
@@ -136,6 +137,7 @@ class Schedule:
         """
         Get malus points for overcapacity (too many students in a room).
         """
+        self.overcapacity_maluspoints = 0
         
         for activity in self.activities:
             if len(activity.students) > activity.room.capacity:
@@ -147,6 +149,8 @@ class Schedule:
         """
         Get total number of student related maluspoints (double bookings + free periods)
         """
+        self.double_booking_maluspoints = 0
+        self.free_period_maluspoints = 0
 
         # loop over students and collect maluspoints 
         for student in self.students:
