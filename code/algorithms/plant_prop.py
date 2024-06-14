@@ -69,12 +69,13 @@ class PlantProp(Algorithm):
 
             if self.check_stagnation():
                 self.maluspoints = current_best_maluspoints
+                self.schedule = self.get_best_schedule()
                 print("stopping early due to a stagnation of improvements")
                 return
 
             print(i, self.get_best_schedule().get_total_maluspoints())
 
-        self.final_schedule = self.get_best_schedule()
-        self.maluspoints = self.final_schedule.get_total_maluspoints()
+        self.schedule = self.get_best_schedule()
+        self.maluspoints = self.schedule.get_total_maluspoints()
             
     
