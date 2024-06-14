@@ -3,7 +3,7 @@ import random
 class Algorithm:
 
     def __init__(self, schedule):
-        self.final_schedule = schedule
+        self.schedule = schedule
         self.final_maluspoints = schedule.total_maluspoints
 
     def update_student_schedules(self):
@@ -43,6 +43,49 @@ class Algorithm:
 
         self.update_student_schedules()
 
+    def move_student(self, student, current_activity, switch_activity):
+        student.activities.remove(current_activity)
+        student.activities.add(switch_activity)
+        student.personal_schedule()
+
+        current_activity.students.remove(student)
+        switch_activity.students.add(student)
+
+    def switch_student_from_activities(self):
+        ##NOTE: I still need to check if this works as intended
+        ##NOTE: This does not yet check if the activity is already full,
+        ## so activities may be overbooked now.
+
+        # pick a random course
+        random_course = random.choice(self.schedule.courses)
+        
+        # make sure the course has tutorials or practicals
+        while not ('w' or 'p') in random_course.activities:
+            random_course = random.choice(self.schedule.courses)
+
+        # choose random activity type
+        random_activity_type = random.choice(list(random_course.activities))
+
+        while len(random_course.activities[random_activity_type]) <= 1:
+            random_activity_type = random.choice(list(random_course.activities))
+
+        # pick a random tutorial or practical
+        random_activity = random.choice(random_course.activities[random_activity_type])
+
+        # pick a random students from the tutorial/practical
+        random_student = random.choice(list(random_activity.students))
+
+        # pick another random activity to switch student to
+        switch_activity = random.choice(random_course.activities[random_activity_type])
+
+        while switch_activity == random_activity:
+            switch_activity = random.choice(random_course.activities[random_activity_type])
+
+        # move the student to one of the other tutorials/practicals
+        self.move_student(random_student, random_activity, switch_activity)
+
+        # if the other tutorial is full pick another or switch students?
+
     def mutate_schedule(self):
         """
         Mutate current schedule/timetable with a random action
@@ -51,10 +94,14 @@ class Algorithm:
         single alteration at ones)
         """
 
-        chance = random.random()
+        mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
 
-        if chance < 1:
-            self.switch_activities()
+        mutation()
+
+        # chance = random.random()
+
+        # if chance < 1:
+        #     self.switch_activities()
         # elif 0.5 <= chance < 0.8:
         #     move student to other practical
         #     or redistribute all students
