@@ -156,6 +156,18 @@ class Algorithm:
 
         # if the other tutorial is full pick another or switch students?
 
+    def add_extra_activity():
+        pass
+        ## this method should only be called if there are still empty roomslots
+        
+        # pick random activity from random course
+            #self.get_random_activity()  
+        # add new activity instance to same activity type of this course
+        # schedule this new activity to an open roomslot
+        # for each student in this course:
+            # remove their current activity of the same type of this course
+            # schedule the student to a random activity of the same type of this course
+        # update all student schedules
 
     def mutate_schedule(self, number_of_mutations : int=1):
         """
