@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from classes.schedule import Schedule
-from algorithms.random_alg import Random
+from code.classes.schedule import Schedule
+from code.algorithms.random_alg import Random
 
 def run_algorithm(algorithm, schedule, iterations):
     maluspoints = []
@@ -23,5 +23,5 @@ def visualize_maluspoints_barplot(algorithm, schedule, iterations):
     plt.savefig('../data/random_cost.png')
 
 
-schedule = Schedule('../data/studenten_en_vakken.csv', '../data/vakken.csv', '../data/zalen.csv')
+schedule = Schedule('data/studenten_en_vakken.csv', 'data/vakken.csv', 'data/zalen.csv')
 visualize_maluspoints_barplot(Random, schedule, 10000)
