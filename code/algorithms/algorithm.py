@@ -81,10 +81,12 @@ class Algorithm:
         while switch_activity == random_activity:
             switch_activity = random.choice(random_course.activities[random_activity_type])
 
-        # move the student to one of the other tutorials/practicals
-        self.move_student(random_student, random_activity, switch_activity)
+        # move the student to one of the other tutorials/practicals if activity is not full
+        if not len(switch_activity.students) == switch_activity.capacity:
+            self.move_student(random_student, random_activity, switch_activity)
 
         # if the other tutorial is full pick another or switch students?
+
 
     def mutate_schedule(self):
         """
