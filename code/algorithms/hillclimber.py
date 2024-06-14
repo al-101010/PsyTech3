@@ -11,7 +11,9 @@ class Hillclimber(Algorithm):
     
     def __init__(self, empty_schedule : Schedule):
         super().__init__(empty_schedule)
-        self.schedule = Random(empty_schedule).schedule
+        self.random_start = Random(empty_schedule)
+        self.schedule = self.random_start.schedule
+        self.archive = self.random_start.archive
 
     def accept_schedule(self, schedule : Schedule):
         """

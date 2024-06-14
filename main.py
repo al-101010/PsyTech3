@@ -35,7 +35,7 @@ if __name__ == "__main__":
     print(f"This schedule resulted in {maluspoints} maluspoints.")
     # print(f"Evening room usage: {random_schedule.schedule.get_evening_room_maluspoints()}")
 
-    print(get_output(random_schedule.schedule.students, 'data/random_output.csv'))
+    # print(get_output(random_schedule.schedule.students, 'data/random_output.csv'))
 
     # create hillclimber schedule
     start_time = time.time()
@@ -45,10 +45,10 @@ if __name__ == "__main__":
 
     print("--- %s seconds ---" % (time.time() - start_time))
 
-    hillclimber_schedule.plot_graph('data/hillclimber_cost.png', title='Hillclimber Algorithm', save=True)
+    hillclimber_schedule.plot_graph('data/hillclimber_cost.png', title='Hillclimber Algorithm', save=False)
     # print(get_output(hillclimber_schedule.schedule.students, 'data/hillclimber_output.csv'))
     print(hillclimber_schedule.maluspoints)
-    print(hillclimber_schedule.archive)
+
 
     
 
