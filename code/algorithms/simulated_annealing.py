@@ -17,13 +17,15 @@ class SimulatedAnnealing(Hillclimber):
         as well as the current temperature (self.temperature). Returning said acceptance
         probability.
         """
-        delta = new_maluspoints - old_maluspoints
-        try:
-            probability = math.exp(-delta / self.temperature)
+        delta = old_maluspoints - new_maluspoints
         
-        except OverflowError:
-            probability = float('inf')
+        # only do calculations if delta negative 
+        if delta > 0:
+            probability = 1
             
+        else:
+            probability = 2 ** (delta / self.temperature)
+
         return probability
 
     def update_temperature(self) -> None:
@@ -40,6 +42,7 @@ class SimulatedAnnealing(Hillclimber):
         # compute maluspoints
         previous_maluspoints = previous_schedule.get_total_maluspoints()
         new_maluspoints = self.schedule.get_total_maluspoints()
+        print(previous_maluspoints, new_maluspoints)
 
         # obtain acceptance probability
         probability = self.calculate_acceptance_probability(new_maluspoints, previous_maluspoints)
@@ -47,9 +50,11 @@ class SimulatedAnnealing(Hillclimber):
         # if random number between 0 and 1 lower than probability accept change
         if random.random() < probability:
             self.accept_schedule(self.schedule)
+            self.reset_no_change_counter
 
         else:
             self.accept_schedule(previous_schedule)
             self.revert_to_previous_schedule(previous_schedule)
+            self.increase_no_change_counter()
 
         self.update_temperature()

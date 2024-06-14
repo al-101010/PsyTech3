@@ -35,18 +35,18 @@ class Hillclimber(Algorithm):
 
         # if improvement, reset counter and add number of maluspoint of new schedule to stats
         if new_maluspoints < previous_maluspoints:
-            self.reset_no_improvement_counter()
+            self.reset_no_change_counter()
             self.accept_schedule(self.schedule)
         elif new_maluspoints == previous_maluspoints:
-            self.increase_no_improvement_counter()
+            self.increase_no_change_counter()
             self.accept_schedule(self.schedule)
         # else, increase counter and revert changes to schedule
         else:
-            self.increase_no_improvement_counter()
+            self.increase_no_change_counter()
             self.revert_to_previous_schedule(previous_schedule)
             self.accept_schedule(previous_schedule)
         
-        print(self.no_improvement_counter)
+        print(self.no_change_counter)
 
     def run(self, iters  : int=10):
         """

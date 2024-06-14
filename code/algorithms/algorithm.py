@@ -10,22 +10,22 @@ class Algorithm:
         self.archive = copy.copy(self.schedule.roomslots)
         self.maluspoint_stats = []
         self.early_stopping_limit = early_stopping_limit
-        self.no_improvement_counter = 0
+        self.no_change_counter = 0
 
     def run(self):
         raise NotImplementedError
 
-    def reset_no_improvement_counter(self):
+    def reset_no_change_counter(self):
         """
-        Resets no improvement counter to 0
+        Resets no change counter to 0
         """
-        self.no_improvement_counter = 0
+        self.no_change_counter = 0
 
-    def increase_no_improvement_counter(self):
+    def increase_no_change_counter(self):
         """
-        Increases no improvement counter by 1
+        Increases no change counter by 1
         """ 
-        self.no_improvement_counter += 1
+        self.no_change_counter += 1
 
     def revert_to_previous_schedule(self, previous_schedule):
         """
@@ -35,9 +35,9 @@ class Algorithm:
 
     def check_stagnation(self) -> bool:
         """
-        Returns true if improvements have stagnated.
+        Returns true if changes have stagnated.
         """    
-        return self.early_stopping_limit == self.no_improvement_counter
+        return self.early_stopping_limit == self.no_change_counter
 
     def update_student_schedules(self):
         """
