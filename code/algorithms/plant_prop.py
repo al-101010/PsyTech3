@@ -50,12 +50,26 @@ class PlantProp(Algorithm):
     def get_best_schedule(self):
         best_hillclimber = sorted(self.population, key= lambda x: x.schedule.get_total_maluspoints())[0]
         return best_hillclimber.schedule
+    
+    def check_improvement(self, previous_maluspoints, current_maluspoints):
+        return current_maluspoints < previous_maluspoints
 
     def run(self, iters=10):
         for i in range(iters):
+            previous_best_maluspoints = self.get_best_schedule().get_total_maluspoints()
             self.mutate_all()
             self.update_population()
-            self.maluspoint_stats.append(self.get_best_schedule().get_total_maluspoints())
+            current_best_maluspoints = self.get_best_schedule().get_total_maluspoints()
+            self.maluspoint_stats.append(current_best_maluspoints)
+
+            if self.check_improvement(previous_best_maluspoints, current_best_maluspoints):
+                self.no_improvement_counter = 0
+            else:
+                self.no_improvement_counter += 1
+
+            if self.check_stagnation():
+                print("stopping early due to a stagnation of improvements")
+                return
 
             print(i, self.get_best_schedule().get_total_maluspoints())
 
