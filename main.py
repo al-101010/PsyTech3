@@ -41,11 +41,11 @@ if __name__ == "__main__":
     start_time = time.time()
 
     hillclimber_schedule = Hillclimber(test_schedule)
-    hillclimber_schedule.run(200)
+    hillclimber_schedule.run(50)
 
     print("--- %s seconds ---" % (time.time() - start_time))
 
-    hillclimber_schedule.plot_graph(save=False)
+    hillclimber_schedule.plot_graph(save=True)
     print(get_output(hillclimber_schedule.schedule.students, 'data/hillclimber_output.csv'))
 
     

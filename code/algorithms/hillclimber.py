@@ -32,12 +32,16 @@ class Hillclimber(Algorithm):
         if new_maluspoints < previous_maluspoints:
             self.early_stopping_counter = 0
             self.maluspoint_stats.append(new_maluspoints)
-
+        elif new_maluspoints == previous_maluspoints:
+            self.early_stopping_counter += 1
+            self.maluspoint_stats.append(new_maluspoints)
         # else, increase counter and revert changes to schedule
         else:
             self.early_stopping_counter += 1
             self.schedule = previous_schedule
             self.maluspoint_stats.append(previous_maluspoints)
+        
+        print(self.early_stopping_counter)
 
     def check_stagnation(self) -> bool:
         """
