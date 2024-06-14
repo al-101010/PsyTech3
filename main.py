@@ -1,6 +1,7 @@
 from code.algorithms.sequential import Sequential # Ignore : True
 from code.algorithms.random_alg import Random
 from code.algorithms.hillclimber import Hillclimber
+from code.algorithms.simulated_annealing import SimulatedAnnealing
 from code.classes.schedule import Schedule
 import pandas as pd
 import time
@@ -28,26 +29,26 @@ if __name__ == "__main__":
     test_schedule = Schedule('data/studenten_en_vakken.csv', 'data/vakken.csv', 'data/zalen.csv')
 
     # # create schedule using random algorithm
-    random_schedule = Random(test_schedule)
+    # random_schedule = Random(test_schedule)
 
-    # # calculate malus points
-    maluspoints = random_schedule.schedule.get_total_maluspoints()
-    print(f"This schedule resulted in {maluspoints} maluspoints.")
-    # print(f"Evening room usage: {random_schedule.schedule.get_evening_room_maluspoints()}")
+    # # # calculate malus points
+    # maluspoints = random_schedule.schedule.get_total_maluspoints()
+    # print(f"This schedule resulted in {maluspoints} maluspoints.")
+    # # print(f"Evening room usage: {random_schedule.schedule.get_evening_room_maluspoints()}")
 
     # print(get_output(random_schedule.schedule.students, 'data/random_output.csv'))
 
     # create hillclimber schedule
     start_time = time.time()
 
-    hillclimber_schedule = Hillclimber(test_schedule)
-    hillclimber_schedule.run(50)
+    simulated_annealing = SimulatedAnnealing(test_schedule, 500)
+    simulated_annealing.run(2000)
 
     print("--- %s seconds ---" % (time.time() - start_time))
 
-    hillclimber_schedule.plot_graph('data/hillclimber_cost.png', title='Hillclimber Algorithm', save=False)
-    # print(get_output(hillclimber_schedule.schedule.students, 'data/hillclimber_output.csv'))
-    print(hillclimber_schedule.maluspoints)
+    simulated_annealing.plot_graph('data/simulated_annealing_plot.png', title='Simulated Annealing Algorithm', save=False)
+    print(get_output(simulated_annealing.schedule.students, 'data/simulated_annealing.csv'))
+    # print(simulated_annealing.maluspoints)
 
 
     
