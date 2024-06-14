@@ -45,18 +45,18 @@ if __name__ == "__main__":
 
     # # --------------------- HILLCLIMBER -------------------------------------
     # hillclimber_schedule = Hillclimber(test_schedule)
-    # hillclimber_schedule.run(500)
+    # hillclimber_schedule.run(5)
 
     # hillclimber_schedule.plot_graph('data/hillclimber_cost.png', title='Hillclimber Algorithm', save=False)
     # get_output(hillclimber_schedule.schedule.students, 'data/hillclimber_output.csv')
 
 
     # --------------------- PLANT PROPAGATION ----------------------------------
-    plantprop = PlantProp(test_schedule, early_stopping_limit=300)
-    plantprop.run(5000)
+    # plantprop = PlantProp(test_schedule)
+    # plantprop.run(20000)
 
-    plantprop.plot_graph('data/plantprop_cost.png', title='PlanProp Algorithm', save=False)
-    get_output(plantprop.schedule.students, 'data/plantprop_output.csv')
+    # plantprop.plot_graph('data/plantprop_cost.png', title='PlantProp Algorithm', save=True)
+    # get_output(plantprop.schedule.students, 'data/plantprop_output.csv')
 
 
     # # --------------------- SIMULATED ANNEALING --------------------------------
