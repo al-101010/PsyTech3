@@ -88,7 +88,7 @@ class Algorithm:
         # if the other tutorial is full pick another or switch students?
 
 
-    def mutate_schedule(self):
+    def mutate_schedule(self, number_of_mutations : int=1):
         """
         Mutate current schedule/timetable with a random action
         INCOMPLETE -> need to add more ways to alter the schedule
@@ -96,9 +96,10 @@ class Algorithm:
         single alteration at ones)
         """
 
-        mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
+        for i in range(number_of_mutations):
+            mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
 
-        mutation()
+            mutation()
 
         # chance = random.random()
 
