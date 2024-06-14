@@ -1,4 +1,5 @@
 import random
+import math
 
 from .hillclimber import Hillclimber
 from ..classes.schedule import Schedule
@@ -16,8 +17,13 @@ class SimulatedAnnealing(Hillclimber):
         as well as the current temperature (self.temperature). Returning said acceptance
         probability.
         """
-        delta = old_maluspoints - new_maluspoints
-        probability = 2 ** (delta/self.temperature)
+        delta = new_maluspoints - old_maluspoints
+        try:
+            probability = math.exp(-delta / self.temperature)
+        
+        except OverflowError:
+            probability = float('inf')
+            
         return probability
 
     def update_temperature(self) -> None:

@@ -54,7 +54,7 @@ class Hillclimber(Algorithm):
         Returns the final schedule when finished.
         """
         # run through all iterations
-        for i in range(iters):
+        for i in range(1, iters + 1):
             
             self.iteration = i
             
