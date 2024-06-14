@@ -45,7 +45,7 @@ def visualize_maluspoints_barplot(algorithm, schedule, iterations):
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
     plt.title('Distribution of maluspoints per type (evening room excluded)')
-    plt.savefig('../data/cost_maluspoint_types.png')
+    #plt.savefig('../data/cost_maluspoint_types.png')
     plt.show()
 
     # make plot for total 
@@ -54,6 +54,7 @@ def visualize_maluspoints_barplot(algorithm, schedule, iterations):
     plt.ylabel('Number Generated Schedules')
     plt.title('Distribution of maluspoints over randomly generated schedules')
     #plt.savefig('../data/random_cost.png')
+    plt.show()
 
 
 schedule = Schedule('data/studenten_en_vakken.csv', 'data/vakken.csv', 'data/zalen.csv')
