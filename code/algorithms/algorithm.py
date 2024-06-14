@@ -66,32 +66,6 @@ class Algorithm:
 
         return room, day, time
 
-    def switch_activities(self):
-        """
-        Switches the activities from two randomly chosen roomslots. Activity may
-        also be None.
-        """
-        # store room, day, and time of roomslots
-        random_roomslot1, random_roomslot2 = self.pick_roomslots_to_switch()
-        room_1, day_1, time_1 = self.get_roomslot_info(random_roomslot1)
-        room_2, day_2, time_2 = self.get_roomslot_info(random_roomslot2)
-
-        # save activities in roomslots
-        activity_1 = room_1.schedule[day_1][time_1]
-        activity_2 = room_2.schedule[day_2][time_2]
-
-        # if activity is Activity instance, schedule instance
-        if activity_1:
-            activity_1.schedule(room_2, day_2, time_2)
-        if activity_2:
-            activity_2.schedule(room_1, day_1, time_1)
-        
-        # switch the activities to the other roomslot in room instance
-        room_1.schedule[day_1][time_1] = activity_2
-        room_2.schedule[day_2][time_2] = activity_1
-
-        self.update_student_schedules()
-
     def get_random_activity(self):
         """
         Returns the course, activity type, and activity instance of a 
@@ -130,6 +104,32 @@ class Algorithm:
         # remove student from current and add to new activity's students set
         current_activity.students.remove(student)
         switch_activity.students.add(student)
+
+    def switch_activities(self):
+        """
+        Switches the activities from two randomly chosen roomslots. Activity may
+        also be None.
+        """
+        # store room, day, and time of roomslots
+        random_roomslot1, random_roomslot2 = self.pick_roomslots_to_switch()
+        room_1, day_1, time_1 = self.get_roomslot_info(random_roomslot1)
+        room_2, day_2, time_2 = self.get_roomslot_info(random_roomslot2)
+
+        # save activities in roomslots
+        activity_1 = room_1.schedule[day_1][time_1]
+        activity_2 = room_2.schedule[day_2][time_2]
+
+        # if activity is Activity instance, schedule instance
+        if activity_1:
+            activity_1.schedule(room_2, day_2, time_2)
+        if activity_2:
+            activity_2.schedule(room_1, day_1, time_1)
+        
+        # switch the activities to the other roomslot in room instance
+        room_1.schedule[day_1][time_1] = activity_2
+        room_2.schedule[day_2][time_2] = activity_1
+
+        self.update_student_schedules()
 
     def switch_student_from_activities(self):
         """
