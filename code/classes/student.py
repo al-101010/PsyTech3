@@ -41,7 +41,7 @@ class Student:
         return schedule
 
 
-    def personal_schedule(self):
+    def update_schedule(self):
         """
         Add student's activities to their schedule and return this schedule.
         """

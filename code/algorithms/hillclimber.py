@@ -10,12 +10,11 @@ sys.setrecursionlimit(10**6)
 
 class Hillclimber(Algorithm):
     
-    def __init__(self, empty_schedule, early_stopping_limit=1000):
+    def __init__(self, empty_schedule):
         super().__init__(empty_schedule)
         self.schedule = Random(empty_schedule).schedule
         self.maluspoint_stats = []
-        self.early_stopping_limit = early_stopping_limit
-        self.early_stopping_counter = 0
+
 
     def check_improvement(self, previous_schedule):
         """
@@ -30,24 +29,24 @@ class Hillclimber(Algorithm):
 
         # if improvement, reset counter and add number of maluspoint of new schedule to stats
         if new_maluspoints < previous_maluspoints:
-            self.early_stopping_counter = 0
+            self.no_improvement_counter = 0
             self.maluspoint_stats.append(new_maluspoints)
         elif new_maluspoints == previous_maluspoints:
-            self.early_stopping_counter += 1
+            self.no_improvement_counter += 1
             self.maluspoint_stats.append(new_maluspoints)
         # else, increase counter and revert changes to schedule
         else:
-            self.early_stopping_counter += 1
+            self.no_improvement_counter += 1
             self.schedule = previous_schedule
             self.maluspoint_stats.append(previous_maluspoints)
         
-        print(self.early_stopping_counter)
+        print(self.no_improvement_counter)
 
     def check_stagnation(self) -> bool:
         """
         Checks whether improvements have stagnated
         """    
-        return self.early_stopping_limit == self.early_stopping_counter
+        return self.early_stopping_limit == self.no_improvement_counter
             
 
     def run(self, iters=10):
@@ -76,8 +75,7 @@ class Hillclimber(Algorithm):
             self.check_improvement(previous_schedule)
 
         # update final information in parent class
-        self.final_schedule = self.schedule
-        self.final_maluspoints = self.schedule.get_total_maluspoints()
+        self.maluspoints = self.schedule.get_total_maluspoints()
 
     def plot_graph(self, save: bool =False):
         """

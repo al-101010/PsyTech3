@@ -1,14 +1,22 @@
 import random
+import copy
+from ..classes.schedule import Schedule
 
 class Algorithm:
 
-    def __init__(self, schedule):
-        self.schedule = schedule
-        self.final_maluspoints = schedule.total_maluspoints
+    def __init__(self, schedule : Schedule, early_stopping_limit=1000):
+        self.schedule = copy.deepcopy(schedule)
+        self.archive = copy.copy(self.schedule.roomslots)
+        self.maluspoints = schedule.total_maluspoints
+        self.early_stopping_limit = early_stopping_limit
+        self.no_improvement_counter = 0
 
     def update_student_schedules(self):
+        """
+        Update all stutdents' schedules
+        """
         for student in self.schedule.students:
-            student.personal_schedule()
+            student.update_schedule()
 
     def switch_activities(self):
         """
@@ -46,7 +54,7 @@ class Algorithm:
     def move_student(self, student, current_activity, switch_activity):
         student.activities.remove(current_activity)
         student.activities.add(switch_activity)
-        student.personal_schedule()
+        student.update_schedule()
 
         current_activity.students.remove(student)
         switch_activity.students.add(student)
