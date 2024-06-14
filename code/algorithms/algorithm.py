@@ -47,6 +47,9 @@ class Algorithm:
             student.update_schedule()
 
     def pick_roomslots_to_switch(self):
+        """
+        Returns two random roomslots.
+        """
         # pick roomslots to switch activities from
         random_roomslot1 = random.choice(self.schedule.roomslots)
         random_roomslot2 = random.choice(self.schedule.roomslots)
@@ -54,6 +57,9 @@ class Algorithm:
         return random_roomslot1, random_roomslot2
     
     def get_roomslot_info(self, roomslot):
+        """
+        Returns the room, day, and time of a roomslot.
+        """
         room = roomslot[0]
         day = roomslot[1]
         time = roomslot[2]
@@ -126,6 +132,10 @@ class Algorithm:
         switch_activity.students.add(student)
 
     def switch_student_from_activities(self):
+        """
+        Switches a random student from one of their current activities to 
+        another activity of the same type in the same course.
+        """
         ##TODO: I still need to implement switching two students if an activity is full
 
         random_course, random_activity_type, random_activity = self.get_random_activity()
