@@ -12,71 +12,86 @@ class Algorithm:
         self.early_stopping_limit = early_stopping_limit
         self.no_improvement_counter = 0
 
+    def run(self):
+        raise NotImplementedError
+
     def reset_no_improvement_counter(self):
+        """
+        Resets no improvement counter to 0
+        """
         self.no_improvement_counter = 0
 
     def increase_no_improvement_counter(self):
+        """
+        Increases no improvement counter by 1
+        """ 
         self.no_improvement_counter += 1
 
     def revert_to_previous_schedule(self, previous_schedule):
+        """
+        Reverts current schedule back to previous schedule.
+        """
         self.schedule = previous_schedule
 
     def check_stagnation(self) -> bool:
         """
-        Checks whether improvements have stagnated
+        Returns true if improvements have stagnated.
         """    
         return self.early_stopping_limit == self.no_improvement_counter
 
-
     def update_student_schedules(self):
         """
-        Update all stutdents' schedules
+        Update all stutdents' schedules with their current activities.
         """
         for student in self.schedule.students:
             student.update_schedule()
 
-    def switch_activities(self):
-        """
-        Switches the activities from two randomly chosen roomslots. Activity may
-        also be 'Free'.
-        """
+    def pick_roomslots_to_switch(self):
         # pick roomslots to switch activities from
         random_roomslot1 = random.choice(self.schedule.roomslots)
         random_roomslot2 = random.choice(self.schedule.roomslots)
 
-        room_1 = random_roomslot1[0]
-        day_1 = random_roomslot1[1]
-        time_1 = random_roomslot1[2]
+        return random_roomslot1, random_roomslot2
+    
+    def get_roomslot_info(self, roomslot):
+        room = roomslot[0]
+        day = roomslot[1]
+        time = roomslot[2]
 
-        room_2 = random_roomslot2[0]
-        day_2 = random_roomslot2[1]
-        time_2 = random_roomslot2[2]
+        return room, day, time
 
-        # save activities as variables
+    def switch_activities(self):
+        """
+        Switches the activities from two randomly chosen roomslots. Activity may
+        also be None.
+        """
+        # store room, day, and time of roomslots
+        random_roomslot1, random_roomslot2 = self.pick_roomslots_to_switch()
+        room_1, day_1, time_1 = self.get_roomslot_info(random_roomslot1)
+        room_2, day_2, time_2 = self.get_roomslot_info(random_roomslot2)
+
+        # save activities in roomslots
         activity_1 = room_1.schedule[day_1][time_1]
         activity_2 = room_2.schedule[day_2][time_2]
 
+        # if activity is Activity instance, schedule instance
         if activity_1:
             activity_1.schedule(room_2, day_2, time_2)
-
         if activity_2:
             activity_2.schedule(room_1, day_1, time_1)
         
-        # switch the activities to the other roomslot
-        random_roomslot1[0].schedule[random_roomslot1[1]][random_roomslot1[2]] = activity_2
-        random_roomslot2[0].schedule[random_roomslot2[1]][random_roomslot2[2]] = activity_1
+        # switch the activities to the other roomslot in room instance
+        room_1.schedule[day_1][time_1] = activity_2
+        room_2.schedule[day_2][time_2] = activity_1
 
         self.update_student_schedules()
 
-    def move_student(self, student, current_activity, switch_activity):
-        student.activities.remove(current_activity)
-        student.activities.add(switch_activity)
-        student.update_schedule()
-
-        current_activity.students.remove(student)
-        switch_activity.students.add(student)
-
     def get_random_activity(self):
+        """
+        Returns the course, activity type, and activity instance of a 
+        randomly chosen tutorial or practical that has at least one
+        other activity of that same type.
+        """
          # pick a random course
         random_course = random.choice(self.schedule.courses)
         
@@ -87,6 +102,7 @@ class Algorithm:
         # choose random activity type
         random_activity_type = random.choice(list(random_course.activities))
 
+        # make sure activity type has more than 1 activities and is not a lecture
         while len(random_course.activities[random_activity_type]) <= 1 or random_activity_type == 'h':
             random_activity_type = random.choice(list(random_course.activities))
 
@@ -94,10 +110,23 @@ class Algorithm:
         random_activity = random.choice(random_course.activities[random_activity_type])
 
         return random_course, random_activity_type, random_activity
+    
+    def move_student(self, student, current_activity, switch_activity):
+        """
+        Moves a student from their curren activity to the switch activity.
+        """
+        # remove current and add new activity from student's activities set
+        student.activities.remove(current_activity)
+        student.activities.add(switch_activity)
 
+        student.update_schedule()
+
+        # remove student from current and add to new activity's students set
+        current_activity.students.remove(student)
+        switch_activity.students.add(student)
 
     def switch_student_from_activities(self):
-        ##NOTE: I still need to check if this works as intended
+        ##TODO: I still need to implement switching two students if an activity is full
 
         random_course, random_activity_type, random_activity = self.get_random_activity()
 
@@ -107,10 +136,11 @@ class Algorithm:
         # pick another random activity to switch student to
         switch_activity = random.choice(random_course.activities[random_activity_type])
 
+        # pick new activity if new activity is same as random activity
         while switch_activity == random_activity:
             switch_activity = random.choice(random_course.activities[random_activity_type])
 
-        # move the student to one of the other tutorials/practicals if activity is not full
+        # move the student to the new activity if activity is not full
         if not len(switch_activity.students) == switch_activity.capacity:
             self.move_student(random_student, random_activity, switch_activity)
 
@@ -119,7 +149,7 @@ class Algorithm:
 
     def mutate_schedule(self, number_of_mutations : int=1):
         """
-        Mutate current schedule/timetable with a random action
+        Mutate current schedule/timetable with a number of random mutations.
         INCOMPLETE -> need to add more ways to alter the schedule
         = Useful when we have multiple ways of altering the schedule (as we don't want to make every
         single alteration at ones)
@@ -129,17 +159,6 @@ class Algorithm:
             mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
 
             mutation()
-
-        # chance = random.random()
-
-        # if chance < 1:
-        #     self.switch_activities()
-        # elif 0.5 <= chance < 0.8:
-        #     move student to other practical
-        #     or redistribute all students
-
-    def run(self):
-        raise NotImplementedError
     
     def plot_graph(self, output_file : str, x : str='iteration', y : str='maluspoints', title : str='Algorithm', save: bool=False):
         """

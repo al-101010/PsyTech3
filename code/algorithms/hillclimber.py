@@ -1,6 +1,5 @@
 import copy
 import sys
-import matplotlib.pyplot as plt
 from .random_alg import Random
 from .algorithm import Algorithm
 from ..classes.schedule import Schedule
