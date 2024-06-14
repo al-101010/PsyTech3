@@ -51,12 +51,8 @@ class Algorithm:
         current_activity.students.remove(student)
         switch_activity.students.add(student)
 
-    def switch_student_from_activities(self):
-        ##NOTE: I still need to check if this works as intended
-        ##NOTE: This does not yet check if the activity is already full,
-        ## so activities may be overbooked now.
-
-        # pick a random course
+    def get_random_activity(self):
+         # pick a random course
         random_course = random.choice(self.schedule.courses)
         
         # make sure the course has tutorials or practicals
@@ -71,6 +67,14 @@ class Algorithm:
 
         # pick a random tutorial or practical
         random_activity = random.choice(random_course.activities[random_activity_type])
+
+        return random_course, random_activity_type, random_activity
+
+
+    def switch_student_from_activities(self):
+        ##NOTE: I still need to check if this works as intended
+
+        random_course, random_activity_type, random_activity = self.get_random_activity()
 
         # pick a random students from the tutorial/practical
         random_student = random.choice(list(random_activity.students))
