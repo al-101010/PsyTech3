@@ -1,5 +1,6 @@
 import random
 import copy
+import matplotlib.pylab as plt
 from ..classes.schedule import Schedule
 
 class Algorithm:
@@ -7,9 +8,25 @@ class Algorithm:
     def __init__(self, schedule : Schedule, early_stopping_limit=1000):
         self.schedule = copy.deepcopy(schedule)
         self.archive = copy.copy(self.schedule.roomslots)
-        self.maluspoints = schedule.total_maluspoints
+        self.maluspoint_stats = []
         self.early_stopping_limit = early_stopping_limit
         self.no_improvement_counter = 0
+
+    def reset_no_improvement_counter(self):
+        self.no_improvement_counter = 0
+
+    def increase_no_improvement_counter(self):
+        self.no_improvement_counter += 1
+
+    def revert_to_previous_schedule(self, previous_schedule):
+        self.schedule = previous_schedule
+
+    def check_stagnation(self) -> bool:
+        """
+        Checks whether improvements have stagnated
+        """    
+        return self.early_stopping_limit == self.no_improvement_counter
+
 
     def update_student_schedules(self):
         """
@@ -123,3 +140,22 @@ class Algorithm:
 
     def run(self):
         raise NotImplementedError
+    
+    def plot_graph(self, output_file : str, x : str='iteration', y : str='maluspoints', title : str='Algorithm', save: bool=False):
+        """
+        Plot maluspoints as a function of number of iterations (for hillclimber)
+        """
+        # intialize variables
+        iters = len(self.maluspoint_stats)
+
+        # plot graph
+        plt.plot(self.maluspoint_stats)
+        plt.xlabel(x)
+        plt.ylabel(y)
+        plt.suptitle(title, fontsize=12)
+        plt.title(f"number of iterations = {iters} & minimum maluspoints = {min(self.maluspoint_stats)}")
+
+        if save:
+            plt.savefig(output_file)
+
+        plt.show()

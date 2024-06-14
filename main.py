@@ -45,9 +45,9 @@ if __name__ == "__main__":
 
     print("--- %s seconds ---" % (time.time() - start_time))
 
-    # hillclimber_schedule.plot_graph(save=True)
+    hillclimber_schedule.plot_graph('data/hillclimber_cost.png', title='Hillclimber Algorithm', save=True)
     # print(get_output(hillclimber_schedule.schedule.students, 'data/hillclimber_output.csv'))
-    # print(hillclimber_schedule.maluspoints)
+    print(hillclimber_schedule.maluspoints)
 
     
 
