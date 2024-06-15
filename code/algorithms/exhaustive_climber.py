@@ -1,8 +1,6 @@
 from .hillclimber import Hillclimber
 from ..classes.schedule import Schedule
-
-# increase recursion limit for deepcopies
-#sys.setrecursionlimit(10**6)
+import copy 
 
 class ExhaustiveClimber(Hillclimber):
     """ 
@@ -10,8 +8,7 @@ class ExhaustiveClimber(Hillclimber):
     Difference: Uses all free slots in course schedule (exhausts schedule space). 
 
     TODOs:
-
-    - implement add_extra_activity in Algorithm
+    
     - test 
     """
 
@@ -22,8 +19,16 @@ class ExhaustiveClimber(Hillclimber):
         self.exhaust_schedule()    
     
     def exhaust_schedule(self):
-        print(self.archive)
-        # loops over all still vacant room slots in schedule until none free 
-            # picks a random activity and splits it (use below function i think)     
-            # self.add_extra_activity()
+        """ 
+        If there are any rooms and timeslots still free, creates new groups for random
+        activities and assigns them a new room. Relocates students to the new room.  
+        """
+
+        # make deepcopy of archive as is now 
+        archive_copy = copy.deepcopy(self.archive)
+
+        # loops over all still vacant room slots in schedule until none free
+        # change to while loop or use deepcopy 
+        for slot in archive_copy:
+            self.add_extra_activity(slot[0], slot[1], slot[2])
    

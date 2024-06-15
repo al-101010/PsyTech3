@@ -2,6 +2,7 @@ import random
 import copy
 import matplotlib.pylab as plt
 from ..classes.schedule import Schedule
+from ..classes.activity import Activity
 
 class Algorithm:
 
@@ -156,8 +157,13 @@ class Algorithm:
 
         # if the other tutorial is full pick another or switch students?
 
-    def add_extra_activity():
-        pass
+    def add_extra_activity(self, room, day, time):
+        """
+        Splits a work group or practical into two and reassigns students.
+        Only use if free rooms available.  
+
+        Question: perhaps this method and some others should be in schedule??
+        """
         ## this method should only be called if there are still empty roomslots
         
         # pick random activity from random course
@@ -168,6 +174,34 @@ class Algorithm:
             # remove their current activity of the same type of this course
             # schedule the student to a random activity of the same type of this course
         # update all student schedules
+
+        # pick random activity from random course 
+        random_course, type, activity = self.get_random_activity()
+        
+        # make new activity of the same type 
+        new_name = activity.name + '.1'
+        new_activity = Activity(new_name, activity.capacity, random_course)
+
+        # schedule this new activity to an open roomslot
+        new_activity.schedule(room, day, time)
+
+        # loop over all courses in schedule 
+        for course in self.schedule.courses:
+            
+            # find the course of the random activity to be split  
+            if course.name == random_course.name:
+                
+                # add new activity to course activities of same type 
+                course.activities[type].append(new_activity)
+
+                # update schedule for each student in this course:
+                for student in course.students:
+
+                    # move approximately half of students to new group 
+                    if activity in student.activities and random.random() < 0.5:
+                        self.move_student(student, activity, new_activity)
+
+
 
     def mutate_schedule(self, number_of_mutations : int=1):
         """
