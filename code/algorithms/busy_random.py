@@ -1,8 +1,16 @@
 from .random_alg import Random
 
 class BusyRandom(Random):
-    """ Inherits from Random schedule. Difference: Activities are selected on a busy-comes-first
-     basis and not randomly. """
+    """ 
+    Inherits from Random schedule. Difference: Activities are selected on a busy-comes-first 
+    basis and not randomly. 
+
+    TODOs: 
+
+    - Implement get_busy_index()
+    - Implement sort_activities_by_busy()
+    
+     """
     
     # TODO: remove random seed comments
     
