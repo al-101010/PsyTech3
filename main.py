@@ -69,5 +69,26 @@ if __name__ == "__main__":
     # print(simulated_annealing.maluspoints)
 
 
+    # --------------------- HEURISTIC - BUSY FIRST HILLCLIMBER --------------------------------
+    # # create busy first schedule 
+    # busy_climber = BusyClimber(test_schedule, 500)
+    # busy_climber.run()
+    
+    # # get results 
+    # busy_climber.plot_graph('data/busy_climber_plot.png', title='Busy Comes First Heuristic', save=False)
+    # print(get_output(busy_climber.schedule.students, 'data/busy_climber.csv'))
+    # print(busy_climber.maluspoints)
+
+
+    # # --------------------- HEURISTIC - EXHAUSTIVE HILLCLIMBER --------------------------------
+    # # create exhaustive schedule 
+    # exhaustive_climber = ExhaustiveClimber(test_schedule, 500)
+    # exhaustive_climber.run()
+    
+    # # get results 
+    # exhaustive_climber.plot_graph('data/exhaustive_climber_plot.png', title='Exhaustive Schedule Heuristic', save=False)
+    # print(get_output(exhaustive_climber.schedule.students, 'data/exhaustive_climber.csv'))
+    # print(exhaustive_climber.maluspoints)
+
     
 
