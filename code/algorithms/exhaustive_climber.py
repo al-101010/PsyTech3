@@ -16,6 +16,7 @@ class ExhaustiveClimber(Hillclimber):
 
         # fill all free slots in schedule 
         self.exhaust_schedule()  
+
     
     def exhaust_schedule(self):
         """ 

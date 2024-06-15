@@ -135,7 +135,7 @@ class Algorithm:
     def switch_student_from_activities(self):
         """
         Switches a random student from one of their current activities to 
-        another activity of the same type in the same course.
+        another activity of the same type in the same course. 
         """
         ##TODO: I still need to implement switching two students if an activity is full
 
@@ -175,8 +175,12 @@ class Algorithm:
             # schedule the student to a random activity of the same type of this course
         # update all student schedules
 
-        # pick random activity from random course 
-        random_course, type, activity = self.get_random_activity()
+        # prevent splitting too small groups (causes errors lateron)
+        min_len = 0 
+        while min_len < 20:
+            # pick random activity from random course 
+            random_course, type, activity = self.get_random_activity()
+            min_len = len(activity.students)
         
         # make new activity of the same type 
         new_name = activity.name + '.1'
@@ -198,7 +202,7 @@ class Algorithm:
                 for student in course.students:
 
                     # move approximately half of students to new group 
-                    if activity in student.activities and random.random() < 0.5:
+                    if activity in student.activities and len(activity.students) > len(new_activity.students):
                         self.move_student(student, activity, new_activity)
 
         # update activities in schedule 
