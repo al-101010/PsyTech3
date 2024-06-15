@@ -81,15 +81,15 @@ if __name__ == "__main__":
     # print(busy_climber.maluspoints)
 
 
-    # # --------------------- HEURISTIC - EXHAUSTIVE HILLCLIMBER --------------------------------
-    # # create exhaustive schedule 
-    # exhaustive_climber = ExhaustiveClimber(test_schedule)
-    # exhaustive_climber.run()
+    # --------------------- HEURISTIC - EXHAUSTIVE HILLCLIMBER --------------------------------
+    # create exhaustive schedule 
+    exhaustive_climber = ExhaustiveClimber(test_schedule)
+    exhaustive_climber.run(1000)
     
-    # # get results 
-    # exhaustive_climber.plot_graph('data/exhaustive_climber_plot.png', title='Exhaustive Schedule Heuristic', save=False)
-    # print(get_output(exhaustive_climber.schedule.students, 'data/exhaustive_climber.csv'))
-    # print(exhaustive_climber.maluspoints)
+    # get results 
+    exhaustive_climber.plot_graph('data/exhaustive_climber_plot.png', title='Exhaustive Schedule Heuristic', save=False)
+    #print(get_output(exhaustive_climber.schedule.students, 'data/exhaustive_climber.csv'))
+    print(exhaustive_climber.maluspoints)
 
     
 

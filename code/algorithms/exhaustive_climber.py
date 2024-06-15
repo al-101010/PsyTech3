@@ -8,15 +8,14 @@ class ExhaustiveClimber(Hillclimber):
     Difference: Uses all free slots in course schedule (exhausts schedule space). 
 
     TODOs:
-    
     - test 
     """
 
     def __init__(self, empty_schedule : Schedule):
         super().__init__(empty_schedule)
-        
+
         # fill all free slots in schedule 
-        self.exhaust_schedule()    
+        self.exhaust_schedule()  
     
     def exhaust_schedule(self):
         """ 
@@ -24,11 +23,11 @@ class ExhaustiveClimber(Hillclimber):
         activities and assigns them a new room. Relocates students to the new room.  
         """
 
-        # make deepcopy of archive as is now 
-        archive_copy = copy.deepcopy(self.archive)
-
         # loops over all still vacant room slots in schedule until none free
-        # change to while loop or use deepcopy 
-        for slot in archive_copy:
+        for slot in self.archive:
             self.add_extra_activity(slot[0], slot[1], slot[2])
+        
+        # remove all slots from archive 
+        self.archive = []
+
    

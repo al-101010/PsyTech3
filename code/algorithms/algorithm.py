@@ -201,7 +201,8 @@ class Algorithm:
                     if activity in student.activities and random.random() < 0.5:
                         self.move_student(student, activity, new_activity)
 
-
+        # update activities in schedule 
+        self.schedule.activities = self.schedule.get_activities_list(self.schedule.courses)
 
     def mutate_schedule(self, number_of_mutations : int=1):
         """
