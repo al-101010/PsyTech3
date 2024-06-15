@@ -1,6 +1,7 @@
 from code.algorithms.sequential import Sequential # Ignore : True
 from code.algorithms.random_alg import Random
 from code.algorithms.hillclimber import Hillclimber
+from code.algorithms.exhaustive_climber import ExhaustiveClimber
 from code.algorithms.simulated_annealing import SimulatedAnnealing
 from code.algorithms.plant_prop import PlantProp
 from code.classes.schedule import Schedule
@@ -82,7 +83,7 @@ if __name__ == "__main__":
 
     # # --------------------- HEURISTIC - EXHAUSTIVE HILLCLIMBER --------------------------------
     # # create exhaustive schedule 
-    # exhaustive_climber = ExhaustiveClimber(test_schedule, 500)
+    # exhaustive_climber = ExhaustiveClimber(test_schedule)
     # exhaustive_climber.run()
     
     # # get results 

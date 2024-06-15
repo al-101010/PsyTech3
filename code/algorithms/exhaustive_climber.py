@@ -1,7 +1,8 @@
 from .hillclimber import Hillclimber
+from ..classes.schedule import Schedule
 
 # increase recursion limit for deepcopies
-sys.setrecursionlimit(10**6)
+#sys.setrecursionlimit(10**6)
 
 class ExhaustiveClimber(Hillclimber):
     """ 
@@ -21,6 +22,7 @@ class ExhaustiveClimber(Hillclimber):
         self.exhaust_schedule()    
     
     def exhaust_schedule(self):
+        print(self.archive)
         # loops over all still vacant room slots in schedule until none free 
             # picks a random activity and splits it (use below function i think)     
             # self.add_extra_activity()
