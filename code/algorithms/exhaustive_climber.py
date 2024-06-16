@@ -31,8 +31,12 @@ class ExhaustiveClimber(Hillclimber):
             # pick random room from still available 
             room, day, time = random.choice(self.archive)
             
+            # make activity 
+            self.add_extra_activity(room, day, time)
+ 
             # remove room from still available 
             self.archive.remove((room, day, time))
+
         
 
         
