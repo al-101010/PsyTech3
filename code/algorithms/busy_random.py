@@ -1,4 +1,7 @@
 from .random_alg import Random
+from functools import reduce
+import random 
+import copy 
 
 class BusyRandom(Random):
     """ 
@@ -6,9 +9,7 @@ class BusyRandom(Random):
     basis and not randomly. 
 
     TODOs: 
-
-    - Implement get_busy_index()
-    - Implement sort_activities_by_busy()
+    - test more 
     
      """
     
@@ -18,31 +19,64 @@ class BusyRandom(Random):
 
     def __init__(self, empty_schedule) -> None:
         super().__init__(empty_schedule)
+        
+        self.archive = copy.copy(self.schedule.roomslots)
+        self.sort_courses_by_busy()
+        self.schedule_courses(self.archive)
+
 
     def get_busy_index(self):
-        """ Labels activities by - define all criteria - into busy and not busy"""
-        pass
+        """ Labels courses - define all criteria - into busy and not busy"""
+        
         # loop over courses
-            # get number activities in course: int 
+        for course in self.schedule.courses:
+
+            busy_index = 0 
+            
+            # get number activities in course: int
+            total_course_activities = len(reduce(lambda a, b: a+b, course.activities.values()))
+            
             # get number students enrolled in course: int  
+            course_students = len(course.students)
+ 
             # get number courses of each enrolled student: int 
+            total_student_courses = self.get_total_student_courses(course.students)
+
             # sum all up to index  
+            busy_index += total_course_activities + course_students + total_student_courses
+            
             # add busy index label to course 
+            course.busy_index = busy_index
+
+    
+    def get_total_student_courses(self, course_students):
+        """ Gets number of courses of each student enrolled in course"""
+        
+        student_courses = 0
+        
+        for student in course_students:
+                student_courses += len(student.courses)
+        
+        return student_courses
         
         
-    def sort_activities_by_busy(self):
+    def sort_courses_by_busy(self):
         """ Sorts activities by index of busyness."""
-        pass
-        # sort courses by busyest index 
+        
+        self.get_busy_index()
+
+        sorted_courses = sorted(self.schedule.courses, key=lambda course:course.busy_index, reverse=True)
+        
+        self.schedule.courses = sorted_courses
+
 
     def schedule_courses(self, archive):
         """
         Schedule sorted activities on a random roomslot that is available.
         """
-        # random.seed(1)
         
-        # sort activities so that busy ones are scheduled first  
-        self.sort_activities_by_busy(self.schedule.activities)
+        # schedule activities according to sorted courses 
+        self.schedule.activities = self.schedule.get_activities_list(self.schedule.courses)
 
         # loop over all activities
         for activity in self.schedule.activities:  

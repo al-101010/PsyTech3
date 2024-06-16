@@ -226,7 +226,7 @@ class Algorithm:
 
             mutation()
     
-    def display_all_maluspoints(self):
+    def display_all_maluspoints(self, title):
         """ 
         Gets all the different types of maluspoints from the schedule and prints them to terminal.
         
@@ -235,6 +235,7 @@ class Algorithm:
         """
 
         # get hold of schedule and all types of maluspoints
+        print(f'Algorithm name: {title}')
         print('Maluspoints:') 
         print(f'Evening room usage: {self.schedule.room_maluspoints}')
         print(f'Free periods: {self.schedule.free_period_maluspoints}')

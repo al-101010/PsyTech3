@@ -1,8 +1,6 @@
 from .hillclimber import Hillclimber
 from .busy_random import BusyRandom
-
-# increase recursion limit for deepcopies
-sys.setrecursionlimit(10**6)
+from ..classes.schedule import Schedule
 
 class BusyClimber(Hillclimber):
     """ 

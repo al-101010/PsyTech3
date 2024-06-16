@@ -23,6 +23,11 @@ class ExhaustiveClimber(Hillclimber):
         """ 
         If there are any rooms and timeslots still free, creates new groups for random
         activities and assigns them a new room. Relocates students to the new room.  
+
+        TODO: 
+        - need to exchange self.archive.remove with self.remove_roomslot() - for that 
+        first self.remove_roomslot() needs to move to algorithm from random_alg
+
         """
 
         # loops over all still vacant room slots in schedule until none free

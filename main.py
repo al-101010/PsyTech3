@@ -2,6 +2,7 @@ from code.algorithms.sequential import Sequential # Ignore : True
 from code.algorithms.random_alg import Random
 from code.algorithms.hillclimber import Hillclimber
 from code.algorithms.exhaustive_climber import ExhaustiveClimber
+from code.algorithms.busy_climber import BusyClimber
 from code.algorithms.simulated_annealing import SimulatedAnnealing
 from code.algorithms.plant_prop import PlantProp
 from code.classes.schedule import Schedule
@@ -46,7 +47,8 @@ if __name__ == "__main__":
 
     # # --------------------- HILLCLIMBER -------------------------------------
     # hillclimber_schedule = Hillclimber(test_schedule)
-    # hillclimber_schedule.run(10)
+    # hillclimber_schedule.run(100)
+    # hillclimber_schedule.display_all_maluspoints('Hillclimber')
 
     # hillclimber_schedule.plot_graph('data/hillclimber_cost.png', title='Hillclimber Algorithm', save=False)
     # get_output(hillclimber_schedule.schedule.students, 'data/hillclimber_output.csv')
@@ -54,7 +56,8 @@ if __name__ == "__main__":
 
     # --------------------- PLANT PROPAGATION ----------------------------------
     # plantprop = PlantProp(test_schedule)
-    # plantprop.run(20000)
+    # plantprop.run(100)
+    # plantprop.display_all_maluspoints('Plantprop')
 
     # plantprop.plot_graph('data/plantprop_cost.png', title='PlantProp Algorithm', save=True)
     # get_output(plantprop.schedule.students, 'data/plantprop_output.csv')
@@ -72,8 +75,9 @@ if __name__ == "__main__":
 
     # --------------------- HEURISTIC - BUSY FIRST HILLCLIMBER --------------------------------
     # # create busy first schedule 
-    # busy_climber = BusyClimber(test_schedule, 500)
-    # busy_climber.run()
+    # busy_climber = BusyClimber(test_schedule)
+    # busy_climber.run(100)
+    # busy_climber.display_all_maluspoints('Busy First Hillclimber')
     
     # # get results 
     # busy_climber.plot_graph('data/busy_climber_plot.png', title='Busy Comes First Heuristic', save=False)
@@ -83,9 +87,9 @@ if __name__ == "__main__":
 
     # --------------------- HEURISTIC - EXHAUSTIVE HILLCLIMBER --------------------------------
     # # create exhaustive schedule 
-    exhaustive_climber = ExhaustiveClimber(test_schedule)
-    exhaustive_climber.run(10)
-    #exhaustive_climber.display_all_maluspoints()
+    # exhaustive_climber = ExhaustiveClimber(test_schedule)
+    # exhaustive_climber.run(100)
+    # exhaustive_climber.display_all_maluspoints('Exhaustive Hillclimber')
     
     # # get results 
     # exhaustive_climber.plot_graph('data/exhaustive_climber_plot.png', title='Exhaustive Schedule Heuristic', save=True)
