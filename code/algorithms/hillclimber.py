@@ -51,6 +51,8 @@ class Hillclimber(Algorithm):
         Improves the initial schedule for a number of iterations.
         Returns the final schedule when finished.
         """
+        self.iterations = iters
+        
         # run through all iterations
         for i in range(1, iters + 1):
             

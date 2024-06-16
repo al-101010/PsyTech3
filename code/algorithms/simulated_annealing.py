@@ -6,10 +6,11 @@ from ..classes.schedule import Schedule
 
 class SimulatedAnnealing(Hillclimber):
     # NOTE: still want to implement a way to switch between 2 types of cooling functions 
-    def __init__(self, empty_schedule : Schedule, start_temperature: int):
+    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential'):
         super().__init__(empty_schedule)
         self.start_temperature = start_temperature
         self.temperature = start_temperature
+        self.cooling_function = cooling_function
 
     def calculate_acceptance_probability(self, new_maluspoints: int, old_maluspoints: int) -> float:
         """
@@ -31,6 +32,22 @@ class SimulatedAnnealing(Hillclimber):
     def update_temperature(self) -> None:
         """
         Update temperature using the specified cooling function
+        """
+        if self.cooling_function == 'linear':
+            self.linear_temperature_decline()
+
+        elif self.cooling_function == 'exponential':
+            self.exponential_temperature_decline()
+
+    def linear_temperature_decline(self) -> None:
+        """
+        Linear decline function to update temperature
+        """
+        self.temperature = self.start_temperature - (self.temperature / self.iterations) * self. iteration
+
+    def exponential_temperature_decline(self):
+        """
+        Exponential decline function to update temperature
         """
         self.temperature = self.start_temperature * (0.99 ** self.iteration)
 
