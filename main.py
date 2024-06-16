@@ -83,9 +83,9 @@ if __name__ == "__main__":
 
     # --------------------- HEURISTIC - EXHAUSTIVE HILLCLIMBER --------------------------------
     # # create exhaustive schedule 
-    # exhaustive_climber = ExhaustiveClimber(test_schedule)
-    # exhaustive_climber.run(10)
-    # exhaustive_climber.display_all_maluspoints()
+    exhaustive_climber = ExhaustiveClimber(test_schedule)
+    exhaustive_climber.run(10)
+    #exhaustive_climber.display_all_maluspoints()
     
     # # get results 
     # exhaustive_climber.plot_graph('data/exhaustive_climber_plot.png', title='Exhaustive Schedule Heuristic', save=True)

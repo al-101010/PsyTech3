@@ -18,8 +18,6 @@ class BusyRandom(Random):
 
     def __init__(self, empty_schedule) -> None:
         super().__init__(empty_schedule)
-        self.schedule_courses(self.archive)
-        self.schedule_students()
 
     def get_busy_index(self):
         """ Labels activities by - define all criteria - into busy and not busy"""
