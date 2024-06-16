@@ -1,6 +1,7 @@
 from .hillclimber import Hillclimber
 from ..classes.schedule import Schedule
 import copy 
+import random 
 
 class ExhaustiveClimber(Hillclimber):
     """ 
@@ -25,10 +26,15 @@ class ExhaustiveClimber(Hillclimber):
         """
 
         # loops over all still vacant room slots in schedule until none free
-        for slot in self.archive:
-            self.add_extra_activity(slot[0], slot[1], slot[2])
+        while len(self.archive) > 0:
+            
+            # pick random room from still available 
+            room, day, time = random.choice(self.archive)
+            
+            # remove room from still available 
+            self.archive.remove((room, day, time))
         
-        # remove all slots from archive 
-        self.archive = []
+
+        
     
    
