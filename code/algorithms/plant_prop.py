@@ -2,6 +2,7 @@ from ..classes.schedule import Schedule
 from .algorithm import Algorithm
 from .hillclimber import Hillclimber
 import copy
+import concurrent.futures
 
 
 class PlantProp(Algorithm):
@@ -33,8 +34,15 @@ class PlantProp(Algorithm):
     def calculate_mutations(self, schedule):
         return max(int(self.mutation_parameter * schedule.get_total_maluspoints()), 1)
     
+    def deepcopy_hillclimber(self, hillclimber):
+        return copy.deepcopy(hillclimber)
+    
     def mutate_all(self):
-        population = copy.deepcopy(self.population)
+        # Use ThreadPoolExecutor for parallel processing
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+             # Map the deepcopy_hillclimber function to the population
+            population = list(executor.map(self.deepcopy_hillclimber, self.population))
+
         children = []
         for hillclimber in population:
             schedule = hillclimber.schedule

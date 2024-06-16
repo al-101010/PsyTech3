@@ -6,7 +6,7 @@ from ..classes.activity import Activity
 
 class Algorithm:
 
-    def __init__(self, schedule : Schedule, early_stopping_limit=1000):
+    def __init__(self, schedule : Schedule, early_stopping_limit=2000):
         self.schedule = copy.deepcopy(schedule)
         self.archive = copy.copy(self.schedule.roomslots)
         self.maluspoint_stats = []
@@ -90,6 +90,11 @@ class Algorithm:
         # pick a random tutorial or practical
         random_activity = random.choice(random_course.activities[random_activity_type])
 
+        # make sure activity has students
+        while len(random_activity.students) == 0:
+            random_activity = random.choice(random_course.activities[random_activity_type])
+
+
         return random_course, random_activity_type, random_activity
     
     def move_student(self, student, current_activity, switch_activity):
@@ -167,6 +172,7 @@ class Algorithm:
         NOTE: we should add in switch_student_from_activities() that it only switches 
         a student if the group will not be empty to prevent an index out of range error
         when randomly picking student from empty group!!! Then can delete while loop below. 
+        UPDATE DAIMY: I think I fixed this in switch_student_from_activities().
         """
         ## this method should only be called if there are still empty roomslots
         

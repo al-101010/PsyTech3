@@ -46,8 +46,6 @@ class Hillclimber(Algorithm):
             self.revert_to_previous_schedule(previous_schedule)
             self.accept_schedule(previous_schedule)
         
-        print(self.no_change_counter)
-
     def run(self, iters  : int=10):
         """
         Improves the initial schedule for a number of iterations.
