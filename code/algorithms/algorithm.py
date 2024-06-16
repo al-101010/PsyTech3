@@ -163,6 +163,10 @@ class Algorithm:
         Only use if free rooms available.  
 
         Question: perhaps this method and some others should be in schedule??
+
+        NOTE: we should add in switch_student_from_activities() that it only switches 
+        a student if the group will not be empty to prevent an index out of range error
+        when randomly picking student from empty group!!! Then can delete while loop below. 
         """
         ## this method should only be called if there are still empty roomslots
         
@@ -175,8 +179,9 @@ class Algorithm:
             # schedule the student to a random activity of the same type of this course
         # update all student schedules
 
-        # prevent splitting too small groups (causes errors lateron)
+        # prevent splitting too small groups (causes errors lateron) 
         min_len = 0 
+        # need to resolve, see docstring 
         while min_len < 20:
             # pick random activity from random course 
             random_course, type, activity = self.get_random_activity()
