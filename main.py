@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
     # # --------------------- HILLCLIMBER -------------------------------------
     # hillclimber_schedule = Hillclimber(test_schedule)
-    # hillclimber_schedule.run(5)
+    # hillclimber_schedule.run(10)
 
     # hillclimber_schedule.plot_graph('data/hillclimber_cost.png', title='Hillclimber Algorithm', save=False)
     # get_output(hillclimber_schedule.schedule.students, 'data/hillclimber_output.csv')
@@ -84,7 +84,8 @@ if __name__ == "__main__":
     # --------------------- HEURISTIC - EXHAUSTIVE HILLCLIMBER --------------------------------
     # # create exhaustive schedule 
     # exhaustive_climber = ExhaustiveClimber(test_schedule)
-    # exhaustive_climber.run(3000)
+    # exhaustive_climber.run(10)
+    # exhaustive_climber.display_all_maluspoints()
     
     # # get results 
     # exhaustive_climber.plot_graph('data/exhaustive_climber_plot.png', title='Exhaustive Schedule Heuristic', save=True)

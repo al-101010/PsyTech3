@@ -226,6 +226,21 @@ class Algorithm:
 
             mutation()
     
+    def display_all_maluspoints(self):
+        """ 
+        Gets all the different types of maluspoints from the schedule and prints them to terminal.
+        
+        TODO:
+        - make proper visualisation 
+        """
+
+        # get hold of schedule and all types of maluspoints
+        print('Maluspoints:') 
+        print(f'Evening room usage: {self.schedule.room_maluspoints}')
+        print(f'Free periods: {self.schedule.free_period_maluspoints}')
+        print(f'Room overcapacity: {self.schedule.overcapacity_maluspoints}')
+        print(f'Student double bookings: {self.schedule.double_booking_maluspoints}')
+
     def plot_graph(self, output_file : str, x : str='iteration', y : str='maluspoints', title : str='Algorithm', save: bool=False):
         """
         Plot maluspoints as a function of number of iterations (for hillclimber)

@@ -30,5 +30,5 @@ class ExhaustiveClimber(Hillclimber):
         
         # remove all slots from archive 
         self.archive = []
-
+    
    
