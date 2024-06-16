@@ -26,7 +26,7 @@ class BusyRandom(Random):
 
 
     def get_busy_index(self):
-        """ Labels courses - define all criteria - into busy and not busy"""
+        """ Adds busy indices to all courses"""
         
         # loop over courses
         for course in self.schedule.courses:
@@ -61,7 +61,7 @@ class BusyRandom(Random):
         
         
     def sort_courses_by_busy(self):
-        """ Sorts activities by index of busyness."""
+        """ Sorts courses by index of busyness, busiest first."""
         
         self.get_busy_index()
 
