@@ -136,7 +136,51 @@ class Algorithm:
         room_2.schedule[day_2][time_2] = activity_1
 
         self.update_student_schedules()
+        
+        """ Still in progress. """
+        # self.update_archive(activity_1, activity_2, room_1, day_1, time_1, room_2, day_2, time_2)
+    
+    def update_archive(self, activity1, activity2, room1, day1, time1, room2, day2, time2):
+        """ 
+        When switching activities, updates the archive if activity is switched to a free room.
+        
+        NOTE: STILL IN PROGRESS
+        """
 
+        for item in self.archive:
+            print(item)
+            print((room1, day1, time1))
+            print(item == (room1, day1, time1)) 
+
+        if not activity1 and not activity2:
+            # if both are free don't do anything 
+            print('switched two empty rooms ')
+            pass
+        # check if the room slot of activity1 is free 
+        elif not activity1:
+            print(f'activity1 doesnt exist')
+            print(f'room: {room1}, day: {day1}, time: {time1}')
+            print(f'room: {room2}, day: {day2}, time: {time2}')
+
+            # remove other activity from archive
+            self.archive.remove((room1, day1, time1))
+            
+            # add it to archive 
+            self.archive.append((room2, day2, time2))
+        
+        # check if the room slot of activity2 is free 
+        elif not activity2: 
+            print(f'activity2 doesnt exist')
+            print(f'room: {room1}, day: {day1}, time: {time1}')
+            print(f'room: {room2}, day: {day2}, time: {time2}')
+            
+            # remove other activity from archive  
+            self.archive.remove((room2, day2, time2))
+
+            # add it to archive 
+            self.archive.append((room1, day1, time1))
+   
+        
     def switch_student_from_activities(self):
         """
         Switches a random student from one of their current activities to 
@@ -162,6 +206,7 @@ class Algorithm:
 
         # if the other tutorial is full pick another or switch students?
 
+    
     def add_extra_activity(self, room, day, time):
         """
         Splits a work group or practical into two and reassigns students.
@@ -169,30 +214,22 @@ class Algorithm:
 
         Question: perhaps this method and some others should be in schedule??
 
-        NOTE: we should add in switch_student_from_activities() that it only switches 
-        a student if the group will not be empty to prevent an index out of range error
-        when randomly picking student from empty group!!! Then can delete while loop below. 
-        UPDATE DAIMY: I think I fixed this in switch_student_from_activities().
+        TODO: 
+        - change so that can also add non-random activities. 
         """
-        ## this method should only be called if there are still empty roomslots
-        
-        # pick random activity from random course
-            #self.get_random_activity()  
-        # add new activity instance to same activity type of this course
-        # schedule this new activity to an open roomslot
-        # for each student in this course:
-            # remove their current activity of the same type of this course
-            # schedule the student to a random activity of the same type of this course
-        # update all student schedules
 
+        # should work without the while loop now 
         # prevent splitting too small groups (causes errors lateron) 
-        min_len = 0 
+        # min_len = 0 
         # need to resolve, see docstring 
-        while min_len < 20:
-            # pick random activity from random course 
-            random_course, type, activity = self.get_random_activity()
-            min_len = len(activity.students)
+        # while min_len < 20:
+        #     # pick random activity from random course 
+        #     random_course, type, activity = self.get_random_activity()
+        #     min_len = len(activity.students)
         
+        # do not get activity here if we don't want a random activity each time  
+        random_course, type, activity = self.get_random_activity()
+
         # make new activity of the same type 
         new_name = activity.name + '.1'
         new_activity = Activity(new_name, activity.capacity, random_course)
