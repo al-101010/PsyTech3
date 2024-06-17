@@ -137,48 +137,26 @@ class Algorithm:
 
         self.update_student_schedules()
         
-        """ Still in progress. """
-        # self.update_archive(activity_1, activity_2, room_1, day_1, time_1, room_2, day_2, time_2)
+        # update the archive if an activity is switched to an empty spot 
+        self.update_archive(activity_1, room_1, day_1, time_1, room_2, day_2, time_2)
+        self.update_archive(activity_2, room_2, day_2, time_2, room_1, day_1, time_1)
     
-    def update_archive(self, activity1, activity2, room1, day1, time1, room2, day2, time2):
+    def update_archive(self, activity, room1, day1, time1, room2, day2, time2):
         """ 
         When switching activities, updates the archive if activity is switched to a free room.
-        
-        NOTE: STILL IN PROGRESS
         """
-
-        for item in self.archive:
-            print(item)
-            print((room1, day1, time1))
-            print(item == (room1, day1, time1)) 
-
-        if not activity1 and not activity2:
-            # if both are free don't do anything 
-            print('switched two empty rooms ')
-            pass
-        # check if the room slot of activity1 is free 
-        elif not activity1:
-            print(f'activity1 doesnt exist')
-            print(f'room: {room1}, day: {day1}, time: {time1}')
-            print(f'room: {room2}, day: {day2}, time: {time2}')
-
-            # remove other activity from archive
-            self.archive.remove((room1, day1, time1))
-            
-            # add it to archive 
-            self.archive.append((room2, day2, time2))
-        
-        # check if the room slot of activity2 is free 
-        elif not activity2: 
-            print(f'activity2 doesnt exist')
-            print(f'room: {room1}, day: {day1}, time: {time1}')
-            print(f'room: {room2}, day: {day2}, time: {time2}')
-            
-            # remove other activity from archive  
-            self.archive.remove((room2, day2, time2))
-
-            # add it to archive 
-            self.archive.append((room1, day1, time1))
+    
+        # if there is no activity in a room slot  
+        if not activity:
+            # loop over still available rooms 
+            for item in self.archive:
+                # if room, day, time are found in archive 
+                if room1.room_number == item[0].room_number and day1 == item[1] and time1 == item[2]:
+                    # remove old activity from archive 
+                    self.archive.remove(item)
+                    # add new activity to archive 
+                    self.archive.append((room2, day2, time2)) 
+                    break
    
         
     def switch_student_from_activities(self):
