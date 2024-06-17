@@ -141,7 +141,7 @@ class Algorithm:
         self.update_archive(activity_1, room_1, day_1, time_1, room_2, day_2, time_2)
         self.update_archive(activity_2, room_2, day_2, time_2, room_1, day_1, time_1)
     
-    def update_archive(self, activity, room1, day1, time1, room2, day2, time2):
+    def update_archive(self, activity, room_current, day_current, time_current, room_new, day_new, time_new):
         """ 
         When switching activities, updates the archive if activity is switched to a free room.
         """
@@ -151,11 +151,11 @@ class Algorithm:
             # loop over still available rooms 
             for item in self.archive:
                 # if room, day, time are found in archive 
-                if room1.room_number == item[0].room_number and day1 == item[1] and time1 == item[2]:
+                if room_current.room_number == item[0].room_number and day_current == item[1] and time_current == item[2]:
                     # remove old activity from archive 
                     self.archive.remove(item)
                     # add new activity to archive 
-                    self.archive.append((room2, day2, time2)) 
+                    self.archive.append((room_new, day_new, time_new)) 
                     break
    
         
