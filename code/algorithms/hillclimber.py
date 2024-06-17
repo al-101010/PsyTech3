@@ -60,7 +60,7 @@ class Hillclimber(Algorithm):
             
             if i % 100 == 0:
                 print(i)
-
+        
             # update "previous schedule"
             previous_schedule = copy.deepcopy(self.schedule)
 
@@ -71,6 +71,9 @@ class Hillclimber(Algorithm):
 
             # make random change to schedule
             self.mutate_schedule()
+            
+            # reset activity maluspoints
+            self.schedule.reset_maluspoints_activities()
 
             self.check_improvement(previous_schedule)
 

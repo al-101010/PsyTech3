@@ -91,7 +91,12 @@ class Student:
                 for i in range(first_activity_index, final_activity_index + 1):
                     if not slots[i]:
                         free_period_count += 1
+
+                for timeslot in [slots[first_activity_index], slots[final_activity_index]]:
+                    for activity in timeslot:
+                        activity.maluspoints += 1
             
+
             if free_period_count == 3:
                 self.three_free_periods = True
             
@@ -113,8 +118,12 @@ class Student:
 
                 # if more than one activity is scheduled in timeslot
                 if len(activities) > 1:
+
                     # add malus point
                     double_booking_maluspoints += 1
+
+                    for activity in activities:
+                        activity.maluspoints += 1
 
                 
 
@@ -133,7 +142,7 @@ class Student:
             malus = 3
         elif number_empty_slots > 2:
             # constraint relaxation
-            malus = 10
+            malus = 100
 
         return malus
 

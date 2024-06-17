@@ -18,7 +18,7 @@ class Room:
         """
 
         # give evening slot to biggest room
-        # TO DO: is dit hardcoden?
+        # TODO: is dit hardcoden?
         if self.room_number == 'C0.110':
             timeslots.append('17')
         else:

@@ -5,6 +5,7 @@ class Activity:
         self.capacity = capacity
         self.course = course
         self.students = set()
+        self.maluspoints = 0
 
 
     def __repr__(self) -> str:
@@ -20,3 +21,7 @@ class Activity:
         self.time = time
 
         room.schedule[day][time] = self 
+
+    def reset_maluspoints(self):
+        self.maluspoints = 0
+        
