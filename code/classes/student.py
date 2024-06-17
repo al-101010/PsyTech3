@@ -8,6 +8,7 @@ class Student:
         self.activities = set()
         self.schedule = self.empty_schedule()
         self.maluspoints = 0
+        self.three_free_periods = False
 
     def __repr__(self) -> str:
         return self.name
@@ -90,7 +91,10 @@ class Student:
                 for i in range(first_activity_index, final_activity_index + 1):
                     if not slots[i]:
                         free_period_count += 1
-
+            
+            if free_period_count == 3:
+                self.three_free_periods = True
+            
             # convert into maluspoints for the day and add to total number
             todays_maluspoints = self.maluspoints_converter(free_period_count)
             free_period_maluspoints += todays_maluspoints
@@ -111,6 +115,8 @@ class Student:
                 if len(activities) > 1:
                     # add malus point
                     double_booking_maluspoints += 1
+
+                
 
         return double_booking_maluspoints
 
