@@ -260,8 +260,8 @@ class Algorithm:
         plt.xlabel(x)
         plt.ylabel(y)
         plt.suptitle(title, fontsize=12)
-        plt.title(f"number of iterations = {iters} & final maluspoints = {self.maluspoint_stats[-1]}")
-
+        plt.title(f'N = {iters}', loc='center', fontsize=9)
+        plt.title(f'final maluspoints = {self.maluspoint_stats[-1]}', loc='left', fontsize=9)
         if save:
             plt.savefig(output_file)
 

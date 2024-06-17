@@ -1,5 +1,6 @@
 import random
 import math
+import matplotlib.pyplot as plt
 
 from .hillclimber import Hillclimber
 from ..classes.schedule import Schedule
@@ -74,3 +75,14 @@ class SimulatedAnnealing(Hillclimber):
             self.increase_no_change_counter()
 
         self.update_temperature()
+
+    def plot_graph(self, output_file : str, x : str='iteration', y : str='maluspoints', save: bool=False):
+        """
+        Plots statistics and also reports the starting temperature
+        """
+        
+        main_title = f"Simulated Annealing Algoritm"
+        
+        plt.title(f'start temperature = {self.start_temperature}', loc='right', fontsize=9)
+
+        super().plot_graph(output_file, x, y, main_title, save)
