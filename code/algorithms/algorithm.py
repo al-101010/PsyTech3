@@ -184,8 +184,28 @@ class Algorithm:
 
         # if the other tutorial is full pick another or switch students?
 
-    
-    def add_extra_activity(self, room, day, time):
+    def split_activity(self):
+        """ 
+        Splits an activity into two and assigns the new activity to a still free roomslot. 
+
+        TODO: don't use get_random_activity() but get an activity from the list of 
+        activities with many maluspoints. 
+        """
+        if len(self.archive) > 0:
+
+            random_course, activity_type, activity = self.get_random_activity()
+
+            # pick random room from still available 
+            room, day, time = random.choice(self.archive)
+            
+            # add an activity of same type  
+            self.add_extra_activity(random_course, activity_type, activity, room, day, time)
+            
+            # remove room from still available 
+            self.archive.remove((room, day, time))
+
+
+    def add_extra_activity(self, activity_course, activity_type, activity, room, day, time):
         """
         Splits a work group or practical into two and reassigns students.
         Only use if free rooms available.  
@@ -195,22 +215,10 @@ class Algorithm:
         TODO: 
         - change so that can also add non-random activities. 
         """
-
-        # should work without the while loop now 
-        # prevent splitting too small groups (causes errors lateron) 
-        # min_len = 0 
-        # need to resolve, see docstring 
-        # while min_len < 20:
-        #     # pick random activity from random course 
-        #     random_course, type, activity = self.get_random_activity()
-        #     min_len = len(activity.students)
         
-        # do not get activity here if we don't want a random activity each time  
-        random_course, type, activity = self.get_random_activity()
-
         # make new activity of the same type 
         new_name = activity.name + '.1'
-        new_activity = Activity(new_name, activity.capacity, random_course)
+        new_activity = Activity(new_name, activity.capacity, activity_course)
 
         # schedule this new activity to an open roomslot
         new_activity.schedule(room, day, time)
@@ -219,10 +227,10 @@ class Algorithm:
         for course in self.schedule.courses:
             
             # find the course of the random activity to be split  
-            if course.name == random_course.name:
+            if course.name == activity_course.name:
                 
                 # add new activity to course activities of same type 
-                course.activities[type].append(new_activity)
+                course.activities[activity_type].append(new_activity)
 
                 # update schedule for each student in this course:
                 for student in course.students:
