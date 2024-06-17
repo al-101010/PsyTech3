@@ -6,6 +6,7 @@ from code.algorithms.busy_climber import BusyClimber
 from code.algorithms.simulated_annealing import SimulatedAnnealing
 from code.algorithms.plant_prop import PlantProp
 from code.algorithms.targeted_hillclimber import TargetedHillclimber
+from code.algorithms.mutation_probability_heuristic import MutationsProbabilityClimber
 
 from code.classes.schedule import Schedule
 import pandas as pd
@@ -98,7 +99,7 @@ if __name__ == "__main__":
     # print(get_output(exhaustive_climber.schedule.students, 'data/exhaustive_climber.csv'))
     # print(exhaustive_climber.maluspoints)
 
-      # --------------------- HEURISTIC - TARGETED HILLCLIMBER --------------------------------
+    # --------------------- HEURISTIC - TARGETED HILLCLIMBER --------------------------------
     # # create targeted schedule 
     # targeted_climber = TargetedHillclimber(test_schedule)
     # targeted_climber.run(20000)
@@ -107,5 +108,18 @@ if __name__ == "__main__":
     # # # get results 
     # targeted_climber.plot_graph('data/targeted_climber_plot.png', title='Targeted Schedule Heuristic', save=True)
     # print(get_output(targeted_climber.schedule.students, 'data/targeted_climber.csv'))
+
+    # --------------------- HEURISTIC - MUTATION PROBABILITY HILLCLIMBER --------------------------------
+    # # create targeted schedule 
+    # mutation_probability_climber = MutationsProbabilityClimber(test_schedule)
+    # mutation_probability_climber.run(20000)
+    # mutation_probability_climber.display_all_maluspoints('mutation_probability Hillclimber')
+    # mutation_probability_climber.check_output_schedule()
+    
+    # # get results 
+    # mutation_probability_climber.plot_graph('data/mutation_probability_climber_plot.png', title='mutation_probability Schedule Heuristic', save=False)
+    # print(get_output(mutation_probability_climber.schedule.students, 'data/mutation_probability_climber.csv'))
+
+
 
 
