@@ -59,7 +59,6 @@ class SimulatedAnnealing(Hillclimber):
         # compute maluspoints
         previous_maluspoints = previous_schedule.get_total_maluspoints()
         new_maluspoints = self.schedule.get_total_maluspoints()
-        print(previous_maluspoints, new_maluspoints)
 
         # obtain acceptance probability
         probability = self.calculate_acceptance_probability(new_maluspoints, previous_maluspoints)
@@ -67,7 +66,7 @@ class SimulatedAnnealing(Hillclimber):
         # if random number between 0 and 1 lower than probability accept change
         if random.random() < probability:
             self.accept_schedule(self.schedule)
-            self.reset_no_change_counter
+            self.reset_no_change_counter()
 
         else:
             self.accept_schedule(previous_schedule)
