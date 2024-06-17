@@ -76,7 +76,7 @@ class SimulatedAnnealing(Hillclimber):
 
         self.update_temperature()
 
-    def plot_graph(self, output_file : str, x : str='iteration', y : str='maluspoints', save: bool=False):
+    def plot_graph(self, output_file : str, x : str='iteration', y : str='maluspoints', title: str='Simulated Annealing Algorithm', save: bool=False):
         """
         Plots statistics and also reports the starting temperature
         """
