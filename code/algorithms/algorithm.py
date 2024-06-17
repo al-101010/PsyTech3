@@ -178,9 +178,14 @@ class Algorithm:
         while switch_activity == random_activity:
             switch_activity = random.choice(random_course.activities[random_activity_type])
 
-        # move the student to the new activity if activity is not full
-        if not len(switch_activity.students) == switch_activity.capacity:
-            self.move_student(random_student, random_activity, switch_activity)
+        # move another student to this activity if new activity is full
+        if len(switch_activity.students) == switch_activity.capacity:
+            switch_student = random.choice(list(switch_activity.students))
+            self.move_student(switch_student, switch_activity, random_activity)
+        
+        # move this student to other activity
+        self.move_student(random_student, random_activity, switch_activity)
+        
 
         # if the other tutorial is full pick another or switch students?
 
