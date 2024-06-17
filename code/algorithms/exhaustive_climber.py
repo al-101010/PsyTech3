@@ -10,6 +10,7 @@ class ExhaustiveClimber(Hillclimber):
 
     TODOs:
     - test 
+    - figure out where to put the room capacity constraints method. 
     """
 
     def __init__(self, empty_schedule : Schedule):
@@ -42,6 +43,46 @@ class ExhaustiveClimber(Hillclimber):
             # remove room from still available 
             self.archive.remove((room, day, time))
 
+    def switch_activities(self):
+        """
+        Experimental variation on method in Algorithm Class: 
+        - only switches if no resulting overcapacity!  
+
+        Switches the activities from two randomly chosen roomslots. Activity may
+        also be None.
+        """
+        switch_enable = False 
+
+        while not switch_enable:
+        
+            # store room, day, and time of roomslots
+            random_roomslot1, random_roomslot2 = self.pick_roomslots_to_switch()
+            room_1, day_1, time_1 = self.get_roomslot_info(random_roomslot1)
+            room_2, day_2, time_2 = self.get_roomslot_info(random_roomslot2)
+
+            # save activities in roomslots
+            activity_1 = room_1.schedule[day_1][time_1]
+            activity_2 = room_2.schedule[day_2][time_2]
+
+            # if activity is Activity instance, schedule instance
+            if activity_1:
+                activity_1.schedule(room_2, day_2, time_2)
+            if activity_2:
+                activity_2.schedule(room_1, day_1, time_1)
+            
+            print(f' students in activity 2 {len(activity_2.students)} capacity room 1 {room_1.capacity}')
+            print(f' students in activity 1 {len(activity_1.students)} capacity room 2 {room_2.capacity}')
+
+            # make sure capacity is not violated 
+            if len(activity_2.students) < room_1.capacity and len(activity_1.students) < room_2.capacity: 
+                
+                switch_enable = True 
+
+            # switch the activities to the other roomslot in room instance
+            room_1.schedule[day_1][time_1] = activity_2
+            room_2.schedule[day_2][time_2] = activity_1
+
+            self.update_student_schedules()
         
 
         
