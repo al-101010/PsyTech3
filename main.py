@@ -105,7 +105,7 @@ if __name__ == "__main__":
     # targeted_climber.display_all_maluspoints('Targeted Hillclimber')
     
     # # # get results 
-    # targeted_climber.plot_graph('data_targeted_climber_plot.png', title='Targeted Schedule Heuristic', save=True)
+    # targeted_climber.plot_graph('data/targeted_climber_plot.png', title='Targeted Schedule Heuristic', save=True)
     # print(get_output(targeted_climber.schedule.students, 'data/targeted_climber.csv'))
 
 
