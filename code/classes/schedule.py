@@ -162,6 +162,10 @@ class Schedule:
 
         return (self.free_period_maluspoints, self.double_booking_maluspoints)
     
+    def reset_maluspoints_activities(self):
+        for activity in self.activities:
+            activity.reset_maluspoints()
+
     def get_total_maluspoints(self):
         """
         Calculates total amount of malus points.

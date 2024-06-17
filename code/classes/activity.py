@@ -22,6 +22,6 @@ class Activity:
 
         room.schedule[day][time] = self 
 
-    def update_maluspoints(self):
+    def reset_maluspoints(self):
         self.maluspoints = 0
         
