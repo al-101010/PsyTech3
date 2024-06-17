@@ -92,9 +92,9 @@ class Student:
                     if not slots[i]:
                         free_period_count += 1
 
-            for timeslot in [slots[first_activity_index], slots[final_activity_index]]:
-                for activity in timeslot:
-                    activity.maluspoints += 1
+                for timeslot in [slots[first_activity_index], slots[final_activity_index]]:
+                    for activity in timeslot:
+                        activity.maluspoints += 1
             
 
             if free_period_count == 3:
