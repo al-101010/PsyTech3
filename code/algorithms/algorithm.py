@@ -285,7 +285,7 @@ class Algorithm:
     def check_output_schedule(self):
         for student in self.schedule.students:
             if student.three_free_periods:
-                print("Not a valid schedule! Student has 3 free periods.")
+                print(f"Not a valid schedule! {student} has 3 free periods.")
                 return
         
         print("Valid!")

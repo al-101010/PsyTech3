@@ -99,6 +99,8 @@ class Student:
 
             if free_period_count == 3:
                 self.three_free_periods = True
+            else: 
+                self.three_free_periods = False
             
             # convert into maluspoints for the day and add to total number
             todays_maluspoints = self.maluspoints_converter(free_period_count)
