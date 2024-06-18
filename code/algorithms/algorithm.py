@@ -197,6 +197,7 @@ class Algorithm:
         activities with many maluspoints. 
         """
         if len(self.archive) > 0:
+            print('splitting activity')
 
             random_course, activity_type, activity = self.get_random_activity()
 
@@ -218,33 +219,25 @@ class Algorithm:
         Question: perhaps this method and some others should be in schedule??
 
         TODO: 
-        - change so that can also add non-random activities. 
         - NOTE: if added to mutations gets very slow. probable cause: use of deepcopy. 
         waiting for representation update. before proceeding.  
 
         """
         
         # make new activity of the same type 
-        new_name = activity.name + '.1'
+        new_name = activity.name[0] + str(int(activity.name[1]) + len(activity_course.activities[activity_type]))
         new_activity = Activity(new_name, activity.capacity, activity_course)
+        
 
         # schedule this new activity to an open roomslot
         new_activity.schedule(room, day, time)
 
-        # loop over all courses in schedule 
-        for course in self.schedule.courses:
-            
-            # find the course of the random activity to be split  
-            if course.name == activity_course.name:
-                
-                # add new activity to course activities of same type 
-                course.activities[activity_type].append(new_activity)
+        # add new activity to course  
+        activity_course.activities[activity_type].append(new_activity)
 
-                # update schedule for each student in this course:
-                for student in course.students:
-
-                    # move approximately half of students to new group 
-                    if activity in student.activities and len(activity.students) > len(new_activity.students):
+        # update student courses 
+        for student in activity_course.students: 
+            if activity in student.activities and len(activity.students) > len(new_activity.students):
                         self.move_student(student, activity, new_activity)
 
         # update activities in schedule 
@@ -259,8 +252,22 @@ class Algorithm:
         """
 
         for i in range(number_of_mutations):
-            mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
+            
+            mutation = random.choice([self.switch_student_from_activities, self.switch_activities, self.split_activity])
+            
+            # testing ##################
+            #mutation = self.split_activity
+            #print('Split activity')
+            # mutation = self.switch_activities
+            # for student in self.schedule.students:
+            #     print(f' student maluspoints {student.maluspoints}')
 
+            # if self.no_change_counter > 1000:
+        
+            #     mutation = random.choice([self.switch_student_from_activities, self.switch_activities, self.split_activity])
+            #     if mutation == self.split_activity:
+            #         print('Split activity')
+            ############################
             mutation()
     
     def display_all_maluspoints(self, title):
