@@ -219,6 +219,9 @@ class Algorithm:
 
         TODO: 
         - change so that can also add non-random activities. 
+        - NOTE: if added to mutations gets very slow. probable cause: use of deepcopy. 
+        waiting for representation update. before proceeding.  
+
         """
         
         # make new activity of the same type 
