@@ -6,7 +6,7 @@ from .algorithm import Algorithm
 ##TODO: remove random seed comments
 
 class Random(Algorithm):
-    # random.seed(1)
+    random.seed(1)
 
     def __init__(self, empty_schedule) -> None:
         super().__init__(empty_schedule)
@@ -15,7 +15,7 @@ class Random(Algorithm):
 
     def pick_random_roomslot(self, archive):
         """Pick random roomslot from archive"""
-        # random.seed(1)
+        random.seed(1)
         return random.choice(archive)  
     
     def remove_roomslot(self, archive, roomslot):
@@ -34,7 +34,7 @@ class Random(Algorithm):
         """
         Schedule all activities on a random roomslot that is available.
         """
-        # random.seed(1)
+        random.seed(1)
         random.shuffle(self.schedule.activities)
 
         # loop over all activities
@@ -47,7 +47,7 @@ class Random(Algorithm):
         Pick a random tutorial/practical group that is not at full
         capacity from list of activities.
         """
-        # random.seed(1)
+        random.seed(1)
         activity = random.choice(activities)
 
         # pick a new random group while current group is at full capacity
@@ -82,7 +82,7 @@ class Random(Algorithm):
         """
         Schedule all students in random activities for the courses they follow.
         """
-        # random.seed(1)
+        random.seed(1)
         random.shuffle(self.schedule.students)
 
         # loop over all students and their courses
