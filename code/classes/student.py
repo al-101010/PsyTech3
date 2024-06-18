@@ -122,7 +122,7 @@ class Student:
                 if len(activities) > 1:
 
                     # add malus point
-                    double_booking_maluspoints += 1
+                    double_booking_maluspoints += (len(activities) - 1)
 
                     for activity in activities:
                         activity.maluspoints += 1
