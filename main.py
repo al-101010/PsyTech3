@@ -1,7 +1,7 @@
 from code.algorithms.sequential import Sequential # Ignore : True
 from code.algorithms.random_alg import Random
 from code.algorithms.hillclimber import Hillclimber
-from code.algorithms.simulated_annealing import SimulatedAnnealing
+from code.algorithms.simulated_annealing import SimulatedAnnealing, ReheatSimulatedAnnealing
 from code.algorithms.plant_prop import PlantProp
 from code.algorithms.targeted_hillclimber import TargetedHillclimber
 from code.algorithms.mutation_probability_heuristic import MutationsProbabilityClimber
@@ -70,13 +70,13 @@ if __name__ == "__main__":
 
 
     # # --------------------- SIMULATED ANNEALING --------------------------------
-    # # create annealing schedule
-    # simulated_annealing = SimulatedAnnealing(test_schedule, 500)
+    # create annealing schedule
+    # simulated_annealing = SimulatedAnnealing(test_schedule, 1000, cooling_function='boltzexp')
     # simulated_annealing.run(2000)
 
     # simulated_annealing.plot_graph('data/simulated_annealing_plot.png', title='Simulated Annealing Algorithm', save=False)
-    # print(get_output(simulated_annealing.schedule.students, 'data/simulated_annealing.csv'))
-    # print(simulated_annealing.maluspoints)
+    # print(get_output(simulated_annealing.schedule.students, 'data/boltzexp_simulated_annealing.csv'))
+    # # print(simulated_annealing.maluspoints)
 
     # define how many simulations you want to compare in the experiment  
     # nr_simal = 10
@@ -84,6 +84,16 @@ if __name__ == "__main__":
     # simulated_annealing_experiment.simal_averages_plot(nr_algorithms)
     # simulated_annealing_experiment.simal_temp_comparisons(test_schedule)
     # simulated_annealing_experiment.simal_temp_comparisons_plot()
+    
+    # # --------------------- REHEATED SIMULATED ANNEALING --------------------------------
+    # create schedule
+    # reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, 500, reheat_threshold=7, reheating_factor=20)
+    # reheat_simulated_annealing.run(2000)
+
+    # reheat_simulated_annealing.plot_graph('data/reheat_simulated_annealing_plot.png', title='Reheat Simulated Annealing Algorithm', save=True)
+    # print(get_output(reheat_simulated_annealing.schedule.students, 'data/reheat_simulated_annealing.csv'))
+    # print(reheat_simulated_annealing.maluspoints)
+
 
 
     # --------------------- HEURISTIC - BUSY FIRST HILLCLIMBER --------------------------------

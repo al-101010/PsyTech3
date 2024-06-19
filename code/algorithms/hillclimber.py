@@ -1,7 +1,7 @@
 import copy
 import sys
 from .random_alg import Random
-from .algorithm import Algorithm
+from .add_activities import Algorithm
 from ..classes.schedule import Schedule
 
 # increase recursion limit for deepcopies
@@ -55,7 +55,7 @@ class Hillclimber(Algorithm):
         # run through all iterations
         for i in range(1, iters + 1):
             
-            self.iteration = i
+            self.iteration += 1
             
             if i % 100 == 0:
                 print(i)
