@@ -8,7 +8,6 @@ class Algorithm:
 
     def __init__(self, schedule : Schedule, early_stopping_limit=2000):
         self.schedule = copy.deepcopy(schedule)
-        self.archive = copy.copy(self.schedule.roomslots)
         self.maluspoint_stats = []
         self.early_stopping_limit = early_stopping_limit
         self.no_change_counter = 0
@@ -138,8 +137,8 @@ class Algorithm:
         self.update_student_schedules()
         
         # update the archive if an activity is switched to an empty spot 
-        # self.update_archive(activity_1, room_1, day_1, time_1, room_2, day_2, time_2)
-        # self.update_archive(activity_2, room_2, day_2, time_2, room_1, day_1, time_1)
+        self.update_archive(activity_1, room_1, day_1, time_1, room_2, day_2, time_2)
+        self.update_archive(activity_2, room_2, day_2, time_2, room_1, day_1, time_1)
     
     def update_archive(self, activity, room_current, day_current, time_current, room_new, day_new, time_new):
         """ 
@@ -149,13 +148,13 @@ class Algorithm:
         # if there is no activity in a room slot  
         if not activity:
             # loop over still available rooms 
-            for item in self.archive:
+            for item in self.schedule.archive:
                 # if room, day, time are found in archive 
                 if room_current.room_number == item[0].room_number and day_current == item[1] and time_current == item[2]:
                     # remove old activity from archive 
-                    self.archive.remove(item)
+                    self.schedule.archive.remove(item)
                     # add new activity to archive 
-                    self.archive.append((room_new, day_new, time_new)) 
+                    self.schedule.archive.append((room_new, day_new, time_new)) 
                     break
    
         
@@ -196,19 +195,19 @@ class Algorithm:
         TODO: don't use get_random_activity() but get an activity from the list of 
         activities with many maluspoints. 
         """
-        if len(self.archive) > 0:
+        if len(self.schedule.archive) > 0:
             print('splitting activity')
 
             random_course, activity_type, activity = self.get_random_activity()
 
             # pick random room from still available 
-            room, day, time = random.choice(self.archive)
+            room, day, time = random.choice(self.schedule.archive)
             
             # add an activity of same type  
             self.add_extra_activity(random_course, activity_type, activity, room, day, time)
             
             # remove room from still available 
-            self.archive.remove((room, day, time))
+            self.schedule.archive.remove((room, day, time))
 
 
     def add_extra_activity(self, activity_course, activity_type, activity, room, day, time):
@@ -238,7 +237,7 @@ class Algorithm:
         # update student courses 
         for student in activity_course.students: 
             if activity in student.activities and len(activity.students) > len(new_activity.students):
-                        self.move_student(student, activity, new_activity)
+                self.move_student(student, activity, new_activity)
 
         # update activities in schedule 
         self.schedule.activities = self.schedule.get_activities_list(self.schedule.courses)
@@ -253,8 +252,11 @@ class Algorithm:
 
         for i in range(number_of_mutations):
             
-            mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
-            
+            if self.no_change_counter < 1000:
+                mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
+            else:
+                mutation = random.choice([self.switch_student_from_activities, self.switch_activities, self.split_activity])
+
             # testing ##################
             #mutation = self.split_activity
             #print('Split activity')
