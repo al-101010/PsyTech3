@@ -8,7 +8,7 @@ from statistics import mean
 
 """
 TODOs:
-- fix same axis for plot
+- Note: fixing same axis for plot not necessary if always same seed! 
 - finalise plot different types of maluspoints 
 """
 
@@ -68,7 +68,7 @@ def hillclimber_averages_plot(nr_climbers, file_name="results/hillclimber/hillcl
         minima = [minimum for average, minimum, maximum in results]
         maxima = [maximum for average, minimum, maximum in results]
 
-    ax.plot(averages, label='HillClimber')
+    ax.plot(averages, label='Hillclimber')
     ax.fill_between(range(0, len(averages)), minima, maxima, alpha=0.5, linewidth=0)
     ax.set_title(f'Hillclimbers (n={nr_climbers}, iters/run={len(results)})')
     ax.set_xlabel('Iterations')
