@@ -1,6 +1,7 @@
 import math
 import pandas as pd
 import random
+import copy
 from .student import Student
 from .course import Course
 from .room import Room
@@ -15,6 +16,7 @@ class Schedule:
         self.rooms = self.get_rooms_list(rooms_data)
         self.activities = self.get_activities_list(self.courses)
         self.roomslots = self.get_room_slots()
+        self.archive = copy.copy(self.roomslots)
         
         # initialise all maluspoints 
         self.room_maluspoints = 0
@@ -66,7 +68,7 @@ class Schedule:
                 if columns['Vak'] in student.course_names:
                     course_students.append(student)
 
-            lectures = (columns['#Hoorcolleges'], math.inf)
+            lectures = (columns['#Hoorcolleges'], len(course_students))
             tutorials = (columns['#Werkcolleges'], columns['Max. stud. Werkcollege'])
             practicals = (columns['#Practica'], columns['Max. stud. Practicum'])
 
