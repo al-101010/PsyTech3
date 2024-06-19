@@ -79,9 +79,11 @@ if __name__ == "__main__":
     # print(simulated_annealing.maluspoints)
 
     # define how many simulations you want to compare in the experiment  
-    #nr_algorithms = 10
-    #simulated_annealing_experiment.simal_averages(test_schedule, nr_algorithms, nr_iterations=2000)
-    #simulated_annealing_experiment.simal_averages_plot(nr_algorithms)
+    # nr_simal = 10
+    # simulated_annealing_experiment.simal_averages(test_schedule, nr_simal, nr_iterations=2000)
+    # simulated_annealing_experiment.simal_averages_plot(nr_algorithms)
+    # simulated_annealing_experiment.simal_temp_comparisons(test_schedule)
+    # simulated_annealing_experiment.simal_temp_comparisons_plot()
 
 
     # --------------------- HEURISTIC - BUSY FIRST HILLCLIMBER --------------------------------

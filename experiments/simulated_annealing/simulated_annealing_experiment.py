@@ -75,14 +75,14 @@ def simal_averages_plot(nr_algorithms, file_name="results/simulated_annealing/si
     fig.savefig("results/simulated_annealing/simulated_annealing_averages.png")
 
 
-def simulatedannealing_temperature_comparisons(schedule, n_iters=10, min_temp=0, max_temp=700, step=100):
+def simal_temp_comparisons(schedule, n_runs=10, n_iters=1000, min_temp=200, max_temp=1100, step=100):
     """
     Makes simulated annealing runs from the range min_temp to max_temp increasing 
     by step. Stores results for each temperature in separate csv.   
     """
     for n in range(min_temp, max_temp, step):
         results = []
-        for i in range(n_iters):
+        for i in range(n_runs):
             result = []
             
             # make a simulated anneaing object 
@@ -90,7 +90,7 @@ def simulatedannealing_temperature_comparisons(schedule, n_iters=10, min_temp=0,
             
             print(f"Running Annealing: {i}")
 
-            for _ in range(0, 500):
+            for j in range(n_iters):
                     simulated_annealing.run(1)
                     result.append(simulated_annealing.schedule.get_total_maluspoints())
 
@@ -105,22 +105,27 @@ def simulatedannealing_temperature_comparisons(schedule, n_iters=10, min_temp=0,
             for value in values:
                 result_writer.writerow(value)
 
-def simulated_annealing_temperature_comparisons_plot():
+def simal_temp_comparisons_plot(min_temp=200, max_temp=1100, step=100, n_simal=10):
+    """
+    Makes one plot comparing the results of n simulated annealing runs 
+    with different temperatures. 
+    """
     fig, ax = plt.subplots()
     results = []
-    for n in range(1, 60, 10):
-        with open(f"results/simulatedannealing/simulatedannealing_temp_{n}.csv", 'r') as input_file:
+    for n in range(min_temp, max_temp, step):
+        with open(f"results/simulated_annealing/simulated_annealing_temp_{n}.csv", 'r') as input_file:
             result_reader = csv.reader(input_file, delimiter=',')
             results.append([float(value) for value, _, _ in result_reader])
 
-    for temp, result in zip(range(1, 60, 10), results):
+    for temp, result in zip(range(min_temp, max_temp, step), results):
         ax.plot(result, label=f'Temperature {temp}')
 
     ax.legend(loc='upper right')
-    ax.set_title('Sim Annealing Temperatures (n=...)')
+    ax.set_title(f'Simulated Annealing Temperatures (n={n_simal})')
     ax.set_xlabel('Iteration')
     ax.set_ylabel('Total Maluspoints')
-    fig.savefig(f"results/simulatedannealing/simulatedannealing_temp_{n}.png")
+    ax.set_ybound(0, 4000)
+    fig.savefig(f"results/simulated_annealing/simulated_annealing_temp_{n}.png")
 
 
 
