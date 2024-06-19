@@ -55,8 +55,8 @@ if __name__ == "__main__":
     # hillclimber_schedule.plot_graph('data/hillclimber_cost.png', title='Hillclimber Algorithm', save=False)
     # get_output(hillclimber_schedule.schedule.students, 'data/hillclimber_output.csv')
 
-    hillclimber_experiment.hillclimb_averages(test_schedule, nr_climbers=20, nr_iterations=100)
-    hillclimber_experiment.hillclimber_averages_plot(nr_climbers=20)
+    # hillclimber_experiment.hillclimb_averages(test_schedule, nr_climbers=20, nr_iterations=100)
+    # hillclimber_experiment.hillclimber_averages_plot(nr_climbers=20)
 
 
     # --------------------- PLANT PROPAGATION ----------------------------------
