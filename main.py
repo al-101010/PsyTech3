@@ -1,12 +1,11 @@
 from code.algorithms.sequential import Sequential # Ignore : True
 from code.algorithms.random_alg import Random
 from code.algorithms.hillclimber import Hillclimber
-from code.algorithms.exhaustive_climber import ExhaustiveClimber
-from code.algorithms.busy_climber import BusyClimber
 from code.algorithms.simulated_annealing import SimulatedAnnealing
 from code.algorithms.plant_prop import PlantProp
 from code.algorithms.targeted_hillclimber import TargetedHillclimber
 from code.algorithms.mutation_probability_heuristic import MutationsProbabilityClimber
+from experiments.hillclimber import hillclimber_experiment
 
 from code.classes.schedule import Schedule
 import pandas as pd
@@ -55,6 +54,9 @@ if __name__ == "__main__":
 
     # hillclimber_schedule.plot_graph('data/hillclimber_cost.png', title='Hillclimber Algorithm', save=False)
     # get_output(hillclimber_schedule.schedule.students, 'data/hillclimber_output.csv')
+
+    hillclimber_experiment.hillclimb_averages(test_schedule, nr_climbers=20, nr_iterations=100)
+    hillclimber_experiment.hillclimber_averages_plot(nr_climbers=20)
 
 
     # --------------------- PLANT PROPAGATION ----------------------------------
