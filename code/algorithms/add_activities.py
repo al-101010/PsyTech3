@@ -65,6 +65,9 @@ class Algorithm:
         time = roomslot[2]
 
         return room, day, time
+    
+    def get_activities_with_most_maluspoints(self, activities, top_n: int=20) -> list:
+        return sorted(activities, key=lambda activity: activity.maluspoints, reverse=True)[:top_n]
 
     def get_random_activity(self):
         """
@@ -196,15 +199,18 @@ class Algorithm:
         activities with many maluspoints. 
         """
         if len(self.schedule.archive) > 0:
-            print('splitting activity')
-
-            random_course, activity_type, activity = self.get_random_activity()
+            print("splitting")
+            activity = random.choice(self.get_activities_with_most_maluspoints(self.schedule.activities))
+            course = activity.course
+            activity_type = activity.name[0]
+            
+            # random_course, activity_type, activity = self.get_random_activity()
 
             # pick random room from still available 
             room, day, time = random.choice(self.schedule.archive)
             
             # add an activity of same type  
-            self.add_extra_activity(random_course, activity_type, activity, room, day, time)
+            self.add_extra_activity(course, activity_type, activity, room, day, time)
             
             # remove room from still available 
             self.schedule.archive.remove((room, day, time))
@@ -235,7 +241,7 @@ class Algorithm:
         activity_course.activities[activity_type].append(new_activity)
 
         # update student courses 
-        for student in activity_course.students: 
+        for student in random.shuffle(activity_course.students): 
             if activity in student.activities and len(activity.students) > len(new_activity.students):
                 self.move_student(student, activity, new_activity)
 
@@ -250,26 +256,12 @@ class Algorithm:
         single alteration at ones)
         """
 
-        for i in range(number_of_mutations):
-            
-            if self.no_change_counter < 1000:
+        for i in range(number_of_mutations):            
+            if self.no_change_counter < 500:
                 mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
             else:
                 mutation = random.choice([self.switch_student_from_activities, self.switch_activities, self.split_activity])
 
-            # testing ##################
-            #mutation = self.split_activity
-            #print('Split activity')
-            # mutation = self.switch_activities
-            # for student in self.schedule.students:
-            #     print(f' student maluspoints {student.maluspoints}')
-
-            # if self.no_change_counter > 1000:
-        
-            #     mutation = random.choice([self.switch_student_from_activities, self.switch_activities, self.split_activity])
-            #     if mutation == self.split_activity:
-            #         print('Split activity')
-            ############################
             mutation()
     
     def display_all_maluspoints(self, title):
