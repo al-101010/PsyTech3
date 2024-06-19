@@ -6,6 +6,7 @@ from code.algorithms.plant_prop import PlantProp
 from code.algorithms.targeted_hillclimber import TargetedHillclimber
 from code.algorithms.mutation_probability_heuristic import MutationsProbabilityClimber
 from experiments.hillclimber import hillclimber_experiment
+from experiments.simulated_annealing import simulated_annealing_experiment
 
 from code.classes.schedule import Schedule
 import pandas as pd
@@ -76,6 +77,11 @@ if __name__ == "__main__":
     # simulated_annealing.plot_graph('data/simulated_annealing_plot.png', title='Simulated Annealing Algorithm', save=False)
     # print(get_output(simulated_annealing.schedule.students, 'data/simulated_annealing.csv'))
     # print(simulated_annealing.maluspoints)
+
+    # define how many simulations you want to compare in the experiment  
+    #nr_algorithms = 10
+    #simulated_annealing_experiment.simal_averages(test_schedule, nr_algorithms, nr_iterations=2000)
+    #simulated_annealing_experiment.simal_averages_plot(nr_algorithms)
 
 
     # --------------------- HEURISTIC - BUSY FIRST HILLCLIMBER --------------------------------
