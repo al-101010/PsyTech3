@@ -8,12 +8,11 @@ from statistics import mean
 
 """
 TODOs:
-- fix same axis for plot
 - add temperature
 """
 
 
-def simal_averages(schedule, nr_algorithms, nr_iterations):
+def simal_averages(schedule, nr_algorithms, nr_iterations, temp=500):
     
     # add a seed for randomness 
     random.seed(123)
@@ -28,7 +27,7 @@ def simal_averages(schedule, nr_algorithms, nr_iterations):
         result = []
         
         # make an algorithm object  
-        algorithm = sa.SimulatedAnnealing(schedule, 500)
+        algorithm = sa.SimulatedAnnealing(schedule, temp)
         
         print(f"Running Simulated Annealing Algorithm Number: {i}")
         # run the algorithm X times 
@@ -72,9 +71,39 @@ def simal_averages_plot(nr_algorithms, file_name="results/simulated_annealing/si
     ax.set_title(f'Simulated Annealing Algorithms (n={nr_algorithms}, iters/run={len(results)})')
     ax.set_xlabel('Iterations')
     ax.set_ylabel('Average Maluspoints')
-    ax.set_ybound(0, 3000)
+    ax.set_ybound(0, 4000)
     fig.savefig("results/simulated_annealing/simulated_annealing_averages.png")
 
+
+def simulatedannealing_temperature_comparisons(schedule, n_iters=10, min_temp=0, max_temp=700, step=100):
+    """
+    Makes simulated annealing runs from the range min_temp to max_temp increasing 
+    by step. Stores results for each temperature in separate csv.   
+    """
+    for n in range(min_temp, max_temp, step):
+        results = []
+        for i in range(n_iters):
+            result = []
+            
+            # make a simulated anneaing object 
+            simulated_annealing = sa.SimulatedAnnealing(schedule, n)
+            
+            print(f"Running Annealing: {i}")
+
+            for _ in range(0, 500):
+                    simulated_annealing.run(1)
+                    result.append(simulated_annealing.schedule.get_total_maluspoints())
+
+            results.append(result)
+
+        values = []
+        for iteration in zip(*results):
+            values.append((mean(iteration), min(iteration), max(iteration)))
+
+        with open(f"results/simulated_annealing/simulated_annealing_temp_{n}.csv", 'w', newline='') as output_file:
+            result_writer = csv.writer(output_file, delimiter=',')
+            for value in values:
+                result_writer.writerow(value)
 
 def simulated_annealing_temperature_comparisons_plot():
     fig, ax = plt.subplots()
