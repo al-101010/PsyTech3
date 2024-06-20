@@ -91,12 +91,13 @@ if __name__ == "__main__":
     
     # # --------------------- REHEATED SIMULATED ANNEALING --------------------------------
     # create schedule
-    # reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, 500, reheat_threshold=7, reheating_factor=20)
-    # reheat_simulated_annealing.run(2000)
+    reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, 500, cooling_function='boltzexp', reheat_threshold=1200)
+    reheat_simulated_annealing.run(50000)
+    reheat_simulated_annealing.display_all_maluspoints('Busy First Hillclimber')
 
-    # reheat_simulated_annealing.plot_graph('data/reheat_simulated_annealing_plot.png', title='Reheat Simulated Annealing Algorithm', save=True)
-    # print(get_output(reheat_simulated_annealing.schedule.students, 'data/reheat_simulated_annealing.csv'))
-    # print(reheat_simulated_annealing.maluspoints)
+    reheat_simulated_annealing.plot_graph('data/boltzexp_reheat_simulated_annealing_plot.png', title='Reheat Simulated Annealing Algorithm', save=True)
+    print(get_output(reheat_simulated_annealing.schedule.students, 'data/boltzexp_reheat_simulated_annealing.csv'))
+    print(reheat_simulated_annealing.maluspoints)
 
 
 

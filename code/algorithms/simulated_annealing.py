@@ -81,6 +81,7 @@ class SimulatedAnnealing(Hillclimber):
         # if random number between 0 and 1 lower than probability accept change
         if random.random() < probability:
             self.accept_schedule(self.schedule)
+            
             if new_maluspoints < previous_maluspoints:
                 self.reset_no_change_counter()
 
@@ -107,21 +108,19 @@ class SimulatedAnnealing(Hillclimber):
 
 
 class ReheatSimulatedAnnealing(SimulatedAnnealing):
-    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential', reheating_factor: int = 1.5, reheat_threshold: int = 1200):
+    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential', reheat_temperature: int = 100, reheat_threshold: int = 1200):
         super().__init__(empty_schedule, start_temperature, cooling_function)
-        self.reheating_factor = reheating_factor
+        self.reheat_temperature = reheat_temperature
         self.reheat_threshold = reheat_threshold
     
     def reheat(self):
         print("reheating... :)")
-        print(f"temperature = {self.temperature}")
-        self.temperature = 200 #self.start_temperature
-        print(f"temperature = {self.temperature}")
+        self.temperature = self.reheat_temperature
 
     def check_improvement(self, previous_schedule: Schedule) -> None:
         super().check_improvement(previous_schedule)
 
-        if self.temperature <= self.reheat_threshold:
+        if self.no_change_counter >= self.reheat_threshold:
             self.reheat()
             self.reset_no_change_counter()
             self.iteration = 0
@@ -139,7 +138,7 @@ class ReheatSimulatedAnnealing(SimulatedAnnealing):
         plt.ylabel(y)
         plt.suptitle(title, fontsize=12)
         plt.title(f'N = {iters}', loc='center', fontsize=9)
-        plt.title(f'final maluspoints = {min(self.maluspoint_stats)}', loc='left', fontsize=9)
+        plt.title(f'minimum maluspoints = {min(self.maluspoint_stats)}', loc='left', fontsize=9)
         plt.title(f'start temperature = {self.start_temperature}', loc='right', fontsize=9)
 
         if save:
