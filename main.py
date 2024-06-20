@@ -78,10 +78,8 @@ if __name__ == "__main__":
     # print(get_output(simulated_annealing.schedule.students, 'data/boltzexp_simulated_annealing.csv'))
     # # print(simulated_annealing.maluspoints)
 
-    # define how many simulations you want to compare in the experiment  
-    # nr_simal = 10
-    # simulated_annealing_experiment.simal_averages(test_schedule, nr_simal, nr_iterations=2000)
-    # simulated_annealing_experiment.simal_averages_plot(nr_algorithms)
+    # simulated_annealing_experiment.simal_averages(test_schedule)
+    # simulated_annealing_experiment.simal_averages_plot()
     # simulated_annealing_experiment.simal_temp_comparisons(test_schedule)
     # simulated_annealing_experiment.simal_temp_comparisons_plot()
     

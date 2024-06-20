@@ -6,13 +6,8 @@ import random
 import csv
 from statistics import mean
 
-"""
-TODOs:
-- add temperature
-"""
 
-
-def simal_averages(schedule, nr_algorithms, nr_iterations, temp=500):
+def simal_averages(schedule, nr_simal=10, nr_iterations=1000, temp=500):
     
     # add a seed for randomness 
     random.seed(123)
@@ -21,7 +16,7 @@ def simal_averages(schedule, nr_algorithms, nr_iterations, temp=500):
     results = []
     
     # define how many algorithms you want to run 
-    for i in range(nr_algorithms):
+    for i in range(nr_simal):
         
         # store results of each algorithm run 
         result = []
@@ -54,7 +49,7 @@ def simal_averages(schedule, nr_algorithms, nr_iterations, temp=500):
             result_writer.writerow(value)
 
 
-def simal_averages_plot(nr_algorithms, file_name="results/simulated_annealing/simulated_annealing_averages.csv"):
+def simal_averages_plot(nr_simal=10, file_name="results/simulated_annealing/simulated_annealing_averages.csv"):
     """ 
     Makes a plot of the mean, min, and max number of maluspoints at each iteration.
     """
@@ -68,32 +63,37 @@ def simal_averages_plot(nr_algorithms, file_name="results/simulated_annealing/si
 
     ax.plot(averages, label='Simulated Annealing')
     ax.fill_between(range(0, len(averages)), minima, maxima, alpha=0.5, linewidth=0)
-    ax.set_title(f'Simulated Annealing Algorithms (n={nr_algorithms}, iters/run={len(results)})')
+    ax.set_title(f'Simulated Annealing Algorithms (n={nr_simal})')
     ax.set_xlabel('Iterations')
     ax.set_ylabel('Average Maluspoints')
     ax.set_ybound(0, 4000)
     fig.savefig("results/simulated_annealing/simulated_annealing_averages.png")
 
 
-def simal_temp_comparisons(schedule, n_runs=10, n_iters=1000, min_temp=200, max_temp=1100, step=100):
+def simal_temp_comparisons(schedule, n_simal=10, n_iters=1000, min_temp=200, max_temp=1100, step=100):
     """
     Makes simulated annealing runs from the range min_temp to max_temp increasing 
     by step. Stores results for each temperature in separate csv.   
     """
+
+    # add seed
+    random.seed(123)
+
     for n in range(min_temp, max_temp, step):
         results = []
-        for i in range(n_runs):
+        for i in range(n_simal):
             result = []
             
             # make a simulated anneaing object 
             simulated_annealing = sa.SimulatedAnnealing(schedule, n)
             
             print(f"Running Annealing: {i}")
-
+            # run algorithm n_iters amount of times  
             for j in range(n_iters):
                     simulated_annealing.run(1)
+                    # append maluspoints to results of this run  
                     result.append(simulated_annealing.schedule.get_total_maluspoints())
-
+            #append this run to all runs 
             results.append(result)
 
         values = []
@@ -105,7 +105,7 @@ def simal_temp_comparisons(schedule, n_runs=10, n_iters=1000, min_temp=200, max_
             for value in values:
                 result_writer.writerow(value)
 
-def simal_temp_comparisons_plot(min_temp=200, max_temp=1100, step=100, n_simal=10):
+def simal_temp_comparisons_plot(min_temp=500, max_temp=1100, step=100, n_simal=10):
     """
     Makes one plot comparing the results of n simulated annealing runs 
     with different temperatures. 
@@ -122,10 +122,10 @@ def simal_temp_comparisons_plot(min_temp=200, max_temp=1100, step=100, n_simal=1
 
     ax.legend(loc='upper right')
     ax.set_title(f'Simulated Annealing Temperatures (n={n_simal})')
-    ax.set_xlabel('Iteration')
+    ax.set_xlabel('Iterations')
     ax.set_ylabel('Total Maluspoints')
     ax.set_ybound(0, 4000)
-    fig.savefig(f"results/simulated_annealing/simulated_annealing_temp_{n}.png")
+    fig.savefig(f"results/simulated_annealing/simulated_annealing_temp.png")
 
 
 
