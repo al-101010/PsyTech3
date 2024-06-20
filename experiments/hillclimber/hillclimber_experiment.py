@@ -14,7 +14,7 @@ TODOs:
 - finalise plot different types of maluspoints 
 """
 
-def timed_hillclimber_runs(schedule):
+def timed_hillclimber_runs(schedule, algorithm):
     """
     Runs hillclimber for 60 seconds and measures the time.
     Need to export results if we will use it. 
@@ -24,7 +24,7 @@ def timed_hillclimber_runs(schedule):
     random.seed(123)
 
     # make a hillclimber object  
-    climber = Hillclimber(schedule)
+    climber = algorithm(schedule)
     
     start = time.time()
     n_runs = 0
