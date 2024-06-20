@@ -56,7 +56,7 @@ class Hillclimber(Algorithm):
         # run through all iterations
         for i in range(1, iters + 1):
             
-            self.iteration = i
+            self.iteration += 1
             
             if i % 100 == 0:
                 print(i)
