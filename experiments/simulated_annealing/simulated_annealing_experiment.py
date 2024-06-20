@@ -107,8 +107,8 @@ def simal_temp_comparisons(schedule, n_simal=10, n_iters=1000, min_temp=200, max
 
 def simal_temp_comparisons_plot(min_temp=500, max_temp=1100, step=100, n_simal=10):
     """
-    Makes one plot comparing the results of n simulated annealing runs 
-    with different temperatures. 
+    Makes one plot comparing the results of n simulated annealing algorithms running for X
+    iterations each using the same starting point but different temperatures. 
     """
     fig, ax = plt.subplots()
     results = []
