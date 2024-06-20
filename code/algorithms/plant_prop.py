@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 
 
 class PlantProp(Algorithm):
+    ##NOTE: IMPORTANT, THIS ALGORITHM DOES NOT WORK IF WE HAVE A RANDOM SEED FOR RANDOM ALGORITHM.
     
     def __init__(self, schedule: Schedule, children_parameter : int=5000, mutation_parameter : float=.01, N : int=5, early_stopping_limit=1000):
         super().__init__(schedule, early_stopping_limit)
