@@ -12,7 +12,7 @@ class Hillclimber(Algorithm):
     
     def __init__(self, empty_schedule : Schedule):
         super().__init__(empty_schedule)
-        self.random_start = FittedStart(empty_schedule)
+        self.random_start = Random(empty_schedule)
         self.schedule = self.random_start.schedule
         self.iteration = 0
 
