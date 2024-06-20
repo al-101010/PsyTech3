@@ -59,6 +59,11 @@ if __name__ == "__main__":
     # hillclimber_experiment.hillclimb_averages(test_schedule, nr_climbers=20, nr_iterations=100)
     # hillclimber_experiment.hillclimber_averages_plot(nr_climbers=20)
     # hillclimber_experiment.timed_hillclimber_runs(test_schedule)
+    
+    # comparison of two hillclimbers 
+    # hillclimber_experiment.hillclimb(test_schedule, algorithm=Hillclimber, name='Hillclimber')
+    # hillclimber_experiment.hillclimb(test_schedule, algorithm=TargetedHillclimber, name='TargetedClimber')
+    # hillclimber_experiment.compare_hillclimbers("results/hillclimber/Hillclimber.csv", "results/hillclimber/TargetedClimber.csv")
 
 
     # --------------------- PLANT PROPAGATION ----------------------------------

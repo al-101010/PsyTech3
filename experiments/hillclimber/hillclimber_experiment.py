@@ -1,10 +1,12 @@
-from code.algorithms import hillclimber as hc
+#from code.algorithms.hillclimber import Hillclimber
+from statistics import mean
+from scipy import stats
 
 import time
 import matplotlib.pyplot as plt
 import random 
 import csv
-from statistics import mean
+import pandas as pd 
 
 """
 TODOs:
@@ -22,7 +24,7 @@ def timed_hillclimber_runs(schedule):
     random.seed(123)
 
     # make a hillclimber object  
-    climber = hc.Hillclimber(schedule)
+    climber = Hillclimber(schedule)
     
     start = time.time()
     n_runs = 0
@@ -31,6 +33,59 @@ def timed_hillclimber_runs(schedule):
         climber.run(1)
         n_runs += 1
     print(f'{n_runs} runs in 60 seconds')
+
+
+def hillclimb(schedule, algorithm, name='Hillclimber', n_algorithms=10, n_iters=10):
+    """ 
+    Runs hillclimber algorithm X times for Y iterations. 
+    Returns csv file with final maluspoints at each run.   
+    """
+
+    print(f"Running {name}...")
+    with open(f"results/hillclimber/{name}{n_algorithms}.csv", 'w', newline='') as output_file:
+        result_writer = csv.writer(output_file, delimiter=',')
+
+        for i in range(n_algorithms):
+            print(f'running algorithm nr: {i}')
+            
+            # add a seed for randomness 
+            random.seed(123)
+
+            # make and run a hillclimber object  
+            climber = algorithm(schedule)
+            climber.run(n_iters)
+
+            # get all maluspoints and different types of maluspoints at each run 
+            all_maluspoints = [climber.schedule.get_total_maluspoints(),
+                                climber.schedule.get_evening_room_maluspoints(),
+                                climber.schedule.get_overcapacity_maluspoints(),
+                                climber.schedule.get_student_maluspoints()[0],
+                                climber.schedule.get_student_maluspoints()[1]]
+            
+            # write results into csv file 
+            result_writer.writerow(all_maluspoints)
+
+
+def compare_hillclimbers(hillclimber1_data, hillclimber2_data):
+    """ 
+    Compares the results of two hillclimbers with different functionalities with a t-test. 
+    Returns their means in order of entry into the function, t-statistic, and p-value. 
+    """
+
+    # read in data and make df 
+    names = ['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking']
+    hillclimber1_results = pd.read_csv(hillclimber1_data, names=names)
+    hillclimber2_results = pd.read_csv(hillclimber2_data, names=names)
+
+    hillclimber1_mean = mean(hillclimber1_results['Total'])
+    hillclimber2_mean = mean(hillclimber2_results['Total'])
+    
+    t_stat, p_val = stats.ttest_ind(hillclimber1_results['Total'], hillclimber2_results['Total'])
+
+    print(f'mean 2: {hillclimber1_mean}\n mean 1: {hillclimber2_mean}\nT-value: {t_stat}\nP-value: {p_val}')
+    if p_val < 0.05:
+        print('this difference is significant')
+    return hillclimber1_mean, hillclimber2_mean, t_stat, p_val
 
 def hillclimb_averages(schedule, nr_climbers, nr_iterations):
     
@@ -47,7 +102,7 @@ def hillclimb_averages(schedule, nr_climbers, nr_iterations):
         result = []
         
         # make a hillclimber object  
-        climber = hc.Hillclimber(schedule)
+        climber = Hillclimber(schedule)
         
         print(f"Running Hill Climber Number: {i}")
         # run the algorithm X times 
