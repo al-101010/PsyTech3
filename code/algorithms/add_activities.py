@@ -232,7 +232,7 @@ class Algorithm:
 
         # self.split_activity()
 
-        if self.no_change_counter > 500:
+        if self.no_change_counter > 500 and self.schedule.archive:
             mutation = random.choice([self.switch_student_from_activities, self.switch_activities, self.split_activity])
         else:
             mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
