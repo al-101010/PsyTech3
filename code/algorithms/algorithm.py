@@ -173,22 +173,21 @@ class Algorithm:
         """ 
         Splits an activity into two and assigns the new activity to a still free roomslot. 
         """
-        if len(self.schedule.archive) > 0:
-            print("splitting")
-            activity = random.choice(self.get_activities_with_most_maluspoints(self.schedule.activities))
-            course = activity.course
-            activity_type = activity.name[0]
+        print("splitting")
+        activity = random.choice(self.get_activities_with_most_maluspoints(self.schedule.activities))
+        course = activity.course
+        activity_type = activity.name[0]
 
-            # random_course, activity_type, activity = self.get_random_activity()
+        # random_course, activity_type, activity = self.get_random_activity()
 
-            # pick random room from still available 
-            room, day, time = random.choice(self.schedule.archive)
+        # pick random room from still available 
+        room, day, time = random.choice(self.schedule.archive)
 
-            # add an activity of same type  
-            self.add_extra_activity(course, activity_type, activity, room, day, time)
+        # add an activity of same type  
+        self.add_extra_activity(course, activity_type, activity, room, day, time)
 
-            # remove room from still available 
-            self.schedule.archive.remove((room, day, time))
+        # remove room from still available 
+        self.schedule.archive.remove((room, day, time))
 
     def add_extra_activity(self, activity_course, activity_type, activity, room, day, time):
         """
