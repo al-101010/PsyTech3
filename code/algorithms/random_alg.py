@@ -10,7 +10,7 @@ class Random(Algorithm):
 
     def __init__(self, empty_schedule) -> None:
         super().__init__(empty_schedule)
-        self.schedule_courses(self.archive)
+        self.schedule_courses(self.schedule.archive)
         self.schedule_students()
 
     def pick_random_roomslot(self, archive):

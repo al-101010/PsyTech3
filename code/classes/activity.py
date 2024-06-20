@@ -24,4 +24,10 @@ class Activity:
 
     def reset_maluspoints(self):
         self.maluspoints = 0
+
+    def is_full(self):
+        return len(self.students) >= self.capacity
+    
+    def is_tutorial_practical(self):
+        return ('w' or 'p') in self.name
         

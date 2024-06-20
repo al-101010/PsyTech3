@@ -54,6 +54,12 @@ class Student:
             self.schedule[activity.day][activity.time].append(activity)
 
         return self.schedule
+    
+    def has_tutorial_practical(self):
+        for activity in self.activities:
+            if ('w' or 'p') in activity.name:
+                return True
+        return False
 
 
     def get_free_period_malus_points(self):
