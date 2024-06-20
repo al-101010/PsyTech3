@@ -233,9 +233,9 @@ class Algorithm:
         # self.split_activity()
 
         if self.no_change_counter > 500:
-            mutation = random.choice([self.schedule_student_from_activities, self.switch_activities, self.split_activity])
-
-        mutation = random.choice([self.schedule_student_from_activities, self.switch_activities])
+            mutation = random.choice([self.switch_student_from_activities, self.switch_activities, self.split_activity])
+        else:
+            mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
         mutation()
     
     def display_all_maluspoints(self, title):
