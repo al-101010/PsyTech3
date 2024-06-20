@@ -1,5 +1,4 @@
 from code.algorithms import simulated_annealing as sa
-from code.algorithms import random_alg as rd
 
 import matplotlib.pyplot as plt
 import random 
