@@ -185,10 +185,8 @@ class Algorithm:
         """ 
         Splits an activity into two and assigns the new activity to a still free roomslot. 
         """
-        if self.schedule.archive:
-            print("splitting")
-            # activity, activity_type, course = self.pick_activity(self.get_activities_with_most_maluspoints(self.schedule.activities))
-            
+        if self.schedule.archive:   
+            print("splitting")        
             activity, activity_type, course = self.pick_activity(self.schedule.activities)
 
             # pick random room from still available 
@@ -231,16 +229,6 @@ class Algorithm:
         """
         Mutate current schedule/timetable with a number of random mutations.
         """
-
-        # for i in range(number_of_mutations):            
-        #     if self.no_change_counter > 500 and self.schedule.archive:
-        #         mutation = random.choices([self.switch_student_from_activities, self.switch_activities, self.split_activity], weights=(.4, .2, .4))[0]
-        #     elif self.iteration < 1000:
-        #         mutation = random.choices([self.switch_student_from_activities, self.switch_activities], weights=(.2, .8))[0]
-        #     else:
-        #         mutation = random.choices([self.switch_student_from_activities, self.switch_activities], weights=(.8, .2))[0]
-            
-        #     mutation()
 
         # self.split_activity()
 
