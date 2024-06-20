@@ -1,6 +1,6 @@
 from code.algorithms import hillclimber as hc
-from code.algorithms import random_alg as rd
 
+import time
 import matplotlib.pyplot as plt
 import random 
 import csv
@@ -12,6 +12,25 @@ TODOs:
 - finalise plot different types of maluspoints 
 """
 
+def timed_hillclimber_runs(schedule):
+    """
+    Runs hillclimber for 60 seconds and measures the time.
+    Need to export results if we will use it. 
+    """
+    
+    # add a seed for randomness 
+    random.seed(123)
+
+    # make a hillclimber object  
+    climber = hc.Hillclimber(schedule)
+    
+    start = time.time()
+    n_runs = 0
+    while time.time() - start < 60:
+        print(f"run: {n_runs}")
+        climber.run(1)
+        n_runs += 1
+    print(f'{n_runs} runs in 60 seconds')
 
 def hillclimb_averages(schedule, nr_climbers, nr_iterations):
     

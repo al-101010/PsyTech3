@@ -58,6 +58,7 @@ if __name__ == "__main__":
 
     # hillclimber_experiment.hillclimb_averages(test_schedule, nr_climbers=20, nr_iterations=100)
     # hillclimber_experiment.hillclimber_averages_plot(nr_climbers=20)
+    # hillclimber_experiment.timed_hillclimber_runs(test_schedule)
 
 
     # --------------------- PLANT PROPAGATION ----------------------------------
