@@ -68,6 +68,9 @@ class Algorithm:
     
     def get_activities_with_most_maluspoints(self, activities, top_n: int=20) -> list:
         return sorted(activities, key=lambda activity: activity.maluspoints, reverse=True)[:top_n]
+    
+    def get_students_with_most_maluspoints(self, students, top_n: int=20) -> list:
+        return sorted(students, key=lambda student: student.maluspoints, reverse=True)[:top_n]
 
     def get_random_activity(self):
         """
@@ -241,9 +244,9 @@ class Algorithm:
         activity_course.activities[activity_type].append(new_activity)
 
         # update student courses 
-        for student in random.shuffle(activity_course.students): 
-            if activity in student.activities and len(activity.students) > len(new_activity.students):
-                self.move_student(student, activity, new_activity)
+        students_to_switch = self.get_students_with_most_maluspoints(activity.students, int(new_activity.capacity/2))
+        for student in students_to_switch:
+            self.move_student(student, activity, new_activity)
 
         # update activities in schedule 
         self.schedule.activities = self.schedule.get_activities_list(self.schedule.courses)
@@ -257,12 +260,16 @@ class Algorithm:
         """
 
         for i in range(number_of_mutations):            
-            if self.no_change_counter < 500:
-                mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
+            if self.no_change_counter > 500 and self.schedule.archive:
+                mutation = random.choices([self.switch_student_from_activities, self.switch_activities, self.split_activity], weights=(.4, .2, .4))[0]
+            elif self.iteration < 1000:
+                mutation = random.choices([self.switch_student_from_activities, self.switch_activities], weights=(.2, .8))[0]
             else:
-                mutation = random.choice([self.switch_student_from_activities, self.switch_activities, self.split_activity])
-
+                mutation = random.choices([self.switch_student_from_activities, self.switch_activities], weights=(.8, .2))[0]
+            
             mutation()
+
+        # self.split_activity()
     
     def display_all_maluspoints(self, title):
         """ 
