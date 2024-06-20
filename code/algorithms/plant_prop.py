@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 class PlantProp(Algorithm):
     ##NOTE: IMPORTANT, THIS ALGORITHM DOES NOT WORK IF WE HAVE A RANDOM SEED FOR RANDOM ALGORITHM.
     
-    def __init__(self, schedule: Schedule, N : int=5):
+    def __init__(self, schedule: Schedule, N : int=10):
         super().__init__(schedule)
         self.N = N
         self.population = []
@@ -48,7 +48,7 @@ class PlantProp(Algorithm):
         hillclimber_maluspoints = hillclimber.schedule.get_total_maluspoints()
         best_maluspoints = self.get_best_schedule().get_total_maluspoints()
         worst_maluspoints = self.get_worst_schedule().get_total_maluspoints()
-        return .5*(math.tanh(4 * ((best_maluspoints - hillclimber_maluspoints) / (best_maluspoints - worst_maluspoints)) - 2) + 1)
+        return .5*(math.tanh(4 * ((best_maluspoints - hillclimber_maluspoints) / (best_maluspoints - worst_maluspoints + .1)) - 2) + 1)
     
     def calculate_children(self, hillclimber, n_max=10):
         fitness = self.get_fitness(hillclimber)
@@ -91,7 +91,9 @@ class PlantProp(Algorithm):
                 print("stopping early due to a stagnation of improvements")
                 return
 
-            print(self.iteration, self.get_best_schedule().get_total_maluspoints())
+            print(self.iteration)
+            for hillclimber in self.population:
+                print(hillclimber.schedule.get_total_maluspoints(), end=', ')
 
         self.schedule = self.get_best_schedule()
         self.maluspoints = self.schedule.get_total_maluspoints()
