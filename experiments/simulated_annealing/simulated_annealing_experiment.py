@@ -124,7 +124,6 @@ def simal_temp_comparisons_plot(min_temp=500, max_temp=1100, step=100, n_simal=1
     ax.set_title(f'Simulated Annealing Temperatures (n={n_simal})')
     ax.set_xlabel('Iterations')
     ax.set_ylabel('Total Maluspoints')
-    ax.set_ybound(0, 4000)
     fig.savefig(f"results/simulated_annealing/simulated_annealing_temp.png")
 
 
