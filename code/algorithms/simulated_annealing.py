@@ -40,6 +40,9 @@ class SimulatedAnnealing(Hillclimber):
         elif self.cooling_function == 'exponential':
             self.exponential_temperature_decline()
 
+        elif self.cooling_function == 'boltzexp':
+            self.boltz_exp_temperature_decline()
+
     def linear_temperature_decline(self) -> None:
         """
         Linear decline function to update temperature
@@ -51,6 +54,16 @@ class SimulatedAnnealing(Hillclimber):
         Exponential decline function to update temperature
         """
         self.temperature = self.start_temperature * (0.99 ** self.iteration)
+    
+    def boltz_temperature_decline(self):
+        self.temperature = self.start_temperature / math.log(self.iteration + 1)
+
+    def boltz_exp_temperature_decline(self):
+        if self.iteration <= 1000:
+            self.boltz_temperature_decline()
+
+        else:
+            self.exponential_temperature_decline()
 
     def check_improvement(self, previous_schedule: Schedule) -> None:
         """
@@ -60,6 +73,7 @@ class SimulatedAnnealing(Hillclimber):
         # compute maluspoints
         previous_maluspoints = previous_schedule.get_total_maluspoints()
         new_maluspoints = self.schedule.get_total_maluspoints()
+        print(previous_maluspoints, new_maluspoints)
 
         # obtain acceptance probability
         probability = self.calculate_acceptance_probability(new_maluspoints, previous_maluspoints)
@@ -67,7 +81,11 @@ class SimulatedAnnealing(Hillclimber):
         # if random number between 0 and 1 lower than probability accept change
         if random.random() < probability:
             self.accept_schedule(self.schedule)
-            self.reset_no_change_counter()
+            if new_maluspoints < previous_maluspoints:
+                self.reset_no_change_counter()
+
+            else:
+                self.increase_no_change_counter()
 
         else:
             self.accept_schedule(previous_schedule)
@@ -86,3 +104,45 @@ class SimulatedAnnealing(Hillclimber):
         plt.title(f'start temperature = {self.start_temperature}', loc='right', fontsize=9)
 
         super().plot_graph(output_file, x, y, main_title, save)
+
+
+class ReheatSimulatedAnnealing(SimulatedAnnealing):
+    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential', reheating_factor: int = 1.5, reheat_threshold: int = 1200):
+        super().__init__(empty_schedule, start_temperature, cooling_function)
+        self.reheating_factor = reheating_factor
+        self.reheat_threshold = reheat_threshold
+    
+    def reheat(self):
+        print("reheating... :)")
+        print(f"temperature = {self.temperature}")
+        self.temperature = 200 #self.start_temperature
+        print(f"temperature = {self.temperature}")
+
+    def check_improvement(self, previous_schedule: Schedule) -> None:
+        super().check_improvement(previous_schedule)
+
+        if self.temperature <= self.reheat_threshold:
+            self.reheat()
+            self.reset_no_change_counter()
+            self.iteration = 0
+
+    def plot_graph(self, output_file : str, x : str='iteration', y : str='maluspoints', title: str='Reheat Simulated Annealing Algorithm', save: bool=False):
+        """
+        Plot maluspoints as a function of number of iterations (for hillclimber)
+        """
+        # intialize variables
+        iters = len(self.maluspoint_stats)
+
+        # plot graph
+        plt.plot(self.maluspoint_stats)
+        plt.xlabel(x)
+        plt.ylabel(y)
+        plt.suptitle(title, fontsize=12)
+        plt.title(f'N = {iters}', loc='center', fontsize=9)
+        plt.title(f'final maluspoints = {min(self.maluspoint_stats)}', loc='left', fontsize=9)
+        plt.title(f'start temperature = {self.start_temperature}', loc='right', fontsize=9)
+
+        if save:
+            plt.savefig(output_file)
+
+        plt.show()
