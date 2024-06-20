@@ -218,7 +218,7 @@ class Algorithm:
         activity_course.activities[activity_type].append(new_activity)
 
         # update student courses 
-        students_to_switch = self.pick_students_to_switch(activity.students, int(new_activity.capacity/2))
+        students_to_switch = self.pick_students_to_switch(activity.students, int(new_activity.capacity))
         for student in students_to_switch:
             self.move_student(student, activity, new_activity)
 
