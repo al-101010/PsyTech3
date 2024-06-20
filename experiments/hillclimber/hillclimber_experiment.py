@@ -35,14 +35,14 @@ def timed_hillclimber_runs(schedule):
     print(f'{n_runs} runs in 60 seconds')
 
 
-def hillclimb(schedule, algorithm, name='Hillclimber', n_algorithms=10, n_iters=10):
+def hillclimb(schedule, algorithm, name='Hillclimber', n_algorithms=30, n_iters=1000):
     """ 
     Runs hillclimber algorithm X times for Y iterations. 
     Returns csv file with final maluspoints at each run.   
     """
 
     print(f"Running {name}...")
-    with open(f"results/hillclimber/{name}{n_algorithms}.csv", 'w', newline='') as output_file:
+    with open(f"results/hillclimber/{name}_iter{n_iters}.csv", 'w', newline='') as output_file:
         result_writer = csv.writer(output_file, delimiter=',')
 
         for i in range(n_algorithms):
@@ -82,9 +82,10 @@ def compare_hillclimbers(hillclimber1_data, hillclimber2_data):
     
     t_stat, p_val = stats.ttest_ind(hillclimber1_results['Total'], hillclimber2_results['Total'])
 
-    print(f'mean 2: {hillclimber1_mean}\n mean 1: {hillclimber2_mean}\nT-value: {t_stat}\nP-value: {p_val}')
+    print(f'mean 1: {hillclimber1_mean}\nmean 2: {hillclimber2_mean}\nT-statistic: {t_stat}\nP-value: {p_val}')
     if p_val < 0.05:
         print('this difference is significant')
+    
     return hillclimber1_mean, hillclimber2_mean, t_stat, p_val
 
 def hillclimb_averages(schedule, nr_climbers, nr_iterations):
