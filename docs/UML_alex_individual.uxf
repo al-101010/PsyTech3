@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>11</zoom_level><element><id>UMLClass</id><coordinates><x>154</x><y>44</y><w>231</w><h>209</h></coordinates><panel_attributes>&lt;&lt;Random&gt;&gt;
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>136</y><w>168</w><h>152</h></coordinates><panel_attributes>&lt;&lt;Random&gt;&gt;
 --
 schedule: dictionary  
 --
@@ -9,14 +9,16 @@ schedule: dictionary
 /remove_room_slot()/
 /get_random_tutorial()/
 /schedule_student_activity()/
-/schedule_student_activities()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>506</x><y>44</y><w>231</w><h>209</h></coordinates><panel_attributes>&lt;&lt;Algorithm&gt;&gt;
+/schedule_student_activities()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>256</x><y>136</y><w>168</w><h>152</h></coordinates><panel_attributes>&lt;&lt;Algorithm&gt;&gt;
 --
 schedule: Random(schedule) 
 maluspoints: int
 --
 /switch_activities()/
 /mutate_schedule()/
-/run()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>506</x><y>308</y><w>231</w><h>209</h></coordinates><panel_attributes>&lt;&lt;Hillclimber&gt;&gt;
+/run()/
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>256</x><y>328</y><w>168</w><h>152</h></coordinates><panel_attributes>&lt;&lt;Hillclimber&gt;&gt;
 --
 maluspoints_stats = list
 early_stopping_limit
@@ -25,15 +27,33 @@ early_stopping_counter
 /check_improvement()/
 /check_stagnation()/
 /run()/
-/plot_graph()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>605</x><y>242</y><w>33</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>374</x><y>132</y><w>154</w><h>33</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>506</x><y>572</y><w>231</w><h>209</h></coordinates><panel_attributes>*&lt;&lt;ExhaustiveHillclimber&gt;&gt;*
+/plot_graph()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>328</x><y>280</y><w>24</w><h>64</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>200</y><w>112</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>256</x><y>520</y><w>168</w><h>152</h></coordinates><panel_attributes>*&lt;&lt;ExhaustiveHillclimber&gt;&gt;*
 --
-*split_activity() *
 *fill_schedule() *
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>605</x><y>506</y><w>33</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>154</x><y>572</y><w>231</w><h>209</h></coordinates><panel_attributes>* &lt;&lt;BusyHillclimber&gt;&gt; *
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>328</x><y>472</y><w>24</w><h>64</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>520</y><w>168</w><h>152</h></coordinates><panel_attributes>* &lt;&lt;BusyHillclimber&gt;&gt; *
 --
 * schedule: BusyRandom(schedule)*
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>506</y><w>308</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>260;10;260;40;10;40;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>154</x><y>308</y><w>231</w><h>209</h></coordinates><panel_attributes>*&lt;&lt;BusyRandom&gt;&gt;*
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>128</x><y>472</y><w>224</w><h>64</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>260;10;260;40;10;40;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>328</y><w>168</w><h>152</h></coordinates><panel_attributes>*&lt;&lt;BusyRandom&gt;&gt;*
 --
 *schedule: dictionary *
 --
-*schedule_courses() *</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>253</x><y>242</y><w>33</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>253</x><y>506</y><w>33</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element></diagram>
+*schedule_courses() *</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>72</x><y>280</y><w>24</w><h>64</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>72</x><y>472</y><w>24</w><h>64</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>512</x><y>256</y><w>168</w><h>152</h></coordinates><panel_attributes>&lt;&lt;Algorithm&gt;&gt;
+--
+schedule: Schedule
+maluspoints_stats: list
+early_stopping_limit: int
+no_change_counter: int 
+--
+*split_activity() *
+*add_extra_activity() *
+*update_archive() *
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>512</x><y>456</y><w>168</w><h>152</h></coordinates><panel_attributes>&lt;&lt;Hillclimber&gt;&gt;
+--
+maluspoints_stats = list
+early_stopping_limit
+early_stopping_counter
+--
+/check_improvement()/
+/accept_schedule()/
+/run()/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>584</x><y>400</y><w>24</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element></diagram>
