@@ -185,11 +185,11 @@ class Algorithm:
         Splits an activity into two and assigns the new activity to a still free roomslot. 
         """
         print("splitting")
-        activity = random.choice(list(self.schedule.activities))
-        course = activity.course
-        activity_type = activity.name[0]
+        # activity = random.choice(list(self.schedule.activities))
+        # course = activity.course
+        # activity_type = activity.name[0]
 
-        # random_course, activity_type, activity = self.get_random_activity()
+        course, activity_type, activity = self.get_random_activity()
 
         # pick random room from still available 
         room, day, time = random.choice(self.schedule.archive)
@@ -207,7 +207,7 @@ class Algorithm:
         """
         
         # make new activity of the same type 
-        new_name = activity.name[0] + str(int(activity.name[1]) + len(activity_course.activities[activity_type]))
+        new_name = activity_type + str(len(activity_course.activities[activity_type]) + 1)
         new_activity = Activity(new_name, activity.capacity, activity_course)
         
         # schedule this new activity to an open roomslot
