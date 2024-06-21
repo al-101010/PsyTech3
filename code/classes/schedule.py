@@ -161,6 +161,7 @@ class Schedule:
 
             self.double_booking_maluspoints += student.get_double_booking_malus_points()
             self.free_period_maluspoints += student.get_free_period_malus_points()
+            student.get_total_maluspoints()
 
         return (self.free_period_maluspoints, self.double_booking_maluspoints)
     

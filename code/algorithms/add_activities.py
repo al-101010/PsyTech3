@@ -56,7 +56,7 @@ class Algorithm:
 
         return random_roomslot1, random_roomslot2
     
-    def get_activities_with_most_maluspoints(self, activities, top_n: int=20) -> list:
+    def get_activities_with_most_maluspoints(self, activities, top_n: int=40) -> list:
         return sorted(activities, key=lambda activity: activity.maluspoints, reverse=True)[:top_n]
     
     def get_students_with_most_maluspoints(self, students, top_n: int=20) -> list:
@@ -117,8 +117,15 @@ class Algorithm:
         another activity of the same type in the same course. 
         """
         # Pick a student two activities, 1 to switch from and to
-        student = self.pick_student_with_tutorial_practical(self.schedule.students)
-        activity, activity_type, course = self.pick_activity_of_student(student)
+        activity, activity_type, course = self.pick_activity(self.schedule.activities)
+
+        while not activity.is_tutorial_practical() or len(course.activities[activity_type]) <= 1:
+            activity, activity_type, course = self.pick_activity(self.schedule.activities)
+
+        student = self.pick_student(activity.students)
+        print(activity, activity.maluspoints)
+        print(student, student.maluspoints)
+        
         switch_activity, switch_activity_type, switch_course = self.pick_activity(course.activities[activity_type])
 
         # pick new activity if new activity is same as first activity
@@ -163,7 +170,7 @@ class Algorithm:
 
         # save activities in roomslots
         activity_1 = room_1.schedule[day_1][time_1]
-        activity_2 = room_2.schedule[day_2][time_2]
+        activity_2, activity_2_type, course_2 = self.pick_activity(self.schedule.activities)
 
         # if activity is Activity instance, schedule instance
         if activity_1:
