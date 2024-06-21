@@ -145,8 +145,6 @@ class Algorithm:
             activity, activity_type, course = self.pick_activity(self.schedule.activities)
 
         student = self.pick_student(activity.students)
-        print(activity, activity.maluspoints)
-        print(student, student.maluspoints)
         
         switch_activity, switch_activity_type, switch_course = self.pick_activity(course.activities[activity_type])
 
@@ -264,9 +262,6 @@ class Algorithm:
         # update activities in schedule 
         self.schedule.activities = self.schedule.get_activities_list(self.schedule.courses)
         
-        for activity in activity_course.activities[activity_type]:
-            print(activity.name, activity.students)
-
     def mutate_schedule(self, number_of_mutations : int=1):
         """
         Mutate current schedule/timetable with a number of random mutations.
