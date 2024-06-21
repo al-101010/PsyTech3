@@ -141,7 +141,7 @@ class Algorithm:
         # Pick a student two activities, 1 to switch from and to
         activity, activity_type, course = self.pick_activity(self.schedule.activities)
 
-        while not activity.is_tutorial_practical() or len(course.activities[activity_type]) <= 1 or len(activity.students) == 1:
+        while not activity.is_tutorial_practical() or len(course.activities[activity_type]) <= 1 or len(activity.students) == 0:
             activity, activity_type, course = self.pick_activity(self.schedule.activities)
 
         student = self.pick_student(activity.students)
