@@ -7,6 +7,7 @@ from code.algorithms.targeted_hillclimber import TargetedHillclimber
 from code.algorithms.mutation_probability_heuristic import MutationsProbabilityClimber
 from experiments.hillclimber import hillclimber_experiment
 from experiments.simulated_annealing import simulated_annealing_experiment
+from experiments.reheating import reheating_experiment
 
 from code.classes.schedule import Schedule
 import pandas as pd
@@ -56,14 +57,15 @@ if __name__ == "__main__":
     # hillclimber_schedule.plot_graph('data/hillclimber_cost.png', title='Hillclimber Algorithm', save=False)
     # get_output(hillclimber_schedule.schedule.students, 'data/hillclimber_output.csv')
 
-    # hillclimber_experiment.hillclimb_averages(test_schedule, nr_climbers=20, nr_iterations=100)
-    # hillclimber_experiment.hillclimber_averages_plot(nr_climbers=20)
+    #hillclimber_experiment.hillclimb_all_averages(test_schedule, nr_climbers=30, nr_iterations=100)
+    hillclimber_experiment.hillclimber_ratios_plot()
     # hillclimber_experiment.timed_hillclimber_runs(test_schedule, Hillclimber)
+    # hillclimber_experiment.hillclimb_averages_all('results/hillclimber/hillclimber_averages_all.csv')
     
     # comparison of two hillclimbers 
     # hillclimber_experiment.hillclimb(test_schedule, algorithm=Hillclimber, name='Hillclimber')
     # hillclimber_experiment.hillclimb(test_schedule, algorithm=TargetedHillclimber, name='TargetedClimber')
-    # hillclimber_experiment.compare_hillclimbers("results/hillclimber/Hillclimber.csv", "results/hillclimber/TargetedClimber.csv")
+    # hillclimber_experiment.compare_hillclimbers("results/hillclimber/Hillclimber30_iter1000.csv", "results/hillclimber/TargetedClimber_30_iter1000.csv")
 
 
     # --------------------- PLANT PROPAGATION ----------------------------------
@@ -91,13 +93,16 @@ if __name__ == "__main__":
     
     # # --------------------- REHEATED SIMULATED ANNEALING --------------------------------
     # create schedule
-    reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, 500, cooling_function='boltzexp', reheat_threshold=1200)
-    reheat_simulated_annealing.run(50000)
-    reheat_simulated_annealing.display_all_maluspoints('Busy First Hillclimber')
+    # reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, 500, cooling_function='boltzexp', reheat_threshold=1200)
+    # reheat_simulated_annealing.run(50000)
+    # reheat_simulated_annealing.display_all_maluspoints('Reheat Simulated Annealing')
 
-    reheat_simulated_annealing.plot_graph('data/boltzexp_reheat_simulated_annealing_plot.png', title='Reheat Simulated Annealing Algorithm', save=True)
-    print(get_output(reheat_simulated_annealing.schedule.students, 'data/boltzexp_reheat_simulated_annealing.csv'))
-    print(reheat_simulated_annealing.maluspoints)
+    # reheat_simulated_annealing.plot_graph('data/boltzexp_reheat_simulated_annealing_plot.png', title='Reheat Simulated Annealing Algorithm', save=True)
+    # print(get_output(reheat_simulated_annealing.schedule.students, 'data/boltzexp_reheat_simulated_annealing.csv'))
+    # print(reheat_simulated_annealing.maluspoints)
+
+    #reheating_experiment.reheating_averages(test_schedule)
+    #reheating_experiment.reheating_plot()
 
 
 

@@ -1,6 +1,7 @@
-#from code.algorithms.hillclimber import Hillclimber
+from code.algorithms.hillclimber import Hillclimber
 from statistics import mean
 from scipy import stats
+from functools import reduce
 
 import time
 import matplotlib.pyplot as plt
@@ -88,9 +89,10 @@ def compare_hillclimbers(hillclimber1_data, hillclimber2_data):
     
     return hillclimber1_mean, hillclimber2_mean, t_stat, p_val
 
+
 def hillclimb_averages(schedule, nr_climbers, nr_iterations):
-    
-    # add a seed for randomness 
+
+    # add a seed 
     random.seed(123)
 
     # initialise results 
@@ -112,7 +114,7 @@ def hillclimb_averages(schedule, nr_climbers, nr_iterations):
             # run the algorithm for one iteration 
             climber.run(1)
 
-            # append maluspoints for this iteration to results   
+            # append maluspoints for this iteration to results
             result.append(climber.schedule.get_total_maluspoints())
 
         # append result to all results 
@@ -121,7 +123,10 @@ def hillclimb_averages(schedule, nr_climbers, nr_iterations):
     # get all values for a row 
     values = []
     for iteration in zip(*results):
-        values.append((mean(iteration), min(iteration), max(iteration)))
+        
+        iteration = list(zip(*list(iteration)))
+        
+        values.append(mean(iteration[0]), min(iteration[0]), max(iteration[0]))
 
     with open("results/hillclimber/hillclimber_averages.csv", 'w', newline='') as output_file:
         result_writer = csv.writer(output_file, delimiter=',')
@@ -129,6 +134,102 @@ def hillclimb_averages(schedule, nr_climbers, nr_iterations):
         
         for value in values:
             result_writer.writerow(value)
+
+
+def hillclimb_all_averages(schedule, nr_climbers, nr_iterations):
+    ''' 
+    Writes a csv storing the average, min, and max values of nr_climbers per each of 
+    nr_iterations for all types of maluspoints.   
+    '''
+    # add a seed 
+    random.seed(123)
+
+    # initialise results 
+    results = []
+    
+    # define how many hillclimbers you want to run 
+    for i in range(nr_climbers):
+        
+        # store results of each algorithm run 
+        result = []
+        
+        # make a hillclimber object  
+        climber = Hillclimber(schedule)
+        
+        print(f"Running Hill Climber Number: {i}")
+        # run the algorithm X times 
+        for j in range(nr_iterations):
+            
+            # run the algorithm for one iteration 
+            climber.run(1)
+
+            # append maluspoints for this iteration to results
+            result.append((climber.schedule.get_total_maluspoints(), 
+                           climber.schedule.get_evening_room_maluspoints(),
+                           climber.schedule.get_overcapacity_maluspoints(),
+                           climber.schedule.get_student_maluspoints()[0],
+                           climber.schedule.get_student_maluspoints()[1]))
+            # result.append(climber.schedule.get_total_maluspoints())
+
+        # append result to all results 
+        results.append(result)
+
+    # get all values for a row 
+    values = []
+    for iteration in zip(*results):
+        
+        iteration = list(zip(*list(iteration)))
+        
+        # values.append(mean(iteration[0]), min(iteration[0]), max(iteration[0]))
+        values.append((mean(iteration[0]), min(iteration[0]), max(iteration[0]),
+                       mean(iteration[1]), min(iteration[1]), max(iteration[1]),
+                       mean(iteration[2]), min(iteration[2]), max(iteration[2]),
+                       mean(iteration[3]), min(iteration[3]), max(iteration[3]),
+                       mean(iteration[4]), min(iteration[4]), max(iteration[4])))
+
+    with open("results/hillclimber/hillclimber_all_averages.csv", 'w', newline='') as output_file:
+        result_writer = csv.writer(output_file, delimiter=',')
+        #result_writer.writerow(["Mean Maluspoints", "Min Maluspoints", "Max Maluspoints"])
+        
+        for value in values:
+            result_writer.writerow(value)
+
+
+def hillclimber_ratios_plot(runs=100):
+    '''
+    Plots the averages, min, and max values of all maluspoint types for an algorithm 
+    for a certain amount of runs.  
+    '''
+    names = ['Total Avg', 'Total Min', 'Total Max', 
+             'Evening Avg', 'Evening Min', 'Evening Max',
+             'Overcap Avg', 'Overcap Min', 'Overcap Max', 
+             'Free Avg', 'Free Min', 'Free Max',
+             'Double Avg', 'Double Min', 'Double Max']
+    df = pd.read_csv('results/hillclimber/hillclimber_all_averages.csv', names=names)
+
+    fig, ax = plt.subplots()
+
+    # plot the lines for all maluspoints 
+    ax.plot(df['Total Avg'])
+    ax.plot(df['Evening Avg'])
+    ax.plot(df['Overcap Avg'])
+    ax.plot(df['Free Avg'])
+    ax.plot(df['Double Avg'])
+
+    # plot min and max for all maluspoints 
+    ax.fill_between(range(0,100), df['Total Min'], df['Total Max'], alpha = 0.2)
+    ax.fill_between(range(0,100), df['Evening Min'], df['Evening Max'], alpha = 0.2)
+    ax.fill_between(range(0,100), df['Overcap Min'], df['Overcap Max'], alpha = 0.2)
+    ax.fill_between(range(0,100), df['Free Min'], df['Free Max'], alpha = 0.2)
+    ax.fill_between(range(0,100), df['Double Min'], df['Double Max'], alpha = 0.2)
+    
+    plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'])
+    plt.title(f'Hillclimber (n={runs})')
+    plt.ylabel('Average Maluspoints')
+    plt.xlabel('Iterations')
+
+    fig.savefig("results/hillclimber/hillclimber_all_averages.png", dpi=1200)
+    plt.show()
 
 
 def hillclimber_averages_plot(nr_climbers, file_name="results/hillclimber/hillclimber_averages.csv"):
@@ -145,27 +246,10 @@ def hillclimber_averages_plot(nr_climbers, file_name="results/hillclimber/hillcl
 
     ax.plot(averages, label='Hillclimber')
     ax.fill_between(range(0, len(averages)), minima, maxima, alpha=0.5, linewidth=0)
-    ax.set_title(f'Hillclimbers (n={nr_climbers}, iters/run={len(results)})')
+    ax.set_title(f'Hillclimbers (n={nr_climbers})')
     ax.set_xlabel('Iterations')
     ax.set_ylabel('Average Maluspoints')
     fig.savefig("results/hillclimber/hillclimber_averages.png")
-
-
-# make the plot for all types of maluspoints, not finalised yet  
-def hillclimb_averages_all():
-    """ 
-    Makes a plot of the mean, min, and max number of maluspoints at each iteration for 
-    each of the different types of maluspoints.
-    Types of maluspoints: overcapacity, free period, evening slot, student double bookings.
-
-    TODO: 
-    - finalise
-    - get all types of maluspoints in function and make csv of them. 
-    - enable making a png file with same name as input 
-    """ 
-    # make plots for each of the separate types of maluspoints 
-    hillclimber_averages_plot("results/hillclimber/hillclimber_averages_doublebookings.csv")
-    hillclimber_averages_plot("results/hillclimber/hillclimber_averages_doublebookings.csv")
 
 
 
