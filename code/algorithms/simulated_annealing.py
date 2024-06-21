@@ -4,8 +4,9 @@ import matplotlib.pyplot as plt
 
 from .hillclimber import Hillclimber
 from ..classes.schedule import Schedule
+from .heuristics_hillclimber import HeuristicsHillclimber
 
-class SimulatedAnnealing(Hillclimber):
+class SimulatedAnnealing(HeuristicsHillclimber):
     # NOTE: still want to implement a way to switch between 2 types of cooling functions 
     def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential'):
         super().__init__(empty_schedule)
@@ -108,7 +109,7 @@ class SimulatedAnnealing(Hillclimber):
 
 
 class ReheatSimulatedAnnealing(SimulatedAnnealing):
-    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential', reheat_temperature: int = 100, reheat_threshold: int = 1200):
+    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential', reheat_temperature: int = 50, reheat_threshold: int = 1500):
         super().__init__(empty_schedule, start_temperature, cooling_function)
         self.reheat_temperature = reheat_temperature
         self.reheat_threshold = reheat_threshold
