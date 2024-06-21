@@ -66,6 +66,9 @@ class Algorithm:
 
     def get_activities_with_most_maluspoints(self, activities, top_n: int=20) -> list:
         return sorted(activities, key=lambda activity: activity.maluspoints, reverse=True)[:top_n]
+    
+    def get_activities_with_least_maluspoints(self, activities, top_n: int=20) -> list:
+        return sorted(activities, key=lambda activity: activity.maluspoints)[:top_n]
 
     def get_random_activity(self):
         """

@@ -30,4 +30,7 @@ class Activity:
     
     def is_tutorial_practical(self):
         return ('w' or 'p') in self.name
+    
+    def get_roomslot(self):
+        return self.room, self.day, self.time
         
