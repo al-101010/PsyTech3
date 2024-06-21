@@ -82,16 +82,21 @@ class Algorithm:
         # make sure the course has tutorials or practicals
         while not ('w' or 'p') in random_course.activities:
             random_course = random.choice(self.schedule.courses)
+
         # choose random activity type
         random_activity_type = random.choice(list(random_course.activities))
+
         # make sure activity type has more than 1 activities and is not a lecture
         while len(random_course.activities[random_activity_type]) <= 1 or random_activity_type == 'h':
             random_activity_type = random.choice(list(random_course.activities))
+        
         # pick a random tutorial or practical
         random_activity = random.choice(random_course.activities[random_activity_type])
+        
         # make sure activity has students
         while len(random_activity.students) == 0:
             random_activity = random.choice(random_course.activities[random_activity_type])
+        
         return random_course, random_activity_type, random_activity
     
     def move_student(self, student, current_activity, switch_activity):
@@ -102,6 +107,7 @@ class Algorithm:
         student.activities.remove(current_activity)
         student.activities.add(switch_activity)
         student.update_schedule()
+        
         # remove student from current and add to new activity's students set
         current_activity.students.remove(student)
         switch_activity.students.add(student)
@@ -115,9 +121,11 @@ class Algorithm:
         random_roomslot1, random_roomslot2 = self.pick_roomslots_to_switch()
         room_1, day_1, time_1 = self.get_roomslot_info(random_roomslot1)
         room_2, day_2, time_2 = self.get_roomslot_info(random_roomslot2)
+        
         # save activities in roomslots
         activity_1 = room_1.schedule[day_1][time_1]
         activity_2 = room_2.schedule[day_2][time_2]
+        
         # if activity is Activity instance, schedule instance
         if activity_1:
             activity_1.schedule(room_2, day_2, time_2)
@@ -177,7 +185,7 @@ class Algorithm:
         Splits an activity into two and assigns the new activity to a still free roomslot. 
         """
         print("splitting")
-        activity = random.choice(self.get_activities_with_most_maluspoints(self.schedule.activities))
+        activity = random.choice(list(self.schedule.activities))
         course = activity.course
         activity_type = activity.name[0]
 

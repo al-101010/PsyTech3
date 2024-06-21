@@ -6,7 +6,7 @@ from .hillclimber import Hillclimber
 from ..classes.schedule import Schedule
 from .heuristics_hillclimber import HeuristicsHillclimber
 
-class SimulatedAnnealing(HeuristicsHillclimber):
+class SimulatedAnnealing(Hillclimber):
     # NOTE: still want to implement a way to switch between 2 types of cooling functions 
     def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential'):
         super().__init__(empty_schedule)
