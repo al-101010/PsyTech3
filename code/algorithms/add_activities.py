@@ -195,7 +195,7 @@ class Algorithm:
 
         # save activities in roomslots
         activity_1 = room_1.schedule[day_1][time_1]
-        activity_2, activity_2_type, course_2 = self.pick_activity(self.schedule.activities)
+        activity_2 = room_2.schedule[day_2][time_2]
 
         # if activity is Activity instance, schedule instance
         if activity_1:
