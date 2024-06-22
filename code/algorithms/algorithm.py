@@ -80,7 +80,7 @@ class Algorithm:
         random_course = random.choice(self.schedule.courses)
         
         # make sure the course has tutorials or practicals
-        while not ('w' or 'p') in random_course.activities:
+        while 'w' not in random_course.activities and 'p' not in random_course.activities:
             random_course = random.choice(self.schedule.courses)
 
         # choose random activity type

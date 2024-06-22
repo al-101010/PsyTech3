@@ -29,7 +29,7 @@ class Activity:
         return len(self.students) >= self.capacity
     
     def is_tutorial_practical(self):
-        return ('w' or 'p') in self.name
+        return 'w' in self.name or 'p' in self.name
     
     def get_roomslot(self):
         return self.room, self.day, self.time
