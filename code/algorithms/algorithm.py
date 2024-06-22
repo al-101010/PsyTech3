@@ -148,12 +148,16 @@ class Algorithm:
     
         # if there is no activity in a room slot  
         if not activity:
+            
             # loop over still available rooms 
             for item in self.schedule.archive:
+               
                 # if room, day, time are found in archive 
                 if room_current.room_number == item[0].room_number and day_current == item[1] and time_current == item[2]:
+                  
                     # remove old activity from archive 
                     self.schedule.archive.remove(item)
+                   
                     # add new activity to archive 
                     self.schedule.archive.append((room_new, day_new, time_new)) 
                     break
@@ -165,13 +169,17 @@ class Algorithm:
         another activity of the same type in the same course. 
         """
         random_course, random_activity_type, random_activity = self.get_random_activity()
+        
         # pick a random students from the tutorial/practical
         random_student = random.choice(list(random_activity.students))
+        
         # pick another random activity to switch student to
         switch_activity = random.choice(random_course.activities[random_activity_type])
+        
         # pick new activity if new activity is same as random activity
         while switch_activity == random_activity:
             switch_activity = random.choice(random_course.activities[random_activity_type])
+        
         # move another student to this activity if new activity is full
         if len(switch_activity.students) == switch_activity.capacity:
             switch_student = random.choice(list(switch_activity.students))
@@ -184,21 +192,44 @@ class Algorithm:
         """ 
         Splits an activity into two and assigns the new activity to a still free roomslot. 
         """
-        print("splitting")
-        # activity = random.choice(list(self.schedule.activities))
-        # course = activity.course
-        # activity_type = activity.name[0]
+        if self.schedule.archive:
+            print("splitting")
+            # activity = random.choice(list(self.schedule.activities))
+            # course = activity.course
+            # activity_type = activity.name[0]
 
-        course, activity_type, activity = self.get_random_activity()
+            course, activity_type, activity = self.get_random_activity()
 
-        # pick random room from still available 
-        room, day, time = random.choice(self.schedule.archive)
+            # pick random room from still available 
+            room, day, time = random.choice(self.schedule.archive)
 
-        # add an activity of same type  
-        self.add_extra_activity(course, activity_type, activity, room, day, time)
+            # add an activity of same type  
+            self.add_extra_activity(course, activity_type, activity, room, day, time)
 
-        # remove room from still available 
-        self.schedule.archive.remove((room, day, time))
+            # remove room from still available 
+            self.schedule.archive.remove((room, day, time))
+
+    def pick_students_to_switch(self, students, N):
+        random.shuffle(list(students))
+        return list(students)[:N]
+    
+    def move_student_to_new_activity(self, student, course, activity_type, new_activity):
+        """
+        Moves a student from their curren activity to the switch activity.
+        """
+        # remove current and add new activity from student's activities set
+        activities = course.activities[activity_type]
+        
+        for activity in activities:
+            if activity != new_activity and activity in student.activities:
+                student.activities.remove(activity)
+                student.activities.add(new_activity)
+
+                # remove student from current and add to new activity's students set
+                activity.students.remove(student)
+                new_activity.students.add(student)
+
+        student.update_schedule()
 
     def add_extra_activity(self, activity_course, activity_type, activity, room, day, time):
         """
@@ -212,14 +243,15 @@ class Algorithm:
         
         # schedule this new activity to an open roomslot
         new_activity.schedule(room, day, time)
+        
         # add new activity to course  
         activity_course.activities[activity_type].append(new_activity)
-
-        random.shuffle(activity_course.students)
+        
+        students_to_switch = self.pick_students_to_switch(activity_course.students, int(new_activity.capacity // 2))
+        
         # update student courses 
-        for student in activity_course.students: 
-            if activity in student.activities and len(activity.students) > len(new_activity.students):
-                self.move_student(student, activity, new_activity)
+        for student in students_to_switch:
+            self.move_student_to_new_activity(student, activity_course, activity_type, new_activity)
 
         # update activities in schedule 
         self.schedule.activities = self.schedule.get_activities_list(self.schedule.courses)
@@ -239,6 +271,7 @@ class Algorithm:
                 mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
 
             mutation()
+        
 
     def display_all_maluspoints(self, title):
         """ 
@@ -261,6 +294,7 @@ class Algorithm:
         """
         # intialize variables
         iters = len(self.maluspoint_stats)
+        
         # plot graph
         plt.plot(self.maluspoint_stats)
         plt.xlabel(x)
