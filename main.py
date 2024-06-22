@@ -53,16 +53,16 @@ if __name__ == "__main__":
 
     # # # --------------------- HILLCLIMBER -------------------------------------
     # hillclimber_schedule = Hillclimber(test_schedule)
-    # hillclimber_schedule.run(10000)
+    # hillclimber_schedule.run(100)
     # hillclimber_schedule.display_all_maluspoints('Hillclimber')
 
     # hillclimber_schedule.plot_graph('data/tested_hillclimber_cost.png', title='Hillclimber Algorithm', save=False)
     # get_output(hillclimber_schedule.schedule.students, 'data/tested_hillclimber_output.csv')
 
-    #hillclimber_experiment.hillclimb_all_averages(test_schedule, nr_climbers=30, nr_iterations=100)
-    hillclimber_experiment.hillclimber_ratios_plot()
-    # hillclimber_experiment.timed_hillclimber_runs(test_schedule, Hillclimber)
-    # hillclimber_experiment.hillclimb_averages_all('results/hillclimber/hillclimber_averages_all.csv')
+    # hillclimber_experiment.hillclimb_all_averages(test_schedule, nr_climbers=5, nr_iterations=15000)
+    # hillclimber_experiment.hillclimber_ratios_plot(5, 15000)
+    # hillclimber_experiment.hillclimber_ratios_plot_zoom(runs=5, zoom_start=12000, zoom_end=15000)
+    # hillclimber_experiment.timed_hillclimber_runs(test_schedule, Hillclimber) # not sure if keeping
     
     # comparison of two hillclimbers 
     # hillclimber_experiment.hillclimb(test_schedule, algorithm=Hillclimber, name='Hillclimber')
