@@ -173,6 +173,7 @@ class Schedule:
         """
         Calculates total amount of malus points.
         """
+        self.reset_maluspoints_activities()
         
         # separate double bookings from free periods 
         student_maluspoints = self.get_student_maluspoints()
