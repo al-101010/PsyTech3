@@ -56,12 +56,6 @@ class Algorithm:
 
         return random_roomslot1, random_roomslot2
     
-    def get_activities_with_most_maluspoints(self, activities, top_n: int=40) -> list:
-        return sorted(activities, key=lambda activity: activity.maluspoints, reverse=True)[:top_n]
-    
-    def get_students_with_most_maluspoints(self, students, top_n: int=20) -> list:
-        return sorted(students, key=lambda student: student.maluspoints, reverse=True)[:top_n]
-    
     def is_lecture(self, activity_type):
         return activity_type =='h'
 
@@ -146,11 +140,11 @@ class Algorithm:
 
         student = self.pick_student(activity.students)
         
-        switch_activity, switch_activity_type, switch_course = self.pick_activity(course.activities[activity_type])
+        switch_activity = random.choice(course.activities[activity_type])
 
         # pick new activity if new activity is same as first activity
         while switch_activity == activity:
-            switch_activity, switch_activity_type, switch_course = self.pick_activity(course.activities[activity_type])
+            switch_activity = random.choice(course.activities[activity_type])
 
         # move another student to this activity if new activity is full
         if switch_activity.is_full():
@@ -224,6 +218,7 @@ class Algorithm:
             while self.is_lecture(activity_type):
                 activity, activity_type, course = self.pick_activity(self.schedule.activities)
 
+
             # pick random room from still available 
             room, day, time = random.choice(self.schedule.archive)
             
@@ -265,8 +260,6 @@ class Algorithm:
         """
         Mutate current schedule/timetable with a number of random mutations.
         """
-
-        # self.split_activity()
 
         if self.no_change_counter > 500 and self.schedule.archive:
             mutation = random.choice([self.switch_student_from_activities, self.switch_activities, self.split_activity])
