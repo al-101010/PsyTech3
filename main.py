@@ -98,41 +98,16 @@ if __name__ == "__main__":
     
     # # # --------------------- REHEATED SIMULATED ANNEALING --------------------------------
     # create schedule
-    reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, 50, cooling_function='exponential', reheat_threshold=1200)
-    reheat_simulated_annealing.run(50000)
-    reheat_simulated_annealing.display_all_maluspoints('Reheat Simulated Annealing')
+    # reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, 50, cooling_function='exponential', reheat_threshold=1200)
+    # reheat_simulated_annealing.run(50000)
+    # reheat_simulated_annealing.display_all_maluspoints('Reheat Simulated Annealing')
 
-    reheat_simulated_annealing.plot_graph('data/boltzexp_reheat_simulated_annealing_plot.png', title='Reheat Simulated Annealing Algorithm', save=True)
-    print(get_output(reheat_simulated_annealing.schedule.students, 'data/boltzexp_reheat_simulated_annealing.csv'))
-    print(reheat_simulated_annealing.maluspoints)
+    # reheat_simulated_annealing.plot_graph('data/boltzexp_reheat_simulated_annealing_plot.png', title='Reheat Simulated Annealing Algorithm', save=True)
+    # print(get_output(reheat_simulated_annealing.schedule.students, 'data/boltzexp_reheat_simulated_annealing.csv'))
+    # print(reheat_simulated_annealing.maluspoints)
 
     #reheating_experiment.reheating_averages(test_schedule)
     #reheating_experiment.reheating_plot()
-
-
-
-    # --------------------- HEURISTIC - BUSY FIRST HILLCLIMBER --------------------------------
-    # # create busy first schedule 
-    # busy_climber = BusyClimber(test_schedule)
-    # busy_climber.run(100)
-    # busy_climber.display_all_maluspoints('Busy First Hillclimber')
-    
-    # # get results 
-    # busy_climber.plot_graph('data/busy_climber_plot.png', title='Busy Comes First Heuristic', save=False)
-    # print(get_output(busy_climber.schedule.students, 'data/busy_climber.csv'))
-    # print(busy_climber.maluspoints)
-
-
-    # --------------------- HEURISTIC - EXHAUSTIVE HILLCLIMBER --------------------------------
-    # # create exhaustive schedule 
-    # exhaustive_climber = ExhaustiveClimber(test_schedule)
-    # exhaustive_climber.run(100)
-    # exhaustive_climber.display_all_maluspoints('Exhaustive Hillclimber')
-    
-    # # get results 
-    # exhaustive_climber.plot_graph('data/exhaustive_climber_plot.png', title='Exhaustive Schedule Heuristic', save=True)
-    # print(get_output(exhaustive_climber.schedule.students, 'data/exhaustive_climber.csv'))
-    # print(exhaustive_climber.maluspoints)
 
     # --------------------- HEURISTIC - TARGETED HILLCLIMBER --------------------------------
     # # create targeted schedule 
@@ -154,3 +129,14 @@ if __name__ == "__main__":
     # # get results 
     # mutation_probability_climber.plot_graph('data/mutation_probability_climber_plot.png', title='mutation_probability Schedule Heuristic', save=False)
     # print(get_output(mutation_probability_climber.schedule.students, 'data/mutation_probability_climber.csv'))
+
+    # --------------------- HEURISTIC CLIMBER --------------------------------
+    # create busy first schedule 
+    heuristic_climb = HeuristicsHillclimber(test_schedule)
+    heuristic_climb.run(20000)
+    heuristic_climb.display_all_maluspoints('Hillclimber: Pick students with most maluspoints')
+    
+    # get results 
+    heuristic_climb.plot_graph('data/hillclimber_most_maluspoints_students_plot.png', title='Students with Most Maluspoints Heuristic', save=True)
+    print(get_output(heuristic_climb.schedule.students, 'data/Hillclimber_most_maluspoints_students.csv'))
+    print(heuristic_climb.maluspoints)
