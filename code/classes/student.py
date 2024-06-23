@@ -69,6 +69,7 @@ class Student:
         """
         # intialize maluspoint counter
         free_period_maluspoints = 0
+        self.three_free_periods = False
 
         # loop over all days and respective timeslots
         for day, timeslots in self.schedule.items():
@@ -102,11 +103,8 @@ class Student:
                     for activity in timeslot:
                         activity.maluspoints += 1
             
-
             if free_period_count == 3:
                 self.three_free_periods = True
-            else: 
-                self.three_free_periods = False
             
             # convert into maluspoints for the day and add to total number
             todays_maluspoints = self.maluspoints_converter(free_period_count)
