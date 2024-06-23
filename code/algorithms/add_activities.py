@@ -218,7 +218,6 @@ class Algorithm:
         Splits an activity into two and assigns the new activity to a still free roomslot. 
         """
         if self.schedule.archive:   
-            print("splitting")
         
             activity, activity_type, course = self.pick_activity(self.schedule.activities)
 
