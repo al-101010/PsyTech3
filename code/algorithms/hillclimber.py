@@ -22,6 +22,9 @@ class Hillclimber(Algorithm):
         """
         self.maluspoint_stats.append(schedule.get_total_maluspoints())
 
+    def pick_number_mutations(self):
+        return 1
+
     def check_improvement(self, previous_schedule : Schedule):
         """
         Checks whether the new schedule improves upon previous schedule (referencing maluspoints) 
@@ -68,9 +71,11 @@ class Hillclimber(Algorithm):
             if self.check_stagnation():
                 print("stopping early due to a stagnation of improvements")
                 return
+            
+            N = self.pick_number_mutations()
 
             # make random change to schedule
-            self.mutate_schedule()
+            self.mutate_schedule(N)
 
             self.check_improvement(previous_schedule)
 
