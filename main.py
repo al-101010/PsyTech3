@@ -81,7 +81,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
 
 
         if version == 'mutation probability':
-            # mutation_probability_climber = ProblematicStudentsClimber(test_schedule)
+            # mutation_probability_climber = MutationProbabilityClimber(test_schedule)
             # mutation_probability_climber.run(iterations)
             # mutation_probability_climber.display_maluspoints_division('Mutation Probability Climber')
 
