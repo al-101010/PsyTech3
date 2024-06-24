@@ -26,7 +26,7 @@ def get_output(students : list, output : str):
         return schedule
 
 
-def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =10, temp: int =50):
+def simal_all_averages(schedule, nr_simal: int =10, nr_iterations: int =20, temp: int =50):
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_simal 
     per each of nr_iterations and for all types of maluspoints.   
@@ -65,9 +65,8 @@ def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =10, temp
             
             # run the algorithm for one iteration 
             simal.run(1)
-
             # store maluspoints for this iteration
-            result.append((simal.maluspoints, 
+            result.append((simal.schedule.get_total_maluspoints(), 
                            simal.schedule.get_evening_room_maluspoints(),
                            simal.schedule.get_overcapacity_maluspoints(),
                            simal.schedule.get_student_maluspoints()[0],
@@ -103,7 +102,7 @@ def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =10, temp
             result_writer.writerow(value)
 
 
-def simal_all_averages_plot(nr_simal: int =30, nr_iterations: int =10):
+def simal_all_averages_plot(nr_simal: int =10, nr_iterations: int =20):
     '''
     Plots the averages, min, and max values of the maluspoint types of nr_simal 
     per iteration in nr_iterations.

@@ -80,18 +80,18 @@ def main(algorithm, output_file_name, iterations, starting_temperature, version)
     if algorithm == 'simulated annealing':
         if version == 'normal':
             #create annealing schedule
-            simulated_annealing = SimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential')
-            simulated_annealing.run(iterations)
-            simulated_annealing.display_all_maluspoints('Simulated Annealing')
+            # simulated_annealing = SimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential')
+            # simulated_annealing.run(iterations)
+            # simulated_annealing.display_all_maluspoints('Simulated Annealing')
 
-            simulated_annealing.plot_graph('data/simulated_annealing_plot.png', title='Simulated Annealing Algorithm', save=False)
-            print(get_output(simulated_annealing.schedule.students, 'data/boltzexp_simulated_annealing.csv'))
+            # simulated_annealing.plot_graph('data/simulated_annealing_plot.png', title='Simulated Annealing Algorithm', save=False)
+            # print(get_output(simulated_annealing.schedule.students, 'data/boltzexp_simulated_annealing.csv'))
             
 
             simulated_annealing_experiment.simal_all_averages(test_schedule)
             simulated_annealing_experiment.simal_all_averages_plot()
-            simulated_annealing_experiment.simal_temp_comparisons(test_schedule)
-            simulated_annealing_experiment.simal_temp_comparisons_plot()
+            # simulated_annealing_experiment.simal_temp_comparisons(test_schedule)
+            # simulated_annealing_experiment.simal_temp_comparisons_plot()
 
         if version == 'reheated':
             # create schedule
