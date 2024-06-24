@@ -103,7 +103,7 @@ def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =10, temp
             result_writer.writerow(value)
 
 
-def simal_ratios_plot(nr_simal: int =30, nr_iterations: int =10):
+def simal_all_averages_plot(nr_simal: int =30, nr_iterations: int =10):
     '''
     Plots the averages, min, and max values of the maluspoint types of nr_simal 
     per iteration in nr_iterations.
@@ -145,7 +145,7 @@ def simal_ratios_plot(nr_simal: int =30, nr_iterations: int =10):
     fig.savefig(f"results/simulated_annealing/simulated_annealing_all_averages-{nr_simal}-{nr_iterations}.png", dpi=1200)
 
 
-def simal_ratios_plot_zoom(nr_simal: int =30, nr_iterations : int =20000, zoom_start : int =15000, zoom_end : int =20000):
+def simal_all_averages_plot_zoom(nr_simal: int =30, nr_iterations : int =20000, zoom_start : int =15000, zoom_end : int =20000):
     '''
     Zooms in to a specific range of simulated annealing iterations.
     Plots the averages, min, and max values of all maluspoint types in that range.

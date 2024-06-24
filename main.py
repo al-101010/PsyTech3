@@ -92,8 +92,8 @@ if __name__ == "__main__":
     
     # print(simulated_annealing.maluspoints)
 
-    # simulated_annealing_experiment.simal_averages(test_schedule)
-    # simulated_annealing_experiment.simal_averages_plot()
+    # simulated_annealing_experiment.simal_all_averages(test_schedule)
+    # simulated_annealing_experiment.simal_all_averages_plot()
     # simulated_annealing_experiment.simal_temp_comparisons(test_schedule)
     # simulated_annealing_experiment.simal_temp_comparisons_plot()
     
