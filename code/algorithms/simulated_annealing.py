@@ -15,7 +15,7 @@ class SimulatedAnnealing(Hillclimber):
         self.temperature = start_temperature
         self.cooling_function = cooling_function
         self.switched_cooling_functions = False
-        self.best_schedule = empty_schedule
+        self.best_schedule = self.schedule
         self.best_maluspoints = float('inf')
 
     def calculate_acceptance_probability(self, new_maluspoints: int, old_maluspoints: int) -> float:
