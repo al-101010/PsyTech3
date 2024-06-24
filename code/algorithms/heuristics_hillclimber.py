@@ -34,7 +34,7 @@ class MutationProbabilityClimber(HeuristicsHillclimber):
     def mutate_schedule(self, number_of_mutations: int = 1):
         for i in range(number_of_mutations):            
             if self.no_change_counter > 500 and self.schedule.archive:
-                mutation = random.choices([self.switch_student_from_activities, self.switch_activities, self.split_activity], weights=(.2, .2, .6))[0]
+                mutation = random.choices([self.switch_student_from_activities, self.switch_activities, self.add_activity_to_course], weights=(.2, .2, .6))[0]
             elif self.iteration < 1000:
                 mutation = random.choices([self.switch_student_from_activities, self.switch_activities], weights=(.2, .8))[0]
             else:

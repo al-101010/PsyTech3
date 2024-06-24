@@ -7,25 +7,6 @@ import csv
 import pandas as pd 
 from statistics import mean
 
-def get_output(students : list, output : str):
-        """
-        Stores the schedule of students in csv format.
-        """
-        rows = []
-
-        # loop over all activities of each student and append relevant info
-        for student in students:
-            for activity in student.activities:
-                rows.append([student.name, activity.course, activity.name, activity.room.room_number, activity.day, activity.time])
-
-        # create dataframe of schedule
-        schedule = pd.DataFrame(rows, columns=['Student', 'Vak', 'Activiteit', 'Zaal', 'Dag', 'Tijdslot'])
-
-        schedule.to_csv(output, index=False)
-
-        return schedule
-
-
 def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, temp: int =50):
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_simal 
@@ -40,7 +21,7 @@ def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, t
     dir_path = f'results/simulated_annealing/{nr_simal}runs{nr_iterations}iters'
     
     if not os.path.exists(dir_path):
-        os.mkdir(dir_path)
+        os.makedirs(dir_path)
 
     # set number of runs
     for i in range(nr_simal):
@@ -70,7 +51,7 @@ def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, t
                            simal.schedule.get_student_maluspoints()[1]))
 
         # store final schedules of each run  
-        get_output(simal.schedule.students, dir_path+f'/simulated_annealing{i + 1}_output.csv')
+        simal.schedule.get_output(dir_path+f'/simulated_annealing{i + 1}_output.csv')
 
         # append iteration maluspoints to all results 
         results.append(result)
@@ -99,7 +80,7 @@ def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, t
             result_writer.writerow(value)
 
 
-def simal_all_averages_plot(nr_simal: int =30, nr_iterations: int =20000):
+def simal_all_averages_plot(nr_simal: int =10, nr_iterations: int =10):
     '''
     Plots the averages, min, and max values of the maluspoint types of nr_simal 
     per iteration in nr_iterations.
