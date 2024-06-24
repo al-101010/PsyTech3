@@ -3,8 +3,6 @@ from code.algorithms.random_alg import Random
 from code.algorithms.hillclimber import Hillclimber
 from code.algorithms.simulated_annealing import SimulatedAnnealing, ReheatSimulatedAnnealing
 from code.algorithms.plant_prop import PlantProp
-from code.algorithms.targeted_hillclimber import TargetedHillclimber
-from code.algorithms.mutation_probability_heuristic import MutationsProbabilityClimber
 from code.algorithms.heuristics_hillclimber import HeuristicsHillclimber
 
 from experiments.hillclimber import hillclimber_experiment
