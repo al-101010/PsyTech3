@@ -1,9 +1,8 @@
-from code.algorithms.sequential import Sequential
 from code.algorithms.random_alg import Random
 from code.algorithms.hillclimber import Hillclimber
 from code.algorithms.simulated_annealing import SimulatedAnnealing, ReheatSimulatedAnnealing
 from code.algorithms.plant_prop import PlantProp
-from code.algorithms.heuristics_hillclimber import HeuristicsHillclimber
+from code.algorithms.heuristics_hillclimber import HeuristicsHillclimber, ProblematicActivityClimber, ProblematicStudentsClimber, MutationProbabilityClimber, IncreaseMutationsClimber
 
 from experiments.hillclimber import hillclimber_experiment
 from experiments.simulated_annealing import simulated_annealing_experiment
