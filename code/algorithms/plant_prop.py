@@ -1,5 +1,5 @@
 from ..classes.schedule import Schedule
-from .add_activities import Algorithm
+from .algorithm import Algorithm
 from .hillclimber import Hillclimber
 import copy
 import random
