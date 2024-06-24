@@ -62,6 +62,7 @@ if __name__ == "__main__":
     # hillclimber_experiment.hillclimb_all_averages(test_schedule)
     # hillclimber_experiment.hillclimber_ratios_plot()
     # hillclimber_experiment.hillclimber_ratios_plot_zoom()
+    # hillclimber_experiment.read_in_schedules()
     # hillclimber_experiment.timed_hillclimber_runs(test_schedule, Hillclimber) # not sure if keeping
     
     # comparison of two hillclimbers 
@@ -91,8 +92,8 @@ if __name__ == "__main__":
     
     # print(simulated_annealing.maluspoints)
 
-    # simulated_annealing_experiment.simal_averages(test_schedule)
-    # simulated_annealing_experiment.simal_averages_plot()
+    # simulated_annealing_experiment.simal_all_averages(test_schedule)
+    # simulated_annealing_experiment.simal_all_averages_plot()
     # simulated_annealing_experiment.simal_temp_comparisons(test_schedule)
     # simulated_annealing_experiment.simal_temp_comparisons_plot()
     
