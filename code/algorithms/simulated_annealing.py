@@ -61,7 +61,7 @@ class SimulatedAnnealing(Hillclimber):
         """
         Exponential decline function to update temperature
         """
-        self.temperature = self.start_temperature * (0.99 ** (self.iteration/2))
+        self.temperature = self.start_temperature * (0.99 ** self.iteration)
     
     def boltz_temperature_decline(self):
         self.temperature = self.start_temperature / math.log(self.iteration + 1)
