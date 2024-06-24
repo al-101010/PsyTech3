@@ -9,6 +9,11 @@ from code.classes.schedule import Schedule
 from experiments.hillclimber import hillclimber_experiment
 from experiments.simulated_annealing import simulated_annealing_experiment
 from experiments.reheating import reheating_experiment
+from experiments.increasing_mutations import increasing_mutations_experiment
+from experiments.mutation_probability import mutation_probability_experiment
+from experiments.problematic_activity import problematic_activity_experiment
+from experiments.problematic_students import problematic_students_experiment
+
 
 import pandas as pd
 import time
@@ -43,9 +48,8 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             if experiment:
                 hillclimber_experiment.hillclimb_all_averages(test_schedule)
                 hillclimber_experiment.hillclimber_ratios_plot()
-                hillclimber_experiment.hillclimber_ratios_plot_zoom()
-                hillclimber_experiment.read_in_schedules()
-                hillclimber_experiment.timed_hillclimber_runs(test_schedule, Hillclimber) 
+                # hillclimber_experiment.hillclimber_ratios_plot_zoom()
+                # hillclimber_experiment.timed_hillclimber_runs(test_schedule, Hillclimber) 
                 
                 # comparison of two hillclimbers 
                 # hillclimber_experiment.hillclimb(test_schedule, algorithm=Hillclimber, name='Hillclimber')
@@ -53,36 +57,54 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
                 # hillclimber_experiment.compare_hillclimbers("results/hillclimber/Hillclimber30_iter1000.csv", "results/hillclimber/TargetedClimber_30_iter1000.csv")
 
         if version == 'problematic activity':
-            problematic_activity_climber = ProblematicActivityClimber(test_schedule)
-            problematic_activity_climber.run(iterations)
-            problematic_activity_climber.display_maluspoints_division('Problematic Activity Climber')
+            # problematic_activity_climber = ProblematicActivityClimber(test_schedule)
+            # problematic_activity_climber.run(iterations)
+            # problematic_activity_climber.display_maluspoints_division('Problematic Activity Climber')
 
-            problematic_activity_climber.plot_graph(output_png_name, title='Problematic Activity Climber', save=True)
-            problematic_activity_climber.schedule.get_output(output_csv_name)
+            # problematic_activity_climber.plot_graph(output_png_name, title='Problematic Activity Climber', save=True)
+            # problematic_activity_climber.schedule.get_output(output_csv_name)
+
+            problematic_activity_experiment.problematic_activity_all_averages(test_schedule)
+            problematic_activity_experiment.problematic_activity_ratios_plot()
+            # problematic_activity_experiment.problematic_activity_ratios_plot_zoom()
 
         if version == 'problematic students':
-            problematic_student_climber = ProblematicStudentsClimber(test_schedule)
-            problematic_student_climber.run(iterations)
-            problematic_student_climber.display_maluspoints_division('Problematic Student Climber')
+            # problematic_student_climber = ProblematicStudentsClimber(test_schedule)
+            # problematic_student_climber.run(iterations)
+            # problematic_student_climber.display_maluspoints_division('Problematic Student Climber')
 
-            problematic_student_climber.plot_graph(output_png_name, title='Problematic Student Climber', save=True)
-            problematic_student_climber.schedule.get_output(output_csv_name)
+            # problematic_student_climber.plot_graph(output_png_name, title='Problematic Student Climber', save=True)
+            # problematic_student_climber.schedule.get_output(output_csv_name)
+
+            problematic_students_experiment.problematic_students_all_averages(test_schedule)
+            problematic_students_experiment.problematic_students_ratios_plot()
+            # problematic_students_experiment.problematic_student_ratios_plot_zoom()
+
 
         if version == 'mutation probability':
-            mutation_probability_climber = ProblematicStudentsClimber(test_schedule)
-            mutation_probability_climber.run(iterations)
-            mutation_probability_climber.display_maluspoints_division('Mutation Probability Climber')
+            # mutation_probability_climber = ProblematicStudentsClimber(test_schedule)
+            # mutation_probability_climber.run(iterations)
+            # mutation_probability_climber.display_maluspoints_division('Mutation Probability Climber')
 
-            mutation_probability_climber.plot_graph(output_png_name, title='Mutation Probability Climber', save=True)
-            mutation_probability_climber.schedule.get_output(output_csv_name)
+            # mutation_probability_climber.plot_graph(output_png_name, title='Mutation Probability Climber', save=True)
+            # mutation_probability_climber.schedule.get_output(output_csv_name)
+
+            mutation_probability_experiment.mutation_probability_all_averages(test_schedule)
+            mutation_probability_experiment.mutation_probability_ratios_plot()
+            # mutation_probability_experiment.mutation_probability_ratios_plot_zoom()
+
 
         if version == 'increasing mutations':
-            increasing_mutations_climber = IncreasingMutationsClimber(test_schedule)
-            increasing_mutations_climber.run(iterations)
-            increasing_mutations_climber.display_maluspoints_division('Increasing Mutations Climber')
+            # increasing_mutations_climber = IncreasingMutationsClimber(test_schedule)
+            # increasing_mutations_climber.run(iterations)
+            # increasing_mutations_climber.display_maluspoints_division('Increasing Mutations Climber')
 
-            increasing_mutations_climber.plot_graph(output_png_name, title='Increasing Mutation Climber', save=True)
-            increasing_mutations_climber.schedule.get_output(output_csv_name)
+            # increasing_mutations_climber.plot_graph(output_png_name, title='Increasing Mutation Climber', save=True)
+            # increasing_mutations_climber.schedule.get_output(output_csv_name)
+
+            increasing_mutations_experiment.increasing_mutations_all_averages(test_schedule)
+            increasing_mutations_experiment.increasing_mutations_ratios_plot()
+            #increasing_mutations_experiment.increasing_mutations_ratios_plot_zoom()
 
     # ======== PLANT PROPAGATION ===============
     if algorithm == 'plantprop':
@@ -101,14 +123,14 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             # simulated_annealing.run(iterations)
             # simulated_annealing.display_all_maluspoints('Simulated Annealing')
 
-            simulated_annealing.plot_graph(output_png_name, title='Simulated Annealing Algorithm', save=False)
-            simulated_annealing.schedule.get_output(output_csv_name)
+            # simulated_annealing.plot_graph(output_png_name, title='Simulated Annealing Algorithm', save=False)
+            # simulated_annealing.schedule.get_output(output_csv_name)
             
             if experiment:
                 simulated_annealing_experiment.simal_all_averages(test_schedule)
                 simulated_annealing_experiment.simal_all_averages_plot()
-                simulated_annealing_experiment.simal_temp_comparisons(test_schedule)
-                simulated_annealing_experiment.simal_temp_comparisons_plot()
+                # simulated_annealing_experiment.simal_temp_comparisons(test_schedule)
+                # simulated_annealing_experiment.simal_temp_comparisons_plot()
         
         # ========= REHEATED SIMULATED ANNEALING ===============
         if version == 'reheated':

@@ -26,15 +26,12 @@ def get_output(students : list, output : str):
         return schedule
 
 
-def simal_all_averages(schedule, nr_simal: int =10, nr_iterations: int =20, temp: int =50):
+def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, temp: int =50):
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_simal 
     per each of nr_iterations and for all types of maluspoints.   
     Stores thei final schedule of each simulated annealing algorithm in a separate folder. 
     '''
-
-    # add a seed 
-    random.seed(123)
 
     # initialise results 
     results = []
@@ -53,7 +50,7 @@ def simal_all_averages(schedule, nr_simal: int =10, nr_iterations: int =20, temp
         
         # make a simulated annealing object  
         simal = SimulatedAnnealing(schedule, temp)
-        
+        print(simal.schedule.get_total_maluspoints())
         print(f"Running Simulated Annealing Number: {i}")
         
         # set number iterations per run 
@@ -102,7 +99,7 @@ def simal_all_averages(schedule, nr_simal: int =10, nr_iterations: int =20, temp
             result_writer.writerow(value)
 
 
-def simal_all_averages_plot(nr_simal: int =10, nr_iterations: int =20):
+def simal_all_averages_plot(nr_simal: int =30, nr_iterations: int =20000):
     '''
     Plots the averages, min, and max values of the maluspoint types of nr_simal 
     per iteration in nr_iterations.
@@ -207,7 +204,7 @@ def simal_temp_comparisons(schedule, n_simal=10, n_iterations=1000, temps: list 
             
             # make a simulated anneaing object 
             simulated_annealing = SimulatedAnnealing(schedule, number)
-            
+
             print(f"Running Annealing: {i}")
             # run algorithm n_iterations amount of times  
             for j in range(n_iterations):

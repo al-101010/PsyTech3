@@ -28,15 +28,12 @@ def get_output(students : list, output : str):
         return schedule
 
 
-def hillclimb_all_averages(schedule, nr_climbers: int =30, nr_iterations: int =20):
+def hillclimb_all_averages(schedule, nr_climbers: int =30, nr_iterations: int =20000):
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_climbers 
     per each of nr_iterations and for all types of maluspoints.   
     Stores thei final schedule of each climber in a separate folder. 
     '''
-
-    # add a seed 
-    random.seed(123)
 
     # initialise results 
     results = []
@@ -136,10 +133,10 @@ def hillclimber_ratios_plot(nr_climbers: int =30, nr_iterations: int =20000):
     ax.fill_between(range(nr_iterations), df['Free Min'], df['Free Max'], alpha = 0.2)
     ax.fill_between(range(nr_iterations), df['Double Min'], df['Double Max'], alpha = 0.2)
     
-    # set y axis, range 0 to 2500 works best        
-    ax.set_ybound(0, 2500)
+    # set y axis, range 0 to 1500 works best        
+    ax.set_ybound(0, 1500)
 
-    plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'])
+    plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'], loc='upper right')
     plt.title(f'Maluspoints of n={nr_climbers} Hillclimbers')
     plt.ylabel('Average Maluspoints')
     plt.xlabel('Iterations')

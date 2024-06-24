@@ -87,7 +87,7 @@ class SimulatedAnnealing(Hillclimber):
         # compute maluspoints
         previous_maluspoints = previous_schedule.get_total_maluspoints()
         new_maluspoints = self.schedule.get_total_maluspoints()
-        print(previous_maluspoints, new_maluspoints)
+        # print(previous_maluspoints, new_maluspoints)
 
         # obtain acceptance probability
         probability = self.calculate_acceptance_probability(new_maluspoints, previous_maluspoints)
