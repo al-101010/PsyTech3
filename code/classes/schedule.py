@@ -181,3 +181,21 @@ class Schedule:
         self.total_maluspoints = self.get_evening_room_maluspoints() + student_maluspoints[0] + student_maluspoints[1] + self.get_overcapacity_maluspoints()
 
         return self.total_maluspoints
+    
+    def get_output(self, output : str):
+        """
+        Print output schedule as data frame and convert to csv.
+        """
+        rows = []
+
+        # loop over all activities of each student and append relevant info
+        for student in self.students:
+            for activity in student.activities:
+                rows.append([student.name, activity.course, activity.name, activity.room.room_number, activity.day, activity.time])
+
+        # create dataframe of schedule
+        schedule = pd.DataFrame(rows, columns=['Student', 'Vak', 'Activiteit', 'Zaal', 'Dag', 'Tijdslot'])
+
+        schedule.to_csv(output, index=False)
+
+        return schedule

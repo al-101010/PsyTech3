@@ -42,7 +42,7 @@ class MutationProbabilityClimber(HeuristicsHillclimber):
             
             mutation()
 
-class IncreaseMutationsClimber(HeuristicsHillclimber):
+class IncreasingMutationsClimber(HeuristicsHillclimber):
     def pick_number_mutations(self):
         if self.no_change_counter > 1800:
             return 10
