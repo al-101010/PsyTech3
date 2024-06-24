@@ -85,11 +85,12 @@ class PlantProp(Algorithm):
             else:
                 self.no_change_counter += 1
 
-            if self.check_stagnation():
-                self.maluspoints = current_best_maluspoints
-                self.schedule = self.get_best_schedule()
-                print("stopping early due to a stagnation of improvements")
-                return
+            if self.early_stopping:
+                if self.check_stagnation():
+                    self.maluspoints = current_best_maluspoints
+                    self.schedule = self.get_best_schedule()
+                    print("stopping early due to a stagnation of improvements")
+                    return
 
             print(self.iteration)
             for hillclimber in self.population:

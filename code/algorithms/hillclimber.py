@@ -1,6 +1,5 @@
 import copy
 import sys
-from .random_alg import Random
 from .fitted_start import FittedStart
 from .algorithm import Algorithm
 from ..classes.schedule import Schedule
@@ -12,8 +11,8 @@ class Hillclimber(Algorithm):
     
     def __init__(self, empty_schedule : Schedule):
         super().__init__(empty_schedule)
-        self.random_start = FittedStart(empty_schedule)
-        self.schedule = self.random_start.schedule
+        self.start_schedule = FittedStart(empty_schedule)
+        self.schedule = self.start_schedule.schedule
         self.iteration = 0
 
     def accept_schedule(self, schedule : Schedule):
@@ -68,9 +67,10 @@ class Hillclimber(Algorithm):
             previous_schedule = copy.deepcopy(self.schedule)
 
             # stop if no general improvements made
-            if self.check_stagnation():
-                print("stopping early due to a stagnation of improvements")
-                return
+            if self.early_stopping:
+                if self.check_stagnation():
+                    print("stopping early due to a stagnation of improvements")
+                    return
             
             N = self.pick_number_mutations()
 

@@ -6,9 +6,10 @@ from ..classes.activity import Activity
 
 class Algorithm:
 
-    def __init__(self, schedule : Schedule, early_stopping_limit=2000):
+    def __init__(self, schedule : Schedule, early_stopping : bool=False, early_stopping_limit=1):
         self.schedule = copy.deepcopy(schedule)
         self.maluspoint_stats = []
+        self.early_stopping = early_stopping
         self.early_stopping_limit = early_stopping_limit
         self.no_change_counter = 0
 
