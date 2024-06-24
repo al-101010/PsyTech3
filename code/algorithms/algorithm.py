@@ -185,11 +185,12 @@ class Algorithm:
         # store room, day, and time of roomslots
         roomslot1, roomslot2 = self.pick_roomslots_to_switch()
         room_1, day_1, time_1 = roomslot1
-        room_2, day_2, time_2 = roomslot2
 
         # save activities in roomslots
         activity_1 = room_1.schedule[day_1][time_1]
-        activity_2 = room_2.schedule[day_2][time_2]
+        activity_2 = self.pick_activity(self.schedule.activities)[0]
+
+        room_2, day_2, time_2 = (activity_2.room, activity_2.day, activity_2.time)
 
         # if activity is Activity instance, schedule instance
         if activity_1:

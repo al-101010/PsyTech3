@@ -18,13 +18,9 @@ class HeuristicsHillclimber(Hillclimber):
     def get_students_with_most_maluspoints(self, students, top_n: int=20) -> list:
         return sorted(students, key=lambda student: student.maluspoints, reverse=True)[:top_n]
 
-    def pick_activity(self, activities):
-        N = math.ceil(len(activities) / 2)
-        top_activities = self.get_activities_with_most_maluspoints(activities, N)
-        return super().pick_activity(top_activities)
 
     def pick_student(self, students):
-        N = math.ceil(len(students) / 2)
+        N = math.ceil(len(students) / 3)
         top_students = self.get_students_with_most_maluspoints(students, N)
         return super().pick_student(top_students)
     
@@ -73,3 +69,17 @@ class HeuristicsHillclimber(Hillclimber):
                 mutation = random.choices([self.switch_student_from_activities, self.switch_activities], weights=(.8, .2))[0]
             
             mutation()
+
+        # if self.no_change_counter > 500 and self.schedule.archive:
+        #     mutation = random.choice([self.switch_student_from_activities, self.switch_activities, self.split_activity])
+        # else:
+        #     mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
+        # mutation()
+
+    
+class ProblematicActivityClimber(HeuristicsHillclimber):
+    
+    def pick_activity(self, activities):
+        N = math.ceil(len(activities) / 3)
+        top_activities = self.get_activities_with_most_maluspoints(activities, N)
+        return super().pick_activity(top_activities)
