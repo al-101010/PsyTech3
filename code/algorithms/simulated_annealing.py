@@ -1,4 +1,5 @@
 import random
+import copy
 import math
 import matplotlib.pyplot as plt
 
@@ -7,14 +8,15 @@ from ..classes.schedule import Schedule
 from .heuristics_hillclimber import HeuristicsHillclimber
 
 class SimulatedAnnealing(Hillclimber):
-    # NOTE: still want to implement a way to switch between 2 types of cooling functions 
+    
     def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'boltzexp'):
         super().__init__(empty_schedule)
         self.start_temperature = start_temperature
         self.temperature = start_temperature
         self.cooling_function = cooling_function
-        self.temperatures = []
         self.switched_cooling_functions = False
+        self.best_schedule = empty_schedule
+        self.best_maluspoints = float('inf')
 
     def calculate_acceptance_probability(self, new_maluspoints: int, old_maluspoints: int) -> float:
         """
@@ -42,6 +44,9 @@ class SimulatedAnnealing(Hillclimber):
 
         elif self.cooling_function == 'exponential':
             self.exponential_temperature_decline()
+
+        elif self.cooling_function == 'boltz':
+            self.boltz_temperature_decline()
 
         elif self.cooling_function == 'boltzexp':
             self.boltz_exp_temperature_decline()
@@ -90,7 +95,10 @@ class SimulatedAnnealing(Hillclimber):
         # if random number between 0 and 1 lower than probability accept change
         if random.random() < probability:
             self.accept_schedule(self.schedule)
-            
+            if new_maluspoints < self.best_maluspoints and new_maluspoints < 200:
+                self.best_schedule = copy.deepcopy(self.schedule)
+                self.best_maluspoints = new_maluspoints
+
             if new_maluspoints < previous_maluspoints:
                 self.reset_no_change_counter()
 
@@ -103,9 +111,6 @@ class SimulatedAnnealing(Hillclimber):
             self.increase_no_change_counter()
 
         self.update_temperature()
-        self.temperatures.append(self.temperature)
-    
-    
 
     def plot_graph(self, output_file : str, x : str='iteration', y : str='maluspoints', title: str='Simulated Annealing Algorithm', save: bool=False):
         """
@@ -118,12 +123,22 @@ class SimulatedAnnealing(Hillclimber):
 
         super().plot_graph(output_file, x, y, main_title, save)
 
+    def run(self, iters):
+        """
+        Improves the initial schedule for a number of iterations.
+        Returns the best schedule when finished.
+        """
+        super().run(iters)
+        self.schedule = self.best_schedule
+        self.maluspoints = self.best_maluspoints
+
 
 class ReheatSimulatedAnnealing(SimulatedAnnealing):
     def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential', reheat_temperature: int = 10, reheat_threshold: int = 1500):
         super().__init__(empty_schedule, start_temperature, cooling_function)
         self.reheat_temperature = reheat_temperature
         self.reheat_threshold = reheat_threshold
+    
     
     def reheat(self):
         print("reheating... :)")
