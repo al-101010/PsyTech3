@@ -7,26 +7,7 @@ import csv
 import pandas as pd 
 import os 
 
-def get_output(students : list, output : str):
-        """
-        Stores the schedule of students in csv format.
-        """
-        rows = []
-
-        # loop over all activities of each student and append relevant info
-        for student in students:
-            for activity in student.activities:
-                rows.append([student.name, activity.course, activity.name, activity.room.room_number, activity.day, activity.time])
-
-        # create dataframe of schedule
-        schedule = pd.DataFrame(rows, columns=['Student', 'Vak', 'Activiteit', 'Zaal', 'Dag', 'Tijdslot'])
-
-        schedule.to_csv(output, index=False)
-
-        return schedule
-
-
-def problematic_activity_all_averages(schedule, nr_climbers: int =30, nr_iterations: int =20000):
+def problematic_activity_all_averages(schedule, nr_climbers: int =10, nr_iterations: int =10):
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_climbers 
     per each of nr_iterations and for all types of maluspoints.   
@@ -40,7 +21,7 @@ def problematic_activity_all_averages(schedule, nr_climbers: int =30, nr_iterati
     dir_path = f'results/problematic_activity/{nr_climbers}runs{nr_iterations}iters'
     
     if not os.path.exists(dir_path):
-        os.mkdir(dir_path)
+        os.makedirs(dir_path)
 
     # set number of runs
     for i in range(nr_climbers):
@@ -71,7 +52,7 @@ def problematic_activity_all_averages(schedule, nr_climbers: int =30, nr_iterati
                            climber.schedule.get_student_maluspoints()[1]))
 
         # store final schedules of each run  
-        get_output(climber.schedule.students, dir_path+f'/problematic_activity{i + 1}_output.csv')
+        climber.schedule.get_output(dir_path+f'/problematic_activity{i + 1}_output.csv')
 
         # append iteration maluspoints to all results 
         results.append(result)
@@ -100,7 +81,7 @@ def problematic_activity_all_averages(schedule, nr_climbers: int =30, nr_iterati
             result_writer.writerow(value)
 
 
-def problematic_activity_ratios_plot(nr_climbers: int =30, nr_iterations: int =20000):
+def problematic_activity_ratios_plot(nr_climbers: int =10, nr_iterations: int =10):
     '''
     Plots the averages, min, and max values of the maluspoint types of nr_climbers 
     per iteration in nr_iterations.
