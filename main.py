@@ -62,6 +62,7 @@ if __name__ == "__main__":
     # hillclimber_experiment.hillclimb_all_averages(test_schedule)
     # hillclimber_experiment.hillclimber_ratios_plot()
     # hillclimber_experiment.hillclimber_ratios_plot_zoom()
+    # hillclimber_experiment.read_in_schedules()
     # hillclimber_experiment.timed_hillclimber_runs(test_schedule, Hillclimber) # not sure if keeping
     
     # comparison of two hillclimbers 
@@ -98,13 +99,13 @@ if __name__ == "__main__":
     
     # # # --------------------- REHEATED SIMULATED ANNEALING --------------------------------
     # create schedule
-    reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, 50, cooling_function='exponential', reheat_threshold=1200)
-    reheat_simulated_annealing.run(50000)
-    reheat_simulated_annealing.display_all_maluspoints('Reheat Simulated Annealing')
+    # reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, 50, cooling_function='exponential', reheat_threshold=1200)
+    # reheat_simulated_annealing.run(50000)
+    # reheat_simulated_annealing.display_all_maluspoints('Reheat Simulated Annealing')
 
-    reheat_simulated_annealing.plot_graph('data/boltzexp_reheat_simulated_annealing_plot.png', title='Reheat Simulated Annealing Algorithm', save=True)
-    print(get_output(reheat_simulated_annealing.schedule.students, 'data/boltzexp_reheat_simulated_annealing.csv'))
-    print(reheat_simulated_annealing.maluspoints)
+    # reheat_simulated_annealing.plot_graph('data/boltzexp_reheat_simulated_annealing_plot.png', title='Reheat Simulated Annealing Algorithm', save=True)
+    # print(get_output(reheat_simulated_annealing.schedule.students, 'data/boltzexp_reheat_simulated_annealing.csv'))
+    # print(reheat_simulated_annealing.maluspoints)
 
     #reheating_experiment.reheating_averages(test_schedule)
     #reheating_experiment.reheating_plot()
