@@ -80,7 +80,7 @@ def problematic_students_all_averages(schedule, nr_climbers: int =30, nr_iterati
             result_writer.writerow(value)
 
 
-def problematic_students_ratios_plot(nr_climbers: int =10, nr_iterations: int =10):
+def problematic_students_ratios_plot(nr_climbers: int =30, nr_iterations: int =20000):
     '''
     Plots the averages, min, and max values of the maluspoint types of nr_climbers 
     per iteration in nr_iterations.
