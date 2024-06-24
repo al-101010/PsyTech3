@@ -8,7 +8,6 @@ from code.classes.schedule import Schedule
 
 from experiments.hillclimber import hillclimber_experiment
 from experiments.simulated_annealing import simulated_annealing_experiment
-from experiments.reheating import reheating_experiment
 from experiments.increasing_mutations import increasing_mutations_experiment
 from experiments.mutation_probability import mutation_probability_experiment
 from experiments.problematic_activity import problematic_activity_experiment

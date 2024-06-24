@@ -28,7 +28,7 @@ def get_output(students : list, output : str):
         return schedule
 
 
-def hillclimb_all_averages(schedule, nr_climbers: int =30, nr_iterations: int =20000):
+def hillclimb_all_averages(schedule, nr_climbers: int =10, nr_iterations: int =10):
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_climbers 
     per each of nr_iterations and for all types of maluspoints.   
@@ -102,7 +102,7 @@ def hillclimb_all_averages(schedule, nr_climbers: int =30, nr_iterations: int =2
             result_writer.writerow(value)
 
 
-def hillclimber_ratios_plot(nr_climbers: int =30, nr_iterations: int =20000):
+def hillclimber_ratios_plot(nr_climbers: int =10, nr_iterations: int =10):
     '''
     Plots the averages, min, and max values of the maluspoint types of nr_climbers 
     per iteration in nr_iterations.
