@@ -46,15 +46,11 @@ class Algorithm:
         for student in self.schedule.students:
             student.update_schedule()
 
-    def pick_roomslots_to_switch(self):
+    def pick_roomslot(self):
         """
         Returns two random roomslots.
         """
-        # pick roomslots to switch activities from
-        random_roomslot1 = random.choice(self.schedule.roomslots)
-        random_roomslot2 = random.choice(self.schedule.roomslots)
-
-        return random_roomslot1, random_roomslot2
+        return random.choice(self.schedule.roomslots)
     
     def is_lecture(self, activity_type):
         return activity_type =='h'
@@ -183,14 +179,15 @@ class Algorithm:
         also be None.
         """
         # store room, day, and time of roomslots
-        roomslot1, roomslot2 = self.pick_roomslots_to_switch()
+        roomslot1 = self.pick_roomslot()
         room_1, day_1, time_1 = roomslot1
 
-        # save activities in roomslots
+        # save activities
         activity_1 = room_1.schedule[day_1][time_1]
         activity_2 = self.pick_activity(self.schedule.activities)[0]
 
-        room_2, day_2, time_2 = (activity_2.room, activity_2.day, activity_2.time)
+        roomslot2 = (activity_2.room, activity_2.day, activity_2.time)
+        room_2, day_2, time_2 = roomslot2
 
         # if activity is Activity instance, schedule instance
         if activity_1:

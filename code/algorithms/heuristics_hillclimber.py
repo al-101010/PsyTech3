@@ -27,38 +27,6 @@ class HeuristicsHillclimber(Hillclimber):
     def pick_students_to_switch(self, students, N):
         return self.get_students_with_most_maluspoints(students, N)
     
-    def switch_activities(self):
-        """
-        Switches the activities from two randomly chosen roomslots. Activity may
-        also be None.
-        """
-        # store room, day, and time of roomslots
-        roomslot1, roomslot2 = self.pick_roomslots_to_switch()
-        room_1, day_1, time_1 = roomslot1
-
-        # save activities in roomslots
-        activity_1 = room_1.schedule[day_1][time_1]
-        activity_2, activity_2_type, course_2 = self.pick_activity(self.schedule.activities)
-
-        room_2, day_2, time_2 = (activity_2.room, activity_2.day, activity_2.time)
-
-
-        # if activity is Activity instance, schedule instance
-        if activity_1:
-            activity_1.schedule(room_2, day_2, time_2)
-        if activity_2:
-            activity_2.schedule(room_1, day_1, time_1)
-        
-        # switch the activities to the other roomslot in room instance
-        room_1.schedule[day_1][time_1] = activity_2
-        room_2.schedule[day_2][time_2] = activity_1
-
-        self.update_student_schedules()
-        
-        # update the archive if an activity is switched to an empty spot 
-        self.update_archive(activity_1, roomslot1, roomslot2)
-        self.update_archive(activity_2, roomslot2, roomslot1)
-    
     def mutate_schedule(self, number_of_mutations: int = 1):
         for i in range(number_of_mutations):            
             if self.no_change_counter > 500 and self.schedule.archive:
