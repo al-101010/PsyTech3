@@ -1,6 +1,7 @@
 import copy
 import sys
 from .random_alg import Random
+from .fitted_start import FittedStart
 from .add_activities import Algorithm
 from ..classes.schedule import Schedule
 
@@ -11,7 +12,7 @@ class Hillclimber(Algorithm):
     
     def __init__(self, empty_schedule : Schedule):
         super().__init__(empty_schedule)
-        self.random_start = Random(empty_schedule)
+        self.random_start = FittedStart(empty_schedule)
         self.schedule = self.random_start.schedule
         self.iteration = 0
 
@@ -30,7 +31,7 @@ class Hillclimber(Algorithm):
         # compute maluspoints for previous and current state 
         previous_maluspoints = previous_schedule.get_total_maluspoints()
         new_maluspoints = self.schedule.get_total_maluspoints()
-        #(previous_maluspoints, new_maluspoints)
+        print(previous_maluspoints, new_maluspoints)
 
         # if improvement, reset counter and add number of maluspoint of new schedule to stats
         if new_maluspoints < previous_maluspoints:
@@ -70,9 +71,6 @@ class Hillclimber(Algorithm):
 
             # make random change to schedule
             self.mutate_schedule()
-            
-            # reset activity maluspoints
-            self.schedule.reset_maluspoints_activities()
 
             self.check_improvement(previous_schedule)
 

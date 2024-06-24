@@ -81,12 +81,15 @@ if __name__ == "__main__":
 
     # # --------------------- SIMULATED ANNEALING --------------------------------
     # create annealing schedule
-    # simulated_annealing = SimulatedAnnealing(test_schedule, 1000, cooling_function='boltzexp')
-    # simulated_annealing.run(2000)
+    # simulated_annealing = SimulatedAnnealing(test_schedule, 50, cooling_function='exponential')
+    # simulated_annealing.run(50000)
+    # simulated_annealing.display_all_maluspoints('Simulated Annealing')
 
     # simulated_annealing.plot_graph('data/simulated_annealing_plot.png', title='Simulated Annealing Algorithm', save=False)
     # print(get_output(simulated_annealing.schedule.students, 'data/boltzexp_simulated_annealing.csv'))
-    # # print(simulated_annealing.maluspoints)
+    
+    
+    # print(simulated_annealing.maluspoints)
 
     # simulated_annealing_experiment.simal_averages(test_schedule)
     # simulated_annealing_experiment.simal_averages_plot()
@@ -95,13 +98,13 @@ if __name__ == "__main__":
     
     # # # --------------------- REHEATED SIMULATED ANNEALING --------------------------------
     # create schedule
-    # reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, 500, cooling_function='boltzexp', reheat_threshold=1200)
-    # reheat_simulated_annealing.run(50000)
-    # reheat_simulated_annealing.display_all_maluspoints('Reheat Simulated Annealing')
+    reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, 50, cooling_function='exponential', reheat_threshold=1200)
+    reheat_simulated_annealing.run(50000)
+    reheat_simulated_annealing.display_all_maluspoints('Reheat Simulated Annealing')
 
-    # reheat_simulated_annealing.plot_graph('data/boltzexp_reheat_simulated_annealing_plot.png', title='Reheat Simulated Annealing Algorithm', save=True)
-    # print(get_output(reheat_simulated_annealing.schedule.students, 'data/boltzexp_reheat_simulated_annealing.csv'))
-    # print(reheat_simulated_annealing.maluspoints)
+    reheat_simulated_annealing.plot_graph('data/boltzexp_reheat_simulated_annealing_plot.png', title='Reheat Simulated Annealing Algorithm', save=True)
+    print(get_output(reheat_simulated_annealing.schedule.students, 'data/boltzexp_reheat_simulated_annealing.csv'))
+    print(reheat_simulated_annealing.maluspoints)
 
     #reheating_experiment.reheating_averages(test_schedule)
     #reheating_experiment.reheating_plot()

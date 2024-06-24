@@ -8,11 +8,13 @@ from .heuristics_hillclimber import HeuristicsHillclimber
 
 class SimulatedAnnealing(Hillclimber):
     # NOTE: still want to implement a way to switch between 2 types of cooling functions 
-    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential'):
+    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'boltzexp'):
         super().__init__(empty_schedule)
         self.start_temperature = start_temperature
         self.temperature = start_temperature
         self.cooling_function = cooling_function
+        self.temperatures = []
+        self.switched_cooling_functions = False
 
     def calculate_acceptance_probability(self, new_maluspoints: int, old_maluspoints: int) -> float:
         """
@@ -60,8 +62,14 @@ class SimulatedAnnealing(Hillclimber):
         self.temperature = self.start_temperature / math.log(self.iteration + 1)
 
     def boltz_exp_temperature_decline(self):
-        if self.iteration <= 1000:
+        if self.iteration <= (self.iterations // 5) and not self.switched_cooling_functions:
             self.boltz_temperature_decline()
+
+        elif not self.switched_cooling_functions:
+            self.iteration = 1
+            self.start_temperature = self.temperature
+            self.switched_cooling_functions = True
+            self.exponential_temperature_decline()
 
         else:
             self.exponential_temperature_decline()
@@ -95,6 +103,9 @@ class SimulatedAnnealing(Hillclimber):
             self.increase_no_change_counter()
 
         self.update_temperature()
+        self.temperatures.append(self.temperature)
+    
+    
 
     def plot_graph(self, output_file : str, x : str='iteration', y : str='maluspoints', title: str='Simulated Annealing Algorithm', save: bool=False):
         """
@@ -109,7 +120,7 @@ class SimulatedAnnealing(Hillclimber):
 
 
 class ReheatSimulatedAnnealing(SimulatedAnnealing):
-    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential', reheat_temperature: int = 50, reheat_threshold: int = 1500):
+    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential', reheat_temperature: int = 10, reheat_threshold: int = 1500):
         super().__init__(empty_schedule, start_temperature, cooling_function)
         self.reheat_temperature = reheat_temperature
         self.reheat_threshold = reheat_threshold
@@ -121,7 +132,8 @@ class ReheatSimulatedAnnealing(SimulatedAnnealing):
     def check_improvement(self, previous_schedule: Schedule) -> None:
         super().check_improvement(previous_schedule)
 
-        if self.no_change_counter >= self.reheat_threshold:
+        # if self.no_change_counter >= self.reheat_threshold:
+        if self.no_change_counter >= self.reheat_threshold and self.temperature <= 1:
             self.reheat()
             self.reset_no_change_counter()
             self.iteration = 0
