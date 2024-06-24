@@ -266,7 +266,7 @@ class Algorithm:
             mutation()
 
 
-    def display_all_maluspoints(self, title):
+    def display_maluspoints_division(self, title):
         """ 
         Gets all the different types of maluspoints from the schedule and prints them to terminal.
         
@@ -281,6 +281,7 @@ class Algorithm:
         print(f'Free periods: {self.schedule.free_period_maluspoints}')
         print(f'Room overcapacity: {self.schedule.overcapacity_maluspoints}')
         print(f'Student double bookings: {self.schedule.double_booking_maluspoints}')
+        print(f'Total: {self.schedule.total_maluspoints}')
 
     def plot_graph(self, output_file : str, x : str='iteration', y : str='maluspoints', title : str='Algorithm', save: bool=False):
         """
