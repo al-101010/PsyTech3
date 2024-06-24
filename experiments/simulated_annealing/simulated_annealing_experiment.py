@@ -26,7 +26,7 @@ def get_output(students : list, output : str):
         return schedule
 
 
-def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =10, temp: int =500):
+def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =10, temp: int =50):
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_simal 
     per each of nr_iterations and for all types of maluspoints.   
