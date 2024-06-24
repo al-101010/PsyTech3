@@ -3,6 +3,7 @@ import copy
 import matplotlib.pylab as plt
 from ..classes.schedule import Schedule
 from ..classes.activity import Activity
+
 class Algorithm:
 
     def __init__(self, schedule : Schedule, early_stopping_limit=2000):
@@ -13,7 +14,7 @@ class Algorithm:
 
     def run(self):
         raise NotImplementedError
-    
+
     def reset_no_change_counter(self):
         """
         Resets no change counter to 0
@@ -37,7 +38,7 @@ class Algorithm:
         Returns true if changes have stagnated.
         """    
         return self.early_stopping_limit == self.no_change_counter
-    
+
     def update_student_schedules(self):
         """
         Update all stutdents' schedules with their current activities.
@@ -52,166 +53,46 @@ class Algorithm:
         # pick roomslots to switch activities from
         random_roomslot1 = random.choice(self.schedule.roomslots)
         random_roomslot2 = random.choice(self.schedule.roomslots)
+
         return random_roomslot1, random_roomslot2
     
-    def get_roomslot_info(self, roomslot):
-        """
-        Returns the room, day, and time of a roomslot.
-        """
-        room = roomslot[0]
-        day = roomslot[1]
-        time = roomslot[2]
+    def is_lecture(self, activity_type):
+        return activity_type =='h'
 
-        return room, day, time
+    def pick_activity(self, activities):
+        activity = random.choice(list(activities))
+        course = activity.course
+        activity_type = activity.name[0]
 
-    def get_activities_with_most_maluspoints(self, activities, top_n: int=20) -> list:
-        return sorted(activities, key=lambda activity: activity.maluspoints, reverse=True)[:top_n]
+        return activity, activity_type, course
     
-    def get_activities_with_least_maluspoints(self, activities, top_n: int=20) -> list:
-        return sorted(activities, key=lambda activity: activity.maluspoints)[:top_n]
+    def pick_student(self, students):
+        return random.choice(list(students))
+    
+    def pick_students_to_switch(self, students, N):
+        random.shuffle(list(students))
+        return list(students)[:N]
+    
+    def pick_student_with_tutorial_practical(self, students):
+        student = self.pick_student(students)
 
-    def get_random_activity(self):
+        while not student.has_tutorial_practical():
+            student = self.pick_student(students)
+
+        return student 
+
+    def pick_activity_of_student(self, student):
         """
         Returns the course, activity type, and activity instance of a 
         randomly chosen tutorial or practical that has at least one
         other activity of that same type.
         """
-         # pick a random course
-        random_course = random.choice(self.schedule.courses)
-        
-        # make sure the course has tutorials or practicals
-        while 'w' not in random_course.activities and 'p' not in random_course.activities:
-            random_course = random.choice(self.schedule.courses)
+        activity, activity_type, course = self.pick_activity(student.activities)
 
-        # choose random activity type
-        random_activity_type = random.choice(list(random_course.activities))
+        while not activity.is_tutorial_practical() or len(course.activities[activity_type]) <= 1:
+            activity, activity_type, course = self.pick_activity(student.activities)
 
-        # make sure activity type has more than 1 activities and is not a lecture
-        while len(random_course.activities[random_activity_type]) <= 1 or random_activity_type == 'h':
-            random_activity_type = random.choice(list(random_course.activities))
-        
-        # pick a random tutorial or practical
-        random_activity = random.choice(random_course.activities[random_activity_type])
-        
-        # make sure activity has students
-        while len(random_activity.students) == 0:
-            random_activity = random.choice(random_course.activities[random_activity_type])
-        
-        return random_course, random_activity_type, random_activity
-    
-    def move_student(self, student, current_activity, switch_activity):
-        """
-        Moves a student from their curren activity to the switch activity.
-        """
-        # remove current and add new activity from student's activities set
-        student.activities.remove(current_activity)
-        student.activities.add(switch_activity)
-        student.update_schedule()
-        
-        # remove student from current and add to new activity's students set
-        current_activity.students.remove(student)
-        switch_activity.students.add(student)
-
-    def switch_activities(self):
-        """
-        Switches the activities from two randomly chosen roomslots. Activity may
-        also be None.
-        """
-        # store room, day, and time of roomslots
-        random_roomslot1, random_roomslot2 = self.pick_roomslots_to_switch()
-        room_1, day_1, time_1 = self.get_roomslot_info(random_roomslot1)
-        room_2, day_2, time_2 = self.get_roomslot_info(random_roomslot2)
-        
-        # save activities in roomslots
-        activity_1 = room_1.schedule[day_1][time_1]
-        activity_2 = room_2.schedule[day_2][time_2]
-        
-        # if activity is Activity instance, schedule instance
-        if activity_1:
-            activity_1.schedule(room_2, day_2, time_2)
-        if activity_2:
-            activity_2.schedule(room_1, day_1, time_1)
-        
-        # switch the activities to the other roomslot in room instance
-        room_1.schedule[day_1][time_1] = activity_2
-        room_2.schedule[day_2][time_2] = activity_1
-        self.update_student_schedules()
-        
-        # update the archive if an activity is switched to an empty spot 
-        self.update_archive(activity_1, room_1, day_1, time_1, room_2, day_2, time_2)
-        self.update_archive(activity_2, room_2, day_2, time_2, room_1, day_1, time_1)
-    
-    def update_archive(self, activity, room_current, day_current, time_current, room_new, day_new, time_new):
-        """ 
-        When switching activities, updates the archive if activity is switched to a free room.
-        """
-    
-        # if there is no activity in a room slot  
-        if not activity:
-            
-            # loop over still available rooms 
-            for item in self.schedule.archive:
-               
-                # if room, day, time are found in archive 
-                if room_current.room_number == item[0].room_number and day_current == item[1] and time_current == item[2]:
-                  
-                    # remove old activity from archive 
-                    self.schedule.archive.remove(item)
-                   
-                    # add new activity to archive 
-                    self.schedule.archive.append((room_new, day_new, time_new)) 
-                    break
-   
-        
-    def switch_student_from_activities(self):
-        """
-        Switches a random student from one of their current activities to 
-        another activity of the same type in the same course. 
-        """
-        random_course, random_activity_type, random_activity = self.get_random_activity()
-        
-        # pick a random students from the tutorial/practical
-        random_student = random.choice(list(random_activity.students))
-        
-        # pick another random activity to switch student to
-        switch_activity = random.choice(random_course.activities[random_activity_type])
-        
-        # pick new activity if new activity is same as random activity
-        while switch_activity == random_activity:
-            switch_activity = random.choice(random_course.activities[random_activity_type])
-        
-        # move another student to this activity if new activity is full
-        if len(switch_activity.students) == switch_activity.capacity:
-            switch_student = random.choice(list(switch_activity.students))
-            self.move_student(switch_student, switch_activity, random_activity)
-        
-        # move this student to other activity
-        self.move_student(random_student, random_activity, switch_activity)
-        
-    def split_activity(self):
-        """ 
-        Splits an activity into two and assigns the new activity to a still free roomslot. 
-        """
-        if self.schedule.archive:
-            print("splitting")
-            # activity = random.choice(list(self.schedule.activities))
-            # course = activity.course
-            # activity_type = activity.name[0]
-
-            course, activity_type, activity = self.get_random_activity()
-
-            # pick random room from still available 
-            room, day, time = random.choice(self.schedule.archive)
-
-            # add an activity of same type  
-            self.add_extra_activity(course, activity_type, activity, room, day, time)
-
-            # remove room from still available 
-            self.schedule.archive.remove((room, day, time))
-
-    def pick_students_to_switch(self, students, N):
-        random.shuffle(list(students))
-        return list(students)[:N]
+        return activity, activity_type, course
     
     def move_student_to_new_activity(self, student, course, activity_type, new_activity):
         """
@@ -231,47 +112,161 @@ class Algorithm:
 
         student.update_schedule()
 
+    
+    def move_student(self, student, current_activity, switch_activity):
+        """
+        Moves a student from their curren activity to the switch activity.
+        """
+        # remove current and add new activity from student's activities set
+        student.activities.remove(current_activity)
+        student.activities.add(switch_activity)
+
+        student.update_schedule()
+
+        # remove student from current and add to new activity's students set
+        current_activity.students.remove(student)
+        switch_activity.students.add(student)
+
+    def switch_student_from_activities(self):
+        """
+        Switches a random student from one of their current activities to 
+        another activity of the same type in the same course. 
+        """
+        # Pick a student two activities, 1 to switch from and to
+        activity, activity_type, course = self.pick_activity(self.schedule.activities)
+
+        while not activity.is_tutorial_practical() or len(course.activities[activity_type]) <= 1 or len(activity.students) == 0:
+            activity, activity_type, course = self.pick_activity(self.schedule.activities)
+
+        student = self.pick_student(activity.students)
+        
+        switch_activity = random.choice(course.activities[activity_type])
+
+        # pick new activity if new activity is same as first activity
+        while switch_activity == activity:
+            switch_activity = random.choice(course.activities[activity_type])
+
+        # move another student to this activity if new activity is full
+        if switch_activity.is_full():
+            switch_student = self.pick_student(switch_activity.students)
+            self.move_student(switch_student, switch_activity, activity)
+        
+        # move this student to other activity
+        self.move_student(student, activity, switch_activity)
+
+    def update_archive(self, activity, current_roomslot, new_roomslot):
+        """ 
+        When switching activities, updates the archive if activity is switched to a free room.
+        """
+        room_current, day_current, time_current = current_roomslot
+        room_new, day_new, time_new = new_roomslot
+        
+        # if there is no activity in a room slot  
+        if not activity:
+           
+            # loop over still available rooms 
+            for item in self.schedule.archive:
+               
+                # if room, day, time are found in archive 
+                if room_current.room_number == item[0].room_number and day_current == item[1] and time_current == item[2]:
+                  
+                    # remove old activity from archive 
+                    self.schedule.archive.remove(item)
+                   
+                    # add new activity to archive 
+                    self.schedule.archive.append((room_new, day_new, time_new)) 
+                    break
+
+    def switch_activities(self):
+        """
+        Switches the activities from two randomly chosen roomslots. Activity may
+        also be None.
+        """
+        # store room, day, and time of roomslots
+        roomslot1, roomslot2 = self.pick_roomslots_to_switch()
+        room_1, day_1, time_1 = roomslot1
+        room_2, day_2, time_2 = roomslot2
+
+        # save activities in roomslots
+        activity_1 = room_1.schedule[day_1][time_1]
+        activity_2 = room_2.schedule[day_2][time_2]
+
+        # if activity is Activity instance, schedule instance
+        if activity_1:
+            activity_1.schedule(room_2, day_2, time_2)
+        if activity_2:
+            activity_2.schedule(room_1, day_1, time_1)
+        
+        # switch the activities to the other roomslot in room instance
+        room_1.schedule[day_1][time_1] = activity_2
+        room_2.schedule[day_2][time_2] = activity_1
+
+        self.update_student_schedules()
+        
+        # update the archive if an activity is switched to an empty spot 
+        self.update_archive(activity_1, roomslot1, roomslot2)
+        self.update_archive(activity_2, roomslot2, roomslot1)
+
+    def split_activity(self):
+        """ 
+        Splits an activity into two and assigns the new activity to a still free roomslot. 
+        """
+        if self.schedule.archive:   
+        
+            activity, activity_type, course = self.pick_activity(self.schedule.activities)
+
+            while self.is_lecture(activity_type):
+                activity, activity_type, course = self.pick_activity(self.schedule.activities)
+
+
+            # pick random room from still available 
+            room, day, time = random.choice(self.schedule.archive)
+            
+            # add an activity of same type  
+            self.add_extra_activity(course, activity_type, activity, room, day, time)
+            
+            # remove room from still available 
+            self.schedule.archive.remove((room, day, time))            
+
+
     def add_extra_activity(self, activity_course, activity_type, activity, room, day, time):
         """
         Splits a work group or practical into two and reassigns students.
         Only use if free rooms available.  
+
+        Question: perhaps this method and some others should be in schedule??
         """
         
         # make new activity of the same type 
-        new_name = activity_type + str(len(activity_course.activities[activity_type]) + 1)
+        course_activities = activity_course.activities[activity_type]
+        new_name = activity_type + str(len(course_activities) + 1)
         new_activity = Activity(new_name, activity.capacity, activity_course)
         
         # schedule this new activity to an open roomslot
         new_activity.schedule(room, day, time)
-        
+
         # add new activity to course  
         activity_course.activities[activity_type].append(new_activity)
-        
-        students_to_switch = self.pick_students_to_switch(activity_course.students, int(new_activity.capacity // 2))
-        
+
         # update student courses 
+        students_to_switch = self.pick_students_to_switch(activity_course.students, int(new_activity.capacity)//2)
         for student in students_to_switch:
             self.move_student_to_new_activity(student, activity_course, activity_type, new_activity)
 
         # update activities in schedule 
         self.schedule.activities = self.schedule.get_activities_list(self.schedule.courses)
-
+        
     def mutate_schedule(self, number_of_mutations : int=1):
         """
         Mutate current schedule/timetable with a number of random mutations.
-        INCOMPLETE -> need to add more ways to alter the schedule
-        = Useful when we have multiple ways of altering the schedule (as we don't want to make every
-        single alteration at ones)
         """
-
-        for i in range(number_of_mutations):            
+        for mutation in range(number_of_mutations):
             if self.no_change_counter > 500 and self.schedule.archive:
                 mutation = random.choice([self.switch_student_from_activities, self.switch_activities, self.split_activity])
             else:
                 mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
-
             mutation()
-        
+
 
     def display_all_maluspoints(self, title):
         """ 
@@ -280,6 +275,7 @@ class Algorithm:
         TODO:
         - make proper visualisation 
         """
+
         # get hold of schedule and all types of maluspoints
         print(f'Algorithm name: {title}')
         print('Maluspoints:') 
@@ -294,7 +290,7 @@ class Algorithm:
         """
         # intialize variables
         iters = len(self.maluspoint_stats)
-        
+
         # plot graph
         plt.plot(self.maluspoint_stats)
         plt.xlabel(x)
@@ -304,6 +300,7 @@ class Algorithm:
         plt.title(f'final maluspoints = {self.maluspoint_stats[-1]}', loc='left', fontsize=9)
         if save:
             plt.savefig(output_file)
+
         plt.show()
 
     def check_output_schedule(self):
