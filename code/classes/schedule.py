@@ -1,7 +1,6 @@
-import math
 import pandas as pd
-import random
 import copy
+
 from .student import Student
 from .course import Course
 from .room import Room
@@ -26,7 +25,7 @@ class Schedule:
         to be scheduled activities
     roomslots: list[tuple[Room, str, str]]
         all roomslots in the schedule
-    archive:
+    archive: list[tupe[Room, str, str]]
         all available roomslots
     room_maluspoints: int
         maluspoints for usage of the evening room slot
@@ -43,7 +42,9 @@ class Schedule:
     def __init__(self, students_data : str, courses_data : str, rooms_data : str) -> None:
         self.students = self.get_students_list(students_data)
         self.courses = self.get_courses_list(courses_data, self.students)
+        self.add_students_courses(self.students, self.courses)
         self.rooms = self.get_rooms_list(rooms_data)
+        self.set_largest_room(self.rooms)
         self.activities = self.get_activities_list(self.courses)
         self.roomslots = self.get_room_slots()
         self.archive = copy.copy(self.roomslots)
@@ -55,10 +56,8 @@ class Schedule:
         self.overcapacity_maluspoints = 0
         self.total_maluspoints = 0
 
-        self.add_students_courses(self.students, self.courses)
-        self.set_largest_room(self.rooms)
 
-    def get_students_list(self, data : pd.DataFrame) -> list[Student]:
+    def get_students_list(self, data : str) -> list[Student]:
         """
         Iterate through students dataframe and create a Student class for each student.
         Returns a list of students in the form of Student classes.
@@ -72,21 +71,21 @@ class Schedule:
 
         students_list = []
 
-        # loop over rows of dataframe and add Student class to list.
+        # loop over rows of dataframe and add Student instance to list.
         for index, columns in data.iterrows():
             students_list.append(Student(columns['full_name'], columns['Stud.Nr.'], set(columns['courses'])))
 
         return students_list
 
-    def get_courses_list(self, data : pd.DataFrame, all_students : list[Student]) -> list[Course]:
+    def get_courses_list(self, data : str, all_students : list[Student]) -> list[Course]:
         """
         Iterate through courses dataframe and create a Course class for each Course.
-        Returns a list of courses in the form of Course classes.
+        Returns a list of courses in the form of Course instances.
         """
         # load data
         data = pd.read_csv(data)
 
-        # initialize variable
+        # initialize list
         courses_list = []
 
         # loop over rows of dataframe (courses)
@@ -101,10 +100,12 @@ class Schedule:
                 if columns['Vak'] in student.course_names:
                     course_students.append(student)
 
+            # store the number of lectures and their capacity
             lectures = (columns['#Hoorcolleges'], len(course_students))
             tutorials = (columns['#Werkcolleges'], columns['Max. stud. Werkcollege'])
             practicals = (columns['#Practica'], columns['Max. stud. Practicum'])
 
+            # create dictionary of activity types and the amount for this course
             activity_amounts = {'h' : lectures, 'w' : tutorials, 'p' : practicals}
 
             # add course to courses list
@@ -112,7 +113,7 @@ class Schedule:
 
         return courses_list
 
-    def get_rooms_list(self, data : pd.DataFrame) -> list[Room]:
+    def get_rooms_list(self, data : str) -> list[Room]:
         """
         Iterates through rooms dataframe and creates a Room object for each room.
         Returns a list of Room objects.
@@ -131,12 +132,13 @@ class Schedule:
 
         return rooms_list
     
-    def set_largest_room(self, rooms) -> None:
+    def set_largest_room(self, rooms : list[Room]) -> None:
         """
         Sets the room with highest capacity as largest room.
         """
         largest_room = sorted(rooms, key=lambda room: room.capacity, reverse=True)[0]
         largest_room.is_largest = True
+        largest_room.empty_schedule()
             
     
     def get_activities_list(self, courses : list[Course]) -> list[Activity]:
@@ -156,16 +158,15 @@ class Schedule:
                     activities_list.append(activity)
 
         return activities_list
-    
 
     def get_room_slots(self) -> list[tuple[Room, str, str]]:
         """
-        Create archive of all possible roomslots
+        Return list of all possible roomslots
         """
-        # empty list for archive of all room-slots
+        # empty list for all room-slots
         room_slots = []
 
-        # add all room-slots to archive
+        # add all room-slots to list
         for room in self.rooms:
             for day in room.days:
                 for time in room.timeslots:
@@ -173,27 +174,28 @@ class Schedule:
 
         return room_slots
 
-
-    def add_students_courses(self, students_list : list[Student], courses_list : list[Course]):
+    def add_students_courses(self, students_list : list[Student], courses_list : list[Course]) -> None:
         """
-        Add courses to students in the form of Subject classes.
+        Add courses to students in the form of Course instances.
         """
         for student in students_list:
             student.add_courses(courses_list)
 
     def get_evening_room_maluspoints(self) -> int:
         """ 
-        Calculates malus points for using C0.110. 
+        Returns malus points for using an evening slot. 
         """
-        # reset maluspoints
+        # reset maluspoints to zero
         self.room_maluspoints = 0
 
         # loop over all rooms
         for room in self.rooms:
 
-            # if largest and evening timeslot is being used, give 5 maluspoints
-            if room.room_number == 'C0.110': #NOTE: dit is hardcoden -> fiksen
-                for day, timeslots in room.schedule.items():
+            # loop over all timeslots
+            if room.is_largest:
+                for timeslots in room.schedule.values():
+
+                    # if largest and evening timeslot is being used, give 5 maluspoints
                     if timeslots.get('17'):
                         self.room_maluspoints += 5 
 
@@ -201,7 +203,7 @@ class Schedule:
     
     def get_overcapacity_maluspoints(self) -> int:
         """
-        Get malus points for overcapacity (too many students in a room).
+        Returns maluspoints for overcapacity (too many students in a room).
         """
         # reset maluspoints
         self.overcapacity_maluspoints = 0
@@ -211,7 +213,11 @@ class Schedule:
 
             # for each student in an activity over the room capacity assign 1 point (also to said activity)
             if len(activity.students) > activity.room.capacity:
+
+                # calculate how many students are over capacity
                 number_too_many =  len(activity.students) - activity.room.capacity
+
+                # Increase maluspoint counters
                 self.overcapacity_maluspoints += number_too_many
                 activity.maluspoints += number_too_many
 
@@ -227,7 +233,8 @@ class Schedule:
 
         # loop over students and collect maluspoints 
         for student in self.students:
-
+            
+            # increase maluspoints counters
             self.double_booking_maluspoints += student.get_double_booking_malus_points()
             self.free_period_maluspoints += student.get_free_period_malus_points()
             student.get_total_maluspoints()
@@ -243,7 +250,7 @@ class Schedule:
 
     def get_total_maluspoints(self) -> int:
         """
-        Calculates total amount of malus points.
+        Returns total amount of maluspoints for this schedule.
         """
         self.reset_maluspoints_activities()
         
@@ -251,23 +258,38 @@ class Schedule:
         student_maluspoints = self.get_student_maluspoints()
 
         # add all maluspoints together
-        self.total_maluspoints = self.get_evening_room_maluspoints() + student_maluspoints[0] + student_maluspoints[1] + self.get_overcapacity_maluspoints()
+        self.total_maluspoints = (self.get_evening_room_maluspoints() + 
+                                  student_maluspoints[0] + 
+                                  student_maluspoints[1] + 
+                                  self.get_overcapacity_maluspoints())
 
         return self.total_maluspoints
     
-    def get_output(self, output : str):
+    def get_output(self, output : str) -> pd.DataFrame:
         """
-        Print output schedule as data frame and convert to csv.
+        Return output schedule as data frame and convert to csv-file 
+        with given 'output' name.
         """
         rows = []
 
         # loop over all activities of each student and append relevant info
         for student in self.students:
             for activity in student.activities:
-                rows.append([student.name, activity.course, activity.name, activity.room.room_number, activity.day, activity.time])
+                
+                rows.append([student.name, 
+                             activity.course, 
+                             activity.name, 
+                             activity.room.room_number, 
+                             activity.day, 
+                             activity.time])
 
         # create dataframe of schedule
-        output_schedule = pd.DataFrame(rows, columns=['Student', 'Vak', 'Activiteit', 'Zaal', 'Dag', 'Tijdslot'])
+        output_schedule = pd.DataFrame(rows, columns=['Student', 
+                                                      'Vak', 
+                                                      'Activiteit', 
+                                                      'Zaal', 
+                                                      'Dag', 
+                                                      'Tijdslot'])
 
         output_schedule.to_csv(output, index=False)
 
