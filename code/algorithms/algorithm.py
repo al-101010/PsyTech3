@@ -49,7 +49,7 @@ class Algorithm:
 
     def pick_roomslot(self):
         """
-        Returns two random roomslots.
+        Returns a random roomslot.
         """
         return random.choice(self.schedule.roomslots)
     
@@ -101,9 +101,10 @@ class Algorithm:
         Moves a student from their current activity to the new activity if their current 
         activity is not know.
         """
-        # remove current and add new activity from student's activities set
+        # get the list of activities for this activity type
         activities = course.activities[activity_type]
         
+        # loop over activities and move student if they are in the activity
         for activity in activities:
             if activity != new_activity and activity in student.activities:
                 self.move_student(student, activity, new_activity)
@@ -252,8 +253,11 @@ class Algorithm:
         """
         Mutate current schedule/timetable with a number of random mutations.
         """
+        # loop for the number of iterations specified
         for mutation in range(number_of_mutations):
-            if self.schedule.archive:
+            
+            # randomly choose mutation, only add activities if algorithm is stuck
+            if self.no_change_counter > 500 and self.schedule.archive:
                 mutation = random.choice([self.switch_student_from_activities, self.switch_activities, self.add_activity_to_course])
             else:
                 mutation = random.choice([self.switch_student_from_activities, self.switch_activities])
