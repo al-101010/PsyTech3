@@ -7,15 +7,19 @@ import csv
 import pandas as pd 
 import os 
 
-def problematic_activity_all_averages(schedule, nr_climbers: int =30, nr_iterations: int =20000):
+def problematic_activity_all_averages(schedule, nr_climbers: int =10, nr_iterations: int =30):
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_climbers 
     per each of nr_iterations and for all types of maluspoints.   
     Stores thei final schedule of each climber in a separate folder. 
     '''
+    start_time = time.time()
 
     # initialise results 
     results = []
+
+    # initialise maluspoints collector per run 
+    maluspoints = []
     
     # if not existing, make separate folder to store schedules 
     dir_path = f'results/problematic_activity/{nr_climbers}runs{nr_iterations}iters'
@@ -44,18 +48,27 @@ def problematic_activity_all_averages(schedule, nr_climbers: int =30, nr_iterati
             # run the algorithm for one iteration 
             climber.run(1)
 
+            evening = climber.schedule.get_evening_room_maluspoints()
+            overcapacity = climber.schedule.get_overcapacity_maluspoints()
+            free_period =  climber.schedule.get_student_maluspoints()[0]
+            double_booking = climber.schedule.get_student_maluspoints()[1]
+            total = double_booking + overcapacity + evening + free_period
+
             # store maluspoints for this iteration
-            result.append((climber.maluspoints, 
-                           climber.schedule.get_evening_room_maluspoints(),
-                           climber.schedule.get_overcapacity_maluspoints(),
-                           climber.schedule.get_student_maluspoints()[0],
-                           climber.schedule.get_student_maluspoints()[1]))
+            result.append((total, evening, overcapacity, free_period, double_booking))
+        
+        # store final maluspoints of this run separately 
+        maluspoints.append(total)
 
         # store final schedules of each run  
         climber.schedule.get_output(dir_path+f'/problematic_activity{i + 1}_output.csv')
 
         # append iteration maluspoints to all results 
         results.append(result)
+
+    # store final maluspoints in separate file  
+    maluspoints = pd.DataFrame(maluspoints, columns=['Final Maluspoints'])
+    maluspoints.to_csv(dir_path+'/final_maluspoints.csv')
 
     # get all values for a row 
     values = []
@@ -79,9 +92,13 @@ def problematic_activity_all_averages(schedule, nr_climbers: int =30, nr_iterati
         
         for value in values:
             result_writer.writerow(value)
+    
+    end_time = time.time()
+    
+    print(f'--- {round(end_time - start_time, 1)} seconds ---')
 
 
-def problematic_activity_ratios_plot(nr_climbers: int =30, nr_iterations: int =20000):
+def problematic_activity_ratios_plot(nr_climbers: int =10, nr_iterations: int =30):
     '''
     Plots the averages, min, and max values of the maluspoint types of nr_climbers 
     per iteration in nr_iterations.
