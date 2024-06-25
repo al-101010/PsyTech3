@@ -1,6 +1,7 @@
 from code.algorithms.hillclimber import Hillclimber
 from statistics import mean
 from scipy import stats
+from code.classes.schedule import Schedule
 
 import time
 import matplotlib.pyplot as plt
@@ -171,27 +172,47 @@ def hillclimber_ratios_plot_zoom(nr_climbers: int =30, nr_iterations : int =2000
 
 
 ''' WORK IN PROGRESS'''
-def read_in_schedules():
+def get_maluspoints_from_output(schedule, nr_runs=30, nr_iters=20000):
     """
     Reads in the final hillclimber schedules.
     Returns list of final maluspoints per schedule. 
     """
-
-    # make list to store all maluspoints 
-    maluspoints = []
+    #specify directory 
+    directory = f'results/hillclimber/{nr_runs}runs{nr_iters}iters'
     
+    # initialise maluspoints 
+    maluspoints = []
+
+    counter = 0 
     # loop over each file 
-    for file in os.listdir('results/hillclimber/30runs20000iters'):
-        
-        filename = os.fsdecode(file)
+    for file in os.listdir(directory):
+        #testing with one data file 
+        if counter == 1:
+            filename = os.fsdecode(directory+'/'+file)
+            
+            # read in each file 
+            df = pd.read_csv(filename)
 
-        print(filename)
-        # read file  
+            # get data out of df 
 
-        # make an empty schedule
-        # fill in schedule with file data 
-        # calculate maluspoints of schedule 
-        # store maluspoints in a list  
+            
+            # make a schedule instance 
+            schedule = Schedule(df['Student'], df['Vak'], df['Zaal'])
+            
+
+            # fill in schedule with file data 
+            schedule.students = None 
+            schedule.courses = None
+            schedule.rooms = None
+            schedule.activities = None 
+            schedule.roomslots = None 
+            print(schedule)
+
+            
+            
+            # store maluspoints in a list  
+            maluspoints.append[schedule.get_total_maluspoints()]
+        counter += 1
     
     return maluspoints 
 
