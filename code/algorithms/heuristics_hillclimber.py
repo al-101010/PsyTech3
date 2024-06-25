@@ -1,40 +1,77 @@
 import random
 import math
-import copy
 
 from .hillclimber import Hillclimber
-from code.classes.schedule import Schedule
 
 class HeuristicsHillclimber(Hillclimber):
-    def get_activities_with_most_maluspoints(self, activities, top_n: int=40) -> list:
-        return sorted(activities, key=lambda activity: activity.maluspoints, reverse=True)[:top_n]
-    
-    def get_students_with_most_maluspoints(self, students, top_n: int=20) -> list:
-        return sorted(students, key=lambda student: student.maluspoints, reverse=True)[:top_n]
+    """
+    A class representing heuristic hillclimbers.
+    """
+    def get_objects_with_most_maluspoints(self, objects : list, top_n : int=20) -> list:
+        """
+        Returns a list of the top N objects with most maluspoints.
+        """
+        return sorted(objects, key=lambda object: object.maluspoints, reverse=True)[:top_n]
 
     
 class ProblematicActivityClimber(HeuristicsHillclimber):
-    
-    def pick_activity(self, activities):
+    """
+    A class representing the problematic activity heuristic, which selects random activities from those with the most maluspoints whenever
+    we need to pick activities for a mutation.
+    """
+
+    def pick_activity(self, activities : list):
+        """
+        Returns a random activity from the top 1/3 activities with most maluspoints.
+        """
+        # set N as 1/3 of the total activities list
         N = math.ceil(len(activities) / 3)
-        top_activities = self.get_activities_with_most_maluspoints(activities, N)
+
+        top_activities = self.get_objects_with_most_maluspoints(activities, N)
+
         return super().pick_activity(top_activities)
     
 class ProblematicStudentsClimber(HeuristicsHillclimber):
-    
-    def pick_student(self, students):
+    """
+    A class representing the problematic students heuristic, which selects random students from those with the most maluspoints whenever
+    we need to pick students for a mutation.
+    """
+    def pick_student(self, students : list):
+        """
+        Returns a random student from the top 1/3 students with most maluspoints.
+        """
+        # set N as 1/3 of the total students list
         N = math.ceil(len(students) / 3)
-        top_students = self.get_students_with_most_maluspoints(students, N)
+
+        top_students = self.get_objects_with_most_maluspoints(students, N)
+
         return super().pick_student(top_students)
     
-    def pick_students_to_switch(self, students, N):
-        return self.get_students_with_most_maluspoints(students, N)
+    def pick_students_to_switch(self, students : list, N : int):
+        """
+        Return N students with most maluspoints
+        """
+        return self.get_objects_with_most_maluspoints(students, N)
     
 class MutationProbabilityClimber(HeuristicsHillclimber):
-    def mutate_schedule(self, number_of_mutations: int = 1):
-        for i in range(number_of_mutations):            
+    """
+    A class representing the mutation probability heuristic for which the probability of certain mutations being made shifts/changes
+    as the algorithm progresses and (potentially) stagnates.
+    """
+    def mutate_schedule(self, number_of_mutations : int = 1):
+        """
+        Mutate the schedule for a specified number of times, varying the
+        mutation probability depending on the iteration and no_change_counter.
+        """
+
+        # loop for the number of mutations
+        for i in range(number_of_mutations):     
+
+            # only try adding activities if algorithm is stuck and roomslots are available      
             if self.no_change_counter > 500 and self.schedule.archive:
-                mutation = random.choices([self.switch_student_from_activities, self.switch_activities, self.split_activity], weights=(.2, .2, .6))[0]
+                mutation = random.choices([self.switch_student_from_activities, self.switch_activities, self.add_activity_to_course], weights=(.2, .2, .6))[0]
+            
+            # try switching activities more in early iterations and students in later iterations
             elif self.iteration < 1000:
                 mutation = random.choices([self.switch_student_from_activities, self.switch_activities], weights=(.2, .8))[0]
             else:
@@ -43,7 +80,16 @@ class MutationProbabilityClimber(HeuristicsHillclimber):
             mutation()
 
 class IncreasingMutationsClimber(HeuristicsHillclimber):
+    """
+    A class representing the increasing mutations heuristic for which the number of mutations made to the schedule increases 
+    as the algorithm progresses.
+    """
     def pick_number_mutations(self):
+        """
+        Returns the number of mutations to be done.
+        """
+
+        # try more mutations as the algorithm is stuck longer
         if self.no_change_counter > 1800:
             return 10
         elif self.no_change_counter > 1000:

@@ -12,6 +12,7 @@ from experiments.increasing_mutations import increasing_mutations_experiment
 from experiments.mutation_probability import mutation_probability_experiment
 from experiments.problematic_activity import problematic_activity_experiment
 from experiments.problematic_students import problematic_students_experiment
+# from experiments.reheating import reheating
 
 
 import pandas as pd
@@ -62,10 +63,11 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
 
             # problematic_activity_climber.plot_graph(output_png_name, title='Problematic Activity Climber', save=True)
             # problematic_activity_climber.schedule.get_output(output_csv_name)
-
-            problematic_activity_experiment.problematic_activity_all_averages(test_schedule)
-            problematic_activity_experiment.problematic_activity_ratios_plot()
-            # problematic_activity_experiment.problematic_activity_ratios_plot_zoom()
+            
+            if experiment:
+                problematic_activity_experiment.problematic_activity_all_averages(test_schedule)
+                problematic_activity_experiment.problematic_activity_ratios_plot()
+                # problematic_activity_experiment.problematic_activity_ratios_plot_zoom()
 
         if version == 'problematic students':
             # problematic_student_climber = ProblematicStudentsClimber(test_schedule)
@@ -75,22 +77,24 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             # problematic_student_climber.plot_graph(output_png_name, title='Problematic Student Climber', save=True)
             # problematic_student_climber.schedule.get_output(output_csv_name)
 
-            problematic_students_experiment.problematic_students_all_averages(test_schedule)
-            problematic_students_experiment.problematic_students_ratios_plot()
-            # problematic_students_experiment.problematic_student_ratios_plot_zoom()
+            if experiment:
+                problematic_students_experiment.problematic_students_all_averages(test_schedule)
+                problematic_students_experiment.problematic_students_ratios_plot()
+                # problematic_students_experiment.problematic_student_ratios_plot_zoom()
 
 
         if version == 'mutation probability':
-            # mutation_probability_climber = ProblematicStudentsClimber(test_schedule)
+            # mutation_probability_climber = MutationProbabilityClimber(test_schedule)
             # mutation_probability_climber.run(iterations)
             # mutation_probability_climber.display_maluspoints_division('Mutation Probability Climber')
 
             # mutation_probability_climber.plot_graph(output_png_name, title='Mutation Probability Climber', save=True)
             # mutation_probability_climber.schedule.get_output(output_csv_name)
 
-            mutation_probability_experiment.mutation_probability_all_averages(test_schedule)
-            mutation_probability_experiment.mutation_probability_ratios_plot()
-            # mutation_probability_experiment.mutation_probability_ratios_plot_zoom()
+            if experiment:
+                mutation_probability_experiment.mutation_probability_all_averages(test_schedule, 30, 20000)
+                mutation_probability_experiment.mutation_probability_ratios_plot(30, 20000)
+                # mutation_probability_experiment.mutation_probability_ratios_plot_zoom()
 
 
         if version == 'increasing mutations':
@@ -100,10 +104,11 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
 
             # increasing_mutations_climber.plot_graph(output_png_name, title='Increasing Mutation Climber', save=True)
             # increasing_mutations_climber.schedule.get_output(output_csv_name)
-
-            increasing_mutations_experiment.increasing_mutations_all_averages(test_schedule)
-            increasing_mutations_experiment.increasing_mutations_ratios_plot()
-            #increasing_mutations_experiment.increasing_mutations_ratios_plot_zoom()
+            
+            if experiment:
+                increasing_mutations_experiment.increasing_mutations_all_averages(test_schedule, 30, 20000)
+                increasing_mutations_experiment.increasing_mutations_ratios_plot(30, 20000)
+                #increasing_mutations_experiment.increasing_mutations_ratios_plot_zoom()
 
     # ======== PLANT PROPAGATION ===============
     if algorithm == 'plantprop':
@@ -161,6 +166,6 @@ if __name__ == "__main__":
 
     # Read arguments from command line
     args = parser.parse_args()
-
+    
     # Run main with provide arguments
     main(args.algorithm, args.output_csv, args.output_png, args.experiment, args.iterations, args.starting_temperature, args.version)
