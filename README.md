@@ -68,20 +68,20 @@ Data b) is plotted into a histogram of the distribution of final maluspoints per
 
 ### Running an experiment 
 To run an experiment, set 
-    - **algorithm** to the algorithm of choice
-    - **output_csv** to output.csv (not needed for experiments)
-    - **output_png** to output.png (not needed for experiments)
-    - **-i** to any number (not needed for experiments)
-    - **-st** to any number (if using simulated annealing, not needed for experiments)
-    - **-e** to True
-    - **-v** to the version of choice (only if using hillclimber)
+- **algorithm** to the algorithm of choice
+- **output_csv** to output.csv (not needed for experiments)
+- **output_png** to output.png (not needed for experiments)
+- **-i** to any number (not needed for experiments)
+- **-st** to any number (if using simulated annealing, not needed for experiments)
+- **-e** to True
+- **-v** to the version of choice (only if using hillclimber)
 
 Attention: By default, an experiment runs the respective algorithm for 20000 iterations 30 times! This can take up to 17 hours or more with a slow machine. It is possible to test different values by specifying this in the functions in main.py. Below is an example of how to do that: 
 
 To run a hillclimber experiment 10 times with 10 iterations specify in main: 
-    - *hillclimber_experiment.hillclimb_all_averages(test_schedule, 10, 10)*
-    - *hillclimber_experiment.ratios_plot(10, 10)*
-    - *hillclimber_experiment.plot_maluspoints_distribution(10, 10)*
+- *hillclimber_experiment.hillclimb_all_averages(test_schedule, 10, 10)*
+- *hillclimber_experiment.ratios_plot(10, 10)*
+- *hillclimber_experiment.plot_maluspoints_distribution(10, 10)*
 
 Running this, you should find a new folder in results with your experiment data and plots. 
 
