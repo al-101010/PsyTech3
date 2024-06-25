@@ -67,7 +67,7 @@ Data a) is plotted to showcase the reduction in cost (maluspoints) over iteratio
 Data b) is plotted into a histogram of the distribution of final maluspoints per run. 
 
 ### Running an experiment 
-To run an experiment, set 
+To run an experiment, set the argparse arguments in the following way 
 - **algorithm** to the algorithm of choice
 - **output_csv** to output.csv (not needed for experiments)
 - **output_png** to output.png (not needed for experiments)
