@@ -296,13 +296,3 @@ class Algorithm:
 
         plt.show()
 
-    def check_output_schedule(self):
-        """
-        Checks whether output schedule has 3 free periods (hard constraint).
-        """
-        for student in self.schedule.students:
-            if student.three_free_periods:
-                print(f"Not a valid schedule! {student} has 3 free periods.")
-                return
-        
-        print("Valid!")
