@@ -141,7 +141,7 @@ def simal_all_averages_plot(nr_simal: int =30, nr_iterations: int =20000):
     plt.xlabel('Iterations')
 
     fig.savefig(f"results/simulated_annealing/simulated_annealing_all_averages-{nr_simal}-{nr_iterations}.png", dpi=1200)
-
+    plt.show()
 
 def simal_all_averages_plot_zoom(nr_simal: int =30, nr_iterations : int =20000, zoom_start : int =15000, zoom_end : int =20000):
     '''
@@ -185,7 +185,7 @@ def simal_all_averages_plot_zoom(nr_simal: int =30, nr_iterations : int =20000, 
     plt.xlabel('Iterations')
 
     fig.savefig(f"results/simulated_annealing/simulated_annealing_all_averages_zoom-{nr_simal}-{nr_iterations}.png", dpi=1200)
-
+    plt.show()
 
 def plot_maluspoints_distribution(nr_simal=30, nr_iterations=20000, name='Simulated Annealing'):
     """
@@ -201,7 +201,7 @@ def plot_maluspoints_distribution(nr_simal=30, nr_iterations=20000, name='Simula
     plt.ylabel('Number Generated Schedules')
     plt.title(f'Distribution of maluspoints over {nr_simal} generated {name} schedules')
     plt.savefig(f'results/simulated_annealing/final_maluspoints-{nr_simal}-{nr_iterations}.png')
-
+    plt.show()
 
 def simal_temp_comparisons(schedule, n_simal=10, n_iterations=1000, temps: list = [50, 100, 500]):
     """
@@ -279,3 +279,4 @@ def simal_temp_comparisons_plot(temps: list = [50, 100, 500], n_simal=10, nr_ite
     plt.legend(temp_names, title='Temperatures')
 
     fig.savefig(f"results/simulated_annealing/simulated_annealing_temps.png", dpi=1200)
+    plt.show()

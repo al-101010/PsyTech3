@@ -66,8 +66,9 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             if experiment:
                 problematic_activity_experiment.problematic_activity_all_averages(test_schedule)
                 problematic_activity_experiment.problematic_activity_ratios_plot()
+                problematic_activity_experiment.problematic_activity_ratios_plot_zoom()
                 problematic_activity_experiment.plot_maluspoints_distribution()
-                # problematic_activity_experiment.problematic_activity_ratios_plot_zoom()
+                
 
         if version == 'problematic students':
             # problematic_student_climber = ProblematicStudentsClimber(test_schedule)
@@ -80,8 +81,9 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             if experiment:
                 problematic_students_experiment.problematic_students_all_averages(test_schedule)
                 problematic_students_experiment.problematic_students_ratios_plot()
+                problematic_students_experiment.problematic_student_ratios_plot_zoom()
                 problematic_students_experiment.plot_maluspoints_distribution()
-                # problematic_students_experiment.problematic_student_ratios_plot_zoom()
+                
 
 
         if version == 'mutation probability':
