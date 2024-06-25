@@ -74,7 +74,7 @@ To run an experiment, set
 - **-i** to any number (not needed for experiments)
 - **-st** to any number (if using simulated annealing, not needed for experiments)
 - **-e** to True
-- **-v** to the version of choice (only if using hillclimber)
+- **-v** to the version of choice
 
 Attention: By default, an experiment runs the respective algorithm for 20000 iterations 30 times! This can take up to 17 hours or more with a slow machine. It is possible to test different values by specifying this in the functions in main.py. Below is an example of how to do that: 
 
