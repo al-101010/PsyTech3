@@ -48,7 +48,8 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             if experiment:
                 hillclimber_experiment.hillclimb_all_averages(test_schedule)
                 hillclimber_experiment.hillclimber_ratios_plot()
-                # hillclimber_experiment.hillclimber_ratios_plot_zoom()
+                hillclimber_experiment.hillclimber_ratios_plot_zoom()
+                hillclimber_experiment.plot_maluspoints_distribution()
                 # hillclimber_experiment.timed_hillclimber_runs(test_schedule, Hillclimber) 
                 
                 # comparison of two hillclimbers 
@@ -67,6 +68,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             if experiment:
                 problematic_activity_experiment.problematic_activity_all_averages(test_schedule)
                 problematic_activity_experiment.problematic_activity_ratios_plot()
+                problematic_activity_experiment.plot_maluspoints_distribution()
                 # problematic_activity_experiment.problematic_activity_ratios_plot_zoom()
 
         if version == 'problematic students':
@@ -80,6 +82,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             if experiment:
                 problematic_students_experiment.problematic_students_all_averages(test_schedule)
                 problematic_students_experiment.problematic_students_ratios_plot()
+                problematic_students_experiment.plot_maluspoints_distribution()
                 # problematic_students_experiment.problematic_student_ratios_plot_zoom()
 
 
@@ -133,6 +136,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             if experiment:
                 simulated_annealing_experiment.simal_all_averages(test_schedule)
                 simulated_annealing_experiment.simal_all_averages_plot()
+                simulated_annealing_experiment.plot_maluspoints_distribution()
                 # simulated_annealing_experiment.simal_temp_comparisons(test_schedule)
                 # simulated_annealing_experiment.simal_temp_comparisons_plot()
         
