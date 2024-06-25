@@ -1,4 +1,5 @@
 import math
+
 from .activity import Activity
 from .student import Student
 
@@ -12,18 +13,17 @@ class Course:
 
         self.add_activities(activity_amounts)
 
-
     def __repr__(self) -> str:
         return self.name
 
-
-    def add_activities(self, activity_amounts : dict[str : int]):
+    def add_activities(self, activity_amounts : dict[str : int]) -> None:
         """
         Add all course activities to a dictionary. Accepts a dictionary
         with activities ('h', 'w', 'p') as keys and an amount as value.
         """
         # loop over all activity types to be created
         for activity_type, (amount, capacity) in activity_amounts.items():
+            
             # do not add activities with 0 amount
             if amount == 0:
                 continue
