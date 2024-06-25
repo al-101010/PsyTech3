@@ -55,11 +55,13 @@ This list describes the most important folders and files and where to find them:
 
 ## Experiments 
 There are 6 experiment files included in this repository, each testing one specific algorithm. 
-This includes running the respective algorithm n times for a specified number of iterations and collecting 
-    - a) the average, minimum, and maximum maluspoints per iteration over all runs 
-    - b) the final maluspoints after each run  
-    - c) the final output schedules of n runs 
-- After the data has been collected into the respective csv files, the time to conduct the experiment is printed to the screen (in seconds). 
+This includes running the respective algorithm n times for a specified number of iterations and collecting:  
+
+- a) the average, minimum, and maximum maluspoints per iteration over all runs 
+- b) the final maluspoints after each run  
+- c) the final output schedules of n runs 
+
+After the data has been collected into the respective csv files, the time to conduct the experiment is printed to the screen (in seconds). 
 
 Data a) is plotted to showcase the reduction in cost (maluspoints) over iterations and per algorithm. Note that the plot displays not only the total maluspoints but also their constituents (e.g. double booking of students). 
 Data b) is plotted into a histogram of the distribution of final maluspoints per run. 
