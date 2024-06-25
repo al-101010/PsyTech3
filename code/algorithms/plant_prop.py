@@ -1,10 +1,12 @@
-from ..classes.schedule import Schedule
-from .algorithm import Algorithm
-from .hillclimber import Hillclimber
 import copy
 import random
 import math
 import matplotlib.pyplot as plt
+
+from ..classes.schedule import Schedule
+from .algorithm import Algorithm
+from .hillclimber import Hillclimber
+
 
 
 class PlantProp(Algorithm):
@@ -19,83 +21,140 @@ class PlantProp(Algorithm):
 
         self.create_start_population()
 
-    def get_population_maluspoints(self):
+    def get_population_maluspoints(self) -> list:
+        """
+        Return a list of maluspoints for each schedule in the population
+        """
         population_maluspoints = []
+
+        # loop over each hillclimber in population and append it's schedule's maluspoints
         for hillclimber in self.population:
             population_maluspoints.append(hillclimber.schedule.get_total_maluspoints())
         
         return population_maluspoints
 
-    def create_start_population(self):
+    def create_start_population(self) -> None:
+        """
+        Adds N hillclimbers to start population.
+        """
         for n in range(self.N):
             self.population.append(Hillclimber(self.schedule))
     
-    def update_population(self):
+    def update_population(self) -> None:
+        """
+        Update population to be the best N hillclimbers.
+        """
         self.population = sorted(self.population, key= lambda x: x.schedule.get_total_maluspoints())[:self.N]
 
-    def get_best_schedule(self):
-        best_hillclimber = sorted(self.population, key= lambda x: x.schedule.get_total_maluspoints())[0]
-        return best_hillclimber.schedule
+    def get_best_or_worst_schedule(self, worst : bool) -> Schedule:
+        """
+        Return the schedule of the best hillclimber in population.
+        """
+        hillclimber = sorted(self.population, key= lambda x: x.schedule.get_total_maluspoints(), reverse=worst)[0]
+        return hillclimber.schedule
     
-    def get_worst_schedule(self):
-        worst_hillclimber = sorted(self.population, key= lambda x: x.schedule.get_total_maluspoints(), reverse=True)[0]
-        return worst_hillclimber.schedule
-    
-    def check_improvement(self, previous_maluspoints, current_maluspoints):
+    def check_improvement(self, previous_maluspoints : int, current_maluspoints : int) -> bool:
+        """
+        Check if maluspoints of current schedule have improved from previous schedule.
+        """
         return current_maluspoints < previous_maluspoints
     
-    def get_fitness(self, hillclimber):
+    def get_fitness(self, hillclimber : Hillclimber) -> float:
+        """
+        Return the fitness of a hillclimber.
+        """
+        # get this climber's maluspoints
         hillclimber_maluspoints = hillclimber.schedule.get_total_maluspoints()
-        best_maluspoints = self.get_best_schedule().get_total_maluspoints()
-        worst_maluspoints = self.get_worst_schedule().get_total_maluspoints()
-        return .5*(math.tanh(4 * ((best_maluspoints - hillclimber_maluspoints) / (best_maluspoints - worst_maluspoints + .1)) - 2) + 1)
+
+        # get best and worst maluspoints from population
+        best_maluspoints = self.get_best_or_worst_schedule(worst=False).get_total_maluspoints()
+        worst_maluspoints = self.get_best_or_worst_schedule(worst=True).get_total_maluspoints()
+
+        # calculate fitness
+        fitness = .5*(math.tanh(4 * ((best_maluspoints - hillclimber_maluspoints) / (best_maluspoints - worst_maluspoints + .1)) - 2) + 1)
+        
+        return fitness
     
-    def calculate_children(self, hillclimber, n_max=10):
+    def calculate_children(self, hillclimber : Hillclimber, n_max : int=10) -> int:
+        """
+        Return the number of children this hillclimber should make,
+        maximum amount of children default is 10.
+        """
+        # get fitness and random number to calculate children
         fitness = self.get_fitness(hillclimber)
         random_number = random.random()
+
         return math.ceil(fitness*random_number*n_max)
     
-    def calculate_mutations(self, hillclimber, m_max=20):
+    def calculate_mutations(self, hillclimber : Hillclimber, m_max=20):
+        """
+        Return the number of mutations this hillclimber should make,
+        maximum amount of mutations default is 20.
+        """
+        # get fitness and random number to calculate mutations
         fitness = self.get_fitness(hillclimber)
         random_number = random.random()
+
         return math.ceil((1-fitness)*random_number*m_max)
     
-    def mutate_all(self):
+    def mutate_all(self) -> None:
+        """
+        Mutate all schedules with their calculated amount of children 
+        and mutations.
+        """
         children = []
+
+        # loop over all hill climbers and their number of children
         for hillclimber in self.population:
             for child in range(self.calculate_children(hillclimber)):
+
+                # mutate the child and append it to the list of children
                 hillclimber = copy.deepcopy(hillclimber)
                 hillclimber.mutate_schedule(self.calculate_mutations(hillclimber))
                 children.append(hillclimber)
         
+        # add children to population
         self.population += children
 
-    def run(self, evals=10):
+    def run(self, evals : int=10) -> None:
+        """
+        Run plant propagation for a number of evaluations.
+        """
+        # loop while current evaluation is lower than specified evaluataions
         while self.evaluation < evals:
+            
             previous_best_maluspoints = self.get_best_schedule().get_total_maluspoints()
+            
             self.mutate_all()
+            
             self.evaluation += len(self.population)
+            
             self.update_population()
+            
             current_best_maluspoints = self.get_best_schedule().get_total_maluspoints()
+            
+            # append evaluations and best maluspoint status to plot later
             self.evaluation_stats.append(self.evaluation)
             self.maluspoint_stats.append(current_best_maluspoints)
 
+            # update no change counter according to imrpovement
             if self.check_improvement(previous_best_maluspoints, current_best_maluspoints):
                 self.no_change_counter = 0
             else:
                 self.no_change_counter += 1
 
+            # implement early stopping if stagnation
             if self.early_stopping:
                 if self.check_stagnation():
+
+                    # save best schedule and maluspoints
                     self.maluspoints = current_best_maluspoints
                     self.schedule = self.get_best_schedule()
+
                     print("stopping early due to a stagnation of improvements")
                     return
 
-            print(self.evaluation)
-            for hillclimber in self.population:
-                print(hillclimber.schedule.get_total_maluspoints(), end=', ')
-
+        # save best schedule and maluspoints
         self.schedule = self.get_best_schedule()
         self.maluspoints = self.schedule.get_total_maluspoints()
 
