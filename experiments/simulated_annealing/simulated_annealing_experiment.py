@@ -7,7 +7,7 @@ import csv
 import pandas as pd 
 from statistics import mean
 
-def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, temp: int =50):
+def simal_all_averages(schedule, nr_simal: int =1, nr_iterations: int =2000, temp: int =50):
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_simal 
     per each of nr_iterations and for all types of maluspoints.   
@@ -30,7 +30,8 @@ def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, t
         result = []
         
         # make a simulated annealing object  
-        simal = SimulatedAnnealing(schedule, temp)
+        simal = SimulatedAnnealing(schedule, temp, cooling_function='exponential')
+        
         print(simal.schedule.get_total_maluspoints())
         print(f"Running Simulated Annealing Number: {i}")
         
@@ -43,6 +44,7 @@ def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, t
             
             # run the algorithm for one iteration 
             simal.run(1)
+            print(simal.temperature)
             # store maluspoints for this iteration
             result.append((simal.schedule.get_total_maluspoints(), 
                            simal.schedule.get_evening_room_maluspoints(),
@@ -80,7 +82,7 @@ def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, t
             result_writer.writerow(value)
 
 
-def simal_all_averages_plot(nr_simal: int =10, nr_iterations: int =10):
+def simal_all_averages_plot(nr_simal: int =1, nr_iterations: int =2000):
     '''
     Plots the averages, min, and max values of the maluspoint types of nr_simal 
     per iteration in nr_iterations.
@@ -112,9 +114,9 @@ def simal_all_averages_plot(nr_simal: int =10, nr_iterations: int =10):
     ax.fill_between(range(nr_iterations), df['Double Min'], df['Double Max'], alpha = 0.2)
     
     # set y axis, range 0 to 2500 works best        
-    ax.set_ybound(0, 2500)
+    ax.set_ybound(0, 4500)
 
-    plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'])
+    plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'], loc='upper right')
     plt.title(f'Maluspoints of n={nr_simal} Simulated Annealing Algorithms')
     plt.ylabel('Average Maluspoints')
     plt.xlabel('Iterations')

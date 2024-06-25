@@ -4,6 +4,9 @@ import math
 from .hillclimber import Hillclimber
 
 class HeuristicsHillclimber(Hillclimber):
+    """
+    A class representing heuristic hillclimbers.
+    """
     def get_objects_with_most_maluspoints(self, objects : list, top_n : int=20) -> list:
         """
         Returns a list of the top N objects with most maluspoints.
@@ -12,6 +15,11 @@ class HeuristicsHillclimber(Hillclimber):
 
     
 class ProblematicActivityClimber(HeuristicsHillclimber):
+    """
+    A class representing the problematic activity heuristic, which selects random activities from those with the most maluspoints whenever
+    we need to pick activities for a mutation.
+    """
+
     def pick_activity(self, activities : list):
         """
         Returns a random activity from the top 1/3 activities with most maluspoints.
@@ -24,7 +32,10 @@ class ProblematicActivityClimber(HeuristicsHillclimber):
         return super().pick_activity(top_activities)
     
 class ProblematicStudentsClimber(HeuristicsHillclimber):
-    
+    """
+    A class representing the problematic students heuristic, which selects random students from those with the most maluspoints whenever
+    we need to pick students for a mutation.
+    """
     def pick_student(self, students : list):
         """
         Returns a random student from the top 1/3 students with most maluspoints.
@@ -43,6 +54,10 @@ class ProblematicStudentsClimber(HeuristicsHillclimber):
         return self.get_objects_with_most_maluspoints(students, N)
     
 class MutationProbabilityClimber(HeuristicsHillclimber):
+    """
+    A class representing the mutation probability heuristic for which the probability of certain mutations being made shifts/changes
+    as the algorithm progresses and (potentially) stagnates.
+    """
     def mutate_schedule(self, number_of_mutations : int = 1):
         """
         Mutate the schedule for a specified number of times, varying the
@@ -65,6 +80,10 @@ class MutationProbabilityClimber(HeuristicsHillclimber):
             mutation()
 
 class IncreasingMutationsClimber(HeuristicsHillclimber):
+    """
+    A class representing the increasing mutations heuristic for which the number of mutations made to the schedule increases 
+    as the algorithm progresses.
+    """
     def pick_number_mutations(self):
         """
         Returns the number of mutations to be done.

@@ -1,7 +1,9 @@
 from .random_alg import Random
 
 class FittedStart(Random):
-
+    """
+    A class to represent a start without overcapicity
+    """
     def schedule_courses(self, archive):
         """
         Schedule all activities on a roomslot that is available and is just
