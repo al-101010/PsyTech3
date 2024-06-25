@@ -15,7 +15,7 @@ class PlantProp(Algorithm):
         self.N = N
         self.population = []
         self.evaluation_stats = []
-        self.iteration = 0
+        self.evaluation = 0
 
         self.create_start_population()
 
@@ -70,14 +70,14 @@ class PlantProp(Algorithm):
         
         self.population += children
 
-    def run(self, iters=10):
-        while self.iteration < iters:
+    def run(self, evals=10):
+        while self.evaluation < evals:
             previous_best_maluspoints = self.get_best_schedule().get_total_maluspoints()
             self.mutate_all()
-            self.iteration += len(self.population)
+            self.evaluation += len(self.population)
             self.update_population()
             current_best_maluspoints = self.get_best_schedule().get_total_maluspoints()
-            self.evaluation_stats.append(self.iteration)
+            self.evaluation_stats.append(self.evaluation)
             self.maluspoint_stats.append(current_best_maluspoints)
 
             if self.check_improvement(previous_best_maluspoints, current_best_maluspoints):
@@ -92,16 +92,16 @@ class PlantProp(Algorithm):
                     print("stopping early due to a stagnation of improvements")
                     return
 
-            print(self.iteration)
+            print(self.evaluation)
             for hillclimber in self.population:
                 print(hillclimber.schedule.get_total_maluspoints(), end=', ')
 
         self.schedule = self.get_best_schedule()
         self.maluspoints = self.schedule.get_total_maluspoints()
 
-    def plot_graph(self, output_file : str, x : str='iteration', y : str='maluspoints', title : str='Algorithm', save: bool=False):
+    def plot_graph(self, output_file : str, x : str='evaluation', y : str='maluspoints', title : str='Algorithm', save: bool=False):
         """
-        Plot maluspoints as a function of number of iterations (for hillclimber)
+        Plot maluspoints as a function of number of evaluations (for hillclimber)
         """
 
         # plot graph
@@ -109,7 +109,7 @@ class PlantProp(Algorithm):
         plt.xlabel(x)
         plt.ylabel(y)
         plt.suptitle(title, fontsize=12)
-        plt.title(f'N = {self.iteration}', loc='center', fontsize=9)
+        plt.title(f'N = {self.evaluation}', loc='center', fontsize=9)
         plt.title(f'final maluspoints = {self.maluspoint_stats[-1]}', loc='left', fontsize=9)
         if save:
             plt.savefig(output_file)
