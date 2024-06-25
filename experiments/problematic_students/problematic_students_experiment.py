@@ -1,9 +1,11 @@
 from code.algorithms.heuristics_hillclimber import ProblematicStudentsClimber
 from statistics import mean
 
+import time 
 import matplotlib.pyplot as plt
 import csv
 import pandas as pd 
+import sns 
 import os 
 
 def problematic_students_all_averages(schedule, nr_climbers: int =30, nr_iterations: int =20000):
@@ -12,9 +14,13 @@ def problematic_students_all_averages(schedule, nr_climbers: int =30, nr_iterati
     per each of nr_iterations and for all types of maluspoints.   
     Stores thei final schedule of each climber in a separate folder. 
     '''
+    start_time = time.time()
 
     # initialise results 
     results = []
+
+    # initialise maluspoints collector per run 
+    maluspoints = []
     
     # if not existing, make separate folder to store schedules 
     dir_path = f'results/problematic_students/{nr_climbers}runs{nr_iterations}iters'
@@ -43,18 +49,27 @@ def problematic_students_all_averages(schedule, nr_climbers: int =30, nr_iterati
             # run the algorithm for one iteration 
             climber.run(1)
 
+            evening = climber.schedule.get_evening_room_maluspoints()
+            overcapacity = climber.schedule.get_overcapacity_maluspoints()
+            free_period =  climber.schedule.get_student_maluspoints()[0]
+            double_booking = climber.schedule.get_student_maluspoints()[1]
+            total = double_booking + overcapacity + evening + free_period
+
             # store maluspoints for this iteration
-            result.append((climber.maluspoints, 
-                           climber.schedule.get_evening_room_maluspoints(),
-                           climber.schedule.get_overcapacity_maluspoints(),
-                           climber.schedule.get_student_maluspoints()[0],
-                           climber.schedule.get_student_maluspoints()[1]))
+            result.append((total, evening, overcapacity, free_period, double_booking))
+
+        # store final maluspoints of this run separately 
+        maluspoints.append(total)
 
         # store final schedules of each run  
         climber.schedule.get_output(dir_path+f'/problematic_students{i + 1}_output.csv')
 
         # append iteration maluspoints to all results 
         results.append(result)
+
+    # store final maluspoints in separate file  
+    maluspoints = pd.DataFrame(maluspoints, columns=['Final Maluspoints'])
+    maluspoints.to_csv(dir_path+'/final_maluspoints.csv')
 
     # get all values for a row 
     values = []
@@ -78,6 +93,10 @@ def problematic_students_all_averages(schedule, nr_climbers: int =30, nr_iterati
         
         for value in values:
             result_writer.writerow(value)
+    
+    end_time = time.time()
+    
+    print(f'--- {round(end_time - start_time, 1)} seconds ---')
 
 
 def problematic_students_ratios_plot(nr_climbers: int =30, nr_iterations: int =20000):
@@ -165,5 +184,20 @@ def problematic_students_ratios_plot_zoom(nr_climbers: int =30, nr_iterations : 
 
     fig.savefig(f"results/problematic_students/problematic_students_all_averages_zoom-{nr_climbers}-{nr_iterations}.png", dpi=1200)
 
+
+def plot_maluspoints_distribution(nr_climbers=30, nr_iterations=20000, name='Problematic Students'):
+    """
+    Plots a histogram of the distribution of maluspoints in N schedules.  
+    """
+
+    maluspoints_df = pd.read_csv(f'results/problematic_students/{nr_climbers}runs{nr_iterations}iters/final_maluspoints.csv')
+
+    maluspoints = maluspoints_df['Final Maluspoints'].to_list()
+
+    sns.histplot(maluspoints, bins=5, kde=True, edgecolor='black')
+    plt.xlabel('Number Maluspoints')
+    plt.ylabel('Number Generated Schedules')
+    plt.title(f'Distribution of maluspoints over {nr_climbers} generated {name} schedules')
+    plt.savefig(f'results/problematic_students/final_maluspoints-{nr_climbers}-{nr_iterations}.png')
 
 

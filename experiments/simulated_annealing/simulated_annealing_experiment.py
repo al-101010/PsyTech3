@@ -1,21 +1,27 @@
 from code.algorithms.simulated_annealing import SimulatedAnnealing
 
 import matplotlib.pyplot as plt
+import time 
 import os 
 import random 
 import csv
 import pandas as pd 
+import seaborn as sns 
 from statistics import mean
 
-def simal_all_averages(schedule, nr_simal: int =1, nr_iterations: int =2000, temp: int =50):
+def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, temp: int =50):
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_simal 
     per each of nr_iterations and for all types of maluspoints.   
     Stores thei final schedule of each simulated annealing algorithm in a separate folder. 
     '''
+    start_time = time.time()
 
     # initialise results 
     results = []
+
+    # initialise maluspoints collector per run 
+    maluspoints = []
     
     # if not existing, make separate folder to store schedules 
     dir_path = f'results/simulated_annealing/{nr_simal}runs{nr_iterations}iters'
@@ -44,19 +50,28 @@ def simal_all_averages(schedule, nr_simal: int =1, nr_iterations: int =2000, tem
             
             # run the algorithm for one iteration 
             simal.run(1)
-            print(simal.temperature)
+                        
+            evening = simal.schedule.get_evening_room_maluspoints()
+            overcapacity = simal.schedule.get_overcapacity_maluspoints()
+            free_period =  simal.schedule.get_student_maluspoints()[0]
+            double_booking = simal.schedule.get_student_maluspoints()[1]
+            total = double_booking + overcapacity + evening + free_period
+
             # store maluspoints for this iteration
-            result.append((simal.schedule.get_total_maluspoints(), 
-                           simal.schedule.get_evening_room_maluspoints(),
-                           simal.schedule.get_overcapacity_maluspoints(),
-                           simal.schedule.get_student_maluspoints()[0],
-                           simal.schedule.get_student_maluspoints()[1]))
+            result.append((total, evening, overcapacity, free_period, double_booking))
+
+        # store final maluspoints of this run separately 
+        maluspoints.append(total)
 
         # store final schedules of each run  
         simal.schedule.get_output(dir_path+f'/simulated_annealing{i + 1}_output.csv')
 
         # append iteration maluspoints to all results 
         results.append(result)
+
+    # store final maluspoints in separate file  
+    maluspoints = pd.DataFrame(maluspoints, columns=['Final Maluspoints'])
+    maluspoints.to_csv(dir_path+'/final_maluspoints.csv')
 
     # get all values for a row 
     values = []
@@ -80,9 +95,13 @@ def simal_all_averages(schedule, nr_simal: int =1, nr_iterations: int =2000, tem
         
         for value in values:
             result_writer.writerow(value)
+    
+    end_time = time.time()
+    
+    print(f'--- {round(end_time - start_time, 1)} seconds ---')
 
 
-def simal_all_averages_plot(nr_simal: int =1, nr_iterations: int =2000):
+def simal_all_averages_plot(nr_simal: int =30, nr_iterations: int =20000):
     '''
     Plots the averages, min, and max values of the maluspoint types of nr_simal 
     per iteration in nr_iterations.
@@ -113,8 +132,8 @@ def simal_all_averages_plot(nr_simal: int =1, nr_iterations: int =2000):
     ax.fill_between(range(nr_iterations), df['Free Min'], df['Free Max'], alpha = 0.2)
     ax.fill_between(range(nr_iterations), df['Double Min'], df['Double Max'], alpha = 0.2)
     
-    # set y axis, range 0 to 2500 works best        
-    ax.set_ybound(0, 4500)
+    # set y axis, range 0 to 1500 works best        
+    ax.set_ybound(0, 1500)
 
     plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'], loc='upper right')
     plt.title(f'Maluspoints of n={nr_simal} Simulated Annealing Algorithms')
@@ -166,6 +185,22 @@ def simal_all_averages_plot_zoom(nr_simal: int =30, nr_iterations : int =20000, 
     plt.xlabel('Iterations')
 
     fig.savefig(f"results/simulated_annealing/simulated_annealing_all_averages_zoom-{nr_simal}-{nr_iterations}.png", dpi=1200)
+
+
+def plot_maluspoints_distribution(nr_simal=30, nr_iterations=20000, name='Simulated Annealing'):
+    """
+    Plots a histogram of the distribution of maluspoints in N schedules.  
+    """
+
+    maluspoints_df = pd.read_csv(f'results/simulated_annealing/{nr_simal}runs{nr_iterations}iters/final_maluspoints.csv')
+
+    maluspoints = maluspoints_df['Final Maluspoints'].to_list()
+
+    sns.histplot(maluspoints, bins=5, kde=True, edgecolor='black')
+    plt.xlabel('Number Maluspoints')
+    plt.ylabel('Number Generated Schedules')
+    plt.title(f'Distribution of maluspoints over {nr_simal} generated {name} schedules')
+    plt.savefig(f'results/simulated_annealing/final_maluspoints-{nr_simal}-{nr_iterations}.png')
 
 
 def simal_temp_comparisons(schedule, n_simal=10, n_iterations=1000, temps: list = [50, 100, 500]):
@@ -244,101 +279,3 @@ def simal_temp_comparisons_plot(temps: list = [50, 100, 500], n_simal=10, nr_ite
     plt.legend(temp_names, title='Temperatures')
 
     fig.savefig(f"results/simulated_annealing/simulated_annealing_temps.png", dpi=1200)
-
-
-
-''' DEPRECATED '''
-def simal_temp_comparisons_plot_old(min_temp=500, max_temp=1100, step=100, n_simal=10):
-    """
-    Makes one plot comparing the results of n simulated annealing algorithms running for X
-    iterations each using the same starting point but different temperatures. 
-    """
-    fig, ax = plt.subplots()
-    results = []
-
-    temps = [50, 100, 500]
-
-    for number in temps:
-    #for n in range(min_temp, max_temp, step):
-        with open(f"results/simulated_annealing/simulated_annealing_temp_{number}.csv", 'r') as input_file:
-            result_reader = csv.reader(input_file, delimiter=',')
-            results.append([float(value) for value, _, _ in result_reader])
-
-    for temp, result in zip(temps, results):
-    #for temp, result in zip(range(min_temp, max_temp, step), results):
-        print(temp)
-        ax.plot(result, label=f'Temperature {temp}')
-
-    ax.legend(loc='upper right')
-    ax.set_title(f'Simulated Annealing Temperatures (n={n_simal})')
-    ax.set_xlabel('Iterations')
-    ax.set_ylabel('Total Maluspoints')
-    fig.savefig(f"results/simulated_annealing/simulated_annealing_temp.png")
-
-
-def simal_averages(schedule, nr_simal=10, nr_iterations=1000, temp=500):
-    
-    # add a seed for randomness 
-    random.seed(123)
-
-    # initialise results 
-    results = []
-    
-    # define how many algorithms you want to run 
-    for i in range(nr_simal):
-        
-        # store results of each algorithm run 
-        result = []
-        
-        # make an algorithm object  
-        algorithm = sa.SimulatedAnnealing(schedule, temp)
-        
-        print(f"Running Simulated Annealing Algorithm Number: {i}")
-        # run the algorithm X times 
-        for j in range(nr_iterations):
-            
-            # run the algorithm for one iteration 
-            algorithm.run(1)
-
-            # append maluspoints for this iteration to results   
-            result.append(algorithm.schedule.get_total_maluspoints())
-
-        # append result to all results 
-        results.append(result)
-
-    # get all values for a row 
-    values = []
-    for iteration in zip(*results):
-        values.append((mean(iteration), min(iteration), max(iteration)))
-
-    with open("results/simulated_annealing/simulated_annealing_averages.csv", 'w', newline='') as output_file:
-        result_writer = csv.writer(output_file, delimiter=',')
-        
-        for value in values:
-            result_writer.writerow(value)
-
-
-def simal_averages_plot(nr_simal=10, file_name="results/simulated_annealing/simulated_annealing_averages.csv"):
-    """ 
-    Makes a plot of the mean, min, and max number of maluspoints at each iteration.
-    """
-    fig, ax = plt.subplots()
-    with open(file_name, 'r') as input_file:
-        result_reader = csv.reader(input_file, delimiter=',')
-        results = [(float(average), int(minimum), int(maximum)) for average, minimum, maximum in result_reader]
-        averages = [average for average, minimum, maximum in results]
-        minima = [minimum for average, minimum, maximum in results]
-        maxima = [maximum for average, minimum, maximum in results]
-
-    ax.plot(averages, label='Simulated Annealing')
-    ax.fill_between(range(0, len(averages)), minima, maxima, alpha=0.5, linewidth=0)
-    ax.set_title(f'Simulated Annealing Algorithms (n={nr_simal})')
-    ax.set_xlabel('Iterations')
-    ax.set_ylabel('Average Maluspoints')
-    ax.set_ybound(0, 4000)
-    fig.savefig("results/simulated_annealing/simulated_annealing_averages.png")
-
-
-
-
-

@@ -9,6 +9,7 @@ import random
 import csv
 import pandas as pd 
 import os 
+import seaborn as sns
 
 def hillclimb_all_averages(schedule, nr_climbers: int =30, nr_iterations: int =20000):
     ''' 
@@ -187,19 +188,20 @@ def hillclimber_ratios_plot_zoom(nr_climbers: int =30, nr_iterations : int =2000
     fig.savefig(f"results/hillclimber/hillclimber_all_averages_zoom-{nr_climbers}-{nr_iterations}.png", dpi=1200)
 
 
-
-''' WORK IN PROGRESS'''
-
-def plot_maluspoints_distribution(maluspoints: list):
+def plot_maluspoints_distribution(nr_climbers=30, nr_iterations=20000, name='Hillclimber'):
     """
     Plots a histogram of the distribution of maluspoints in N schedules.  
     """
 
-    sns.histplot(maluspoints, bins=50, kde=True, edgecolor='black')
+    maluspoints_df = pd.read_csv(f'results/hillclimber/{nr_climbers}runs{nr_iterations}iters/final_maluspoints.csv')
+
+    maluspoints = maluspoints_df['Final Maluspoints'].to_list()
+
+    sns.histplot(maluspoints, bins=5, kde=True, edgecolor='black')
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
-    plt.title('Distribution of maluspoints over randomly generated schedules')
-    plt.savefig('../data/random_cost.png')
+    plt.title(f'Distribution of maluspoints over {nr_climbers} generated {name} schedules')
+    plt.savefig(f'results/hillclimber/final_maluspoints-{nr_climbers}-{nr_iterations}.png')
 
 
 
@@ -277,80 +279,6 @@ def timed_hillclimber_runs(schedule, algorithm):
         climber.run(1)
         n_runs += 1
     print(f'{n_runs} runs in 60 seconds')
-
-
-"""DEPRECATED"""
-def hillclimb_averages(schedule, nr_climbers, nr_iterations):
-    """
-    Gets the average, min, max of each hillclimber runs. 
-    Replaced by hillclimb all averages. 
-    TODO: check if still needed, remove 
-    """
-    # add a seed 
-    random.seed(123)
-
-    # initialise results 
-    results = []
-    
-    # define how many hillclimbers you want to run 
-    for i in range(nr_climbers):
-        
-        # store results of each algorithm run 
-        result = []
-        
-        # make a hillclimber object  
-        climber = Hillclimber(schedule)
-        
-        print(f"Running Hill Climber Number: {i}")
-        # run the algorithm X times 
-        for j in range(nr_iterations):
-            
-            # run the algorithm for one iteration 
-            climber.run(1)
-
-            # append maluspoints for this iteration to results
-            result.append(climber.schedule.get_total_maluspoints())
-
-        # append result to all results 
-        results.append(result)
-
-    # get all values for a row 
-    values = []
-    for iteration in zip(*results):
-        
-        iteration = list(zip(*list(iteration)))
-        
-        values.append(mean(iteration[0]), min(iteration[0]), max(iteration[0]))
-
-    with open("results/hillclimber/hillclimber_averages.csv", 'w', newline='') as output_file:
-        result_writer = csv.writer(output_file, delimiter=',')
-        #result_writer.writerow(["Mean Maluspoints", "Min Maluspoints", "Max Maluspoints"])
-        
-        for value in values:
-            result_writer.writerow(value)
-
-def hillclimber_averages_plot(nr_climbers, file_name="results/hillclimber/hillclimber_averages.csv"):
-    """ 
-    Replaced by hillclimber ratios plot. 
-    Makes a plot of the mean, min, and max number of maluspoints at each iteration.
-    TODO: check if still needed, remove 
-    """
-    fig, ax = plt.subplots()
-    with open(file_name, 'r') as input_file:
-        result_reader = csv.reader(input_file, delimiter=',')
-        results = [(float(average), int(minimum), int(maximum)) for average, minimum, maximum in result_reader]
-        averages = [average for average, minimum, maximum in results]
-        minima = [minimum for average, minimum, maximum in results]
-        maxima = [maximum for average, minimum, maximum in results]
-
-    ax.plot(averages, label='Hillclimber')
-    ax.fill_between(range(0, len(averages)), minima, maxima, alpha=0.5, linewidth=0)
-    ax.set_title(f'Hillclimbers (n={nr_climbers})')
-    ax.set_xlabel('Iterations')
-    ax.set_ylabel('Average Maluspoints')
-    fig.savefig("results/hillclimber/hillclimber_averages.png")
-
-
 
 
 

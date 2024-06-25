@@ -5,6 +5,7 @@ import time
 import matplotlib.pyplot as plt
 import csv
 import pandas as pd 
+import seaborn as sns 
 import os 
 
 def problematic_activity_all_averages(schedule, nr_climbers: int =10, nr_iterations: int =30):
@@ -182,3 +183,19 @@ def problematic_activity_ratios_plot_zoom(nr_climbers: int =30, nr_iterations : 
     plt.xlabel('Iterations')
 
     fig.savefig(f"results/problematic_activity/problematic_activity_all_averages_zoom-{nr_climbers}-{nr_iterations}.png", dpi=1200)
+
+
+def plot_maluspoints_distribution(nr_climbers=30, nr_iterations=20000, name='Problematic Activity'):
+    """
+    Plots a histogram of the distribution of maluspoints in N schedules.  
+    """
+
+    maluspoints_df = pd.read_csv(f'results/problematic_activity/{nr_climbers}runs{nr_iterations}iters/final_maluspoints.csv')
+
+    maluspoints = maluspoints_df['Final Maluspoints'].to_list()
+
+    sns.histplot(maluspoints, bins=5, kde=True, edgecolor='black')
+    plt.xlabel('Number Maluspoints')
+    plt.ylabel('Number Generated Schedules')
+    plt.title(f'Distribution of maluspoints over {nr_climbers} generated {name} schedules')
+    plt.savefig(f'results/problematic_activity/final_maluspoints-{nr_climbers}-{nr_iterations}.png')
