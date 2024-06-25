@@ -12,7 +12,7 @@ class Activity:
         return f'{self.name} from {self.course}'
 
 
-    def schedule(self, room, day, time):
+    def schedule(self, room, day, time) -> None:
         """
         Schedule this activity on the given day and time to given room.
         """
@@ -22,15 +22,27 @@ class Activity:
 
         room.schedule[day][time] = self 
 
-    def reset_maluspoints(self):
+    def reset_maluspoints(self) -> None:
+        """
+        Resets this activity's maluspoints to 0.
+        """
         self.maluspoints = 0
 
-    def is_full(self):
+    def is_full(self) -> bool:
+        """
+        Returns true if activity is at full capacity.
+        """
         return len(self.students) >= self.capacity
     
-    def is_tutorial_practical(self):
+    def is_tutorial_practical(self) -> bool:
+        """
+        Returns true if actvity is a tutorial or practical.
+        """
         return 'w' in self.name or 'p' in self.name
     
-    def get_roomslot(self):
+    def get_roomslot(self) -> None:
+        """
+        Returns the roomslot this activity is scheduled in.
+        """
         return self.room, self.day, self.time
         

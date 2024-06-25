@@ -1,5 +1,4 @@
 import random
-import copy
 
 from .algorithm import Algorithm
 
@@ -13,16 +12,16 @@ class Random(Algorithm):
         self.schedule_courses(self.schedule.archive)
         self.schedule_students()
 
-    def pick_random_roomslot(self, archive):
+    def pick_random_roomslot(self, archive : list) -> tuple:
         """Pick random roomslot from archive"""
         # random.seed(1)
         return random.choice(archive)  
     
-    def remove_roomslot(self, archive, roomslot):
+    def remove_roomslot(self, archive : list, roomslot : tuple) -> None:
         """Remove roomslot from archive"""
         archive.remove(roomslot)
 
-    def schedule_activity(self, activity, roomslot, archive):
+    def schedule_activity(self, activity, roomslot : tuple, archive : list) -> None:
         """
         Schedule given activity on a roomslot from archive.
         """
@@ -30,19 +29,20 @@ class Random(Algorithm):
         activity.schedule(roomslot[0], roomslot[1], roomslot[2])
         self.remove_roomslot(archive, roomslot)
 
-    def schedule_courses(self, archive):
+    def schedule_courses(self, archive : list) -> None:
         """
         Schedule all activities on a random roomslot that is available.
         """
         # random.seed(1)
+        # shuffle activities list
         random.shuffle(self.schedule.activities)
 
-        # loop over all activities
+        # loop over all activities and pick a roomslot to schedule it
         for activity in self.schedule.activities:  
            roomslot = self.pick_random_roomslot(archive)
            self.schedule_activity(activity, roomslot, archive)
 
-    def get_random_tutorial(self, activities):
+    def get_random_tutorial(self, activities : list):
         """
         Pick a random tutorial/practical group that is not at full
         capacity from list of activities.
@@ -56,7 +56,7 @@ class Random(Algorithm):
         
         return activity
     
-    def schedule_student_activity(self, activity, student):
+    def schedule_student_activity(self, activity, student) -> None:
         """
         Add student to list of students in activity instance, and add
         activity to list of activities in student instance.
@@ -64,30 +64,35 @@ class Random(Algorithm):
         student.activities.add(activity)
         activity.students.add(student)
 
-    def schedule_student_activities(self, activity_type, activities, student):       
+    def schedule_student_activities(self, activity_type : str, activities : list, student) -> None:       
         """
         Schedule students to relevant activities.
         Picks a random tutorial/practical group in case of tutorial/practical.
         Schedules students to all lectures in case of lecture.
         """    
+        # pick a group if activity is not lecture
         if activity_type != 'h':
             activity = self.get_random_tutorial(activities)
             self.schedule_student_activity(activity, student)
+
+        # schedule student to all lectures
         else:
-            # schedule student to all lectures
             for activity in activities:
                 self.schedule_student_activity(activity, student)
     
-    def schedule_students(self):
+    def schedule_students(self) -> None:
         """
         Schedule all students in random activities for the courses they follow.
         """
         # random.seed(1)
+        # shuffle list of students
         random.shuffle(self.schedule.students)
 
         # loop over all students and their courses
         for student in self.schedule.students:
             for course in student.courses:
+
+                # schedule students to relevant activities of course
                 for activity_type, activities in course.activities.items():
                     self.schedule_student_activities(activity_type, activities, student)
             
