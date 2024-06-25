@@ -15,8 +15,11 @@ class SimulatedAnnealing(Hillclimber):
     Attributes
     ----------
     start_temperature: int
+        temperature with which the algorithm starts 
     temperature: int
+        current temperature
     cooling_function: str
+        function used to update the temperature after every iteration
     switched_cooling_functions: bool
     best_schedule: Schedule
     best_maluspoints: float or int
@@ -39,7 +42,7 @@ class SimulatedAnnealing(Hillclimber):
         """
         delta = old_maluspoints - new_maluspoints
         
-        # only do calculations if delta negative 
+        # only run calculations if delta negative 
         if delta > 0:
             probability = 1
             
@@ -77,18 +80,29 @@ class SimulatedAnnealing(Hillclimber):
         self.temperature = self.start_temperature * (0.99 ** self.iteration)
     
     def boltz_temperature_decline(self):
+        """
+        Updates temperature using boltz cooling function
+        """
         self.temperature = self.start_temperature / math.log(self.iteration + 1)
 
     def boltz_exp_temperature_decline(self):
+        """
+        Updates temperature intially using the boltz cooling function and later switching to using
+        the exponential decline function
+        """
+
+        # use boltz cooling function if below specified iteration and not yet switched 
         if self.iteration <= (self.iterations // 5) and not self.switched_cooling_functions:
             self.boltz_temperature_decline()
 
+        # if further along but not yet switched, switch to exponential, reset iteration count and set start_temperature
         elif not self.switched_cooling_functions:
             self.iteration = 1
             self.start_temperature = self.temperature
             self.switched_cooling_functions = True
             self.exponential_temperature_decline()
 
+        # otherwise just use exponential cooling function
         else:
             self.exponential_temperature_decline()
 
@@ -100,7 +114,6 @@ class SimulatedAnnealing(Hillclimber):
         # compute maluspoints
         previous_maluspoints = previous_schedule.get_total_maluspoints()
         new_maluspoints = self.schedule.get_total_maluspoints()
-        # print(previous_maluspoints, new_maluspoints)
 
         # obtain acceptance probability
         probability = self.calculate_acceptance_probability(new_maluspoints, previous_maluspoints)
@@ -108,16 +121,23 @@ class SimulatedAnnealing(Hillclimber):
         # if random number between 0 and 1 lower than probability accept change
         if random.random() < probability:
             self.accept_schedule(self.schedule)
-            if new_maluspoints < self.best_maluspoints and new_maluspoints < 300:
+
+            # check whether new score is better than the previous best
+            if new_maluspoints < self.best_maluspoints:
+                
+                # update best schedule and best maluspoints
                 self.best_schedule = copy.deepcopy(self.schedule)
                 self.best_maluspoints = new_maluspoints
 
+            # if better score, reset no change counter
             if new_maluspoints < previous_maluspoints:
                 self.reset_no_change_counter()
 
+            # if worse score, increase no change counter
             else:
                 self.increase_no_change_counter()
 
+        # if the change is not accepted, revert changes and increase no change counter
         else:
             self.accept_schedule(previous_schedule)
             self.revert_to_previous_schedule(previous_schedule)
@@ -142,12 +162,28 @@ class SimulatedAnnealing(Hillclimber):
         Returns the best schedule when finished.
         """
         super().run(iters)
+
+        # check whether best_maluspoints has been updated since initialization
         if self.best_maluspoints != float('inf'):
+
+            # update variables with best found schedule and maluspoint count
             self.schedule = self.best_schedule
             self.maluspoints = self.best_maluspoints
 
 
 class ReheatSimulatedAnnealing(SimulatedAnnealing):
+    """
+    A class representing a Simulated Annealing algorithm with reheating
+
+    . . .
+
+    Attributes
+    ----------
+    reheat_temperature: int
+        temperature to which to set self.temperature when reheating
+    reheat_threshold: int
+        number of iterations without any improvements after which to reheat
+    """
     def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential', reheat_temperature: int = 10, reheat_threshold: int = 1500):
         super().__init__(empty_schedule, start_temperature, cooling_function)
         self.reheat_temperature = reheat_temperature

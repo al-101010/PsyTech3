@@ -12,8 +12,6 @@ from experiments.increasing_mutations import increasing_mutations_experiment
 from experiments.mutation_probability import mutation_probability_experiment
 from experiments.problematic_activity import problematic_activity_experiment
 from experiments.problematic_students import problematic_students_experiment
-# from experiments.reheating import reheating
-
 
 import pandas as pd
 import time
@@ -149,10 +147,6 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
 
             reheat_simulated_annealing.plot_graph(output_png_name, title='Reheat Simulated Annealing Algorithm', save=True)
             reheat_simulated_annealing.schedule.get_output(output_csv_name)
-            
-            if experiment:
-                reheating_experiment.reheating_averages(test_schedule)
-                reheating_experiment.reheating_plot()
 
     
 if __name__ == "__main__":

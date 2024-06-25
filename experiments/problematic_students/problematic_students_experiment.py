@@ -8,7 +8,7 @@ import pandas as pd
 import seaborn as sns 
 import os 
 
-def problematic_students_all_averages(schedule, nr_climbers: int =30, nr_iterations: int =20000):
+def problematic_students_all_averages(schedule, nr_climbers: int =10, nr_iterations: int =30):
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_climbers 
     per each of nr_iterations and for all types of maluspoints.   
@@ -99,7 +99,7 @@ def problematic_students_all_averages(schedule, nr_climbers: int =30, nr_iterati
     print(f'--- {round(end_time - start_time, 1)} seconds ---')
 
 
-def problematic_students_ratios_plot(nr_climbers: int =30, nr_iterations: int =20000):
+def problematic_students_ratios_plot(nr_climbers: int =10, nr_iterations: int =30):
     '''
     Plots the averages, min, and max values of the maluspoint types of nr_climbers 
     per iteration in nr_iterations.
@@ -139,7 +139,7 @@ def problematic_students_ratios_plot(nr_climbers: int =30, nr_iterations: int =2
     plt.xlabel('Iterations')
 
     fig.savefig(f"results/problematic_students/problematic_students_all_averages-{nr_climbers}-{nr_iterations}.png", dpi=1200)
-
+    plt.show()
 
 def problematic_students_ratios_plot_zoom(nr_climbers: int =30, nr_iterations : int =20000, zoom_start : int =15000, zoom_end : int =20000):
     '''
@@ -183,9 +183,9 @@ def problematic_students_ratios_plot_zoom(nr_climbers: int =30, nr_iterations : 
     plt.xlabel('Iterations')
 
     fig.savefig(f"results/problematic_students/problematic_students_all_averages_zoom-{nr_climbers}-{nr_iterations}.png", dpi=1200)
+    plt.show()
 
-
-def plot_maluspoints_distribution(nr_climbers=30, nr_iterations=20000, name='Problematic Students'):
+def plot_maluspoints_distribution(nr_climbers=10, nr_iterations=30, name='Problematic Students'):
     """
     Plots a histogram of the distribution of maluspoints in N schedules.  
     """
@@ -199,5 +199,5 @@ def plot_maluspoints_distribution(nr_climbers=30, nr_iterations=20000, name='Pro
     plt.ylabel('Number Generated Schedules')
     plt.title(f'Distribution of maluspoints over {nr_climbers} generated {name} schedules')
     plt.savefig(f'results/problematic_students/final_maluspoints-{nr_climbers}-{nr_iterations}.png')
-
+    plt.show()
 
