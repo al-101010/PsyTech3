@@ -44,6 +44,7 @@ class Hillclimber(Algorithm):
         if new_maluspoints < previous_maluspoints:
             self.reset_no_change_counter()
             self.accept_schedule(self.schedule)
+
         elif new_maluspoints == previous_maluspoints:
             self.increase_no_change_counter()
             self.accept_schedule(self.schedule)
@@ -74,6 +75,7 @@ class Hillclimber(Algorithm):
 
             # stop if no improvements made for early stopping limit
             if self.early_stopping:
+
                 if self.check_stagnation():
                     print("stopping early due to a stagnation of improvements")
                     return
