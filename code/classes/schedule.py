@@ -56,7 +56,7 @@ class Schedule:
         self.total_maluspoints = 0
 
         self.add_students_courses(self.students, self.courses)
-
+        self.set_largest_room(self.rooms)
 
     def get_students_list(self, data : pd.DataFrame) -> list[Student]:
         """
@@ -130,6 +130,14 @@ class Schedule:
             rooms_list.append(Room(columns['Zaalnummber'], columns['Max. capaciteit']))
 
         return rooms_list
+    
+    def set_largest_room(self, rooms) -> None:
+        """
+        Sets the room with highest capacity as largest room.
+        """
+        largest_room = sorted(rooms, key=lambda room: room.capacity, reverse=True)[0]
+        largest_room.is_largest = True
+            
     
     def get_activities_list(self, courses : list[Course]) -> list[Activity]:
         """
