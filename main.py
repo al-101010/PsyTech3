@@ -95,9 +95,11 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             # mutation_probability_climber.schedule.get_output(output_csv_name)
 
             if experiment:
-                mutation_probability_experiment.mutation_probability_all_averages(test_schedule, 30, 20000)
-                mutation_probability_experiment.mutation_probability_ratios_plot(30, 20000)
-                # mutation_probability_experiment.mutation_probability_ratios_plot_zoom()
+                mutation_probability_experiment.mutation_probability_all_averages(test_schedule)
+                mutation_probability_experiment.mutation_probability_ratios_plot()
+                mutation_probability_experiment.mutation_probability_ratios_plot_zoom()
+                mutation_probability_experiment.plot_maluspoints_distribution()
+                
 
 
         if version == 'increasing mutations':
@@ -109,9 +111,10 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             # increasing_mutations_climber.schedule.get_output(output_csv_name)
             
             if experiment:
-                increasing_mutations_experiment.increasing_mutations_all_averages(test_schedule, 30, 20000)
-                increasing_mutations_experiment.increasing_mutations_ratios_plot(30, 20000)
-                #increasing_mutations_experiment.increasing_mutations_ratios_plot_zoom()
+                increasing_mutations_experiment.increasing_mutations_all_averages(test_schedule)
+                increasing_mutations_experiment.increasing_mutations_ratios_plot()
+                increasing_mutations_experiment.increasing_mutations_ratios_plot_zoom()
+                increasing_mutations_experiment.plot_maluspoints_distribution()
 
     # ======== PLANT PROPAGATION ===============
     if algorithm == 'plantprop':
