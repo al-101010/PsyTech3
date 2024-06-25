@@ -38,17 +38,8 @@ class Schedule:
         sum of maluspoints for the amount of student that doesn't fit inside the planned room (capacity of the room)
     total_maluspoints: int
         sum of room, double bookings, free period, and overcapacity maluspoints
-
-    Methods
-    -------
-    get_students_list(data):
-        creates student objects and returns them in a list
-    get_courses_list(data, all_students):
-        creates course objects and returns them in a list
-    get_rooms_list(data):
-        creates room objects and returns them in a list
-    
     """
+
     def __init__(self, students_data : str, courses_data : str, rooms_data : str) -> None:
         self.students = self.get_students_list(students_data)
         self.courses = self.get_courses_list(courses_data, self.students)

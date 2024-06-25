@@ -5,11 +5,24 @@ import matplotlib.pyplot as plt
 
 from .hillclimber import Hillclimber
 from ..classes.schedule import Schedule
-from .heuristics_hillclimber import HeuristicsHillclimber
 
 class SimulatedAnnealing(Hillclimber):
-    
-    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'boltzexp'):
+    """
+    A class representing a simulated annealing algorithm
+
+    . . .
+
+    Attributes
+    ----------
+    start_temperature: int
+    temperature: int
+    cooling_function: str
+    switched_cooling_functions: bool
+    best_schedule: Schedule
+    best_maluspoints: float or int
+
+    """
+    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential'):
         super().__init__(empty_schedule)
         self.start_temperature = start_temperature
         self.temperature = start_temperature
@@ -95,7 +108,7 @@ class SimulatedAnnealing(Hillclimber):
         # if random number between 0 and 1 lower than probability accept change
         if random.random() < probability:
             self.accept_schedule(self.schedule)
-            if new_maluspoints < self.best_maluspoints and new_maluspoints < 200:
+            if new_maluspoints < self.best_maluspoints and new_maluspoints < 300:
                 self.best_schedule = copy.deepcopy(self.schedule)
                 self.best_maluspoints = new_maluspoints
 
@@ -129,8 +142,9 @@ class SimulatedAnnealing(Hillclimber):
         Returns the best schedule when finished.
         """
         super().run(iters)
-        self.schedule = self.best_schedule
-        self.maluspoints = self.best_maluspoints
+        if self.best_maluspoints != float('inf'):
+            self.schedule = self.best_schedule
+            self.maluspoints = self.best_maluspoints
 
 
 class ReheatSimulatedAnnealing(SimulatedAnnealing):
