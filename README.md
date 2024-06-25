@@ -56,30 +56,30 @@ This list describes the most important folders and files and where to find them:
 ## Experiments 
 There are 6 experiment files included in this repository, each testing one specific algorithm. 
 This includes running the respective algorithm n times for a specified number of iterations and collecting 
-a) the average, minimum, and maximum maluspoints per iteration over all runs 
-b) the final maluspoints after each run  
-c) the final output schedules of n runs 
-After the data has been collected into the respective csv files, the time to conduct the experiment is printed to the screen (in seconds). 
+    - a) the average, minimum, and maximum maluspoints per iteration over all runs 
+    - b) the final maluspoints after each run  
+    - c) the final output schedules of n runs 
+- After the data has been collected into the respective csv files, the time to conduct the experiment is printed to the screen (in seconds). 
 
 Data a) is plotted to showcase the reduction in cost (maluspoints) over iterations and per algorithm. Note that the plot displays not only the total maluspoints but also their constituents (e.g. double booking of students). 
 Data b) is plotted into a histogram of the distribution of final maluspoints per run. 
 
 ### Running an experiment 
 To run an experiment, set 
-**algorithm** to the algorithm of choice
-**output_csv** to output.csv (not needed for experiments)
-**output_png** to output.png (not needed for experiments)
-**-i** to any number (not needed for experiments)
-**-st** to any number (if using simulated annealing, not needed for experiments)
-**-e** to True
-**-v** to the version of choice (only if using hillclimber)
+    - **algorithm** to the algorithm of choice
+    - **output_csv** to output.csv (not needed for experiments)
+    - **output_png** to output.png (not needed for experiments)
+    - **-i** to any number (not needed for experiments)
+    - **-st** to any number (if using simulated annealing, not needed for experiments)
+    - **-e** to True
+    - **-v** to the version of choice (only if using hillclimber)
 
 Attention: By default, an experiment runs the respective algorithm for 20000 iterations 30 times! This can take up to 17 hours or more with a slow machine. It is possible to test different values by specifying this in the functions in main.py. Below is an example of how to do that: 
 
 To run a hillclimber experiment 10 times with 10 iterations specify in main: 
-*hillclimber_experiment.hillclimb_all_averages(test_schedule, 10, 10)*
-*hillclimber_experiment.ratios_plot(10, 10)*
-*hillclimber_experiment.plot_maluspoints_distribution(10, 10)*
+    - *hillclimber_experiment.hillclimb_all_averages(test_schedule, 10, 10)*
+    - *hillclimber_experiment.ratios_plot(10, 10)*
+    - *hillclimber_experiment.plot_maluspoints_distribution(10, 10)*
 
 Running this, you should find a new folder in results with your experiment data and plots. 
 
