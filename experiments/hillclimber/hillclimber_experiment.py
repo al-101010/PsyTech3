@@ -142,7 +142,7 @@ def hillclimber_ratios_plot(nr_climbers: int =30, nr_iterations: int =20000):
     plt.xlabel('Iterations')
 
     fig.savefig(f"results/hillclimber/hillclimber_all_averages-{nr_climbers}-{nr_iterations}.png", dpi=1200)
-
+    plt.show()
 
 def hillclimber_ratios_plot_zoom(nr_climbers: int =30, nr_iterations : int =20000, zoom_start : int =15000, zoom_end : int =20000):
     '''
@@ -186,7 +186,7 @@ def hillclimber_ratios_plot_zoom(nr_climbers: int =30, nr_iterations : int =2000
     plt.xlabel('Iterations')
 
     fig.savefig(f"results/hillclimber/hillclimber_all_averages_zoom-{nr_climbers}-{nr_iterations}.png", dpi=1200)
-
+    plt.show()
 
 def plot_maluspoints_distribution(nr_climbers=30, nr_iterations=20000, name='Hillclimber'):
     """
@@ -202,7 +202,7 @@ def plot_maluspoints_distribution(nr_climbers=30, nr_iterations=20000, name='Hil
     plt.ylabel('Number Generated Schedules')
     plt.title(f'Distribution of maluspoints over {nr_climbers} generated {name} schedules')
     plt.savefig(f'results/hillclimber/final_maluspoints-{nr_climbers}-{nr_iterations}.png')
-
+    plt.show()
 
 
 """ NOT SURE IF WILL USE"""

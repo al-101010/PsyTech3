@@ -188,7 +188,6 @@ def problematic_students_ratios_plot_zoom(nr_climbers: int =30, nr_iterations : 
 
     plt.show()
 
-
 def plot_maluspoints_distribution(nr_climbers=30, nr_iterations=20000, name='Problematic Students'):
     """
     Plots a histogram of the distribution of maluspoints in N schedules.  
