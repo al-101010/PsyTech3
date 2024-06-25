@@ -7,7 +7,7 @@ import csv
 import pandas as pd 
 from statistics import mean
 
-def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, temp: int =50):
+def simal_all_averages(schedule, nr_simal: int =1, nr_iterations: int =2000, temp: int =50):
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_simal 
     per each of nr_iterations and for all types of maluspoints.   
@@ -43,6 +43,7 @@ def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, t
             
             # run the algorithm for one iteration 
             simal.run(1)
+            print(simal.temperature)
             # store maluspoints for this iteration
             result.append((simal.schedule.get_total_maluspoints(), 
                            simal.schedule.get_evening_room_maluspoints(),
@@ -80,7 +81,7 @@ def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, t
             result_writer.writerow(value)
 
 
-def simal_all_averages_plot(nr_simal: int =10, nr_iterations: int =10):
+def simal_all_averages_plot(nr_simal: int =1, nr_iterations: int =2000):
     '''
     Plots the averages, min, and max values of the maluspoint types of nr_simal 
     per iteration in nr_iterations.
