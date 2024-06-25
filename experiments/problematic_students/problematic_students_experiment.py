@@ -5,7 +5,7 @@ import time
 import matplotlib.pyplot as plt
 import csv
 import pandas as pd 
-import sns 
+import seaborn as sns 
 import os 
 
 def problematic_students_all_averages(schedule, nr_climbers: int =30, nr_iterations: int =20000):
