@@ -16,9 +16,13 @@ def hillclimb_all_averages(schedule, nr_climbers: int =30, nr_iterations: int =2
     per each of nr_iterations and for all types of maluspoints.   
     Stores thei final schedule of each climber in a separate folder. 
     '''
+    start_time = time.time()
 
     # initialise results 
     results = []
+
+    # initialise maluspoints collector per run 
+    maluspoints = []
     
     # if not existing, make separate folder to store schedules 
     dir_path = f'results/hillclimber/{nr_climbers}runs{nr_iterations}iters'
@@ -47,18 +51,27 @@ def hillclimb_all_averages(schedule, nr_climbers: int =30, nr_iterations: int =2
             # run the algorithm for one iteration 
             climber.run(1)
 
+            evening = climber.schedule.get_evening_room_maluspoints()
+            overcapacity = climber.schedule.get_overcapacity_maluspoints()
+            free_period =  climber.schedule.get_student_maluspoints()[0]
+            double_booking = climber.schedule.get_student_maluspoints()[1]
+            total = double_booking + overcapacity + evening + free_period
+
             # store maluspoints for this iteration
-            result.append((climber.maluspoints, 
-                           climber.schedule.get_evening_room_maluspoints(),
-                           climber.schedule.get_overcapacity_maluspoints(),
-                           climber.schedule.get_student_maluspoints()[0],
-                           climber.schedule.get_student_maluspoints()[1]))
+            result.append((total, evening, overcapacity, free_period, double_booking))
+
+        # store final maluspoints of this run separately 
+        maluspoints.append(total)
 
         # store final schedules of each run  
         climber.schedule.get_output(dir_path+f'/hillclimber{i + 1}_output.csv')
 
         # append iteration maluspoints to all results 
         results.append(result)
+ 
+    # store final maluspoints in separate file  
+    maluspoints = pd.DataFrame(maluspoints, columns=['Final Maluspoints'])
+    maluspoints.to_csv(dir_path+'/final_maluspoints.csv')
 
     # get all values for a row 
     values = []
@@ -82,6 +95,10 @@ def hillclimb_all_averages(schedule, nr_climbers: int =30, nr_iterations: int =2
         
         for value in values:
             result_writer.writerow(value)
+    
+    end_time = time.time()
+    
+    print(f'--- {round(end_time - start_time, 1)} seconds ---')
 
 
 def hillclimber_ratios_plot(nr_climbers: int =30, nr_iterations: int =20000):
@@ -172,50 +189,6 @@ def hillclimber_ratios_plot_zoom(nr_climbers: int =30, nr_iterations : int =2000
 
 
 ''' WORK IN PROGRESS'''
-def get_maluspoints_from_output(schedule, nr_runs=30, nr_iters=20000):
-    """
-    Reads in the final hillclimber schedules.
-    Returns list of final maluspoints per schedule. 
-    """
-    #specify directory 
-    directory = f'results/hillclimber/{nr_runs}runs{nr_iters}iters'
-    
-    # initialise maluspoints 
-    maluspoints = []
-
-    counter = 0 
-    # loop over each file 
-    for file in os.listdir(directory):
-        #testing with one data file 
-        if counter == 1:
-            filename = os.fsdecode(directory+'/'+file)
-            
-            # read in each file 
-            df = pd.read_csv(filename)
-
-            # get data out of df 
-
-            
-            # make a schedule instance 
-            schedule = Schedule(df['Student'], df['Vak'], df['Zaal'])
-            
-
-            # fill in schedule with file data 
-            schedule.students = None 
-            schedule.courses = None
-            schedule.rooms = None
-            schedule.activities = None 
-            schedule.roomslots = None 
-            print(schedule)
-
-            
-            
-            # store maluspoints in a list  
-            maluspoints.append[schedule.get_total_maluspoints()]
-        counter += 1
-    
-    return maluspoints 
-
 
 def plot_maluspoints_distribution(maluspoints: list):
     """
