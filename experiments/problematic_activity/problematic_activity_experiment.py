@@ -8,7 +8,7 @@ import pandas as pd
 import seaborn as sns 
 import os 
 
-def problematic_activity_all_averages(schedule, nr_climbers: int =10, nr_iterations: int =30):
+def problematic_activity_all_averages(schedule, nr_climbers: int =30, nr_iterations: int =20000):
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_climbers 
     per each of nr_iterations and for all types of maluspoints.   
@@ -99,7 +99,7 @@ def problematic_activity_all_averages(schedule, nr_climbers: int =10, nr_iterati
     print(f'--- {round(end_time - start_time, 1)} seconds ---')
 
 
-def problematic_activity_ratios_plot(nr_climbers: int =10, nr_iterations: int =30):
+def problematic_activity_ratios_plot(nr_climbers: int =30, nr_iterations: int =20000):
     '''
     Plots the averages, min, and max values of the maluspoint types of nr_climbers 
     per iteration in nr_iterations.
@@ -139,7 +139,7 @@ def problematic_activity_ratios_plot(nr_climbers: int =10, nr_iterations: int =3
     plt.xlabel('Iterations')
 
     fig.savefig(f"results/problematic_activity/problematic_activity_all_averages-{nr_climbers}-{nr_iterations}.png", dpi=1200)
-
+    plt.show()
 
 def problematic_activity_ratios_plot_zoom(nr_climbers: int =30, nr_iterations : int =20000, zoom_start : int =15000, zoom_end : int =20000):
     '''
@@ -183,7 +183,7 @@ def problematic_activity_ratios_plot_zoom(nr_climbers: int =30, nr_iterations : 
     plt.xlabel('Iterations')
 
     fig.savefig(f"results/problematic_activity/problematic_activity_all_averages_zoom-{nr_climbers}-{nr_iterations}.png", dpi=1200)
-
+    plt.show()
 
 def plot_maluspoints_distribution(nr_climbers=30, nr_iterations=20000, name='Problematic Activity'):
     """
@@ -199,3 +199,4 @@ def plot_maluspoints_distribution(nr_climbers=30, nr_iterations=20000, name='Pro
     plt.ylabel('Number Generated Schedules')
     plt.title(f'Distribution of maluspoints over {nr_climbers} generated {name} schedules')
     plt.savefig(f'results/problematic_activity/final_maluspoints-{nr_climbers}-{nr_iterations}.png')
+    plt.show()
