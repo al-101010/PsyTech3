@@ -1,10 +1,12 @@
 import copy
 import sys
+
 from .fitted_start import FittedStart
 from .algorithm import Algorithm
 from ..classes.schedule import Schedule
 
 # increase recursion limit for deepcopies
+# sadly this is a bandaid fix we were not able to fix in the timespan of this course
 sys.setrecursionlimit(10**6)
 
 class Hillclimber(Algorithm):
@@ -22,6 +24,9 @@ class Hillclimber(Algorithm):
         self.maluspoint_stats.append(schedule.get_total_maluspoints())
 
     def pick_number_mutations(self):
+        """
+        Returns the number of mutations to be done
+        """
         return 1
 
     def check_improvement(self, previous_schedule : Schedule):
@@ -30,7 +35,7 @@ class Hillclimber(Algorithm):
         and adds the relevant maluspoints to statistics.
         If no improvement was made, resets schedule to previous state  
         """
-        # compute maluspoints for previous and current state 
+        # compute maluspoints for previous and current schedule 
         previous_maluspoints = previous_schedule.get_total_maluspoints()
         new_maluspoints = self.schedule.get_total_maluspoints()
         # print(previous_maluspoints, new_maluspoints)
@@ -42,6 +47,7 @@ class Hillclimber(Algorithm):
         elif new_maluspoints == previous_maluspoints:
             self.increase_no_change_counter()
             self.accept_schedule(self.schedule)
+
         # else, increase counter and revert changes to schedule
         else:
             self.increase_no_change_counter()
@@ -63,10 +69,10 @@ class Hillclimber(Algorithm):
             if i % 100 == 0:
                 print(i)
         
-            # update "previous schedule"
+            # copy the previous schedule
             previous_schedule = copy.deepcopy(self.schedule)
 
-            # stop if no general improvements made
+            # stop if no improvements made for early stopping limit
             if self.early_stopping:
                 if self.check_stagnation():
                     print("stopping early due to a stagnation of improvements")
@@ -74,12 +80,11 @@ class Hillclimber(Algorithm):
             
             N = self.pick_number_mutations()
 
-            # make random change to schedule
+            # make random change to schedule and check if improved
             self.mutate_schedule(N)
-
             self.check_improvement(previous_schedule)
 
-        # update final information in parent class
+        # update final information
         self.maluspoints = self.schedule.get_total_maluspoints()
 
    
