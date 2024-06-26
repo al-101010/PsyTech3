@@ -65,7 +65,6 @@ def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, t
         # make a simulated annealing object  
         simal = SimulatedAnnealing(schedule, temp, cooling_function='exponential')
         
-        print(simal.schedule.get_total_maluspoints())
         print(f"Running Simulated Annealing Number: {i}")
         
         # set number iterations per run 
