@@ -1,11 +1,12 @@
-import random
-
 from .algorithm import Algorithm
 
-##TODO: remove random seed comments
+import random
+
 
 class Random(Algorithm):
-    # random.seed(1)
+    """
+    A class to represent a random algorithm.
+    """
 
     def __init__(self, empty_schedule) -> None:
         super().__init__(empty_schedule)

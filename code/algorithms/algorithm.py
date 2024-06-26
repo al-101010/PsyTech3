@@ -5,8 +5,25 @@ from ..classes.schedule import Schedule
 from ..classes.activity import Activity
 
 class Algorithm:
+    """
+    A class to represent an algorithm.
 
-    def __init__(self, schedule : Schedule, early_stopping : bool=False, early_stopping_limit=1):
+    . . .
+
+    Attributes
+    ----------
+    schedule: Schedule
+        current schedule
+    maluspoint_stats: list[int]
+        for each iteration the total number of maluspoints
+    early_stopping: bool
+        whether to use early stopping mechanism
+    early_stopping_limit: int
+        number of consecutive iterations without improvement after which to stop the algorithm
+    no_change_counter: int
+        number of consecutive iterations without improvements of/ changes to the schedule 
+    """
+    def __init__(self, schedule : Schedule, early_stopping : bool=False, early_stopping_limit=2000):
         self.schedule = copy.deepcopy(schedule)
         self.maluspoint_stats = []
         self.early_stopping = early_stopping

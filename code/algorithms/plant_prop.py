@@ -10,8 +10,22 @@ from .hillclimber import Hillclimber
 
 
 class PlantProp(Algorithm):
-    ##NOTE: IMPORTANT, THIS ALGORITHM DOES NOT WORK IF WE HAVE A RANDOM SEED FOR RANDOM ALGORITHM.
-    
+    """
+    A class to represent a schedule.
+
+    . . .
+
+    Attributes
+    ----------
+    N: int
+        size of population at start of each iteration
+    population: list[Hillclimber]
+        a list of all current hillclimbers
+    evaluation_stats: list[int]
+        a list of the total number of evaluations after each iteration
+    evaluation: int
+        running counter of number of evaluations
+    """
     def __init__(self, schedule: Schedule, N : int=10):
         super().__init__(schedule)
         self.N = N

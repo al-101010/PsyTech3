@@ -4,7 +4,23 @@ from .activity import Activity
 from .student import Student
 
 class Course:
+    """
+    A class to represent a course.
 
+    . . .
+
+    Attributes
+    ----------
+    name: str
+        name of the course
+    students: list[Student]
+        all students signed up for this course
+    activity_amounts: dict
+        number of activities for each activity type
+    activities: set[Activity]
+        a set of all activity (objects) for this course
+    """
+    
     def __init__(self, name : str, students : list[Student], activity_amounts : dict) -> None:
         self.name = name
         self.students = students
