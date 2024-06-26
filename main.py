@@ -54,8 +54,6 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
                 hillclimber_experiment.hillclimber_ratios_plot('hillclimber')
                 hillclimber_experiment.hillclimber_ratios_plot_zoom('hillclimber')
                 hillclimber_experiment.plot_maluspoints_distribution('hillclimber')
-                hillclimber_experiment.compare_distributions('heuristics')
-                hillclimber_experiment.compare_distributions('simulated annealing')
                 
 
         if version == 'problematic activity':
