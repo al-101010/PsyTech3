@@ -1,6 +1,6 @@
-from .algorithm import Algorithm
-
 import random
+
+from .algorithm import Algorithm
 
 
 class Random(Algorithm):
@@ -15,7 +15,6 @@ class Random(Algorithm):
 
     def pick_random_roomslot(self, archive : list) -> tuple:
         """Pick random roomslot from archive"""
-        # random.seed(1)
         return random.choice(archive)  
     
     def remove_roomslot(self, archive : list, roomslot : tuple) -> None:
@@ -34,7 +33,6 @@ class Random(Algorithm):
         """
         Schedule all activities on a random roomslot that is available.
         """
-        # random.seed(1)
         # shuffle activities list
         random.shuffle(self.schedule.activities)
 
@@ -48,7 +46,6 @@ class Random(Algorithm):
         Pick a random tutorial/practical group that is not at full
         capacity from list of activities.
         """
-        # random.seed(1)
         activity = random.choice(activities)
 
         # pick a new random group while current group is at full capacity
@@ -85,7 +82,6 @@ class Random(Algorithm):
         """
         Schedule all students in random activities for the courses they follow.
         """
-        # random.seed(1)
         # shuffle list of students
         random.shuffle(self.schedule.students)
 
