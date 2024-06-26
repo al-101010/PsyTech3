@@ -50,7 +50,6 @@ def write_file(results, version, nr_climbers, nr_iterations):
 
     with open(f"results/{version}/{version}_all_averages-{nr_climbers}-{nr_iterations}.csv", 'w', newline='') as output_file:
         result_writer = csv.writer(output_file, delimiter=',')
-        #result_writer.writerow(["Mean Maluspoints", "Min Maluspoints", "Max Maluspoints"])
         
         for value in values:
             result_writer.writerow(value)
@@ -229,7 +228,9 @@ def plot_maluspoints_distribution(version, nr_climbers=30, nr_iterations=20000):
 
 def compare_distributions(type, nr_algorithms=30, nr_iterations=20000):
     """
-    Makes a histogram of the maluspoint distributions of all hillclimber versions. 
+    Makes a histogram of maluspoint distributions. 
+    Type 'heuristics' compares the normal hillclimber with all heuristics. 
+    Any other type indication compares hillclimber with simulated annealing.  
     """
     if type == 'heuristics':
         versions_list = ['hillclimber', 'problematic_students', 'problematic_activity'] #'mutation_probability', 'increasing_mutations']
