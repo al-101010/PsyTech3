@@ -1,13 +1,13 @@
 from code.algorithms.simulated_annealing import SimulatedAnnealing
+from statistics import mean
 
 import matplotlib.pyplot as plt
-import time 
-import os 
-import random 
-import csv
 import pandas as pd 
 import seaborn as sns 
-from statistics import mean
+import time 
+import os 
+import csv
+
 
 def write_file(results, nr_algorithms, nr_iterations):
     '''
@@ -218,12 +218,6 @@ def temperature_comparisons(schedule, n_simal=10, n_iterations=1000, temps: list
     Makes simulated annealing runs from the range min_temp to max_temp increasing 
     by step. Stores results for each temperature in separate csv.   
     """
-
-    # add seed
-    random.seed(123)
-
-    # TODO - remove
-    #for n in range(min_temp, max_temp, step):
 
     for number in temps:
         results = []
