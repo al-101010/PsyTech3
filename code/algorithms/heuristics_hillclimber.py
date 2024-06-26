@@ -1,7 +1,7 @@
 import random
 import math
 
-from AH.PsyTech3.code.classes.schedule import Schedule
+from code.classes.schedule import Schedule
 
 from .hillclimber import Hillclimber
 

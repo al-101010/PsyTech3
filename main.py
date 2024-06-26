@@ -129,7 +129,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
         if version == 'normal':
             if not experiment:
                 #create annealing schedule
-                simulated_annealing = SimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential', early_stopping)
+                simulated_annealing = SimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential', early_stopping=early_stopping)
                 simulated_annealing.run(iterations)
                 simulated_annealing.display_maluspoints_division('Simulated Annealing')
 
@@ -149,7 +149,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
         # ========= REHEATED SIMULATED ANNEALING ===============
         if version == 'reheated':
             # create schedule
-            reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential', reheat_threshold=1200, early_stopping)
+            reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential', reheat_threshold=1200, early_stopping=early_stopping)
             reheat_simulated_annealing.run(iterations)
             reheat_simulated_annealing.display_maluspoints_division('Reheat Simulated Annealing')
 
