@@ -8,10 +8,6 @@ from code.classes.schedule import Schedule
 
 from experiments.hillclimber import hillclimber_experiment
 from experiments.simulated_annealing import simulated_annealing_experiment
-from experiments.increasing_mutations import increasing_mutations_experiment
-from experiments.mutation_probability import mutation_probability_experiment
-from experiments.problematic_activity import problematic_activity_experiment
-from experiments.problematic_students import problematic_students_experiment
 
 import pandas as pd
 import time
@@ -44,10 +40,10 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             # hillclimber.schedule.get_output(output_csv_name)
 
             if experiment:
-                # hillclimber_experiment.hillclimb_all_averages(test_schedule)
-                hillclimber_experiment.hillclimber_ratios_plot()
-                hillclimber_experiment.hillclimber_ratios_plot_zoom()
-                #hillclimber_experiment.plot_maluspoints_distribution()
+                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'hillclimber', 10, 5)
+                hillclimber_experiment.hillclimber_ratios_plot('hillclimber', 10, 5)
+                # hillclimber_experiment.hillclimber_ratios_plot_zoom('hillclimber', 10, 5)
+                hillclimber_experiment.plot_maluspoints_distribution('hillclimber', 10, 5)
                 # hillclimber_experiment.timed_hillclimber_runs(test_schedule, Hillclimber) 
                 
                 # comparison of two hillclimbers 
@@ -64,10 +60,10 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             # problematic_activity_climber.schedule.get_output(output_csv_name)
             
             if experiment:
-                problematic_activity_experiment.problematic_activity_all_averages(test_schedule)
-                problematic_activity_experiment.problematic_activity_ratios_plot()
-                problematic_activity_experiment.problematic_activity_ratios_plot_zoom()
-                problematic_activity_experiment.plot_maluspoints_distribution()
+                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'problematic_activity', 10, 5)
+                hillclimber_experiment.hillclimber_ratios_plot('problematic_activity', 10, 5)
+                # hillclimber_experiment.hillclimber_ratios_plot_zoom('problematic_activity', 10, 5)
+                hillclimber_experiment.plot_maluspoints_distribution('problematic_activity', 10, 5)
                 
 
         if version == 'problematic students':
@@ -79,10 +75,10 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             # problematic_student_climber.schedule.get_output(output_csv_name)
 
             if experiment:
-                problematic_students_experiment.problematic_students_all_averages(test_schedule)
-                problematic_students_experiment.problematic_students_ratios_plot()
-                problematic_students_experiment.problematic_student_ratios_plot_zoom()
-                problematic_students_experiment.plot_maluspoints_distribution()
+                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'problematic_students', 10, 5)
+                hillclimber_experiment.hillclimber_ratios_plot('problematic_students', 10, 5)
+                # hillclimber_experiment.hillclimber_ratios_plot_zoom('problematic_students', 10, 5)
+                hillclimber_experiment.plot_maluspoints_distribution('problematic_students', 10, 5)
                 
 
 
@@ -95,10 +91,10 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             # mutation_probability_climber.schedule.get_output(output_csv_name)
 
             if experiment:
-                mutation_probability_experiment.mutation_probability_all_averages(test_schedule)
-                mutation_probability_experiment.mutation_probability_ratios_plot()
-                mutation_probability_experiment.mutation_probability_ratios_plot_zoom()
-                mutation_probability_experiment.plot_maluspoints_distribution()
+                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'mutation_probability', 10, 5)
+                hillclimber_experiment.hillclimber_ratios_plot('mutation_probability', 10, 5)
+                # hillclimber_experiment.hillclimber_ratios_plot_zoom('mutation_probability', 10, 5)
+                hillclimber_experiment.plot_maluspoints_distribution('mutation_probability', 10, 5)
                 
 
 
@@ -111,10 +107,10 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             # increasing_mutations_climber.schedule.get_output(output_csv_name)
             
             if experiment:
-                increasing_mutations_experiment.increasing_mutations_all_averages(test_schedule)
-                increasing_mutations_experiment.increasing_mutations_ratios_plot()
-                increasing_mutations_experiment.increasing_mutations_ratios_plot_zoom()
-                increasing_mutations_experiment.plot_maluspoints_distribution()
+                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'increasing_mutations', 10, 5)
+                hillclimber_experiment.hillclimber_ratios_plot('increasing_mutations', 10, 5)
+                # hillclimber_experiment.hillclimber_ratios_plot_zoom('increasing_mutations', 10, 5)
+                hillclimber_experiment.plot_maluspoints_distribution('increasing_mutations', 10, 5)
 
     # ======== PLANT PROPAGATION ===============
     if algorithm == 'plantprop':
