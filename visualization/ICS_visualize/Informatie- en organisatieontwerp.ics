@@ -1,0 +1,52 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Informatie- en organisatieontwerp
+DTSTART;TZID=Europe/Brussels:20240625T110000
+DTEND;TZID=Europe/Brussels:20240625T130000
+LOCATION:A1.06
+DESCRIPTION:Everhard Curvers, Monika Blikman, Gerritjan Joris, Devlin Bronsema, Noa Slangen, Thys Kersten, Jetty van Putten, Eylem Haas, Aya Woertman, Tjesse Voesten, Doede Duiveman, Rins Oosterbeek, Yun van der Vleuten, Enrique van den Born, Abdel Buth, Oumaima Donselaar, Rika Buizer, Emrah Schrama, Agelo van der Meer, Ylse Klarenbeek, Gidon Baetsen
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h2 - Informatie- en organisatieontwerp
+DTSTART;TZID=Europe/Brussels:20240625T090000
+DTEND;TZID=Europe/Brussels:20240625T110000
+LOCATION:C0.110
+DESCRIPTION:Everhard Curvers, Monika Blikman, Gerritjan Joris, Devlin Bronsema, Noa Slangen, Thys Kersten, Jetty van Putten, Eylem Haas, Aya Woertman, Tjesse Voesten, Doede Duiveman, Rins Oosterbeek, Yun van der Vleuten, Enrique van den Born, Abdel Buth, Oumaima Donselaar, Rika Buizer, Emrah Schrama, Agelo van der Meer, Ylse Klarenbeek, Gidon Baetsen
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p1 - Informatie- en organisatieontwerp
+DTSTART;TZID=Europe/Brussels:20240628T110000
+DTEND;TZID=Europe/Brussels:20240628T130000
+LOCATION:C0.110
+DESCRIPTION:Everhard Curvers, Monika Blikman, Gerritjan Joris, Thys Kersten, Aya Woertman, Tjesse Voesten, Doede Duiveman, Rins Oosterbeek, Yun van der Vleuten, Enrique van den Born, Abdel Buth, Oumaima Donselaar, Rika Buizer, Ylse Klarenbeek
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Informatie- en organisatieontwerp
+DTSTART;TZID=Europe/Brussels:20240626T150000
+DTEND;TZID=Europe/Brussels:20240626T170000
+LOCATION:C1.112
+DESCRIPTION:Devlin Bronsema, Noa Slangen, Jetty van Putten, Eylem Haas, Emrah Schrama, Agelo van der Meer, Gidon Baetsen
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Informatie- en organisatieontwerp
+DTSTART;TZID=Europe/Brussels:20240628T090000
+DTEND;TZID=Europe/Brussels:20240628T110000
+LOCATION:C0.110
+DESCRIPTION:Gerritjan Joris, Jetty van Putten, Aya Woertman, Doede Duiveman, Yun van der Vleuten, Rika Buizer, Emrah Schrama, Ylse Klarenbeek
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Informatie- en organisatieontwerp
+DTSTART;TZID=Europe/Brussels:20240624T150000
+DTEND;TZID=Europe/Brussels:20240624T170000
+LOCATION:B0.201
+DESCRIPTION:Oumaima Donselaar
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w3 - Informatie- en organisatieontwerp
+DTSTART;TZID=Europe/Brussels:20240624T090000
+DTEND;TZID=Europe/Brussels:20240624T110000
+LOCATION:C0.110
+DESCRIPTION:Everhard Curvers, Monika Blikman, Devlin Bronsema, Noa Slangen, Thys Kersten, Eylem Haas, Tjesse Voesten, Rins Oosterbeek, Enrique van den Born, Abdel Buth, Agelo van der Meer, Gidon Baetsen
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,38 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Heuristieken 2
+DTSTART;TZID=Europe/Brussels:20240624T110000
+DTEND;TZID=Europe/Brussels:20240624T130000
+LOCATION:A1.04
+DESCRIPTION:Josef van der Wiel, George van Dieten, Chelly van der Doelen, Vincentius Pater, Felien Uitslag, Mathyn Lamme, Georgia van Rossem, Maritte Gok, Bobby Veldhuis, Le Janga, Laurentia Cooijmans, Mink Pothuizen, Liza Traa, Seyit Cleven, Ynte van Berkom, Jarik Blikman, Ziggy de Smit, Jaiden Schoonderwoerd, Boy Dibbets, Romaisa Oostvogels, Danique Knibbe, Deejay van der Geer, Bert Grooteman, Amelie Daams, Hazel van Wensen, Adil Klop, Johannus van Bavel, Herman Apeldoorn, Oliver Milder, Romy Piek, Yi Luten, Allan Budel
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Heuristieken 2
+DTSTART;TZID=Europe/Brussels:20240628T130000
+DTEND;TZID=Europe/Brussels:20240628T150000
+LOCATION:B0.201
+DESCRIPTION:Vincentius Pater, Deejay van der Geer, Amelie Daams, Johannus van Bavel
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Heuristieken 2
+DTSTART;TZID=Europe/Brussels:20240624T090000
+DTEND;TZID=Europe/Brussels:20240624T110000
+LOCATION:A1.08
+DESCRIPTION:George van Dieten, Mathyn Lamme, Georgia van Rossem, Bobby Veldhuis, Le Janga, Seyit Cleven, Ziggy de Smit, Jaiden Schoonderwoerd, Boy Dibbets, Danique Knibbe, Hazel van Wensen, Herman Apeldoorn, Oliver Milder, Allan Budel
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w3 - Heuristieken 2
+DTSTART;TZID=Europe/Brussels:20240627T090000
+DTEND;TZID=Europe/Brussels:20240627T110000
+LOCATION:A1.10
+DESCRIPTION:Maritte Gok, Mink Pothuizen, Ynte van Berkom, Adil Klop, Romy Piek
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w4 - Heuristieken 2
+DTSTART;TZID=Europe/Brussels:20240624T090000
+DTEND;TZID=Europe/Brussels:20240624T110000
+LOCATION:A1.04
+DESCRIPTION:Josef van der Wiel, Chelly van der Doelen, Felien Uitslag, Laurentia Cooijmans, Liza Traa, Jarik Blikman, Romaisa Oostvogels, Bert Grooteman, Yi Luten
+END:VEVENT
+END:VCALENDAR

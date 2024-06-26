@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:p1 - Zoeken sturen en bewegen
+DTSTART;TZID=Europe/Brussels:20240628T130000
+DTEND;TZID=Europe/Brussels:20240628T150000
+LOCATION:A1.08
+DESCRIPTION:Shan Rokx, Marnik Imthorn, Tom Truijen, Wissal Eggens, Gustaaf Poldervaart, Mathe Luth, Rins Oosterbeek, Ycel van Kasteel, Tamimount van Herten, Goos Dane, Krijna de Kreij, Berit van Ingen, Ans van Montfort, Shauny van Hezik
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Zoeken sturen en bewegen
+DTSTART;TZID=Europe/Brussels:20240626T110000
+DTEND;TZID=Europe/Brussels:20240626T130000
+LOCATION:A1.06
+DESCRIPTION:Julot van Teeffelen, Shairon van Aaken, Jos van der Zwet, Buck Lantinga, Jurrian Fekkes, Riana Kampers, Xiao Teekens, Arina Ubbink, Jael Boutkan, Resi Braamhaar, Djamilla Wesselink, Cemil van Barneveld, Jonah Teuben, Ilyass Broeks, Karolina Roodbeen
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p3 - Zoeken sturen en bewegen
+DTSTART;TZID=Europe/Brussels:20240627T090000
+DTEND;TZID=Europe/Brussels:20240627T110000
+LOCATION:A1.08
+DESCRIPTION:Noud Menke, Ya Steeman, Lilly Oosterbroek, Dolf Snippe, Marrie Bekker, Vasco Waninge, Tjesse Voesten, Doede Duiveman, Rein Leidelmeijer, Owen Jama, Sohrab Geers, Sezen Kivits, Emme Udo
+END:VEVENT
+END:VCALENDAR

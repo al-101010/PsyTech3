@@ -1,0 +1,31 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Technology for games
+DTSTART;TZID=Europe/Brussels:20240628T130000
+DTEND;TZID=Europe/Brussels:20240628T150000
+LOCATION:A1.04
+DESCRIPTION:Renco van Weel, Lucienne Caris, Djura Kol, Albertien de Hoogh, Diemer Fokkens, Gabe Haarman, Walther van Halteren, Hanne Brans, Sanne Lentz, Btissam van den Boer, Jorg 't Lam, Judi Hamers, Buck Lantinga, Nikolas Jansema, Harwin van Loon, Aya Woertman, Bahattin Geelen, Doede Duiveman, Elske van Suijlekom, Sherman Vervaart, Maritha van der Niet, Fauve Neve, Redouane Paijmans, Enrique van den Born, Abdelkader Gijbels, Yaro Kamp, Kavish Versteeg, Randell Nieman, Rika Buizer, Sanne van Sleeuwen, Andre Putters, Pietro Dieperink, Emrah Schrama, Bert Grooteman, Catherine Hoornstra, Nygel Vaatstra, Nadien Volman, Aradhna Jonkergouw
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h2 - Technology for games
+DTSTART;TZID=Europe/Brussels:20240624T130000
+DTEND;TZID=Europe/Brussels:20240624T150000
+LOCATION:B0.201
+DESCRIPTION:Renco van Weel, Lucienne Caris, Djura Kol, Albertien de Hoogh, Diemer Fokkens, Gabe Haarman, Walther van Halteren, Hanne Brans, Sanne Lentz, Btissam van den Boer, Jorg 't Lam, Judi Hamers, Buck Lantinga, Nikolas Jansema, Harwin van Loon, Aya Woertman, Bahattin Geelen, Doede Duiveman, Elske van Suijlekom, Sherman Vervaart, Maritha van der Niet, Fauve Neve, Redouane Paijmans, Enrique van den Born, Abdelkader Gijbels, Yaro Kamp, Kavish Versteeg, Randell Nieman, Rika Buizer, Sanne van Sleeuwen, Andre Putters, Pietro Dieperink, Emrah Schrama, Bert Grooteman, Catherine Hoornstra, Nygel Vaatstra, Nadien Volman, Aradhna Jonkergouw
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Technology for games
+DTSTART;TZID=Europe/Brussels:20240624T110000
+DTEND;TZID=Europe/Brussels:20240624T130000
+LOCATION:C0.110
+DESCRIPTION:Lucienne Caris, Djura Kol, Diemer Fokkens, Gabe Haarman, Btissam van den Boer, Judi Hamers, Buck Lantinga, Nikolas Jansema, Harwin van Loon, Aya Woertman, Bahattin Geelen, Doede Duiveman, Enrique van den Born, Randell Nieman, Rika Buizer, Andre Putters, Emrah Schrama, Nygel Vaatstra, Nadien Volman, Aradhna Jonkergouw
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Technology for games
+DTSTART;TZID=Europe/Brussels:20240628T110000
+DTEND;TZID=Europe/Brussels:20240628T130000
+LOCATION:C1.112
+DESCRIPTION:Renco van Weel, Albertien de Hoogh, Walther van Halteren, Hanne Brans, Sanne Lentz, Jorg 't Lam, Elske van Suijlekom, Sherman Vervaart, Maritha van der Niet, Fauve Neve, Redouane Paijmans, Abdelkader Gijbels, Yaro Kamp, Kavish Versteeg, Sanne van Sleeuwen, Pietro Dieperink, Bert Grooteman, Catherine Hoornstra
+END:VEVENT
+END:VCALENDAR

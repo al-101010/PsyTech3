@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Lineaire Algebra
+DTSTART;TZID=Europe/Brussels:20240624T110000
+DTEND;TZID=Europe/Brussels:20240624T130000
+LOCATION:C1.112
+DESCRIPTION:Chrystel Kalshoven, Wichard Stienen, Wieke de Leest, Dorenda Malestein, Alexandre de Olde, Quido Deniz, Geurt Nuiten, Jackson Scherpenzeel, Sayfeddine Bruijnes, Nikie Kreijkes, Mattijs Baudoin, Wichard Hospers, Cheyenna Reuvekamp, Chloe Vermanen, Thyrza Blik, Marssae Joseph, Tom Stokkel, Yvan Lau, Sanna van Wiggen, Virginie Brunsveld, Rein Leidelmeijer, Juliette Kant, Tarah Broerse, Xiao Teekens, Maritha van der Niet, Naciye van Eert, El van Rosmalen, Abdelkader Gijbels, Bo Hilhorst, Boy Dibbets, Demelza van Kommer, Danique Knibbe, Sharan Baselmans, Sahar Hamstra, Sohrab Geers, Roan Meulmeester, Daisy van der Klei, Christiaan van Zon, Catherine Hoornstra, Stein Zweekhorst, Cyrano van den Eijnde, Xanne Slob, Ilana Philippi, Yanick Abbing, Malcolm Looij, Tjalle ten Pas, Meta van Marle, Chaimae Swiers, Enes Siemonsma, Marilene van Santen, Sarena Tjeerdsma, Cherissa Koudijs, Tarik van Vloten, Shawny van de Pol
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h2 - Lineaire Algebra
+DTSTART;TZID=Europe/Brussels:20240624T130000
+DTEND;TZID=Europe/Brussels:20240624T150000
+LOCATION:A1.10
+DESCRIPTION:Chrystel Kalshoven, Wichard Stienen, Wieke de Leest, Dorenda Malestein, Alexandre de Olde, Quido Deniz, Geurt Nuiten, Jackson Scherpenzeel, Sayfeddine Bruijnes, Nikie Kreijkes, Mattijs Baudoin, Wichard Hospers, Cheyenna Reuvekamp, Chloe Vermanen, Thyrza Blik, Marssae Joseph, Tom Stokkel, Yvan Lau, Sanna van Wiggen, Virginie Brunsveld, Rein Leidelmeijer, Juliette Kant, Tarah Broerse, Xiao Teekens, Maritha van der Niet, Naciye van Eert, El van Rosmalen, Abdelkader Gijbels, Bo Hilhorst, Boy Dibbets, Demelza van Kommer, Danique Knibbe, Sharan Baselmans, Sahar Hamstra, Sohrab Geers, Roan Meulmeester, Daisy van der Klei, Christiaan van Zon, Catherine Hoornstra, Stein Zweekhorst, Cyrano van den Eijnde, Xanne Slob, Ilana Philippi, Yanick Abbing, Malcolm Looij, Tjalle ten Pas, Meta van Marle, Chaimae Swiers, Enes Siemonsma, Marilene van Santen, Sarena Tjeerdsma, Cherissa Koudijs, Tarik van Vloten, Shawny van de Pol
+END:VEVENT
+END:VCALENDAR

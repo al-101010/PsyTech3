@@ -1,0 +1,31 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:p1 - Netwerken en systeembeveiliging
+DTSTART;TZID=Europe/Brussels:20240627T130000
+DTEND;TZID=Europe/Brussels:20240627T150000
+LOCATION:A1.06
+DESCRIPTION:Dingenus Loeffen, Marrie Bekker, Annigje Prinssen, Edwinus Voigt, Abdelouahid Cramer, Fynn Krabbe, Edin Bastings, Miguel van Oss, Marck Soekhai, Nika van Baaren
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Netwerken en systeembeveiliging
+DTSTART;TZID=Europe/Brussels:20240624T090000
+DTEND;TZID=Europe/Brussels:20240624T110000
+LOCATION:A1.06
+DESCRIPTION:Chrystel Kalshoven, Talha Vermeeren, Raven Elissen, Mattijs Baudoin, Jurre van de Sanden, Angus Brusse, Timo Postuma, Silvy Schrauwen, Fatime Rodenburg, Jarik Regeling, Ciske van Kalsbeek, Zahir Poepjes, Hetty Lindhout, Ravi Bauer, Emrah Schrama, Harry Noordhuis, Johannus van Bavel, Sezen Kivits, Thom Schuiling, Nadir Remijn
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p3 - Netwerken en systeembeveiliging
+DTSTART;TZID=Europe/Brussels:20240628T090000
+DTEND;TZID=Europe/Brussels:20240628T110000
+LOCATION:A1.06
+DESCRIPTION:Josef van der Wiel, Monika Blikman, Farhad de Kuijer, Mattie Eisinga, Bilal Tip, Jort Vries, Annique Berrevoets, Wijntje Plaizier, Emil Bergmans, Priscillia van Voorden, Anne-Jan van Waardenburg, Johanne Holstein, Jarik Blikman, Andre Dieters, Rafaela Polfliet, Maruschka Doppenberg, Jaro Essink, Meta van Marle, Hiba Boogert, Franklin Stuurman
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p4 - Netwerken en systeembeveiliging
+DTSTART;TZID=Europe/Brussels:20240624T150000
+DTEND;TZID=Europe/Brussels:20240624T170000
+LOCATION:A1.10
+DESCRIPTION:Shan Rokx, Rosali Heikoop, Shakir Paauwe, Berdina Heijman, Jorike Coenen, Tevfik Rothuizen, Alexandra Wijnsma, Titia Korbee, Redouane Paijmans, Genesis Potman, Ouidad van Hall, Kyllian Bekkema, Sharief Stegink, Ruveyda van Lingen
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,31 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Calculus 2
+DTSTART;TZID=Europe/Brussels:20240624T150000
+DTEND;TZID=Europe/Brussels:20240624T170000
+LOCATION:C0.110
+DESCRIPTION:Wichard Stienen, Rudolph Bosman, Merel de Olde, Marjory Dielen, Gerritjan Joris, Sergio Hijdra, Elbertha Schoneveld, Jimi Sips, Renze Brink, Rudy van de Pavert, Keshia Westgeest, Diemer Fokkens, Minoesch Scheltema, Keely Ursem, Frederikus Wullink, Vivianne Buter, Olaf Sterenberg, Eyup Milder, Yde Christiaens, Gustaaf Poldervaart, Marrie Bekker, Jos van der Zwet, Remon Kost, Chloe Vermanen, Jurrian Fekkes, Jake Rosenbrand, Arif Schrader, Tom Stokkel, Guus Heijnen, Yee Koppers, Haroun Lemaire, Laurentia Cooijmans, Rayen van de Kruijs, Mellisa Leemburg, Miquel Metzelaar, Romany van Kessel, Jetty Haanstra, Fedoua van Poorten, Jort Vries, Juliet Noordzij, Dax Voskuilen, Leonie Richardson, Haiko Raaijmakers, Levien Selten, Leida van de Ridder, Vanita Yusuf, Loulou Panman, Tori Roeterdink, Abdul van der Meeren, Edwinus Voigt, Christoffel 't Jong, Rijkje Groote, Ilayda van Dinther, Mellanie Zhang, Marcellus Mijnheer, Jael Boutkan, Kelly Doedens, Thijn Kooyman, Albertine Schellevis, Leon van den Hoogen, Ycel van Kasteel, Demelza van Kommer, Jenske Jongejan, Sherwin Lugthart, Danique Knibbe, Tian Berkers, Marianka Selten, Kimm Rienks, Rafaela Polfliet, Lisse Moes, Nuriye Kooijmans, Ravi Bauer, Ko Droste, Djamilla Wesselink, Leon van Maurik, Evelyn Koelemij, Jodi van Riel, Imran Scheffers, Javier Pruijmboom, Catherine Hoornstra, Carmela van Gerwen, Abdeslam Ridderhof, Annamaria Twigt, Steijn Ooijen, Maris Wielenga, Nanette te Braak, Adil Klop, Malcolm Looij, Graciella van der Plas, Faya Jagersma, Oliver Milder, Krijntje Rombout, Tjalle ten Pas, Nadeem Lagendijk, Hiba Boogert, Manuel de Boon, Sarena Tjeerdsma, Fae van Luttikhuizen, Samentha Toren, Lee Numan, Christianus Laman, Diny Aslan, Willibrordus Agema, Tos van der Ster, Yi Luten, Allan Budel
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Calculus 2
+DTSTART;TZID=Europe/Brussels:20240624T170000
+DTEND;TZID=Europe/Brussels:20240624T190000
+LOCATION:C0.110
+DESCRIPTION:Wichard Stienen, Marjory Dielen, Sergio Hijdra, Elbertha Schoneveld, Jimi Sips, Renze Brink, Keshia Westgeest, Yde Christiaens, Jos van der Zwet, Chloe Vermanen, Jake Rosenbrand, Arif Schrader, Tom Stokkel, Rayen van de Kruijs, Miquel Metzelaar, Leonie Richardson, Haiko Raaijmakers, Ilayda van Dinther, Thijn Kooyman, Albertine Schellevis, Demelza van Kommer, Jenske Jongejan, Danique Knibbe, Kimm Rienks, Rafaela Polfliet, Evelyn Koelemij, Imran Scheffers, Catherine Hoornstra, Carmela van Gerwen, Maris Wielenga, Malcolm Looij, Faya Jagersma, Nadeem Lagendijk, Hiba Boogert, Sarena Tjeerdsma, Lee Numan, Christianus Laman
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Calculus 2
+DTSTART;TZID=Europe/Brussels:20240626T150000
+DTEND;TZID=Europe/Brussels:20240626T170000
+LOCATION:A1.04
+DESCRIPTION:Rudolph Bosman, Merel de Olde, Diemer Fokkens, Minoesch Scheltema, Keely Ursem, Frederikus Wullink, Marrie Bekker, Guus Heijnen, Yee Koppers, Fedoua van Poorten, Jort Vries, Levien Selten, Vanita Yusuf, Loulou Panman, Edwinus Voigt, Mellanie Zhang, Leon van den Hoogen, Sherwin Lugthart, Tian Berkers, Marianka Selten, Javier Pruijmboom, Abdeslam Ridderhof, Annamaria Twigt, Steijn Ooijen, Graciella van der Plas, Tjalle ten Pas, Manuel de Boon, Willibrordus Agema, Allan Budel
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w3 - Calculus 2
+DTSTART;TZID=Europe/Brussels:20240624T130000
+DTEND;TZID=Europe/Brussels:20240624T150000
+LOCATION:C1.112
+DESCRIPTION:Gerritjan Joris, Rudy van de Pavert, Vivianne Buter, Olaf Sterenberg, Eyup Milder, Gustaaf Poldervaart, Remon Kost, Jurrian Fekkes, Haroun Lemaire, Laurentia Cooijmans, Mellisa Leemburg, Romany van Kessel, Jetty Haanstra, Juliet Noordzij, Dax Voskuilen, Leida van de Ridder, Tori Roeterdink, Abdul van der Meeren, Christoffel 't Jong, Rijkje Groote, Marcellus Mijnheer, Jael Boutkan, Kelly Doedens, Ycel van Kasteel, Lisse Moes, Nuriye Kooijmans, Ravi Bauer, Ko Droste, Djamilla Wesselink, Leon van Maurik, Jodi van Riel, Nanette te Braak, Adil Klop, Oliver Milder, Krijntje Rombout, Fae van Luttikhuizen, Samentha Toren, Diny Aslan, Tos van der Ster, Yi Luten
+END:VEVENT
+END:VCALENDAR

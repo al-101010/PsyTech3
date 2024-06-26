@@ -1,0 +1,66 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Bioinformatica
+DTSTART;TZID=Europe/Brussels:20240628T130000
+DTEND;TZID=Europe/Brussels:20240628T150000
+LOCATION:A1.10
+DESCRIPTION:Kaoutar Philips, Julot van Teeffelen, Hanan Lathouwers, Shakir Paauwe, Djura Kol, Roma Rotgans, Raven Elissen, Diemer Fokkens, Paulette Hunting, Keely Ursem, Yde Christiaens, Vasco Waninge, Jos van der Zwet, Jetty van Putten, Nermin Talhaoui, Pleun ter Heide, Jurre van de Sanden, Haroun Lemaire, Samyra Çetin, Fatime Rodenburg, Patricia Sier, Fedoua van Poorten, Cyrina Brasser, Ludovicus Eissens, Leida van de Ridder, Abdul van der Meeren, Owen Jama, Jarik Blikman, Ard Tielemans, Demelza van Kommer, Romaisa Oostvogels, Bodie Metselaar, Sola Droog, Valery Majoor, Mouna Lathouwers, Corry Kroonen, Herwin Ester, Jonah Teuben, Jo-Anne Modderkolk, Yuri van Mourik, Ilyass Broeks, Sarena Tjeerdsma, Jacko Wobbes, Resul Kuijpers, Shawny van de Pol
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h2 - Bioinformatica
+DTSTART;TZID=Europe/Brussels:20240626T090000
+DTEND;TZID=Europe/Brussels:20240626T110000
+LOCATION:A1.10
+DESCRIPTION:Kaoutar Philips, Julot van Teeffelen, Hanan Lathouwers, Shakir Paauwe, Djura Kol, Roma Rotgans, Raven Elissen, Diemer Fokkens, Paulette Hunting, Keely Ursem, Yde Christiaens, Vasco Waninge, Jos van der Zwet, Jetty van Putten, Nermin Talhaoui, Pleun ter Heide, Jurre van de Sanden, Haroun Lemaire, Samyra Çetin, Fatime Rodenburg, Patricia Sier, Fedoua van Poorten, Cyrina Brasser, Ludovicus Eissens, Leida van de Ridder, Abdul van der Meeren, Owen Jama, Jarik Blikman, Ard Tielemans, Demelza van Kommer, Romaisa Oostvogels, Bodie Metselaar, Sola Droog, Valery Majoor, Mouna Lathouwers, Corry Kroonen, Herwin Ester, Jonah Teuben, Jo-Anne Modderkolk, Yuri van Mourik, Ilyass Broeks, Sarena Tjeerdsma, Jacko Wobbes, Resul Kuijpers, Shawny van de Pol
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h3 - Bioinformatica
+DTSTART;TZID=Europe/Brussels:20240628T110000
+DTEND;TZID=Europe/Brussels:20240628T130000
+LOCATION:A1.10
+DESCRIPTION:Kaoutar Philips, Julot van Teeffelen, Hanan Lathouwers, Shakir Paauwe, Djura Kol, Roma Rotgans, Raven Elissen, Diemer Fokkens, Paulette Hunting, Keely Ursem, Yde Christiaens, Vasco Waninge, Jos van der Zwet, Jetty van Putten, Nermin Talhaoui, Pleun ter Heide, Jurre van de Sanden, Haroun Lemaire, Samyra Çetin, Fatime Rodenburg, Patricia Sier, Fedoua van Poorten, Cyrina Brasser, Ludovicus Eissens, Leida van de Ridder, Abdul van der Meeren, Owen Jama, Jarik Blikman, Ard Tielemans, Demelza van Kommer, Romaisa Oostvogels, Bodie Metselaar, Sola Droog, Valery Majoor, Mouna Lathouwers, Corry Kroonen, Herwin Ester, Jonah Teuben, Jo-Anne Modderkolk, Yuri van Mourik, Ilyass Broeks, Sarena Tjeerdsma, Jacko Wobbes, Resul Kuijpers, Shawny van de Pol
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p1 - Bioinformatica
+DTSTART;TZID=Europe/Brussels:20240626T110000
+DTEND;TZID=Europe/Brussels:20240626T130000
+LOCATION:A1.08
+DESCRIPTION:Kaoutar Philips, Shakir Paauwe, Djura Kol, Diemer Fokkens, Paulette Hunting, Vasco Waninge, Jetty van Putten, Samyra Çetin, Fedoua van Poorten, Cyrina Brasser, Leida van de Ridder, Abdul van der Meeren, Owen Jama, Jarik Blikman, Demelza van Kommer, Romaisa Oostvogels, Bodie Metselaar, Mouna Lathouwers, Herwin Ester, Jacko Wobbes
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Bioinformatica
+DTSTART;TZID=Europe/Brussels:20240628T090000
+DTEND;TZID=Europe/Brussels:20240628T110000
+LOCATION:B0.201
+DESCRIPTION:Julot van Teeffelen, Roma Rotgans, Keely Ursem, Jos van der Zwet, Nermin Talhaoui, Pleun ter Heide, Fatime Rodenburg, Patricia Sier, Ludovicus Eissens, Ard Tielemans, Corry Kroonen, Jo-Anne Modderkolk, Ilyass Broeks, Sarena Tjeerdsma, Resul Kuijpers, Shawny van de Pol
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p3 - Bioinformatica
+DTSTART;TZID=Europe/Brussels:20240628T090000
+DTEND;TZID=Europe/Brussels:20240628T110000
+LOCATION:C1.112
+DESCRIPTION:Hanan Lathouwers, Raven Elissen, Yde Christiaens, Jurre van de Sanden, Haroun Lemaire, Sola Droog, Valery Majoor, Jonah Teuben, Yuri van Mourik
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Bioinformatica
+DTSTART;TZID=Europe/Brussels:20240626T130000
+DTEND;TZID=Europe/Brussels:20240626T150000
+LOCATION:A1.08
+DESCRIPTION:Julot van Teeffelen, Roma Rotgans, Vasco Waninge, Jetty van Putten, Samyra Çetin, Fedoua van Poorten, Leida van de Ridder, Abdul van der Meeren, Bodie Metselaar, Valery Majoor, Shawny van de Pol
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Bioinformatica
+DTSTART;TZID=Europe/Brussels:20240628T150000
+DTEND;TZID=Europe/Brussels:20240628T170000
+LOCATION:C1.112
+DESCRIPTION:Kaoutar Philips, Shakir Paauwe, Raven Elissen, Diemer Fokkens, Yde Christiaens, Pleun ter Heide, Jurre van de Sanden, Cyrina Brasser, Demelza van Kommer, Romaisa Oostvogels, Sola Droog, Mouna Lathouwers, Corry Kroonen, Herwin Ester, Jo-Anne Modderkolk, Yuri van Mourik, Ilyass Broeks, Sarena Tjeerdsma, Jacko Wobbes, Resul Kuijpers
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w3 - Bioinformatica
+DTSTART;TZID=Europe/Brussels:20240626T130000
+DTEND;TZID=Europe/Brussels:20240626T150000
+LOCATION:C0.110
+DESCRIPTION:Hanan Lathouwers, Djura Kol, Paulette Hunting, Keely Ursem, Jos van der Zwet, Nermin Talhaoui, Haroun Lemaire, Fatime Rodenburg, Patricia Sier, Ludovicus Eissens, Owen Jama, Jarik Blikman, Ard Tielemans, Jonah Teuben
+END:VEVENT
+END:VCALENDAR

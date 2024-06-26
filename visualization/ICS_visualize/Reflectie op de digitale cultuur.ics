@@ -1,0 +1,38 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Reflectie op de digitale cultuur
+DTSTART;TZID=Europe/Brussels:20240628T150000
+DTEND;TZID=Europe/Brussels:20240628T170000
+LOCATION:A1.10
+DESCRIPTION:Hendrik-Jan Prevoo, Ervin Hartevelt, Chelly van der Doelen, Shan Rokx, Maryam Wiegmans, Djura Kol, Wytske Buining, Paulette Hunting, Hanne Brans, Liana Charita, Gabriella Yazici, Marck Wijngaarden, Abdallah Beulen, Ihsane Wind, Le Janga, Goven Curfs, Tjesse Voesten, Samyra Çetin, Silvy Schrauwen, Aart Pothuizen, Riana Kampers, Eltjo Beunen, Raja Tijhof, Haiko Raaijmakers, Xiao Teekens, Jacey Tun, Maritha van der Niet, Leida van de Ridder, Semiha Quik, Nadia Lems, Paulette van de Wardt, Ynte van Berkom, Kyllian Bekkema, Donna Buurma, Ceciel Kentie, Robbie van de Geijn, Inger Notermans, Esme Karim, Andre Putters, Hailey Claassen, Mahmud Heller, Wulfert Brinksma, Cemil van Barneveld, Jeremey Bontenbal, Ken Borsboom, Juan van Eijndhoven, Ans van Montfort, Marck Soekhai, Angle Berentsen, Nika van Baaren, Seval van Leussen
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h2 - Reflectie op de digitale cultuur
+DTSTART;TZID=Europe/Brussels:20240625T110000
+DTEND;TZID=Europe/Brussels:20240625T130000
+LOCATION:C0.110
+DESCRIPTION:Hendrik-Jan Prevoo, Ervin Hartevelt, Chelly van der Doelen, Shan Rokx, Maryam Wiegmans, Djura Kol, Wytske Buining, Paulette Hunting, Hanne Brans, Liana Charita, Gabriella Yazici, Marck Wijngaarden, Abdallah Beulen, Ihsane Wind, Le Janga, Goven Curfs, Tjesse Voesten, Samyra Çetin, Silvy Schrauwen, Aart Pothuizen, Riana Kampers, Eltjo Beunen, Raja Tijhof, Haiko Raaijmakers, Xiao Teekens, Jacey Tun, Maritha van der Niet, Leida van de Ridder, Semiha Quik, Nadia Lems, Paulette van de Wardt, Ynte van Berkom, Kyllian Bekkema, Donna Buurma, Ceciel Kentie, Robbie van de Geijn, Inger Notermans, Esme Karim, Andre Putters, Hailey Claassen, Mahmud Heller, Wulfert Brinksma, Cemil van Barneveld, Jeremey Bontenbal, Ken Borsboom, Juan van Eijndhoven, Ans van Montfort, Marck Soekhai, Angle Berentsen, Nika van Baaren, Seval van Leussen
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Reflectie op de digitale cultuur
+DTSTART;TZID=Europe/Brussels:20240628T130000
+DTEND;TZID=Europe/Brussels:20240628T150000
+LOCATION:A1.06
+DESCRIPTION:Hendrik-Jan Prevoo, Gabriella Yazici, Abdallah Beulen, Le Janga, Tjesse Voesten, Aart Pothuizen, Riana Kampers, Jacey Tun, Ynte van Berkom, Donna Buurma, Robbie van de Geijn, Mahmud Heller, Cemil van Barneveld, Marck Soekhai, Angle Berentsen, Nika van Baaren, Seval van Leussen
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Reflectie op de digitale cultuur
+DTSTART;TZID=Europe/Brussels:20240626T090000
+DTEND;TZID=Europe/Brussels:20240626T110000
+LOCATION:A1.08
+DESCRIPTION:Shan Rokx, Wytske Buining, Marck Wijngaarden, Ihsane Wind, Goven Curfs, Silvy Schrauwen, Eltjo Beunen, Xiao Teekens, Nadia Lems, Paulette van de Wardt, Kyllian Bekkema, Ceciel Kentie, Inger Notermans, Jeremey Bontenbal, Ken Borsboom
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w3 - Reflectie op de digitale cultuur
+DTSTART;TZID=Europe/Brussels:20240626T150000
+DTEND;TZID=Europe/Brussels:20240626T170000
+LOCATION:A1.06
+DESCRIPTION:Ervin Hartevelt, Chelly van der Doelen, Maryam Wiegmans, Djura Kol, Paulette Hunting, Hanne Brans, Liana Charita, Samyra Çetin, Raja Tijhof, Haiko Raaijmakers, Maritha van der Niet, Leida van de Ridder, Semiha Quik, Esme Karim, Andre Putters, Hailey Claassen, Wulfert Brinksma, Juan van Eijndhoven, Ans van Montfort
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:p1 - Project Numerical Recipes
+DTSTART;TZID=Europe/Brussels:20240624T130000
+DTEND;TZID=Europe/Brussels:20240624T150000
+LOCATION:A1.08
+DESCRIPTION:Siri Droge, Hanan Lathouwers, Martin Avci, Jorike Coenen, Fatime Rodenburg, Titia Korbee, Lysbeth Keuken, Heiltje Wijnands, Inger Notermans, Kathryn de Jongste, Faya Jagersma, Johannus van Bavel, Juan van Eijndhoven, Winfried Doeve, Jayme van Eeuwijk
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Project Numerical Recipes
+DTSTART;TZID=Europe/Brussels:20240626T130000
+DTEND;TZID=Europe/Brussels:20240626T150000
+LOCATION:A1.04
+DESCRIPTION:Renco van Weel, Vivianne Buter, Tom Stokkel, Guus Heijnen, Nanet van Osta, Sherman Vervaart, Semiha Quik, Lamia Mok, Abdelkader Gijbels, Wiert Becht, Esme Karim, Sharan Baselmans, Geerte van der Meij, Jannette Rust
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p3 - Project Numerical Recipes
+DTSTART;TZID=Europe/Brussels:20240627T110000
+DTEND;TZID=Europe/Brussels:20240627T130000
+LOCATION:B0.201
+DESCRIPTION:Lody van Bentem, Farhad de Kuijer, Kamila van de Kruijs, Belle Florijn, Patricia Sier, Juliette Kant, Cyrina Brasser, Roswitha van de Kuilen, Yalda Grootenboer, Ruveyda van Lingen, Romaisa Oostvogels, Leon van Maurik, Esmee Hooijmaijers, Yang van Munster, Perry Blijleven
+END:VEVENT
+END:VCALENDAR

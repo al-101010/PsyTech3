@@ -1,0 +1,10 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Analysemethoden en -technieken
+DTSTART;TZID=Europe/Brussels:20240626T130000
+DTEND;TZID=Europe/Brussels:20240626T150000
+LOCATION:A1.10
+DESCRIPTION:Josef van der Wiel, Chelly van der Doelen, Monika Blikman, Dorenda Malestein, Sharen Kortlever, Felien Uitslag, Luca Pereira, Seyed Laurijssen, Jackson Scherpenzeel, Diemer Fokkens, Minoesch Scheltema, Frederikus Wullink, Hanne Brans, Liana Charita, Sverre Hoenderdos, Armin Bol, Chloe Vermanen, Abdallah Beulen, Mathe Luth, Joshi van Groeningen, Peter-Jan van Amersfoort, Alexandra Wijnsma, Cyrina Brasser, Michel Sieben, Maritha van der Niet, Eddy Gerritse, Micha van Maarseveen, Mellanie Zhang, Yuki Verkuijl, Albertine Schellevis, Danique Knibbe, Robbie van de Geijn, Cherilyn van Amelsvoort, Nuriye Kooijmans, Hailey Claassen, Imran Scheffers, Richenel Giesen, Rintje Dumoulin, Wafa Bart, Yanick Abbing, Aboubakr Terpstra, Kamiel Vinken, Harry Noordhuis, Ilyass Broeks, Meta van Marle, Florus Holtkamp, Chaimae Swiers, Fae van Luttikhuizen, Nika van Baaren
+END:VEVENT
+END:VCALENDAR
