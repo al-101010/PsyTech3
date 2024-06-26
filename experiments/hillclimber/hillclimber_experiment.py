@@ -1,17 +1,13 @@
 from code.algorithms.hillclimber import Hillclimber
 from code.algorithms.heuristics_hillclimber import MutationProbabilityClimber, ProblematicActivityClimber, ProblematicStudentsClimber, IncreasingMutationsClimber
 from statistics import mean
-from scipy import stats
-from code.classes.schedule import Schedule
 
-import time
 import matplotlib.pyplot as plt
-import random 
-import csv
 import pandas as pd 
-import os 
 import seaborn as sns
-import copy 
+import time
+import os 
+import csv
 
 def select_version(version):
     """
@@ -63,7 +59,7 @@ def hillclimb_all_averages(schedule, version, nr_climbers: int =30, nr_iteration
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_climbers 
     per each of nr_iterations and for all types of maluspoints.   
-    Stores thei final schedule of each climber in a separate folder. 
+    Stores the final schedule of each climber in a separate folder. 
     '''
     start_time = time.time()
 
