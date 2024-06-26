@@ -14,9 +14,6 @@ import pandas as pd
 import time
 import argparse
 
-start_time = time.time()
-print("--- %s seconds ---" % (time.time() - start_time))
-
 
 def main(algorithm, output_csv_name, output_png_name, experiment, iterations, early_stopping, starting_temperature, version):
     test_schedule = Schedule('data/studenten_en_vakken.csv', 'data/vakken.csv', 'data/zalen.csv')
