@@ -137,7 +137,8 @@ def hillclimber_ratios_plot(nr_climbers: int =30, nr_iterations: int =20000):
     ax.set_ybound(0, 1500)
 
     plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'], loc='upper right')
-    plt.title(f'Maluspoints Hillclimber (n={nr_climbers})')
+    plt.suptitle(f'Maluspoints Hillclimber (n={nr_climbers})', fontsize=12)
+    plt.title(f'final maluspoints obtained - average: {df["Total Avg"].iloc[-1]}, minimum: {df["Total Min"].iloc[-1]}, maximum: {df["Total Max"].iloc[-1]}', loc='left', fontsize=9)
     plt.ylabel('Average Maluspoints')
     plt.xlabel('Iterations')
 
@@ -181,7 +182,8 @@ def hillclimber_ratios_plot_zoom(nr_climbers: int =30, nr_iterations : int =2000
     ax.set_ybound(0, 300)
 
     plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'])
-    plt.title(f'Maluspoints Hillclimber (n={nr_climbers})')
+    plt.suptitle(f'Maluspoints Hillclimber (n={nr_climbers})', fontsize=12)
+    plt.title(f'final maluspoints obtained - average: {df["Total Avg"].iloc[-1]}, minimum: {df["Total Min"].iloc[-1]}, maximum: {df["Total Max"].iloc[-1]}', loc='left', fontsize=9)
     plt.ylabel('Average Maluspoints')
     plt.xlabel('Iterations')
 
@@ -203,8 +205,7 @@ def plot_maluspoints_distribution(nr_climbers=30, nr_iterations=20000, name='Hil
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
     plt.title(f'Maluspoints Distribution {name} (n={nr_climbers})')
-    ax.set_xbound(0,1600)
-    plt.savefig(f'results/hillclimber/final_maluspoints-{nr_climbers}-{nr_iterations}.png')
+    plt.savefig(f'results/hillclimber/final_maluspoints-{nr_climbers}-{nr_iterations}.png', dpi=1200)
     plt.show()
 
 
