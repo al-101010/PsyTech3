@@ -1,0 +1,59 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Autonomous Agents 2
+DTSTART;TZID=Europe/Brussels:20240626T130000
+DTEND;TZID=Europe/Brussels:20240626T150000
+LOCATION:C1.112
+DESCRIPTION:Filipe Wiersema, Angelica Sarikaya, Deacon Gielissen, Jurrian Fekkes, Abdallah Beulen, Rhona Vromans, Virginie Brunsveld, Tarah Broerse, Luciana Putters, Bo Hilhorst, Tamimount van Herten, Danique Knibbe, Deejay van der Geer, Andre Putters, Emrah Schrama, Roan Meulmeester, Umar Grift, Herwin Ester, Esmee Hooijmaijers, Lammigje van Loveren, Resul Kuijpers, Shaya Snelder
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h2 - Autonomous Agents 2
+DTSTART;TZID=Europe/Brussels:20240628T110000
+DTEND;TZID=Europe/Brussels:20240628T130000
+LOCATION:A1.06
+DESCRIPTION:Filipe Wiersema, Angelica Sarikaya, Deacon Gielissen, Jurrian Fekkes, Abdallah Beulen, Rhona Vromans, Virginie Brunsveld, Tarah Broerse, Luciana Putters, Bo Hilhorst, Tamimount van Herten, Danique Knibbe, Deejay van der Geer, Andre Putters, Emrah Schrama, Roan Meulmeester, Umar Grift, Herwin Ester, Esmee Hooijmaijers, Lammigje van Loveren, Resul Kuijpers, Shaya Snelder
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p1 - Autonomous Agents 2
+DTSTART;TZID=Europe/Brussels:20240627T090000
+DTEND;TZID=Europe/Brussels:20240627T110000
+LOCATION:A1.06
+DESCRIPTION:Filipe Wiersema, Abdallah Beulen, Virginie Brunsveld, Luciana Putters, Bo Hilhorst, Tamimount van Herten, Danique Knibbe, Andre Putters, Esmee Hooijmaijers, Lammigje van Loveren
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Autonomous Agents 2
+DTSTART;TZID=Europe/Brussels:20240628T090000
+DTEND;TZID=Europe/Brussels:20240628T110000
+LOCATION:A1.08
+DESCRIPTION:Angelica Sarikaya, Deacon Gielissen, Jurrian Fekkes, Tarah Broerse, Deejay van der Geer, Roan Meulmeester, Umar Grift, Herwin Ester, Shaya Snelder
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p3 - Autonomous Agents 2
+DTSTART;TZID=Europe/Brussels:20240625T150000
+DTEND;TZID=Europe/Brussels:20240625T170000
+LOCATION:A1.08
+DESCRIPTION:Rhona Vromans, Emrah Schrama, Resul Kuijpers
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Autonomous Agents 2
+DTSTART;TZID=Europe/Brussels:20240625T130000
+DTEND;TZID=Europe/Brussels:20240625T150000
+LOCATION:A1.06
+DESCRIPTION:Jurrian Fekkes, Rhona Vromans, Tarah Broerse, Bo Hilhorst, Danique Knibbe, Emrah Schrama, Shaya Snelder
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Autonomous Agents 2
+DTSTART;TZID=Europe/Brussels:20240625T090000
+DTEND;TZID=Europe/Brussels:20240625T110000
+LOCATION:B0.201
+DESCRIPTION:Filipe Wiersema, Deacon Gielissen, Abdallah Beulen, Luciana Putters, Andre Putters, Lammigje van Loveren
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w3 - Autonomous Agents 2
+DTSTART;TZID=Europe/Brussels:20240626T150000
+DTEND;TZID=Europe/Brussels:20240626T170000
+LOCATION:A1.10
+DESCRIPTION:Angelica Sarikaya, Virginie Brunsveld, Tamimount van Herten, Deejay van der Geer, Roan Meulmeester, Umar Grift, Herwin Ester, Esmee Hooijmaijers, Resul Kuijpers
+END:VEVENT
+END:VCALENDAR

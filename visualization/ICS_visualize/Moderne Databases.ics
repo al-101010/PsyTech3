@@ -1,0 +1,52 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Moderne Databases
+DTSTART;TZID=Europe/Brussels:20240627T110000
+DTEND;TZID=Europe/Brussels:20240627T130000
+LOCATION:C0.110
+DESCRIPTION:Marco Gilsing, Djuri Korpershoek, Yarah Roest, Maryam Wiegmans, Rhona Bakkum, Maureen Versantvoort, Djura Kol, Diemer Fokkens, Marck Wijngaarden, Vasco Waninge, Maritte Gok, Eylem Haas, Hande Essink, Sien van Plateringen, Virginie Brunsveld, Aya Woertman, Rieke Odijk, Silvy Schrauwen, Anes de Kanter, Doede Duiveman, Ferhan van der Gulik, Abram van Mierlo, Rein Leidelmeijer, Elske van Suijlekom, Juliet Noordzij, Dax Voskuilen, Leonie Richardson, Annigje Prinssen, Rayn Bolding, Lysbeth Keuken, Abdul van der Meeren, Christoffel 't Jong, Micha van Maarseveen, Patryk van de Kraats, Ceciel Kentie, Federico Levels, Skye Tas, Nuriye Kooijmans, Chesney Autar, Pearl van der Leek, Mouna Lathouwers, Sivar Rottier, Jodi van Riel, Annamaria Twigt, Nygel Vaatstra, Nanette te Braak, Samah van 't Oever, Frederic IJkema, Nurcan Fennis, Gidon Baetsen, Neele Veeke, Vesna Nijs, Emme Udo, Maron Miedema
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Moderne Databases
+DTSTART;TZID=Europe/Brussels:20240627T130000
+DTEND;TZID=Europe/Brussels:20240627T150000
+LOCATION:C1.112
+DESCRIPTION:Djuri Korpershoek, Maryam Wiegmans, Rhona Bakkum, Diemer Fokkens, Marck Wijngaarden, Vasco Waninge, Maritte Gok, Hande Essink, Virginie Brunsveld, Aya Woertman, Silvy Schrauwen, Doede Duiveman, Rein Leidelmeijer, Leonie Richardson, Micha van Maarseveen, Patryk van de Kraats, Federico Levels, Pearl van der Leek, Neele Veeke, Emme Udo
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p3 - Moderne Databases
+DTSTART;TZID=Europe/Brussels:20240624T110000
+DTEND;TZID=Europe/Brussels:20240624T130000
+LOCATION:A1.08
+DESCRIPTION:Marco Gilsing, Yarah Roest, Ferhan van der Gulik, Abram van Mierlo, Elske van Suijlekom, Annigje Prinssen, Abdul van der Meeren, Christoffel 't Jong, Ceciel Kentie, Nuriye Kooijmans, Mouna Lathouwers, Jodi van Riel, Samah van 't Oever, Frederic IJkema, Maron Miedema
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p4 - Moderne Databases
+DTSTART;TZID=Europe/Brussels:20240628T090000
+DTEND;TZID=Europe/Brussels:20240628T110000
+LOCATION:A1.04
+DESCRIPTION:Maureen Versantvoort, Djura Kol, Eylem Haas, Sien van Plateringen, Rieke Odijk, Anes de Kanter, Juliet Noordzij, Dax Voskuilen, Rayn Bolding, Lysbeth Keuken, Skye Tas, Chesney Autar, Sivar Rottier, Annamaria Twigt, Nygel Vaatstra, Nanette te Braak, Nurcan Fennis, Gidon Baetsen, Vesna Nijs
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Moderne Databases
+DTSTART;TZID=Europe/Brussels:20240628T110000
+DTEND;TZID=Europe/Brussels:20240628T130000
+LOCATION:A1.08
+DESCRIPTION:Maureen Versantvoort, Maritte Gok, Eylem Haas, Hande Essink, Sien van Plateringen, Abram van Mierlo, Rein Leidelmeijer, Annigje Prinssen, Rayn Bolding, Patryk van de Kraats, Federico Levels, Skye Tas, Nuriye Kooijmans, Nygel Vaatstra, Nanette te Braak, Samah van 't Oever, Nurcan Fennis, Gidon Baetsen, Vesna Nijs, Emme Udo
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Moderne Databases
+DTSTART;TZID=Europe/Brussels:20240625T090000
+DTEND;TZID=Europe/Brussels:20240625T110000
+LOCATION:A1.04
+DESCRIPTION:Maryam Wiegmans, Rhona Bakkum, Diemer Fokkens, Vasco Waninge, Silvy Schrauwen, Anes de Kanter, Juliet Noordzij, Dax Voskuilen, Leonie Richardson, Lysbeth Keuken, Abdul van der Meeren, Ceciel Kentie, Pearl van der Leek, Annamaria Twigt, Frederic IJkema
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w3 - Moderne Databases
+DTSTART;TZID=Europe/Brussels:20240624T090000
+DTEND;TZID=Europe/Brussels:20240624T110000
+LOCATION:A1.10
+DESCRIPTION:Marco Gilsing, Djuri Korpershoek, Yarah Roest, Djura Kol, Marck Wijngaarden, Virginie Brunsveld, Aya Woertman, Rieke Odijk, Doede Duiveman, Ferhan van der Gulik, Elske van Suijlekom, Christoffel 't Jong, Micha van Maarseveen, Chesney Autar, Mouna Lathouwers, Sivar Rottier, Jodi van Riel, Neele Veeke, Maron Miedema
+END:VEVENT
+END:VCALENDAR

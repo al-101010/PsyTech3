@@ -1,0 +1,45 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Webprogrammeren en databases
+DTSTART;TZID=Europe/Brussels:20240625T150000
+DTEND;TZID=Europe/Brussels:20240625T170000
+LOCATION:A1.10
+DESCRIPTION:Roelof Adam, Jildou Corvers, Chelly van der Doelen, Hedwich Toetenel, Jimi Sips, Renze Brink, Sanne Lentz, Juno Zaaijer, Maritte Gok, Cheyenna Reuvekamp, Kyra Huibers, Jorren Modderkolk, Bobby Veldhuis, Dalila van Sommeren, Ziya Rooijmans, Abram van Mierlo, Nalinie van Ierland, Patric Geluk, Guilliano Blomsma, Christal Hoogerbrugge, Jurrit Nieuwenhuizen, Yalda Grootenboer, Yaro Kamp, Nathanael Plasman, Tian Berkers, Adisa Reek, Malte Zondag, Sayfeddine Wolswijk, Benjamin Arendse, Jonah Teuben, Anne-Jet Hofman, Yuri van Mourik, Johannes van der Plaats, Marilene van Santen, Karolina Roodbeen, Christianus Laman, Fransiscus Zagers, Marck Soekhai, Vinod Velt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h2 - Webprogrammeren en databases
+DTSTART;TZID=Europe/Brussels:20240625T130000
+DTEND;TZID=Europe/Brussels:20240625T150000
+LOCATION:A1.04
+DESCRIPTION:Roelof Adam, Jildou Corvers, Chelly van der Doelen, Hedwich Toetenel, Jimi Sips, Renze Brink, Sanne Lentz, Juno Zaaijer, Maritte Gok, Cheyenna Reuvekamp, Kyra Huibers, Jorren Modderkolk, Bobby Veldhuis, Dalila van Sommeren, Ziya Rooijmans, Abram van Mierlo, Nalinie van Ierland, Patric Geluk, Guilliano Blomsma, Christal Hoogerbrugge, Jurrit Nieuwenhuizen, Yalda Grootenboer, Yaro Kamp, Nathanael Plasman, Tian Berkers, Adisa Reek, Malte Zondag, Sayfeddine Wolswijk, Benjamin Arendse, Jonah Teuben, Anne-Jet Hofman, Yuri van Mourik, Johannes van der Plaats, Marilene van Santen, Karolina Roodbeen, Christianus Laman, Fransiscus Zagers, Marck Soekhai, Vinod Velt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p1 - Webprogrammeren en databases
+DTSTART;TZID=Europe/Brussels:20240624T150000
+DTEND;TZID=Europe/Brussels:20240624T170000
+LOCATION:A1.06
+DESCRIPTION:Roelof Adam, Jildou Corvers, Chelly van der Doelen, Sanne Lentz, Cheyenna Reuvekamp, Kyra Huibers, Jorren Modderkolk, Dalila van Sommeren, Ziya Rooijmans, Abram van Mierlo, Guilliano Blomsma, Christal Hoogerbrugge, Yalda Grootenboer, Adisa Reek, Benjamin Arendse, Jonah Teuben, Johannes van der Plaats, Fransiscus Zagers, Marck Soekhai
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Webprogrammeren en databases
+DTSTART;TZID=Europe/Brussels:20240625T110000
+DTEND;TZID=Europe/Brussels:20240625T130000
+LOCATION:A1.04
+DESCRIPTION:Hedwich Toetenel, Jimi Sips, Renze Brink, Juno Zaaijer, Maritte Gok, Bobby Veldhuis, Nalinie van Ierland, Patric Geluk, Jurrit Nieuwenhuizen, Yaro Kamp, Nathanael Plasman, Tian Berkers, Malte Zondag, Sayfeddine Wolswijk, Anne-Jet Hofman, Yuri van Mourik, Marilene van Santen, Karolina Roodbeen, Christianus Laman, Vinod Velt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Webprogrammeren en databases
+DTSTART;TZID=Europe/Brussels:20240624T130000
+DTEND;TZID=Europe/Brussels:20240624T150000
+LOCATION:A1.04
+DESCRIPTION:Jildou Corvers, Chelly van der Doelen, Jimi Sips, Maritte Gok, Kyra Huibers, Bobby Veldhuis, Abram van Mierlo, Guilliano Blomsma, Christal Hoogerbrugge, Jurrit Nieuwenhuizen, Yalda Grootenboer, Nathanael Plasman, Tian Berkers, Adisa Reek, Malte Zondag, Sayfeddine Wolswijk, Jonah Teuben, Yuri van Mourik, Christianus Laman, Marck Soekhai
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Webprogrammeren en databases
+DTSTART;TZID=Europe/Brussels:20240626T090000
+DTEND;TZID=Europe/Brussels:20240626T110000
+LOCATION:B0.201
+DESCRIPTION:Roelof Adam, Hedwich Toetenel, Renze Brink, Sanne Lentz, Juno Zaaijer, Cheyenna Reuvekamp, Jorren Modderkolk, Dalila van Sommeren, Ziya Rooijmans, Nalinie van Ierland, Patric Geluk, Yaro Kamp, Benjamin Arendse, Anne-Jet Hofman, Johannes van der Plaats, Marilene van Santen, Karolina Roodbeen, Fransiscus Zagers, Vinod Velt
+END:VEVENT
+END:VCALENDAR

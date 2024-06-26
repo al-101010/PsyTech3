@@ -1,0 +1,80 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Collectieve Intelligentie
+DTSTART;TZID=Europe/Brussels:20240628T130000
+DTEND;TZID=Europe/Brussels:20240628T150000
+LOCATION:C0.110
+DESCRIPTION:Jiri Vinke, Rhona Bakkum, Felien Uitslag, Jimi Sips, Romello Reintjes, Kimmy Kesteloo, Reduan Warsame, Jos Welling, Marije de Vreeze, Wichard Hospers, Marrie Bekker, Marck Wijngaarden, Matisse Weij, Buck Lantinga, Solane Paulissen, Matz Koning, Jorren Modderkolk, Vincent Kros, Bobby Veldhuis, Harwin van Loon, Virginie Brunsveld, Laurentia Cooijmans, Aya Woertman, Miquel Metzelaar, Bjorn Leijen, Fatime Rodenburg, Silvie Thoma, Titia Korbee, Evi Appel, Christiana Siero, Priscillia van Voorden, Marcellus Mijnheer, Hetty Lindhout, Femia Brink, Ard Tielemans, Jenske Jongejan, Sanne van Sleeuwen, Inger Notermans, Sharan Baselmans, Valery Majoor, Ravi Bauer, Harke Wester, Sivar Rottier, Sohrab Geers, Daisy van der Klei, Edin Bastings, Geerte van der Meij, Shannon Mullenders, Wafa Bart, Matthijs Pleiter, Ylse Klarenbeek, Ella Bischoff, Enes Siemonsma, Marco Bloemert, Xander Peijs, Casimir Overbeeke, Karolina Roodbeen, Liedeke van Bezooijen, Emme Udo, Brigitta Diallo, Shawny van de Pol
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h2 - Collectieve Intelligentie
+DTSTART;TZID=Europe/Brussels:20240628T170000
+DTEND;TZID=Europe/Brussels:20240628T190000
+LOCATION:C0.110
+DESCRIPTION:Jiri Vinke, Rhona Bakkum, Felien Uitslag, Jimi Sips, Romello Reintjes, Kimmy Kesteloo, Reduan Warsame, Jos Welling, Marije de Vreeze, Wichard Hospers, Marrie Bekker, Marck Wijngaarden, Matisse Weij, Buck Lantinga, Solane Paulissen, Matz Koning, Jorren Modderkolk, Vincent Kros, Bobby Veldhuis, Harwin van Loon, Virginie Brunsveld, Laurentia Cooijmans, Aya Woertman, Miquel Metzelaar, Bjorn Leijen, Fatime Rodenburg, Silvie Thoma, Titia Korbee, Evi Appel, Christiana Siero, Priscillia van Voorden, Marcellus Mijnheer, Hetty Lindhout, Femia Brink, Ard Tielemans, Jenske Jongejan, Sanne van Sleeuwen, Inger Notermans, Sharan Baselmans, Valery Majoor, Ravi Bauer, Harke Wester, Sivar Rottier, Sohrab Geers, Daisy van der Klei, Edin Bastings, Geerte van der Meij, Shannon Mullenders, Wafa Bart, Matthijs Pleiter, Ylse Klarenbeek, Ella Bischoff, Enes Siemonsma, Marco Bloemert, Xander Peijs, Casimir Overbeeke, Karolina Roodbeen, Liedeke van Bezooijen, Emme Udo, Brigitta Diallo, Shawny van de Pol
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h3 - Collectieve Intelligentie
+DTSTART;TZID=Europe/Brussels:20240628T150000
+DTEND;TZID=Europe/Brussels:20240628T170000
+LOCATION:C0.110
+DESCRIPTION:Jiri Vinke, Rhona Bakkum, Felien Uitslag, Jimi Sips, Romello Reintjes, Kimmy Kesteloo, Reduan Warsame, Jos Welling, Marije de Vreeze, Wichard Hospers, Marrie Bekker, Marck Wijngaarden, Matisse Weij, Buck Lantinga, Solane Paulissen, Matz Koning, Jorren Modderkolk, Vincent Kros, Bobby Veldhuis, Harwin van Loon, Virginie Brunsveld, Laurentia Cooijmans, Aya Woertman, Miquel Metzelaar, Bjorn Leijen, Fatime Rodenburg, Silvie Thoma, Titia Korbee, Evi Appel, Christiana Siero, Priscillia van Voorden, Marcellus Mijnheer, Hetty Lindhout, Femia Brink, Ard Tielemans, Jenske Jongejan, Sanne van Sleeuwen, Inger Notermans, Sharan Baselmans, Valery Majoor, Ravi Bauer, Harke Wester, Sivar Rottier, Sohrab Geers, Daisy van der Klei, Edin Bastings, Geerte van der Meij, Shannon Mullenders, Wafa Bart, Matthijs Pleiter, Ylse Klarenbeek, Ella Bischoff, Enes Siemonsma, Marco Bloemert, Xander Peijs, Casimir Overbeeke, Karolina Roodbeen, Liedeke van Bezooijen, Emme Udo, Brigitta Diallo, Shawny van de Pol
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p1 - Collectieve Intelligentie
+DTSTART;TZID=Europe/Brussels:20240626T110000
+DTEND;TZID=Europe/Brussels:20240626T130000
+LOCATION:A1.04
+DESCRIPTION:Jimi Sips, Kimmy Kesteloo, Marck Wijngaarden, Matisse Weij, Laurentia Cooijmans, Miquel Metzelaar, Fatime Rodenburg, Titia Korbee, Christiana Siero, Femia Brink, Ard Tielemans, Jenske Jongejan, Sanne van Sleeuwen, Sharan Baselmans, Valery Majoor, Shannon Mullenders, Ylse Klarenbeek, Marco Bloemert, Xander Peijs
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Collectieve Intelligentie
+DTSTART;TZID=Europe/Brussels:20240628T110000
+DTEND;TZID=Europe/Brussels:20240628T130000
+LOCATION:B0.201
+DESCRIPTION:Rhona Bakkum, Wichard Hospers, Marrie Bekker, Buck Lantinga, Solane Paulissen, Jorren Modderkolk, Vincent Kros, Bobby Veldhuis, Silvie Thoma, Priscillia van Voorden, Marcellus Mijnheer, Ravi Bauer, Sivar Rottier, Geerte van der Meij, Wafa Bart, Enes Siemonsma, Casimir Overbeeke, Karolina Roodbeen, Brigitta Diallo
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p3 - Collectieve Intelligentie
+DTSTART;TZID=Europe/Brussels:20240625T150000
+DTEND;TZID=Europe/Brussels:20240625T170000
+LOCATION:A1.06
+DESCRIPTION:Jiri Vinke, Felien Uitslag, Romello Reintjes, Reduan Warsame, Jos Welling, Marije de Vreeze, Matz Koning, Harwin van Loon, Bjorn Leijen, Evi Appel, Hetty Lindhout, Inger Notermans, Harke Wester, Sohrab Geers, Daisy van der Klei, Edin Bastings, Matthijs Pleiter, Ella Bischoff, Liedeke van Bezooijen, Emme Udo
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p4 - Collectieve Intelligentie
+DTSTART;TZID=Europe/Brussels:20240624T150000
+DTEND;TZID=Europe/Brussels:20240624T170000
+LOCATION:C1.112
+DESCRIPTION:Virginie Brunsveld, Aya Woertman, Shawny van de Pol
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Collectieve Intelligentie
+DTSTART;TZID=Europe/Brussels:20240624T110000
+DTEND;TZID=Europe/Brussels:20240624T130000
+LOCATION:A1.10
+DESCRIPTION:Jiri Vinke, Marck Wijngaarden, Solane Paulissen, Matz Koning, Fatime Rodenburg, Inger Notermans, Ravi Bauer, Harke Wester, Wafa Bart, Marco Bloemert, Karolina Roodbeen, Emme Udo, Brigitta Diallo
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Collectieve Intelligentie
+DTSTART;TZID=Europe/Brussels:20240627T130000
+DTEND;TZID=Europe/Brussels:20240627T150000
+LOCATION:B0.201
+DESCRIPTION:Jimi Sips, Kimmy Kesteloo, Bobby Veldhuis, Harwin van Loon, Laurentia Cooijmans, Silvie Thoma, Evi Appel, Christiana Siero, Hetty Lindhout, Femia Brink, Ard Tielemans, Jenske Jongejan, Sharan Baselmans, Sivar Rottier, Ylse Klarenbeek, Liedeke van Bezooijen, Shawny van de Pol
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w3 - Collectieve Intelligentie
+DTSTART;TZID=Europe/Brussels:20240627T110000
+DTEND;TZID=Europe/Brussels:20240627T130000
+LOCATION:A1.04
+DESCRIPTION:Reduan Warsame, Jos Welling, Marrie Bekker, Jorren Modderkolk, Bjorn Leijen, Priscillia van Voorden, Marcellus Mijnheer, Valery Majoor, Sohrab Geers, Daisy van der Klei, Edin Bastings, Geerte van der Meij, Ella Bischoff, Enes Siemonsma, Casimir Overbeeke
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w4 - Collectieve Intelligentie
+DTSTART;TZID=Europe/Brussels:20240626T090000
+DTEND;TZID=Europe/Brussels:20240626T110000
+LOCATION:C0.110
+DESCRIPTION:Rhona Bakkum, Felien Uitslag, Romello Reintjes, Marije de Vreeze, Wichard Hospers, Matisse Weij, Buck Lantinga, Vincent Kros, Virginie Brunsveld, Aya Woertman, Miquel Metzelaar, Titia Korbee, Sanne van Sleeuwen, Shannon Mullenders, Matthijs Pleiter, Xander Peijs
+END:VEVENT
+END:VCALENDAR

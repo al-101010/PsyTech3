@@ -1,0 +1,45 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:p1 - Programmeren in Java 2
+DTSTART;TZID=Europe/Brussels:20240626T130000
+DTEND;TZID=Europe/Brussels:20240626T150000
+LOCATION:A1.06
+DESCRIPTION:Noud Menke, Devlin Bronsema, Marnik Imthorn, Noa Slangen, Yde Christiaens, Eylem Haas, Bobby Veldhuis, Jort Vries, Titia Korbee, Naciye van Eert, Levien Selten, Priscillia van Voorden, Ouidad van Hall, Jenske Jongejan, Sanne van Sleeuwen, Miko Kalpoe, Agelo van der Meer, Dineke Valster, Jayme van Eeuwijk
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Programmeren in Java 2
+DTSTART;TZID=Europe/Brussels:20240627T110000
+DTEND;TZID=Europe/Brussels:20240627T130000
+LOCATION:A1.10
+DESCRIPTION:Scotty van der Stoel, Kely Borg, Dalila van Sommeren, Mellisa Leemburg, Nanet van Osta, Claudine Nagel, Tamar Jongbloed, Timo Postuma, Riana Kampers, Rochelle Thielen, Xiao Teekens, Kamil Streefland, Arianna Tettero, Ard Tielemans, Henricus Noot, Kimm Rienks, Wilmer Appelhof, Adil Klop, Johannes van der Plaats, Nordin Geboers
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p3 - Programmeren in Java 2
+DTSTART;TZID=Europe/Brussels:20240627T090000
+DTEND;TZID=Europe/Brussels:20240627T110000
+LOCATION:B0.201
+DESCRIPTION:Rosali Heikoop, Liana Charita, Marije de Vreeze, Taeke Renes, Miquel Metzelaar, Samyra Çetin, Silvy Schrauwen, Wijntje Plaizier, Leida van de Ridder, Patryk van de Kraats, Tariq Bood, Ceciel Kentie, Boy Dibbets, Virgill Hamelink, Jaro Essink, Janniek de Leest, Leo van Amerongen, Sonny Mol, Jorian van Zijderveld, Florus Holtkamp
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p4 - Programmeren in Java 2
+DTSTART;TZID=Europe/Brussels:20240624T150000
+DTEND;TZID=Europe/Brussels:20240624T170000
+LOCATION:A1.04
+DESCRIPTION:Maureen Versantvoort, Quido Deniz, Wytske Buining, Sayfeddine Bruijnes, Christiana Siero, Aidan van Iwaarden, Daisy van der Klei, Umar Grift, Dinah Ensink, Jo-Anne Modderkolk, Ylse Klarenbeek, Chaimae Swiers, Lammigje van Loveren, Desiree Potgieter
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p5 - Programmeren in Java 2
+DTSTART;TZID=Europe/Brussels:20240627T110000
+DTEND;TZID=Europe/Brussels:20240627T130000
+LOCATION:A1.06
+DESCRIPTION:Rahim Kienhuis, Merel de Olde, Jackson Scherpenzeel, Vivianne Buter, Olaf Sterenberg, Wichard Hospers, Jorg 't Lam, Cyrille van den Ham, Rayen van de Kruijs, Ceren van den Engel, Nadia Lems, Mellanie Zhang, Heiltje Wijnands, Nathanael Plasman, Lisse Moes, Mies Westra, Saba Bhaggoe, Yi Luten
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p6 - Programmeren in Java 2
+DTSTART;TZID=Europe/Brussels:20240628T150000
+DTEND;TZID=Europe/Brussels:20240628T170000
+LOCATION:B0.201
+DESCRIPTION:Chrystel Kalshoven, Jos van der Zwet, Cleo van Rietschoten, Darian van der Steege, Caressa van Roemburg, Mink Pothuizen, Gonca Stroo, Antonetta Moeskops, Abdul van der Meeren, Christoffel 't Jong, Nassira Schoutens, Adisa Reek, Cherilyn van Amelsvoort, Hananja Cramer, Amelie Daams, Abdeslam Ridderhof, Olof Tap, Manuel de Boon, Tea Horstink
+END:VEVENT
+END:VCALENDAR

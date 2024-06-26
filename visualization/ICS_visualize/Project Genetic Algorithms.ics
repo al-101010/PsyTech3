@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:p1 - Project Genetic Algorithms
+DTSTART;TZID=Europe/Brussels:20240627T150000
+DTEND;TZID=Europe/Brussels:20240627T170000
+LOCATION:A1.04
+DESCRIPTION:Josef van der Wiel, Kimmy Kesteloo, Gustaaf Poldervaart, Armin Bol, Matisse Weij, Arif Schrader, Mayla de Snoo, Guilliano Blomsma, Micha van Maarseveen, Erdal Ramcharan, Oliver Milder, Manuel de Boon, Nika van Baaren
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Project Genetic Algorithms
+DTSTART;TZID=Europe/Brussels:20240624T130000
+DTEND;TZID=Europe/Brussels:20240624T150000
+LOCATION:C0.110
+DESCRIPTION:Maryam Wiegmans, Nesrin Holt, Berdina Heijman, Servet Sijmons, Aart Pothuizen, Noelle Melis, Goos Dane, Bodie Metselaar, Maurice Lima, Gradus Dams, Carmela van Gerwen, Steijn Ooijen, Marrit Speelman, Maron Miedema, Allan Budel
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p3 - Project Genetic Algorithms
+DTSTART;TZID=Europe/Brussels:20240624T150000
+DTEND;TZID=Europe/Brussels:20240624T170000
+LOCATION:A1.08
+DESCRIPTION:Heba Pelders, Jos Welling, Tamar Jongbloed, Maritha van der Niet, Emil Bergmans, Wissal Ankone, Roan Meulmeester, Jory Leijenaar
+END:VEVENT
+END:VCALENDAR

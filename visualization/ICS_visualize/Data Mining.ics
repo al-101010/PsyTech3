@@ -1,0 +1,59 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Data Mining
+DTSTART;TZID=Europe/Brussels:20240625T150000
+DTEND;TZID=Europe/Brussels:20240625T170000
+LOCATION:A1.04
+DESCRIPTION:Talha Vermeeren, Sayfeddine Bruijnes, Jetty van Putten, Remon Kost, Rivelino Goor, Rins Oosterbeek, Ciske van Kalsbeek, Touraya van Lingen, Kamil Streefland, Ouidad van Hall, Jarik Blikman, Kavish Versteeg, Ard Tielemans, Marise Zonneveld, Deejay van der Geer, Andre Putters, Michal Hooiveld, Mahmud Heller, Herwin Ester, Yanick Abbing, Johannus van Bavel, Jayme van Eeuwijk, Ans van Montfort, Kyan Jankie, Theadora Besemer, Brigitta Diallo, Nordin Geboers
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h2 - Data Mining
+DTSTART;TZID=Europe/Brussels:20240625T130000
+DTEND;TZID=Europe/Brussels:20240625T150000
+LOCATION:A1.10
+DESCRIPTION:Talha Vermeeren, Sayfeddine Bruijnes, Jetty van Putten, Remon Kost, Rivelino Goor, Rins Oosterbeek, Ciske van Kalsbeek, Touraya van Lingen, Kamil Streefland, Ouidad van Hall, Jarik Blikman, Kavish Versteeg, Ard Tielemans, Marise Zonneveld, Deejay van der Geer, Andre Putters, Michal Hooiveld, Mahmud Heller, Herwin Ester, Yanick Abbing, Johannus van Bavel, Jayme van Eeuwijk, Ans van Montfort, Kyan Jankie, Theadora Besemer, Brigitta Diallo, Nordin Geboers
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p1 - Data Mining
+DTSTART;TZID=Europe/Brussels:20240627T130000
+DTEND;TZID=Europe/Brussels:20240627T150000
+LOCATION:A1.10
+DESCRIPTION:Talha Vermeeren, Rins Oosterbeek, Kavish Versteeg, Deejay van der Geer, Andre Putters, Yanick Abbing, Ans van Montfort, Brigitta Diallo
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Data Mining
+DTSTART;TZID=Europe/Brussels:20240624T110000
+DTEND;TZID=Europe/Brussels:20240624T130000
+LOCATION:A1.06
+DESCRIPTION:Jetty van Putten, Touraya van Lingen, Kamil Streefland, Ouidad van Hall, Ard Tielemans, Mahmud Heller, Jayme van Eeuwijk, Theadora Besemer, Nordin Geboers
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p4 - Data Mining
+DTSTART;TZID=Europe/Brussels:20240625T110000
+DTEND;TZID=Europe/Brussels:20240625T130000
+LOCATION:A1.08
+DESCRIPTION:Sayfeddine Bruijnes, Remon Kost, Rivelino Goor, Ciske van Kalsbeek, Jarik Blikman, Marise Zonneveld, Michal Hooiveld, Herwin Ester, Johannus van Bavel, Kyan Jankie
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Data Mining
+DTSTART;TZID=Europe/Brussels:20240627T110000
+DTEND;TZID=Europe/Brussels:20240627T130000
+LOCATION:C1.112
+DESCRIPTION:Talha Vermeeren, Ciske van Kalsbeek, Kavish Versteeg, Deejay van der Geer, Andre Putters, Ans van Montfort, Brigitta Diallo
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Data Mining
+DTSTART;TZID=Europe/Brussels:20240627T150000
+DTEND;TZID=Europe/Brussels:20240627T170000
+LOCATION:A1.10
+DESCRIPTION:Remon Kost, Rins Oosterbeek, Jarik Blikman, Ard Tielemans, Marise Zonneveld, Mahmud Heller, Herwin Ester, Johannus van Bavel, Jayme van Eeuwijk, Theadora Besemer
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w3 - Data Mining
+DTSTART;TZID=Europe/Brussels:20240628T150000
+DTEND;TZID=Europe/Brussels:20240628T170000
+LOCATION:A1.08
+DESCRIPTION:Sayfeddine Bruijnes, Jetty van Putten, Rivelino Goor, Touraya van Lingen, Kamil Streefland, Ouidad van Hall, Michal Hooiveld, Yanick Abbing, Kyan Jankie, Nordin Geboers
+END:VEVENT
+END:VCALENDAR

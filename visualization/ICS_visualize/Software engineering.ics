@@ -1,0 +1,38 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Software engineering
+DTSTART;TZID=Europe/Brussels:20240626T110000
+DTEND;TZID=Europe/Brussels:20240626T130000
+LOCATION:C0.110
+DESCRIPTION:Renco van Weel, Hanan Lathouwers, Rosali Heikoop, Dorenda Malestein, Angelica Sarikaya, Geurt Nuiten, Brecht Eeltink, Roma Rotgans, Deacon Gielissen, Albertien de Hoogh, Minoesch Scheltema, Jos Welling, Gabriella Yazici, Servaas Anker, Maritte Gok, Nermin Talhaoui, Abdallah Beulen, Marssae Joseph, Geerten Elschot, Matz Koning, Pleun ter Heide, Haroun Lemaire, Bjorn Leijen, Tamar Jongbloed, Tevfik Rothuizen, Aart Pothuizen, Patricia Sier, Eltjo Beunen, Peter-Jan van Amersfoort, Abram van Mierlo, Dax Voskuilen, Annique Berrevoets, Ludovicus Eissens, Naciye van Eert, Priscillia van Voorden, Zahir Poepjes, Rijkje Groote, Sanja Tas, Ouidad van Hall, Marcellus Mijnheer, Lamia Mok, Ynze Freriks, Christal Hoogerbrugge, Ycel van Kasteel, Kavish Versteeg, Rachell Smallegange, Virgill Hamelink, Kimm Rienks, Karam Rinkel, Fredrika Lopez, Hailey Claassen, Ko Droste, Ethan Broer, Imran Scheffers, Roan Meulmeester, Hananja Cramer, Nygel Vaatstra, Geerte van der Meij, Sonny Mol, Yuri van Mourik, Yanick Abbing, Frederic IJkema, Jorian van Zijderveld, Krijntje Rombout, Esmee Hooijmaijers, Romy Piek, Saif Sikking, Liedeke van Bezooijen, Tarik van Vloten, Brigitta Diallo, Resul Kuijpers, Maron Miedema, Yana de Looff, Catharinus Eggermont, Eyup Wesselman
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p1 - Software engineering
+DTSTART;TZID=Europe/Brussels:20240625T130000
+DTEND;TZID=Europe/Brussels:20240625T150000
+LOCATION:B0.201
+DESCRIPTION:Renco van Weel, Hanan Lathouwers, Rosali Heikoop, Geurt Nuiten, Albertien de Hoogh, Minoesch Scheltema, Jos Welling, Gabriella Yazici, Servaas Anker, Nermin Talhaoui, Abdallah Beulen, Marssae Joseph, Geerten Elschot, Pleun ter Heide, Tamar Jongbloed, Tevfik Rothuizen, Eltjo Beunen, Annique Berrevoets, Ludovicus Eissens, Naciye van Eert, Zahir Poepjes, Marcellus Mijnheer, Ynze Freriks, Ycel van Kasteel, Rachell Smallegange, Kimm Rienks, Karam Rinkel, Hailey Claassen, Ko Droste, Imran Scheffers, Roan Meulmeester, Frederic IJkema, Jorian van Zijderveld, Saif Sikking, Resul Kuijpers, Maron Miedema, Yana de Looff, Catharinus Eggermont, Eyup Wesselman
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Software engineering
+DTSTART;TZID=Europe/Brussels:20240624T090000
+DTEND;TZID=Europe/Brussels:20240624T110000
+LOCATION:C1.112
+DESCRIPTION:Dorenda Malestein, Angelica Sarikaya, Brecht Eeltink, Roma Rotgans, Deacon Gielissen, Maritte Gok, Matz Koning, Haroun Lemaire, Bjorn Leijen, Aart Pothuizen, Patricia Sier, Peter-Jan van Amersfoort, Abram van Mierlo, Dax Voskuilen, Priscillia van Voorden, Rijkje Groote, Sanja Tas, Ouidad van Hall, Lamia Mok, Christal Hoogerbrugge, Kavish Versteeg, Virgill Hamelink, Fredrika Lopez, Ethan Broer, Hananja Cramer, Nygel Vaatstra, Geerte van der Meij, Sonny Mol, Yuri van Mourik, Yanick Abbing, Krijntje Rombout, Esmee Hooijmaijers, Romy Piek, Liedeke van Bezooijen, Tarik van Vloten, Brigitta Diallo
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Software engineering
+DTSTART;TZID=Europe/Brussels:20240626T090000
+DTEND;TZID=Europe/Brussels:20240626T110000
+LOCATION:A1.04
+DESCRIPTION:Renco van Weel, Rosali Heikoop, Dorenda Malestein, Geurt Nuiten, Minoesch Scheltema, Jos Welling, Servaas Anker, Maritte Gok, Marssae Joseph, Matz Koning, Bjorn Leijen, Tevfik Rothuizen, Abram van Mierlo, Annique Berrevoets, Naciye van Eert, Priscillia van Voorden, Ouidad van Hall, Lamia Mok, Ynze Freriks, Ycel van Kasteel, Virgill Hamelink, Kimm Rienks, Karam Rinkel, Hailey Claassen, Imran Scheffers, Roan Meulmeester, Hananja Cramer, Nygel Vaatstra, Yanick Abbing, Frederic IJkema, Jorian van Zijderveld, Esmee Hooijmaijers, Romy Piek, Liedeke van Bezooijen, Tarik van Vloten, Brigitta Diallo, Maron Miedema, Yana de Looff
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Software engineering
+DTSTART;TZID=Europe/Brussels:20240624T110000
+DTEND;TZID=Europe/Brussels:20240624T130000
+LOCATION:B0.201
+DESCRIPTION:Hanan Lathouwers, Angelica Sarikaya, Brecht Eeltink, Roma Rotgans, Deacon Gielissen, Albertien de Hoogh, Gabriella Yazici, Nermin Talhaoui, Abdallah Beulen, Geerten Elschot, Pleun ter Heide, Haroun Lemaire, Tamar Jongbloed, Aart Pothuizen, Patricia Sier, Eltjo Beunen, Peter-Jan van Amersfoort, Dax Voskuilen, Ludovicus Eissens, Zahir Poepjes, Rijkje Groote, Sanja Tas, Marcellus Mijnheer, Christal Hoogerbrugge, Kavish Versteeg, Rachell Smallegange, Fredrika Lopez, Ko Droste, Ethan Broer, Geerte van der Meij, Sonny Mol, Yuri van Mourik, Krijntje Rombout, Saif Sikking, Resul Kuijpers, Catharinus Eggermont, Eyup Wesselman
+END:VEVENT
+END:VCALENDAR

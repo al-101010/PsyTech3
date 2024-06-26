@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Interactie-ontwerp
+DTSTART;TZID=Europe/Brussels:20240625T090000
+DTEND;TZID=Europe/Brussels:20240625T110000
+LOCATION:A1.10
+DESCRIPTION:Laurent Wallenburg, Hedwich Toetenel, Vincentius Pater, Sergio Hijdra, Quido Deniz, Mattijs Baudoin, Maggy van Walsum, Buck Lantinga, Yee Koppers, Maran van Wanrooij, Nanet van Osta, Anthonius van Zoelen, Jacky van Apeldoorn, Xiao Teekens, Rijkje Groote, Jarik Blikman, Amadou Boekema, Fynn Krabbe, Devon Keijser, Malte Zondag, Jersey van Ravesteijn, Carmela van Gerwen, Kathryn de Jongste, Marrit Speelman, Berit van Ingen
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h2 - Interactie-ontwerp
+DTSTART;TZID=Europe/Brussels:20240628T150000
+DTEND;TZID=Europe/Brussels:20240628T170000
+LOCATION:A1.04
+DESCRIPTION:Laurent Wallenburg, Hedwich Toetenel, Vincentius Pater, Sergio Hijdra, Quido Deniz, Mattijs Baudoin, Maggy van Walsum, Buck Lantinga, Yee Koppers, Maran van Wanrooij, Nanet van Osta, Anthonius van Zoelen, Jacky van Apeldoorn, Xiao Teekens, Rijkje Groote, Jarik Blikman, Amadou Boekema, Fynn Krabbe, Devon Keijser, Malte Zondag, Jersey van Ravesteijn, Carmela van Gerwen, Kathryn de Jongste, Marrit Speelman, Berit van Ingen
+END:VEVENT
+END:VCALENDAR

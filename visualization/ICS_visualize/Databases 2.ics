@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Databases 2
+DTSTART;TZID=Europe/Brussels:20240625T130000
+DTEND;TZID=Europe/Brussels:20240625T150000
+LOCATION:C0.110
+DESCRIPTION:Filipe Wiersema, Shan Rokx, Devlin Bronsema, Sharen Kortlever, Elbertha Schoneveld, Felien Uitslag, Maureen Versantvoort, Nesrin Holt, Angelica Sarikaya, Wytske Buining, Keely Ursem, Wissal Eggens, Sanne Lentz, Maggy van Walsum, Logan Sonnemans, Yde Christiaens, Marck Wijngaarden, Eylem Haas, Lorraine Rijkens, Paulo Jak, Harwin van Loon, Virginie Brunsveld, Mellisa Leemburg, Angus Brusse, Ziya Rooijmans, Elske van Suijlekom, Juliette Kant, Alexandra Wijnsma, Liza Traa, Priscillia van Voorden, Nadia Lems, Micha van Maarseveen, Anne-Jan van Waardenburg, Mellanie Zhang, Yuki Verkuijl, Kelly Doedens, Enrico van Triest, Sharief Stegink, Boy Dibbets, Skye Tas, Andre Dieters, Faruk Haalboom, Deejay van der Geer, Stephano Popma, Inger Notermans, Sola Droog, Leon van Maurik, Mouna Lathouwers, Sivar Rottier, Jodi van Riel, Erdal Ramcharan, Daisy van der Klei, Corry Kroonen, Cemil van Barneveld, Edin Bastings, Steijn Ooijen, Wafa Bart, Jo-Anne Modderkolk, Malcolm Looij, Faya Jagersma, Tjalle ten Pas, Enya Kemps, Chaimae Swiers, Franklin Stuurman, Lammigje van Loveren, Pearl Elberse, Lee Numan, Lakshmi van der Gaag, Karolina Roodbeen, Vinod Velt, Desiree Potgieter, Shawny van de Pol
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Databases 2
+DTSTART;TZID=Europe/Brussels:20240627T090000
+DTEND;TZID=Europe/Brussels:20240627T110000
+LOCATION:C0.110
+DESCRIPTION:Devlin Bronsema, Elbertha Schoneveld, Maureen Versantvoort, Angelica Sarikaya, Keely Ursem, Wissal Eggens, Sanne Lentz, Maggy van Walsum, Marck Wijngaarden, Angus Brusse, Elske van Suijlekom, Alexandra Wijnsma, Liza Traa, Priscillia van Voorden, Nadia Lems, Anne-Jan van Waardenburg, Mellanie Zhang, Yuki Verkuijl, Kelly Doedens, Andre Dieters, Faruk Haalboom, Stephano Popma, Leon van Maurik, Mouna Lathouwers, Jodi van Riel, Daisy van der Klei, Corry Kroonen, Cemil van Barneveld, Steijn Ooijen, Jo-Anne Modderkolk, Malcolm Looij, Tjalle ten Pas, Enya Kemps, Chaimae Swiers, Franklin Stuurman, Lakshmi van der Gaag, Karolina Roodbeen
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Databases 2
+DTSTART;TZID=Europe/Brussels:20240626T110000
+DTEND;TZID=Europe/Brussels:20240626T130000
+LOCATION:B0.201
+DESCRIPTION:Filipe Wiersema, Shan Rokx, Sharen Kortlever, Felien Uitslag, Nesrin Holt, Wytske Buining, Logan Sonnemans, Yde Christiaens, Eylem Haas, Lorraine Rijkens, Paulo Jak, Harwin van Loon, Virginie Brunsveld, Mellisa Leemburg, Ziya Rooijmans, Juliette Kant, Micha van Maarseveen, Enrico van Triest, Sharief Stegink, Boy Dibbets, Skye Tas, Deejay van der Geer, Inger Notermans, Sola Droog, Sivar Rottier, Erdal Ramcharan, Edin Bastings, Wafa Bart, Faya Jagersma, Lammigje van Loveren, Pearl Elberse, Lee Numan, Vinod Velt, Desiree Potgieter, Shawny van de Pol
+END:VEVENT
+END:VCALENDAR

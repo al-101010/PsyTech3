@@ -1,0 +1,59 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:p1 - Compilerbouw practicum
+DTSTART;TZID=Europe/Brussels:20240626T150000
+DTEND;TZID=Europe/Brussels:20240626T170000
+LOCATION:A1.08
+DESCRIPTION:Maurice Lima
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p10 - Compilerbouw practicum
+DTSTART;TZID=Europe/Brussels:20240627T150000
+DTEND;TZID=Europe/Brussels:20240627T170000
+LOCATION:B0.201
+DESCRIPTION:Thys Kersten, Kenan Spronck, Johanne Holstein, Federico Levels, Rafaela Polfliet, Jory Leijenaar, Christianus Laman, Brigitta Diallo
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Compilerbouw practicum
+DTSTART;TZID=Europe/Brussels:20240625T150000
+DTEND;TZID=Europe/Brussels:20240625T170000
+LOCATION:B0.201
+DESCRIPTION:Pleun ter Heide, Olle Hamhuis, Eveline Kops
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p3 - Compilerbouw practicum
+DTSTART;TZID=Europe/Brussels:20240625T150000
+DTEND;TZID=Europe/Brussels:20240625T170000
+LOCATION:C1.112
+DESCRIPTION:Callista Mutsaers, Hanan Lathouwers, Annemarie Vooijs, Judi Hamers, Nadja Vendel, Nermin Talhaoui, Taeke Renes, Goos Dane, Sahar Hamstra
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p4 - Compilerbouw practicum
+DTSTART;TZID=Europe/Brussels:20240626T090000
+DTEND;TZID=Europe/Brussels:20240626T110000
+LOCATION:C1.112
+DESCRIPTION:Maran van Wanrooij
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p5 - Compilerbouw practicum
+DTSTART;TZID=Europe/Brussels:20240624T090000
+DTEND;TZID=Europe/Brussels:20240624T110000
+LOCATION:B0.201
+DESCRIPTION:Rahim Kienhuis, Gabriella Yazici, Solane Paulissen, Harwin van Loon, Chi Liebregts, Tamar van der Drift, Do?ukan Krikke, Farah Pastoor
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p8 - Compilerbouw practicum
+DTSTART;TZID=Europe/Brussels:20240626T110000
+DTEND;TZID=Europe/Brussels:20240626T130000
+LOCATION:A1.10
+DESCRIPTION:Chrystel Kalshoven, Silvie Thoma, Yuki Verkuijl, Wissal Ankone, Lisse Moes
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p9 - Compilerbouw practicum
+DTSTART;TZID=Europe/Brussels:20240625T130000
+DTEND;TZID=Europe/Brussels:20240625T150000
+LOCATION:A1.08
+DESCRIPTION:Mayla de Snoo, Hui van Zeijl, Enrique van den Born, Anjana Bloemsma, Yi Luten
+END:VEVENT
+END:VCALENDAR

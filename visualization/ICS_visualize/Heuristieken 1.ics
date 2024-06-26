@@ -1,0 +1,31 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Heuristieken 1
+DTSTART;TZID=Europe/Brussels:20240626T110000
+DTEND;TZID=Europe/Brussels:20240626T130000
+LOCATION:C1.112
+DESCRIPTION:Noa Slangen, Mathyn Lamme, Geurt Nuiten, Keely Ursem, Vivianne Buter, Mattie Eisinga, Georgia van Rossem, Juno Zaaijer, Belle Florijn, Cleo van Rietschoten, Geartsje Jackson, Abdallah Beulen, Pleun ter Heide, Tea Rutte, Ytje Hup, Aya Woertman, Tjesse Voesten, Timo Postuma, Karim Vingerhoets, Elske van Suijlekom, Jarik Regeling, Hui van Zeijl, Michel Sieben, Marcellus Mijnheer, Hetty Lindhout, Kavish Versteeg, Machteld Kwantes, Zhen Vullings, Andre Dieters, Cherilyn van Amelsvoort, Andre Putters, Nuriye Kooijmans, Harke Wester, Emrah Schrama, Sahar Hamstra, Imran Scheffers, Cyrano van den Eijnde, Jo-Anne Modderkolk, Dineke Valster, Sarena Tjeerdsma, Maan ten Pas, Kyan Jankie, Emme Udo, Shaya Snelder
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Heuristieken 1
+DTSTART;TZID=Europe/Brussels:20240627T150000
+DTEND;TZID=Europe/Brussels:20240627T170000
+LOCATION:A1.08
+DESCRIPTION:Vivianne Buter, Georgia van Rossem, Aya Woertman, Jarik Regeling, Nuriye Kooijmans, Emrah Schrama, Sahar Hamstra, Imran Scheffers, Emme Udo
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Heuristieken 1
+DTSTART;TZID=Europe/Brussels:20240627T110000
+DTEND;TZID=Europe/Brussels:20240627T130000
+LOCATION:A1.08
+DESCRIPTION:Mathyn Lamme, Geurt Nuiten, Keely Ursem, Mattie Eisinga, Juno Zaaijer, Pleun ter Heide, Tea Rutte, Ytje Hup, Karim Vingerhoets, Machteld Kwantes, Cyrano van den Eijnde, Jo-Anne Modderkolk, Sarena Tjeerdsma
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w3 - Heuristieken 1
+DTSTART;TZID=Europe/Brussels:20240626T090000
+DTEND;TZID=Europe/Brussels:20240626T110000
+LOCATION:A1.06
+DESCRIPTION:Noa Slangen, Belle Florijn, Cleo van Rietschoten, Geartsje Jackson, Abdallah Beulen, Tjesse Voesten, Timo Postuma, Elske van Suijlekom, Hui van Zeijl, Michel Sieben, Marcellus Mijnheer, Hetty Lindhout, Kavish Versteeg, Zhen Vullings, Andre Dieters, Cherilyn van Amelsvoort, Andre Putters, Harke Wester, Dineke Valster, Maan ten Pas, Kyan Jankie, Shaya Snelder
+END:VEVENT
+END:VCALENDAR

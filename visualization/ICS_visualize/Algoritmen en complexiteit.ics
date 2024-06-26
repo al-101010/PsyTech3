@@ -1,0 +1,38 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Algoritmen en complexiteit
+DTSTART;TZID=Europe/Brussels:20240625T110000
+DTEND;TZID=Europe/Brussels:20240625T130000
+LOCATION:A1.10
+DESCRIPTION:Lucienne Caris, Laurent Wallenburg, Julot van Teeffelen, Vincentius Pater, Wytske Buining, Mattijs Baudoin, Logan Sonnemans, Gabriella Yazici, Aynel van der Marel, Cheyenna Reuvekamp, Jurrian Fekkes, Solane Paulissen, Narin Boshuis, Yuna Winkelaar, Tevfik Rothuizen, Timo Postuma, Ziya Rooijmans, Chi Liebregts, Emil Bergmans, Yalda Grootenboer, Ard Tielemans, Jenske Jongejan, Inas Niezen, Andre Dieters, Deejay van der Geer, Lisse Moes, Karam Rinkel, Fredrika Lopez, Ko Droste, Ethan Broer, Jodi van Riel, Janniek de Leest, Agelo van der Meer, Edin Bastings, Frederic IJkema, Romy Piek, Berit van Ingen, Manuel de Boon, Angle Berentsen, Desiree Potgieter, Brigitta Diallo, Franke Stoppels, Saba Bhaggoe
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p1 - Algoritmen en complexiteit
+DTSTART;TZID=Europe/Brussels:20240627T090000
+DTEND;TZID=Europe/Brussels:20240627T110000
+LOCATION:A1.04
+DESCRIPTION:Lucienne Caris, Laurent Wallenburg, Julot van Teeffelen, Wytske Buining, Logan Sonnemans, Aynel van der Marel, Jurrian Fekkes, Solane Paulissen, Yuna Winkelaar, Tevfik Rothuizen, Timo Postuma, Ziya Rooijmans, Ard Tielemans, Inas Niezen, Deejay van der Geer, Fredrika Lopez, Agelo van der Meer, Frederic IJkema, Desiree Potgieter, Brigitta Diallo, Franke Stoppels, Saba Bhaggoe
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Algoritmen en complexiteit
+DTSTART;TZID=Europe/Brussels:20240628T110000
+DTEND;TZID=Europe/Brussels:20240628T130000
+LOCATION:A1.04
+DESCRIPTION:Vincentius Pater, Mattijs Baudoin, Gabriella Yazici, Cheyenna Reuvekamp, Narin Boshuis, Chi Liebregts, Emil Bergmans, Yalda Grootenboer, Jenske Jongejan, Andre Dieters, Lisse Moes, Karam Rinkel, Ko Droste, Ethan Broer, Jodi van Riel, Janniek de Leest, Edin Bastings, Romy Piek, Berit van Ingen, Manuel de Boon, Angle Berentsen
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Algoritmen en complexiteit
+DTSTART;TZID=Europe/Brussels:20240625T090000
+DTEND;TZID=Europe/Brussels:20240625T110000
+LOCATION:C1.112
+DESCRIPTION:Lucienne Caris, Laurent Wallenburg, Julot van Teeffelen, Wytske Buining, Logan Sonnemans, Gabriella Yazici, Jurrian Fekkes, Narin Boshuis, Tevfik Rothuizen, Timo Postuma, Ziya Rooijmans, Emil Bergmans, Ard Tielemans, Jenske Jongejan, Andre Dieters, Deejay van der Geer, Fredrika Lopez, Janniek de Leest, Desiree Potgieter, Brigitta Diallo, Saba Bhaggoe
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Algoritmen en complexiteit
+DTSTART;TZID=Europe/Brussels:20240628T090000
+DTEND;TZID=Europe/Brussels:20240628T110000
+LOCATION:A1.10
+DESCRIPTION:Vincentius Pater, Mattijs Baudoin, Aynel van der Marel, Cheyenna Reuvekamp, Solane Paulissen, Yuna Winkelaar, Chi Liebregts, Yalda Grootenboer, Inas Niezen, Lisse Moes, Karam Rinkel, Ko Droste, Ethan Broer, Jodi van Riel, Agelo van der Meer, Edin Bastings, Frederic IJkema, Romy Piek, Berit van Ingen, Manuel de Boon, Angle Berentsen, Franke Stoppels
+END:VEVENT
+END:VCALENDAR

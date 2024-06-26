@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Kansrekenen 2
+DTSTART;TZID=Europe/Brussels:20240627T130000
+DTEND;TZID=Europe/Brussels:20240627T150000
+LOCATION:C0.110
+DESCRIPTION:Chrystel Kalshoven, Renco van Weel, Said van Aalderen, Rahim Kienhuis, Kaoutar Philips, Monika Blikman, Dorenda Malestein, Sharen Kortlever, Renze Brink, Pim Machielsen, Luca Pereira, Jackson Scherpenzeel, Deacon Gielissen, Sayfeddine Bruijnes, Berdina Heijman, Walther van Halteren, Mattie Eisinga, Btissam van den Boer, Yde Christiaens, Wytse van Geest, Darian van der Steege, Eylem Haas, Borre van Ruler, Tom Stokkel, Geerten Elschot, Le Janga, Rayen van de Kruijs, Giedo Planken, Tamar Jongbloed, Timo Postuma, Jort Vries, Rino Jacob, Juliet Noordzij, Rochelle Thielen, Ludovicus Eissens, Emil Bergmans, Naciye van Eert, Levien Selten, Kamil Streefland, Zahir Poepjes, Paulette van de Wardt, Amos van den Oord, Lamia Mok, Donna Buurma, Skye Tas, Romaisa Oostvogels, Rika Buizer, Amadou Boekema, Cherilyn van Amelsvoort, Esme Karim, Valery Majoor, Jennie Roozendaal, Karam Rinkel, Jonas Crombach, Djamilla Wesselink, Nyncke Brinks, Elbertus Tamis, Evelyn Koelemij, Ethan Broer, Dinah Ensink, Cyrano van den Eijnde, Jeremey Bontenbal, Shannon Mullenders, Wafa Bart, Samah van 't Oever, Matthijs Pleiter, Jo-Anne Modderkolk, Graciella van der Plas, Doetje Munsters, Marrit Speelman, Nadeem Lagendijk, Ngoc Kropman, Meta van Marle, Sarena Tjeerdsma, Maan ten Pas, Evelina Wensing, Linne de Zoete, Samentha Toren, Esperanza Kwee, Fransiscus Zagers, Angle Berentsen, Saba Bhaggoe, Shauny van Hezik, Yi Luten
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h2 - Kansrekenen 2
+DTSTART;TZID=Europe/Brussels:20240627T150000
+DTEND;TZID=Europe/Brussels:20240627T170000
+LOCATION:C0.110
+DESCRIPTION:Chrystel Kalshoven, Renco van Weel, Said van Aalderen, Rahim Kienhuis, Kaoutar Philips, Monika Blikman, Dorenda Malestein, Sharen Kortlever, Renze Brink, Pim Machielsen, Luca Pereira, Jackson Scherpenzeel, Deacon Gielissen, Sayfeddine Bruijnes, Berdina Heijman, Walther van Halteren, Mattie Eisinga, Btissam van den Boer, Yde Christiaens, Wytse van Geest, Darian van der Steege, Eylem Haas, Borre van Ruler, Tom Stokkel, Geerten Elschot, Le Janga, Rayen van de Kruijs, Giedo Planken, Tamar Jongbloed, Timo Postuma, Jort Vries, Rino Jacob, Juliet Noordzij, Rochelle Thielen, Ludovicus Eissens, Emil Bergmans, Naciye van Eert, Levien Selten, Kamil Streefland, Zahir Poepjes, Paulette van de Wardt, Amos van den Oord, Lamia Mok, Donna Buurma, Skye Tas, Romaisa Oostvogels, Rika Buizer, Amadou Boekema, Cherilyn van Amelsvoort, Esme Karim, Valery Majoor, Jennie Roozendaal, Karam Rinkel, Jonas Crombach, Djamilla Wesselink, Nyncke Brinks, Elbertus Tamis, Evelyn Koelemij, Ethan Broer, Dinah Ensink, Cyrano van den Eijnde, Jeremey Bontenbal, Shannon Mullenders, Wafa Bart, Samah van 't Oever, Matthijs Pleiter, Jo-Anne Modderkolk, Graciella van der Plas, Doetje Munsters, Marrit Speelman, Nadeem Lagendijk, Ngoc Kropman, Meta van Marle, Sarena Tjeerdsma, Maan ten Pas, Evelina Wensing, Linne de Zoete, Samentha Toren, Esperanza Kwee, Fransiscus Zagers, Angle Berentsen, Saba Bhaggoe, Shauny van Hezik, Yi Luten
+END:VEVENT
+END:VCALENDAR

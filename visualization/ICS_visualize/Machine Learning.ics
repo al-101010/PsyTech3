@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Machine Learning
+DTSTART;TZID=Europe/Brussels:20240628T130000
+DTEND;TZID=Europe/Brussels:20240628T150000
+LOCATION:C1.112
+DESCRIPTION:Luca Pereira, Vasco Waninge, Lenne Boateng, Rayen van de Kruijs, Tamar Jongbloed, Mink Pothuizen, Seb Okkerse, Haiko Raaijmakers, Antonetta Moeskops, Paulette van de Wardt, Ouidad van Hall, Patryk van de Kraats, Yunus Westera, Esme Karim, Xiao Schijvenaars, Matthijs Pleiter, Romy Piek, Dana Hoeksema, Manuel de Boon, Lammigje van Loveren, Evelina Wensing, Nanke van den Berg
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h2 - Machine Learning
+DTSTART;TZID=Europe/Brussels:20240624T130000
+DTEND;TZID=Europe/Brussels:20240624T150000
+LOCATION:A1.06
+DESCRIPTION:Luca Pereira, Vasco Waninge, Lenne Boateng, Rayen van de Kruijs, Tamar Jongbloed, Mink Pothuizen, Seb Okkerse, Haiko Raaijmakers, Antonetta Moeskops, Paulette van de Wardt, Ouidad van Hall, Patryk van de Kraats, Yunus Westera, Esme Karim, Xiao Schijvenaars, Matthijs Pleiter, Romy Piek, Dana Hoeksema, Manuel de Boon, Lammigje van Loveren, Evelina Wensing, Nanke van den Berg
+END:VEVENT
+END:VCALENDAR

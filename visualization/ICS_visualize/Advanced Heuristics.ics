@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Advanced Heuristics
+DTSTART;TZID=Europe/Brussels:20240627T130000
+DTEND;TZID=Europe/Brussels:20240627T150000
+LOCATION:A1.08
+DESCRIPTION:Shan Rokx, Kaoutar Philips, Seyed Laurijssen, Vivianne Buter, Buck Lantinga, Servet Sijmons, Jorren Modderkolk, Mellisa Leemburg, Myron Middel, Kyllian Bekkema, Ruveyda van Lingen, Tian Berkers, Sola Droog, Rafaela Polfliet, Nuriye Kooijmans, Eleanora Rovers, Malte Zondag, Vigo Wijers, Herman Apeldoorn, Angle Berentsen
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p1 - Advanced Heuristics
+DTSTART;TZID=Europe/Brussels:20240625T090000
+DTEND;TZID=Europe/Brussels:20240625T110000
+LOCATION:A1.08
+DESCRIPTION:Kaoutar Philips, Seyed Laurijssen, Vivianne Buter, Servet Sijmons, Kyllian Bekkema, Tian Berkers, Rafaela Polfliet, Nuriye Kooijmans, Herman Apeldoorn, Angle Berentsen
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Advanced Heuristics
+DTSTART;TZID=Europe/Brussels:20240627T150000
+DTEND;TZID=Europe/Brussels:20240627T170000
+LOCATION:C1.112
+DESCRIPTION:Shan Rokx, Buck Lantinga, Jorren Modderkolk, Mellisa Leemburg, Myron Middel, Ruveyda van Lingen, Sola Droog, Eleanora Rovers, Malte Zondag, Vigo Wijers
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Architectuur en computerorganisatie
+DTSTART;TZID=Europe/Brussels:20240625T090000
+DTEND;TZID=Europe/Brussels:20240625T110000
+LOCATION:A1.06
+DESCRIPTION:Luca Pereira, Sanne Lentz, Servaas Anker, Chico Zwarts, Jorren Modderkolk, Myron Middel, Abram van Mierlo, Hui van Zeijl, Abdel Buth, Christal Hoogerbrugge, Femia Brink, Ruveyda van Lingen, Stephano Popma, Catherine Hoornstra, Edin Bastings, Nanette te Braak, Ilana Philippi, Oliver Milder, Dana Hoeksema, Maan ten Pas, Gineke Korte
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h2 - Architectuur en computerorganisatie
+DTSTART;TZID=Europe/Brussels:20240625T110000
+DTEND;TZID=Europe/Brussels:20240625T130000
+LOCATION:C1.112
+DESCRIPTION:Luca Pereira, Sanne Lentz, Servaas Anker, Chico Zwarts, Jorren Modderkolk, Myron Middel, Abram van Mierlo, Hui van Zeijl, Abdel Buth, Christal Hoogerbrugge, Femia Brink, Ruveyda van Lingen, Stephano Popma, Catherine Hoornstra, Edin Bastings, Nanette te Braak, Ilana Philippi, Oliver Milder, Dana Hoeksema, Maan ten Pas, Gineke Korte
+END:VEVENT
+END:VCALENDAR

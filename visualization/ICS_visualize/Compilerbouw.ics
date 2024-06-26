@@ -1,0 +1,45 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:h1 - Compilerbouw
+DTSTART;TZID=Europe/Brussels:20240626T150000
+DTEND;TZID=Europe/Brussels:20240626T170000
+LOCATION:C0.110
+DESCRIPTION:Noud Menke, Filipe Wiersema, Lucienne Caris, Wannes Lohuis, Bauke Elschot, Scotty van der Stoel, Tom Truijen, Wytske Buining, Brecht Eeltink, Deacon Gielissen, Reduan Warsame, Martin Avci, Olaf Sterenberg, Antonius Fleming, Mattijs Baudoin, Jos van der Zwet, Matisse Weij, Jorike Coenen, Lenne Boateng, Sien van Plateringen, Le Janga, Rayen van de Kruijs, Rieke Odijk, Dragana van Ruitenbeek, Mitzi Corten, Karim Vingerhoets, Aart Pothuizen, Patricia Sier, Joshi van Groeningen, Doede Duiveman, Titia Korbee, Ceren van den Engel, Redouane Paijmans, Lysbeth Keuken, Sanja Tas, Heiltje Wijnands, Aidan van Iwaarden, Thijn Kooyman, Enrico van Triest, Abdelkader Gijbels, Yunus Westera, Yalda Grootenboer, Federico Levels, Amadou Boekema, Stephano Popma, Sharan Baselmans, Bodie Metselaar, Valery Majoor, Eleanora Rovers, Solomon Verhorst, Jaro Essink, Leon van Maurik, Evelyn Koelemij, Gradus Dams, Daisy van der Klei, Carmela van Gerwen, Jonah Teuben, Nygel Vaatstra, Geerte van der Meij, Nanette te Braak, Farah Pastoor, Nadien Volman, Meta van Marle, Dana Hoeksema, Emircan van de Bunt, Tea Horstink, Lammigje van Loveren, Arnela Visch, George Knuiman
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:h2 - Compilerbouw
+DTSTART;TZID=Europe/Brussels:20240625T130000
+DTEND;TZID=Europe/Brussels:20240625T150000
+LOCATION:C1.112
+DESCRIPTION:Noud Menke, Filipe Wiersema, Lucienne Caris, Wannes Lohuis, Bauke Elschot, Scotty van der Stoel, Tom Truijen, Wytske Buining, Brecht Eeltink, Deacon Gielissen, Reduan Warsame, Martin Avci, Olaf Sterenberg, Antonius Fleming, Mattijs Baudoin, Jos van der Zwet, Matisse Weij, Jorike Coenen, Lenne Boateng, Sien van Plateringen, Le Janga, Rayen van de Kruijs, Rieke Odijk, Dragana van Ruitenbeek, Mitzi Corten, Karim Vingerhoets, Aart Pothuizen, Patricia Sier, Joshi van Groeningen, Doede Duiveman, Titia Korbee, Ceren van den Engel, Redouane Paijmans, Lysbeth Keuken, Sanja Tas, Heiltje Wijnands, Aidan van Iwaarden, Thijn Kooyman, Enrico van Triest, Abdelkader Gijbels, Yunus Westera, Yalda Grootenboer, Federico Levels, Amadou Boekema, Stephano Popma, Sharan Baselmans, Bodie Metselaar, Valery Majoor, Eleanora Rovers, Solomon Verhorst, Jaro Essink, Leon van Maurik, Evelyn Koelemij, Gradus Dams, Daisy van der Klei, Carmela van Gerwen, Jonah Teuben, Nygel Vaatstra, Geerte van der Meij, Nanette te Braak, Farah Pastoor, Nadien Volman, Meta van Marle, Dana Hoeksema, Emircan van de Bunt, Tea Horstink, Lammigje van Loveren, Arnela Visch, George Knuiman
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p1 - Compilerbouw
+DTSTART;TZID=Europe/Brussels:20240625T150000
+DTEND;TZID=Europe/Brussels:20240625T170000
+LOCATION:C0.110
+DESCRIPTION:Noud Menke, Filipe Wiersema, Lucienne Caris, Scotty van der Stoel, Tom Truijen, Wytske Buining, Brecht Eeltink, Deacon Gielissen, Antonius Fleming, Sien van Plateringen, Le Janga, Rayen van de Kruijs, Karim Vingerhoets, Aart Pothuizen, Doede Duiveman, Titia Korbee, Ceren van den Engel, Redouane Paijmans, Heiltje Wijnands, Aidan van Iwaarden, Abdelkader Gijbels, Yunus Westera, Federico Levels, Amadou Boekema, Stephano Popma, Sharan Baselmans, Valery Majoor, Eleanora Rovers, Solomon Verhorst, Jaro Essink, Evelyn Koelemij, Nygel Vaatstra, Nanette te Braak, Meta van Marle, Dana Hoeksema, Emircan van de Bunt, Tea Horstink, Lammigje van Loveren
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:p2 - Compilerbouw
+DTSTART;TZID=Europe/Brussels:20240627T130000
+DTEND;TZID=Europe/Brussels:20240627T150000
+LOCATION:A1.04
+DESCRIPTION:Wannes Lohuis, Bauke Elschot, Reduan Warsame, Martin Avci, Olaf Sterenberg, Mattijs Baudoin, Jos van der Zwet, Matisse Weij, Jorike Coenen, Lenne Boateng, Rieke Odijk, Dragana van Ruitenbeek, Mitzi Corten, Patricia Sier, Joshi van Groeningen, Lysbeth Keuken, Sanja Tas, Thijn Kooyman, Enrico van Triest, Yalda Grootenboer, Bodie Metselaar, Leon van Maurik, Gradus Dams, Daisy van der Klei, Carmela van Gerwen, Jonah Teuben, Geerte van der Meij, Farah Pastoor, Nadien Volman, Arnela Visch, George Knuiman
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w1 - Compilerbouw
+DTSTART;TZID=Europe/Brussels:20240626T130000
+DTEND;TZID=Europe/Brussels:20240626T150000
+LOCATION:B0.201
+DESCRIPTION:Lucienne Caris, Wannes Lohuis, Scotty van der Stoel, Tom Truijen, Wytske Buining, Brecht Eeltink, Mattijs Baudoin, Matisse Weij, Jorike Coenen, Sien van Plateringen, Le Janga, Rayen van de Kruijs, Rieke Odijk, Mitzi Corten, Karim Vingerhoets, Aart Pothuizen, Doede Duiveman, Redouane Paijmans, Sanja Tas, Aidan van Iwaarden, Thijn Kooyman, Enrico van Triest, Yunus Westera, Yalda Grootenboer, Federico Levels, Stephano Popma, Eleanora Rovers, Leon van Maurik, Evelyn Koelemij, Gradus Dams, Daisy van der Klei, Nygel Vaatstra, Nanette te Braak, Nadien Volman, Dana Hoeksema, Tea Horstink, George Knuiman
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:w2 - Compilerbouw
+DTSTART;TZID=Europe/Brussels:20240625T110000
+DTEND;TZID=Europe/Brussels:20240625T130000
+LOCATION:B0.201
+DESCRIPTION:Noud Menke, Filipe Wiersema, Bauke Elschot, Deacon Gielissen, Reduan Warsame, Martin Avci, Olaf Sterenberg, Antonius Fleming, Jos van der Zwet, Lenne Boateng, Dragana van Ruitenbeek, Patricia Sier, Joshi van Groeningen, Titia Korbee, Ceren van den Engel, Lysbeth Keuken, Heiltje Wijnands, Abdelkader Gijbels, Amadou Boekema, Sharan Baselmans, Bodie Metselaar, Valery Majoor, Solomon Verhorst, Jaro Essink, Carmela van Gerwen, Jonah Teuben, Geerte van der Meij, Farah Pastoor, Meta van Marle, Emircan van de Bunt, Lammigje van Loveren, Arnela Visch
+END:VEVENT
+END:VCALENDAR
