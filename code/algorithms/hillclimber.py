@@ -1,7 +1,7 @@
 import copy
 import sys
 
-from .fitted_start import FittedStart
+from .random_alg import FittedStart
 from .algorithm import Algorithm
 from ..classes.schedule import Schedule
 
