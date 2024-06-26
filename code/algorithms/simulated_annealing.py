@@ -21,11 +21,14 @@ class SimulatedAnnealing(Hillclimber):
     cooling_function: str
         function used to update the temperature after every iteration
     switched_cooling_functions: bool
+        whether algorithm has already switched cooling function
     best_schedule: Schedule
+        current best schedule
     best_maluspoints: float or int
+        current best/ lowest maluspoint score 
 
     """
-    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential'):
+    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential', early_stopping : bool=False):
         super().__init__(empty_schedule)
         self.start_temperature = start_temperature
         self.temperature = start_temperature

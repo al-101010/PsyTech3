@@ -1,5 +1,28 @@
 class Student:
+    """
+    A class to represent a student.
 
+    . . .
+
+    Attributes
+    ----------
+    name: str
+        student name
+    student_number: str
+        number identifying student
+    course_names: set[str]
+        the names for all courses a student is signed up for
+    courses: set[Course]
+        the course objects for all courses in course_names
+    activities: set[Activity]
+        all actvities a student is signed up for
+    schedule: dict
+        current weekly schedule
+    maluspoints: int
+        score representitive of number of free periods and double bookings
+    three_free_periods: bool
+        whether student has three consecutive free periods in current schedule
+    """
     def __init__(self, name : str, number : str, course_names = set[str]) -> None:
         self.name = name
         self.student_number = number
@@ -17,11 +40,10 @@ class Student:
         """
         Add a student's courses to the set of courses as course class instances.
         Also removes NA values.
-        """
+        """ 
         for course in all_courses:
             if course.name in self.course_names:
                 self.courses.add(course)
-
 
     def empty_schedule(self, days : list[str] = ['ma', 'di', 'wo', 'do', 'vr'], timeslots : list[str] = ['9', '11', '13', '15', '17']):
         """

@@ -1,7 +1,21 @@
 
 class Room:
+    """
+    A class to represent a room.
 
-    def __init__(self, room_number : str, capacity : str) -> None:
+    . . .
+
+    Attributes
+    ----------
+    room_number: str
+        name/id of the room
+    capacity: int
+        how many student fit in this room
+    is_largest: bool
+        whether this room object is the largest out of all objects
+
+    """
+    def __init__(self, room_number : str, capacity : int) -> None:
         self.room_number = room_number
         self.capacity = capacity
         self.is_largest = False
