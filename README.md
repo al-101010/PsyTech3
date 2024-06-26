@@ -43,7 +43,9 @@ Below the different parse arguments and their possible values are explained:
     - 'normal' runs the regular version of any algorithm, this is also the default.
     - 'reheated' runs reheated simulated annealing if algorithm is 'simulated annealing'
     - 'problematic activity' runs a hillclimber with the heuristic of choosing activities with the most maluspoints when swapping.
-    - 'problematic students' runs a hillclimber with the heuristic of choosing students with mose maluspoints when switching.
+    - 'problematic students' runs a hillclimber with the heuristic of choosing students with most maluspoints when switching.
+8. [-es] - Boolean that denotes whether you want to run the algorithm with early stopping enabled.
+    - Default is False
 
 ### structure
 This list describes the most important folders and files and where to find them:
@@ -73,7 +75,7 @@ To run an experiment, set the argparse arguments in the following way
 - **output_png** to output.png (not needed for experiments)
 - **-i** to any number (not needed for experiments)
 - **-st** to any number (if using simulated annealing, not needed for experiments)
-- **-e** to True
+- **-e** add to run experiment
 - **-v** to the version of choice
 
 Attention: By default, an experiment runs the respective algorithm for 20000 iterations 30 times! This can take up to 17 hours or more with a slow machine. It is possible to test different values by specifying this in the functions in main.py. Below is an example of how to do that: 
