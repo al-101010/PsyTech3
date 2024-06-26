@@ -2,7 +2,7 @@ from .random_alg import Random
 
 class FittedStart(Random):
     """
-    A class to represent a start without overcapicity
+    A class to represent a fitted start algorithm which avoids starting with room overcapicity
     """
     def schedule_courses(self, archive):
         """
