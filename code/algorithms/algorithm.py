@@ -284,7 +284,8 @@ class Algorithm:
         """ 
         Gets all the different types of maluspoints from the schedule and prints them to terminal.
         """
-
+        self.schedule.get_total_maluspoints()
+        
         # get hold of schedule and all types of maluspoints
         print(f'Algorithm name: {title}')
         print('Maluspoints:') 
