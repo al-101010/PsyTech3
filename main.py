@@ -125,17 +125,17 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
     if algorithm == 'simulated annealing':
         if version == 'normal':
             #create annealing schedule
-            simulated_annealing = SimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential')
-            simulated_annealing.run(iterations)
-            simulated_annealing.display_maluspoints_division('Simulated Annealing')
+            # simulated_annealing = SimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential')
+            # simulated_annealing.run(iterations)
+            # simulated_annealing.display_maluspoints_division('Simulated Annealing')
 
-            simulated_annealing.plot_graph(output_png_name, title='Simulated Annealing Algorithm', save=False)
+            # simulated_annealing.plot_graph(output_png_name, title='Simulated Annealing Algorithm', save=False)
             # simulated_annealing.schedule.get_output(output_csv_name)
             
             if experiment:
-                simulated_annealing_experiment.simal_all_averages(test_schedule)
-                simulated_annealing_experiment.simal_all_averages_plot()
-                simulated_annealing_experiment.plot_maluspoints_distribution()
+                simulated_annealing_experiment.simal_all_averages(test_schedule, 1, 3000)
+                simulated_annealing_experiment.simal_all_averages_plot(1, 3000)
+                # simulated_annealing_experiment.plot_maluspoints_distribution()
                 # simulated_annealing_experiment.simal_temp_comparisons(test_schedule)
                 # simulated_annealing_experiment.simal_temp_comparisons_plot()
         
