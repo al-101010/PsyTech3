@@ -1,4 +1,4 @@
-from code.algorithms.random_alg import Random
+from code.algorithms.random_alg import Random, FittedStart 
 from code.algorithms.hillclimber import Hillclimber
 from code.algorithms.simulated_annealing import SimulatedAnnealing, ReheatSimulatedAnnealing
 from code.algorithms.plant_prop import PlantProp
@@ -8,6 +8,7 @@ from code.classes.schedule import Schedule
 
 from experiments.hillclimber import hillclimber_experiment
 from experiments.simulated_annealing import simulated_annealing_experiment
+from experiments.random import random_experiment
 
 import pandas as pd
 import time
@@ -22,12 +23,20 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
 
     # ============== RANDOM ============================
     if algorithm == 'random':
-        # create schedule using random algorithm
-        random_schedule = Random(test_schedule)
+        if not experiment: 
+            # create schedule using random algorithm
+            random_schedule = Random(test_schedule)
 
-        # display malus points
-        random_schedule.display_maluspoint_division('Random')
-        random_schedule.schedule.get_output(output_csv_name)
+            # display malus points
+            random_schedule.display_maluspoint_division('Random')
+            random_schedule.schedule.get_output(output_csv_name)
+        
+        if experiment:
+            if version == 'normal':
+                random_experiment.visualize_maluspoints_histogram(Random, test_schedule)
+            
+            if version == 'fitted':
+                random_experiment.visualize_maluspoints_histogram(FittedStart, test_schedule)
 
     # ============== HILLCLIMBER =====================
     if algorithm == 'hillclimber':
