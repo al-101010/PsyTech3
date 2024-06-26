@@ -47,16 +47,18 @@ Below the different parse arguments and their possible values are explained:
 8. [-es] - Boolean that denotes whether you want to run the algorithm with early stopping enabled.
     - Default is False
 
-### structure
+### Structure
 This list describes the most important folders and files and where to find them:
 - **/code**: contains all the code of this project
     - **/code/algorithms**: contains all code for the algorithms
     - **/code/classes**: contains all code for the classes of our data structure
-    - **/code/visualization**: contains the code for visualizing a schedule
+    - **/code/visualization**: contains the code for visualizing a created schedule.
 - **/data**: contains the data files of all students, courses, and rooms that have to be used in the schedule
+- **/experiments**: contains all the experiments we ran for each algorithm.
+- **/results**: contains all the results for the experiments we ran for each algorithm.
 
 ## Experiments 
-There are 6 experiment files included in this repository, each testing one specific algorithm. 
+There are 7 experiment files included in this repository, each testing one specific algorithm. 
 This includes running the respective algorithm n times for a specified number of iterations and collecting:  
 
 - a) the average, minimum, and maximum maluspoints per iteration over all runs 
@@ -88,6 +90,41 @@ To run a hillclimber experiment 10 times with 10 iterations specify in main:
 Running this, you should find a new folder in results with your experiment data and plots. 
 
 Note that for these types of experiments you can comment out the *ratios_plot_zoom()* function as this is mainly a way to zoom in to a specific area of a plot for a better insight into the different maluspoints.  
+
+## Visualizations
+### Visualize.py
+A schedule consists of the following components:
+1. Students
+2. Courses
+3. Rooms
+
+Each of these components has it's own schedule that can be visualized. This can be done in *visualize.py* by calling the following:
+
+```
+python visualize.py schedule_type name [-s]
+```
+
+1. schedule_type - denotes which component you want a schedule from.
+    - 'student'
+    - 'course'
+    - 'room'
+2. name - denotes the name or id of the component you want a schedule from.
+    - e.g 'Yanick Abbing' as student
+    - e.g 'Heuristieken 2' as course
+    - e.g 'C0.110' as room
+3. -s - denotes the file path that holds your csv file
+    - default is set to '../../results/hillclimber/tested_hillclimber_output_500K.csv' since this path holds our schedule with the least maluspoints found.
+
+### ICS visualization
+To be able to interact with the complete schedule we also created a script that reads a schedule output file as an ICS file for each course. 
+
+This file can be run by simply calling:
+
+```
+python ics_visualization.py
+```
+
+Running this file will write an ICS file to the ICS_visualize folder for each course. Opening each ICS file and adding it to your calendar will show you the created schedule for the week of june 24 - june 28. It is recommended to save each file as a different calendar with a different color so it is more clear which course is which. Searching for a student name in the search bar will also show that student's personal schedule.
 
 ## Authors: 
 - Daimy van Loo 
