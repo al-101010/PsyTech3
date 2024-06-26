@@ -26,7 +26,7 @@ class PlantProp(Algorithm):
     evaluation: int
         running counter of number of evaluations
     """
-    def __init__(self, schedule: Schedule, N : int=10):
+    def __init__(self, schedule: Schedule, N : int=10, early_stopping : bool=False):
         super().__init__(schedule)
         self.N = N
         self.population = []

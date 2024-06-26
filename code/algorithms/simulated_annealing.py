@@ -28,7 +28,7 @@ class SimulatedAnnealing(Hillclimber):
         current best/ lowest maluspoint score 
 
     """
-    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential'):
+    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential', early_stopping : bool=False):
         super().__init__(empty_schedule)
         self.start_temperature = start_temperature
         self.temperature = start_temperature

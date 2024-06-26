@@ -24,7 +24,7 @@ class Hillclimber(Algorithm):
     iteration: int
         current iteration
     """
-    def __init__(self, empty_schedule : Schedule):
+    def __init__(self, empty_schedule : Schedule, early_stopping : bool=False):
         super().__init__(empty_schedule)
         self.start_schedule = FittedStart(empty_schedule)
         self.schedule = self.start_schedule.schedule
