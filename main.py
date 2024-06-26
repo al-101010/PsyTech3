@@ -17,7 +17,7 @@ start_time = time.time()
 print("--- %s seconds ---" % (time.time() - start_time))
 
 
-def main(algorithm, output_csv_name, output_png_name, experiment, iterations, starting_temperature, version):
+def main(algorithm, output_csv_name, output_png_name, experiment, iterations, early_stopping, starting_temperature, version):
     test_schedule = Schedule('data/studenten_en_vakken.csv', 'data/vakken.csv', 'data/zalen.csv')
 
     # ============== RANDOM ============================
@@ -32,19 +32,20 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
     # ============== HILLCLIMBER =====================
     if algorithm == 'hillclimber':
         if version == 'normal':
-            # hillclimber = Hillclimber(test_schedule)
-            # hillclimber.run(iterations)
-            # hillclimber.display_maluspoints_division('Hillclimber')
+            if not experiment:
+                hillclimber = Hillclimber(test_schedule, early_stopping)
+                hillclimber.run(iterations)
+                hillclimber.display_maluspoints_division('Hillclimber')
 
-            # hillclimber.plot_graph(output_png_name, title='Hillclimber Algorithm', save=True)
-            # hillclimber.schedule.get_output(output_csv_name)
+                hillclimber.plot_graph(output_png_name, title='Hillclimber Algorithm', save=True)
+                hillclimber.schedule.get_output(output_csv_name)
 
             if experiment:
-                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'hillclimber', 10, 5)
-                hillclimber_experiment.hillclimber_ratios_plot('hillclimber', 10, 5)
-                # hillclimber_experiment.hillclimber_ratios_plot_zoom('hillclimber', 10, 5)
-                hillclimber_experiment.plot_maluspoints_distribution('hillclimber', 10, 5)
-                # hillclimber_experiment.timed_hillclimber_runs(test_schedule, Hillclimber) 
+                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'hillclimber')
+                hillclimber_experiment.hillclimber_ratios_plot('hillclimber')
+                hillclimber_experiment.hillclimber_ratios_plot_zoom('hillclimber')
+                hillclimber_experiment.plot_maluspoints_distribution('hillclimber')
+                hillclimber_experiment.timed_hillclimber_runs(test_schedule, Hillclimber) 
                 
                 # comparison of two hillclimbers 
                 # hillclimber_experiment.hillclimb(test_schedule, algorithm=Hillclimber, name='Hillclimber')
@@ -52,69 +53,71 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
                 # hillclimber_experiment.compare_hillclimbers("results/hillclimber/Hillclimber30_iter1000.csv", "results/hillclimber/TargetedClimber_30_iter1000.csv")
 
         if version == 'problematic activity':
-            # problematic_activity_climber = ProblematicActivityClimber(test_schedule)
-            # problematic_activity_climber.run(iterations)
-            # problematic_activity_climber.display_maluspoints_division('Problematic Activity Climber')
+            if not experiment:
+                problematic_activity_climber = ProblematicActivityClimber(test_schedule, early_stopping)
+                problematic_activity_climber.run(iterations)
+                problematic_activity_climber.display_maluspoints_division('Problematic Activity Climber')
 
-            # problematic_activity_climber.plot_graph(output_png_name, title='Problematic Activity Climber', save=True)
-            # problematic_activity_climber.schedule.get_output(output_csv_name)
+                problematic_activity_climber.plot_graph(output_png_name, title='Problematic Activity Climber', save=True)
+                problematic_activity_climber.schedule.get_output(output_csv_name)
             
             if experiment:
-                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'problematic_activity', 10, 5)
-                hillclimber_experiment.hillclimber_ratios_plot('problematic_activity', 10, 5)
-                # hillclimber_experiment.hillclimber_ratios_plot_zoom('problematic_activity', 10, 5)
-                hillclimber_experiment.plot_maluspoints_distribution('problematic_activity', 10, 5)
+                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'problematic_activity')
+                hillclimber_experiment.hillclimber_ratios_plot('problematic_activity')
+                hillclimber_experiment.hillclimber_ratios_plot_zoom('problematic_activity')
+                hillclimber_experiment.plot_maluspoints_distribution('problematic_activity')
                 
 
         if version == 'problematic students':
-            # problematic_student_climber = ProblematicStudentsClimber(test_schedule)
-            # problematic_student_climber.run(iterations)
-            # problematic_student_climber.display_maluspoints_division('Problematic Student Climber')
+            if not experiment:
+                problematic_student_climber = ProblematicStudentsClimber(test_schedule, early_stopping)
+                problematic_student_climber.run(iterations)
+                problematic_student_climber.display_maluspoints_division('Problematic Student Climber')
 
-            # problematic_student_climber.plot_graph(output_png_name, title='Problematic Student Climber', save=True)
-            # problematic_student_climber.schedule.get_output(output_csv_name)
+                problematic_student_climber.plot_graph(output_png_name, title='Problematic Student Climber', save=True)
+                problematic_student_climber.schedule.get_output(output_csv_name)
 
             if experiment:
-                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'problematic_students', 10, 5)
-                hillclimber_experiment.hillclimber_ratios_plot('problematic_students', 10, 5)
-                # hillclimber_experiment.hillclimber_ratios_plot_zoom('problematic_students', 10, 5)
-                hillclimber_experiment.plot_maluspoints_distribution('problematic_students', 10, 5)
+                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'problematic_students')
+                hillclimber_experiment.hillclimber_ratios_plot('problematic_students')
+                hillclimber_experiment.hillclimber_ratios_plot_zoom('problematic_students')
+                hillclimber_experiment.plot_maluspoints_distribution('problematic_students')
                 
 
 
         if version == 'mutation probability':
-            # mutation_probability_climber = MutationProbabilityClimber(test_schedule)
-            # mutation_probability_climber.run(iterations)
-            # mutation_probability_climber.display_maluspoints_division('Mutation Probability Climber')
+            if not experiment:
+                mutation_probability_climber = MutationProbabilityClimber(test_schedule, early_stopping)
+                mutation_probability_climber.run(iterations)
+                mutation_probability_climber.display_maluspoints_division('Mutation Probability Climber')
 
-            # mutation_probability_climber.plot_graph(output_png_name, title='Mutation Probability Climber', save=True)
-            # mutation_probability_climber.schedule.get_output(output_csv_name)
+                mutation_probability_climber.plot_graph(output_png_name, title='Mutation Probability Climber', save=True)
+                mutation_probability_climber.schedule.get_output(output_csv_name)
 
             if experiment:
-                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'mutation_probability', 10, 5)
-                hillclimber_experiment.hillclimber_ratios_plot('mutation_probability', 10, 5)
-                # hillclimber_experiment.hillclimber_ratios_plot_zoom('mutation_probability', 10, 5)
-                hillclimber_experiment.plot_maluspoints_distribution('mutation_probability', 10, 5)
-                
-
+                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'mutation_probability')
+                hillclimber_experiment.hillclimber_ratios_plot('mutation_probability')
+                hillclimber_experiment.hillclimber_ratios_plot_zoom('mutation_probability')
+                hillclimber_experiment.plot_maluspoints_distribution('mutation_probability')
 
         if version == 'increasing mutations':
-            # increasing_mutations_climber = IncreasingMutationsClimber(test_schedule)
-            # increasing_mutations_climber.run(iterations)
-            # increasing_mutations_climber.display_maluspoints_division('Increasing Mutations Climber')
+            if not experiment:
+                increasing_mutations_climber = IncreasingMutationsClimber(test_schedule, early_stopping)
+                increasing_mutations_climber.run(iterations)
+                increasing_mutations_climber.display_maluspoints_division('Increasing Mutations Climber')
 
-            # increasing_mutations_climber.plot_graph(output_png_name, title='Increasing Mutation Climber', save=True)
-            # increasing_mutations_climber.schedule.get_output(output_csv_name)
+                increasing_mutations_climber.plot_graph(output_png_name, title='Increasing Mutation Climber', save=True)
+                increasing_mutations_climber.schedule.get_output(output_csv_name)
             
             if experiment:
-                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'increasing_mutations', 10, 5)
-                hillclimber_experiment.hillclimber_ratios_plot('increasing_mutations', 10, 5)
-                # hillclimber_experiment.hillclimber_ratios_plot_zoom('increasing_mutations', 10, 5)
-                hillclimber_experiment.plot_maluspoints_distribution('increasing_mutations', 10, 5)
+                hillclimber_experiment.hillclimb_all_averages(test_schedule, 'increasing_mutations')
+                hillclimber_experiment.hillclimber_ratios_plot('increasing_mutations')
+                hillclimber_experiment.hillclimber_ratios_plot_zoom('increasing_mutations')
+                hillclimber_experiment.plot_maluspoints_distribution('increasing_mutations')
 
     # ======== PLANT PROPAGATION ===============
     if algorithm == 'plantprop':
-        plantprop = PlantProp(test_schedule)
+        plantprop = PlantProp(test_schedule, early_stopping)
         plantprop.run(iterations)
         plantprop.display_maluspoints_division('Plantprop')
 
@@ -124,25 +127,29 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
     # ========= SIMULATED ANNEALING ============
     if algorithm == 'simulated annealing':
         if version == 'normal':
-            #create annealing schedule
-            # simulated_annealing = SimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential')
-            # simulated_annealing.run(iterations)
-            # simulated_annealing.display_maluspoints_division('Simulated Annealing')
+            if not experiment:
+                #create annealing schedule
+                simulated_annealing = SimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential', early_stopping)
+                simulated_annealing.run(iterations)
+                simulated_annealing.display_maluspoints_division('Simulated Annealing')
 
-            # simulated_annealing.plot_graph(output_png_name, title='Simulated Annealing Algorithm', save=False)
-            # simulated_annealing.schedule.get_output(output_csv_name)
+                simulated_annealing.plot_graph(output_png_name, title='Simulated Annealing Algorithm', save=False)
+                simulated_annealing.schedule.get_output(output_csv_name)
             
             if experiment:
-                simulated_annealing_experiment.simal_all_averages(test_schedule, 1, 3000)
-                simulated_annealing_experiment.simal_all_averages_plot(1, 3000)
-                # simulated_annealing_experiment.plot_maluspoints_distribution()
-                # simulated_annealing_experiment.simal_temp_comparisons(test_schedule)
-                # simulated_annealing_experiment.simal_temp_comparisons_plot()
+                # simulated annealing experiment
+                simulated_annealing_experiment.simal_all_averages(test_schedule, early_stopping)
+                simulated_annealing_experiment.simal_all_averages_plot()
+                simulated_annealing_experiment.plot_maluspoints_distribution()
+
+                # temperature experiment
+                simulated_annealing_experiment.simal_temp_comparisons(test_schedule)
+                simulated_annealing_experiment.simal_temp_comparisons_plot()
         
         # ========= REHEATED SIMULATED ANNEALING ===============
         if version == 'reheated':
             # create schedule
-            reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential', reheat_threshold=1200)
+            reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential', reheat_threshold=1200, early_stopping)
             reheat_simulated_annealing.run(iterations)
             reheat_simulated_annealing.display_maluspoints_division('Reheat Simulated Annealing')
 
@@ -158,8 +165,9 @@ if __name__ == "__main__":
     parser.add_argument("algorithm", help = "algorithm to run")
     parser.add_argument("output_csv", help = "output file (csv)")
     parser.add_argument("output_png", help = "output plot (png)")
-    parser.add_argument("-e", "--experiment", type=bool, default = False, help = "experiment (default: False)")
+    parser.add_argument("-e", "--experiment", action="store_true", help = "experiment (default: False)")
     parser.add_argument("-i", "--iterations", type=int, default = 50000, help="iterations (default: 1930)")
+    parser.add_argument("-es", "--early_stopping", action="store_true", help="early stopping(default: False)")
     parser.add_argument("-st", "--starting_temperature",   type=int, default = 50, help="starting temperature (default: 50)")
     parser.add_argument("-v", "--version", type=str, default='normal', help="algorithm version (default: normal)")
 
@@ -167,4 +175,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     # Run main with provide arguments
-    main(args.algorithm, args.output_csv, args.output_png, args.experiment, args.iterations, args.starting_temperature, args.version)
+    main(args.algorithm, args.output_csv, args.output_png, args.experiment, args.iterations, args.early_stopping, args.starting_temperature, args.version)
