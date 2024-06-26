@@ -167,7 +167,7 @@ class SimulatedAnnealing(Hillclimber):
         super().run(iters)
 
         # check whether best_maluspoints has been updated since initialization
-        if self.best_maluspoints != float('inf'):
+        if iters != 1 and self.best_maluspoints != float('inf'):
 
             # update variables with best found schedule and maluspoint count
             self.schedule = self.best_schedule

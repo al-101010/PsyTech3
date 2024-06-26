@@ -11,24 +11,53 @@ import csv
 import pandas as pd 
 import os 
 import seaborn as sns
+import copy 
 
-def select_version(schedule, version):
+def select_version(version):
     """
     Selects a version of a hillclimber algorithm and makes a schedule based on selection.
     """
 
     if version == 'hillclimber':
-        algorithm = Hillclimber(schedule)
+        algorithm = Hillclimber
     elif version == 'problematic_students':
-        algorithm = ProblematicStudentsClimber(schedule)
+        algorithm = ProblematicStudentsClimber
     elif version == 'problematic_activity':
-        algorithm = ProblematicActivityClimber(schedule)
+        algorithm = ProblematicActivityClimber
     elif version == 'mutation_probability':
-        algorithm = MutationProbabilityClimber(schedule)
+        algorithm = MutationProbabilityClimber
     elif version == 'increasing_mutations':
-        algorithm = IncreasingMutationsClimber(schedule)
+        algorithm = IncreasingMutationsClimber
     
     return algorithm
+
+def write_file(results, version, nr_climbers, nr_iterations):
+    '''
+    Writes a csv file from results. 
+    '''
+
+    # get all values for a row 
+    values = []
+
+    # loop over zipped results 
+    for iteration in zip(*results):
+        
+        # unzip to get the same type maluspoints in one row 
+        iteration = list(zip(*list(iteration)))
+        
+        # append average, mean, and max of each type of maluspoints to values 
+        values.append((mean(iteration[0]), min(iteration[0]), max(iteration[0]),
+                       mean(iteration[1]), min(iteration[1]), max(iteration[1]),
+                       mean(iteration[2]), min(iteration[2]), max(iteration[2]),
+                       mean(iteration[3]), min(iteration[3]), max(iteration[3]),
+                       mean(iteration[4]), min(iteration[4]), max(iteration[4])))
+
+    with open(f"results/{version}/{version}_all_averages-{nr_climbers}-{nr_iterations}.csv", 'w', newline='') as output_file:
+        result_writer = csv.writer(output_file, delimiter=',')
+        #result_writer.writerow(["Mean Maluspoints", "Min Maluspoints", "Max Maluspoints"])
+        
+        for value in values:
+            result_writer.writerow(value)
 
 def hillclimb_all_averages(schedule, version, nr_climbers: int =30, nr_iterations: int =20000):
     ''' 
@@ -38,14 +67,12 @@ def hillclimb_all_averages(schedule, version, nr_climbers: int =30, nr_iteration
     '''
     start_time = time.time()
 
-    # initialise results 
-    results = []
-
-    # initialise maluspoints collector per run 
+    # initialise results and maluspoints collector
+    results = [] 
     maluspoints = []
 
-    # select version 
-    algorithm = select_version(schedule, version)
+    # select algorithm version 
+    algorithm = select_version(version)
     
     # if not existing, make separate folder to store schedules 
     dir_path = f'results/{version}/{nr_climbers}runs{nr_iterations}iters'
@@ -60,10 +87,9 @@ def hillclimb_all_averages(schedule, version, nr_climbers: int =30, nr_iteration
         result = []
         
         # make a hillclimber object  
-        climber = algorithm
+        climber = algorithm(schedule)
 
         print(f"Running Hill Climber Number: {i}")
-        
         # set number iterations per run 
         for j in range(nr_iterations):
             
@@ -96,33 +122,10 @@ def hillclimb_all_averages(schedule, version, nr_climbers: int =30, nr_iteration
     maluspoints = pd.DataFrame(maluspoints, columns=['Final Maluspoints'])
     maluspoints.to_csv(dir_path+'/final_maluspoints.csv')
 
-    # get all values for a row 
-    values = []
+    write_file(results, version, nr_climbers, nr_iterations)
 
-    # loop over zipped results 
-    for iteration in zip(*results):
-        
-        # unzip to get the same type maluspoints in one row 
-        iteration = list(zip(*list(iteration)))
-        
-        # append average, mean, and max of each type of maluspoints to values 
-        values.append((mean(iteration[0]), min(iteration[0]), max(iteration[0]),
-                       mean(iteration[1]), min(iteration[1]), max(iteration[1]),
-                       mean(iteration[2]), min(iteration[2]), max(iteration[2]),
-                       mean(iteration[3]), min(iteration[3]), max(iteration[3]),
-                       mean(iteration[4]), min(iteration[4]), max(iteration[4])))
-
-    with open(f"results/{version}/{version}_all_averages-{nr_climbers}-{nr_iterations}.csv", 'w', newline='') as output_file:
-        result_writer = csv.writer(output_file, delimiter=',')
-        #result_writer.writerow(["Mean Maluspoints", "Min Maluspoints", "Max Maluspoints"])
-        
-        for value in values:
-            result_writer.writerow(value)
-    
     end_time = time.time()
-    
     print(f'--- {round(end_time - start_time, 1)} seconds ---')
-
 
 def hillclimber_ratios_plot(version, nr_climbers: int =30, nr_iterations: int =20000):
     '''
@@ -159,8 +162,8 @@ def hillclimber_ratios_plot(version, nr_climbers: int =30, nr_iterations: int =2
     ax.set_ybound(0, 1500)
 
     plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'], loc='upper right')
-    plt.suptitle(f'Maluspoints Hillclimber (n={nr_climbers})', fontsize=12)
-    plt.title(f'final maluspoints obtained - average: {df["Total Avg"].iloc[-1]}, minimum: {df["Total Min"].iloc[-1]}, maximum: {df["Total Max"].iloc[-1]}', loc='left', fontsize=9)
+    plt.suptitle(f'Maluspoints {version} (n={nr_climbers})', fontsize=12)
+    plt.title(f'maluspoints avg: {round(df["Total Avg"].iloc[-1], 1)}, min: {round(df["Total Min"].iloc[-1], 1)}, max: {round(df["Total Max"].iloc[-1], 1)}', loc='left', fontsize=9)
     plt.ylabel('Average Maluspoints')
     plt.xlabel('Iterations')
 
@@ -204,8 +207,8 @@ def hillclimber_ratios_plot_zoom(version, nr_climbers: int =30, nr_iterations : 
     ax.set_ybound(0, 300)
 
     plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'])
-    plt.suptitle(f'Maluspoints Hillclimber (n={nr_climbers})', fontsize=12)
-    plt.title(f'final maluspoints obtained - average: {df["Total Avg"].iloc[-1]}, minimum: {df["Total Min"].iloc[-1]}, maximum: {df["Total Max"].iloc[-1]}', loc='left', fontsize=9)
+    plt.suptitle(f'Maluspoints {version} (n={nr_climbers})', fontsize=12)
+    plt.title(f'maluspoints avg: {round(df["Total Avg"].iloc[-1], 1)}, min: {round(df["Total Min"].iloc[-1], 1)}, max: {round(df["Total Max"].iloc[-1], 1)}', loc='left', fontsize=9)
     plt.ylabel('Average Maluspoints')
     plt.xlabel('Iterations')
 
@@ -221,8 +224,6 @@ def plot_maluspoints_distribution(version, nr_climbers=30, nr_iterations=20000):
 
     maluspoints = maluspoints_df['Final Maluspoints'].to_list()
     
-    fig, ax = plt.subplots()
-    
     sns.histplot(maluspoints, bins=6, kde=True, edgecolor='black')
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
@@ -230,81 +231,34 @@ def plot_maluspoints_distribution(version, nr_climbers=30, nr_iterations=20000):
     plt.savefig(f'results/{version}/final_maluspoints-{nr_climbers}-{nr_iterations}.png', dpi=1200)
     plt.show()
 
-
-""" NOT SURE IF WILL USE"""
-def hillclimb(schedule, algorithm, name='Hillclimber', n_algorithms=30, n_iters=1000):
-    """ 
-    Runs hillclimber algorithm X times for Y iterations. 
-    Returns csv file (algorithm name, number of runs, number of iters/run) with final maluspoints at each run.   
+def compare_distributions(type, nr_algorithms=30, nr_iterations=20000):
     """
-
-    print(f"Running {name}...")
-    with open(f"results/hillclimber/{name}{n_algorithms}_iter{n_iters}.csv", 'w', newline='') as output_file:
-        result_writer = csv.writer(output_file, delimiter=',')
-
-        for i in range(n_algorithms):
-            print(f'running algorithm nr: {i}')
-            
-            # add a seed for randomness 
-            random.seed(123)
-
-            # make and run a hillclimber object  
-            climber = algorithm(schedule)
-            climber.run(n_iters)
-
-            # get all maluspoints and different types of maluspoints at each run 
-            all_maluspoints = [climber.schedule.get_total_maluspoints(),
-                                climber.schedule.get_evening_room_maluspoints(),
-                                climber.schedule.get_overcapacity_maluspoints(),
-                                climber.schedule.get_student_maluspoints()[0],
-                                climber.schedule.get_student_maluspoints()[1]]
-            
-            # write results into csv file 
-            result_writer.writerow(all_maluspoints)
-
-
-def compare_hillclimbers(hillclimber1_data, hillclimber2_data):
-    """ 
-    Compares the results of two hillclimbers with different functionalities with a t-test. 
-    Returns their means in order of entry into the function, t-statistic, and p-value. 
+    Makes a histogram of the maluspoint distributions of all hillclimber versions. 
     """
+    if type == 'heuristics':
+        versions_list = ['hillclimber', 'problematic_students', 'problematic_activity'] #'mutation_probability', 'increasing_mutations']
+        filename = 'compare_heuristics'
+    else: 
+        versions_list = ['hillclimber', 'simulated_annealing']
+        filename = 'compare_annealing'
 
-    # read in data and make df 
-    names = ['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking']
-    hillclimber1_results = pd.read_csv(hillclimber1_data, names=names)
-    hillclimber2_results = pd.read_csv(hillclimber2_data, names=names)
+    fig, ax = plt.subplots()
 
-    hillclimber1_mean = mean(hillclimber1_results['Total'])
-    hillclimber2_mean = mean(hillclimber2_results['Total'])
+    for version in versions_list:
+        
+        file = pd.read_csv(f'results/{version}/{nr_algorithms}runs{nr_iterations}iters/final_maluspoints.csv')
+        
+        maluspoints = file['Final Maluspoints'].to_list()
+
+        sns.histplot(maluspoints, bins=6, kde=True, edgecolor='black')
     
-    t_stat, p_val = stats.ttest_ind(hillclimber1_results['Total'], hillclimber2_results['Total'])
+    ax.set_xbound(0, 300)
+    plt.legend(versions_list, loc='upper left')
+    plt.xlabel('Number Maluspoints')
+    plt.ylabel('Number Generated Schedules')
+    plt.title(f'Maluspoints Distribution (n={nr_algorithms})')
+    plt.savefig(f'results/hillclimber/{filename}-{nr_algorithms}-{nr_iterations}.png', dpi=1200)
+    plt.show()
 
-    print(f'mean 1: {hillclimber1_mean}\nmean 2: {hillclimber2_mean}\nT-statistic: {t_stat}\nP-value: {p_val}')
-    if p_val < 0.05:
-        print('this difference is significant')
     
-    return hillclimber1_mean, hillclimber2_mean, t_stat, p_val
-
-
-def timed_hillclimber_runs(schedule, algorithm):
-    """
-    Runs hillclimber for 60 seconds and measures the number of iterations.
-    TODO: Need to export results if we will use it?
-    """
-    
-    # add a seed for randomness 
-    random.seed(123)
-
-    # make a hillclimber object  
-    climber = algorithm(schedule)
-    
-    start = time.time()
-    n_runs = 0
-    while time.time() - start < 60:
-        print(f"run: {n_runs}")
-        climber.run(1)
-        n_runs += 1
-    print(f'{n_runs} runs in 60 seconds')
-
-
 
