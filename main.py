@@ -54,12 +54,9 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
                 hillclimber_experiment.hillclimber_ratios_plot('hillclimber')
                 hillclimber_experiment.hillclimber_ratios_plot_zoom('hillclimber')
                 hillclimber_experiment.plot_maluspoints_distribution('hillclimber')
-                hillclimber_experiment.timed_hillclimber_runs(test_schedule, Hillclimber) 
+                hillclimber_experiment.compare_distributions('heuristics')
+                hillclimber_experiment.compare_distributions('simulated annealing')
                 
-                # comparison of two hillclimbers 
-                # hillclimber_experiment.hillclimb(test_schedule, algorithm=Hillclimber, name='Hillclimber')
-                # hillclimber_experiment.hillclimb(test_schedule, algorithm=TargetedHillclimber, name='TargetedClimber')
-                # hillclimber_experiment.compare_hillclimbers("results/hillclimber/Hillclimber30_iter1000.csv", "results/hillclimber/TargetedClimber_30_iter1000.csv")
 
         if version == 'problematic activity':
             if not experiment:

@@ -214,15 +214,17 @@ def plot_maluspoints_distribution(version, nr_climbers=30, nr_iterations=20000):
     """
     Plots a histogram of the distribution of maluspoints in N schedules.  
     """
+    fig, ax = plt.subplots()
 
     maluspoints_df = pd.read_csv(f'results/{version}/{nr_climbers}runs{nr_iterations}iters/final_maluspoints.csv')
 
     maluspoints = maluspoints_df['Final Maluspoints'].to_list()
     
     sns.histplot(maluspoints, bins=6, kde=True, edgecolor='black')
+    ax.set_xbound(0, 300)
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
-    plt.title(f'Maluspoints Distribution {version} (n={nr_climbers})')
+    plt.title(f'Maluspoints distribution {version} (n={nr_climbers})')
     plt.savefig(f'results/{version}/final_maluspoints-{nr_climbers}-{nr_iterations}.png', dpi=1200)
     plt.show()
 
@@ -233,13 +235,13 @@ def compare_distributions(type, nr_algorithms=30, nr_iterations=20000):
     Any other type indication compares hillclimber with simulated annealing.  
     """
     if type == 'heuristics':
-        versions_list = ['hillclimber', 'problematic_students', 'problematic_activity'] #'mutation_probability', 'increasing_mutations']
+        versions_list = ['hillclimber', 'problematic_students', 'problematic_activity', 'mutation_probability', 'increasing_mutations']
         filename = 'compare_heuristics'
     else: 
         versions_list = ['hillclimber', 'simulated_annealing']
         filename = 'compare_annealing'
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(8,5))
 
     for version in versions_list:
         
