@@ -1,6 +1,24 @@
 class Activity:
+    """
+    A class to represent an activity.
 
-    def __init__(self, name : str, capacity : str, course) -> None:
+    . . .
+
+    Attributes
+    ----------
+    name: str
+        name of the activity (activity type and number)
+    capacity: int
+        how many students fit/are allowed in this activity
+    course: Course
+        what course (object) this activity is a part of
+    students: set[Student]
+        a set of all students signed up for this activity
+    maluspoints: int
+        score representitive of the number of student double bookings this activity is involved with
+    """
+    
+    def __init__(self, name : str, capacity : int, course) -> None:
         self.name = name
         self.capacity = capacity
         self.course = course

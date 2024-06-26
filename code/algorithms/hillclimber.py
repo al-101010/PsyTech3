@@ -10,7 +10,20 @@ from ..classes.schedule import Schedule
 sys.setrecursionlimit(10**6)
 
 class Hillclimber(Algorithm):
-    
+    """
+    A class to represent a hillclimber algoirhtm.
+
+    . . .
+
+    Attributes
+    ----------
+    start_schedule: FittedStart
+        starting schedule
+    schedule: Schedule
+        current weekly schedule
+    iteration: int
+        current iteration
+    """
     def __init__(self, empty_schedule : Schedule):
         super().__init__(empty_schedule)
         self.start_schedule = FittedStart(empty_schedule)
