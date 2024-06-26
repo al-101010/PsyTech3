@@ -187,7 +187,7 @@ class ReheatSimulatedAnnealing(SimulatedAnnealing):
     reheat_threshold: int
         number of iterations without any improvements after which to reheat
     """
-    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential', reheat_temperature: int = 10, reheat_threshold: int = 1500):
+    def __init__(self, empty_schedule : Schedule, start_temperature: int, cooling_function: str = 'exponential', reheat_temperature: int = 10, reheat_threshold: int = 1500, early_stopping : bool=False):
         super().__init__(empty_schedule, start_temperature, cooling_function)
         self.reheat_temperature = reheat_temperature
         self.reheat_threshold = reheat_threshold
