@@ -4,6 +4,7 @@ import seaborn as sns
 import tabulate
 from tabulate import tabulate as tabulate_data
 import textwrap
+import argparse
 
 def wrap_text(text: str, width: int = 35) -> str:
     """
@@ -21,6 +22,7 @@ def print_timetable_for_student(timetable_file: str, student_name: str) -> None:
     Function that takes a csv file containing all scheduling information, as well
     as the full name of a student, and prints their weekly schedule
     """
+
     # initialize variables
     timeslots = [9, 11, 13, 15, 17]
     days = ['ma', 'di', 'wo', 'do', 'vr']
@@ -28,8 +30,12 @@ def print_timetable_for_student(timetable_file: str, student_name: str) -> None:
     # load in data
     timetable_df = pd.read_csv(timetable_file)
 
+    # print error if student not in data file
+    if not student_name in timetable_df['Student'].values:
+        raise Exception(f"{student_name} is not present in your data")
+    
     # filter for student
-    student_df = timetable_df[timetable_df['Student'] == student_name]
+    student_df = timetable_df[timetable_df['Student'] == student_name].copy()
 
     # add series containing all relevant info
     student_df['alle_info'] = student_df['Vak'] + ' - ' + student_df['Activiteit'] + ' - ' + student_df['Zaal']
@@ -62,8 +68,12 @@ def obtain_course_schedule(timetable_file: str, course_name: str) -> None:
     # load in data
     df = pd.read_csv(timetable_file)
 
+    # print error if course not in data file
+    if not course_name in df['Vak'].values:
+        raise Exception(f"{course_name} is not present in your data")
+
     # filter by course
-    course_df = df.groupby('Vak').get_group(course_name)
+    course_df = df.groupby('Vak').get_group(course_name).copy()
 
     # add series containing all relevant info 
     course_df['alle_info'] = course_df['Activiteit'] + ' - ' + course_df['Zaal']
@@ -94,7 +104,13 @@ def obtain_room_schedule(timetable_file: str, room_id: str) -> None:
     # load in data
     df = pd.read_csv(timetable_file)
 
-    room_df = df.groupby('Zaal').get_group(room_id)
+    # print error if room not in data file
+    if not room_id in df['Zaal'].values:
+        raise Exception(f"{room_id} is not present in your data")
+
+    # filter by room
+    room_df = df.groupby('Zaal').get_group(room_id).copy()
+    
     room_df['alle_info'] = room_df['Vak'] + ' - ' + room_df['Activiteit']
 
     room_schedule = pd.pivot_table(room_df, values='alle_info', index='Tijdslot', columns='Dag', aggfunc=lambda x: '\n'.join(set(x)))
@@ -137,9 +153,24 @@ def show_activity_heatmap(timetable_file: str, save: bool = False, output_file: 
     
     plt.show()
 
+def main(schedule_type, name, schedule_csv):
+    if schedule_type == 'student':
+        print_timetable_for_student(schedule_csv, name)
+    elif schedule_type == 'course':
+        obtain_course_schedule(schedule_csv, name)
+    elif schedule_type == 'room':
+        obtain_room_schedule(schedule_csv, name)
+    else:
+        show_activity_heatmap(schedule_csv)
 
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description = "create visualization of a schedule")
 
-print_timetable_for_student('../data/random_output.csv', 'Rhona Vromans')
-obtain_course_schedule('../data/random_output.csv', 'Software engineering')
-show_activity_heatmap('../data/random_output.csv')
-obtain_room_schedule('../data/random_output.csv', 'C0.110')
+    # Adding arguments
+    parser.add_argument("schedule_type", help = "desired type of schedule")
+    parser.add_argument("name", help = "name of the subject of desired schedule")
+    parser.add_argument("-s", "--schedule_csv", default='../../results/hillclimber/tested_hillclimber_output_500K.csv', help = "file path that holds schedule output to be visualized")
+
+    # Read arguments from command line
+    args = parser.parse_args()
+    main(args.schedule_type, args.name, args.schedule_csv)
