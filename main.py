@@ -11,7 +11,6 @@ from experiments.simulated_annealing import simulated_annealing_experiment
 from experiments.random import random_experiment
 
 import pandas as pd
-import time
 import argparse
 
 
