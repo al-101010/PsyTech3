@@ -137,7 +137,7 @@ def hillclimber_ratios_plot(nr_climbers: int =30, nr_iterations: int =20000):
     ax.set_ybound(0, 1500)
 
     plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'], loc='upper right')
-    plt.title(f'Maluspoints of n={nr_climbers} Hillclimbers')
+    plt.title(f'Maluspoints Hillclimber (n={nr_climbers})')
     plt.ylabel('Average Maluspoints')
     plt.xlabel('Iterations')
 
@@ -181,7 +181,7 @@ def hillclimber_ratios_plot_zoom(nr_climbers: int =30, nr_iterations : int =2000
     ax.set_ybound(0, 300)
 
     plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'])
-    plt.title(f'Maluspoints of n={nr_climbers} Hillclimbers')
+    plt.title(f'Maluspoints Hillclimber (n={nr_climbers})')
     plt.ylabel('Average Maluspoints')
     plt.xlabel('Iterations')
 
@@ -196,11 +196,14 @@ def plot_maluspoints_distribution(nr_climbers=30, nr_iterations=20000, name='Hil
     maluspoints_df = pd.read_csv(f'results/hillclimber/{nr_climbers}runs{nr_iterations}iters/final_maluspoints.csv')
 
     maluspoints = maluspoints_df['Final Maluspoints'].to_list()
-
-    sns.histplot(maluspoints, bins=5, kde=True, edgecolor='black')
+    
+    fig, ax = plt.subplots()
+    
+    sns.histplot(maluspoints, bins=6, kde=True, edgecolor='black')
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
-    plt.title(f'Distribution of maluspoints over {nr_climbers} generated {name} schedules')
+    plt.title(f'Maluspoints Distribution {name} (n={nr_climbers})')
+    ax.set_xbound(0,1600)
     plt.savefig(f'results/hillclimber/final_maluspoints-{nr_climbers}-{nr_iterations}.png')
     plt.show()
 

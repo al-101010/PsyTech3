@@ -36,18 +36,18 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
     # ============== HILLCLIMBER =====================
     if algorithm == 'hillclimber':
         if version == 'normal':
-            hillclimber = Hillclimber(test_schedule)
-            hillclimber.run(iterations)
-            hillclimber.display_maluspoints_division('Hillclimber')
+            # hillclimber = Hillclimber(test_schedule)
+            # hillclimber.run(iterations)
+            # hillclimber.display_maluspoints_division('Hillclimber')
 
-            hillclimber.plot_graph(output_png_name, title='Hillclimber Algorithm', save=True)
-            hillclimber.schedule.get_output(output_csv_name)
+            # hillclimber.plot_graph(output_png_name, title='Hillclimber Algorithm', save=True)
+            # hillclimber.schedule.get_output(output_csv_name)
 
             if experiment:
-                hillclimber_experiment.hillclimb_all_averages(test_schedule)
+                # hillclimber_experiment.hillclimb_all_averages(test_schedule)
                 hillclimber_experiment.hillclimber_ratios_plot()
                 hillclimber_experiment.hillclimber_ratios_plot_zoom()
-                hillclimber_experiment.plot_maluspoints_distribution()
+                #hillclimber_experiment.plot_maluspoints_distribution()
                 # hillclimber_experiment.timed_hillclimber_runs(test_schedule, Hillclimber) 
                 
                 # comparison of two hillclimbers 
@@ -129,11 +129,11 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
     if algorithm == 'simulated annealing':
         if version == 'normal':
             #create annealing schedule
-            # simulated_annealing = SimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential')
-            # simulated_annealing.run(iterations)
-            # simulated_annealing.display_all_maluspoints('Simulated Annealing')
+            simulated_annealing = SimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential')
+            simulated_annealing.run(iterations)
+            simulated_annealing.display_maluspoints_division('Simulated Annealing')
 
-            # simulated_annealing.plot_graph(output_png_name, title='Simulated Annealing Algorithm', save=False)
+            simulated_annealing.plot_graph(output_png_name, title='Simulated Annealing Algorithm', save=False)
             # simulated_annealing.schedule.get_output(output_csv_name)
             
             if experiment:
@@ -148,7 +148,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, st
             # create schedule
             reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential', reheat_threshold=1200)
             reheat_simulated_annealing.run(iterations)
-            reheat_simulated_annealing.display_all_maluspoints('Reheat Simulated Annealing')
+            reheat_simulated_annealing.display_maluspoints_division('Reheat Simulated Annealing')
 
             reheat_simulated_annealing.plot_graph(output_png_name, title='Reheat Simulated Annealing Algorithm', save=True)
             reheat_simulated_annealing.schedule.get_output(output_csv_name)
