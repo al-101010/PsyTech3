@@ -13,6 +13,9 @@ class Random(Algorithm):
         self.schedule_courses(self.schedule.archive)
         self.schedule_students()
 
+    def __repr__(self):
+        return 'random_algorithm'
+
     def pick_random_roomslot(self, archive : list) -> tuple:
         """Pick random roomslot from archive"""
         return random.choice(archive)  
@@ -100,6 +103,10 @@ class FittedStart(Random):
     """
     A class to represent a fitted start algorithm which avoids starting with room overcapicity
     """
+    
+    def __repr__(self):
+        return 'fitted_algorithm'
+    
     def schedule_courses(self, archive):
         """
         Schedule all activities on a roomslot that is available and is just

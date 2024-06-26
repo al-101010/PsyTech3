@@ -21,12 +21,14 @@ def visualize_maluspoints_histogram(algorithm, schedule, runs=1000):
     """
     Visualizes the distribution of maluspoints at the end of each run.
     """
+    # run the algorithm and create one instance for the algorithm name
     maluspoints = run_algorithm(algorithm, schedule, runs)
+    algorithm_instance = algorithm(schedule)
 
     # plot histogram
     sns.histplot(maluspoints, bins=50, kde=True, edgecolor='black')
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
     plt.title('Distribution of maluspoints over randomly generated schedules')
-    plt.savefig(f'results/random/{algorithm}_cost.png')
+    plt.savefig(f'results/random/{algorithm_instance}_cost.png')
 
