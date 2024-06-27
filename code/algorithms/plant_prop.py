@@ -137,7 +137,7 @@ class PlantProp(Algorithm):
         # loop while current evaluation is lower than specified evaluataions
         while self.evaluation < evals:
             
-            previous_best_maluspoints = self.get_best_schedule().get_total_maluspoints()
+            previous_best_maluspoints = self.get_best_or_worst_schedule(worst = False).get_total_maluspoints()
             
             self.mutate_all()
             
@@ -145,7 +145,7 @@ class PlantProp(Algorithm):
             
             self.update_population()
             
-            current_best_maluspoints = self.get_best_schedule().get_total_maluspoints()
+            current_best_maluspoints = self.get_best_or_worst_schedule(worst = False).get_total_maluspoints()
             
             # append evaluations and best maluspoint status to plot later
             self.evaluation_stats.append(self.evaluation)
@@ -163,13 +163,13 @@ class PlantProp(Algorithm):
 
                     # save best schedule and maluspoints
                     self.maluspoints = current_best_maluspoints
-                    self.schedule = self.get_best_schedule()
+                    self.schedule = self.get_best_or_worst_schedule(worst = False)
 
                     print("stopping early due to a stagnation of improvements")
                     return
 
         # save best schedule and maluspoints
-        self.schedule = self.get_best_schedule()
+        self.schedule = self.get_best_or_worst_schedule(worst = False)
         self.maluspoints = self.schedule.get_total_maluspoints()
 
     def plot_graph(self, output_file : str, x : str='evaluation', y : str='maluspoints', title : str='Algorithm', save: bool=False):
