@@ -41,6 +41,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
             if not experiment:
                 hillclimber = Hillclimber(test_schedule, early_stopping)
                 hillclimber.run(iterations)
+                hillclimber.schedule.is_valid()
                 hillclimber.display_maluspoints_division('Hillclimber')
 
                 hillclimber.plot_graph(output_png_name, title='Hillclimber Algorithm', save=True)
@@ -57,6 +58,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
             if not experiment:
                 problematic_activity_climber = ProblematicActivityClimber(test_schedule, early_stopping)
                 problematic_activity_climber.run(iterations)
+                problematic_activity_climber.schedule.is_valid()
                 problematic_activity_climber.display_maluspoints_division('Problematic Activity Climber')
 
                 problematic_activity_climber.plot_graph(output_png_name, title='Problematic Activity Climber', save=True)
@@ -73,6 +75,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
             if not experiment:
                 problematic_student_climber = ProblematicStudentsClimber(test_schedule, early_stopping)
                 problematic_student_climber.run(iterations)
+                problematic_student_climber.schedule.is_valid()
                 problematic_student_climber.display_maluspoints_division('Problematic Student Climber')
 
                 problematic_student_climber.plot_graph(output_png_name, title='Problematic Student Climber', save=True)
@@ -90,6 +93,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
             if not experiment:
                 mutation_probability_climber = MutationProbabilityClimber(test_schedule, early_stopping)
                 mutation_probability_climber.run(iterations)
+                mutation_probability_climber.schedule.is_valid()
                 mutation_probability_climber.display_maluspoints_division('Mutation Probability Climber')
 
                 mutation_probability_climber.plot_graph(output_png_name, title='Mutation Probability Climber', save=True)
@@ -105,6 +109,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
             if not experiment:
                 increasing_mutations_climber = IncreasingMutationsClimber(test_schedule, early_stopping)
                 increasing_mutations_climber.run(iterations)
+                increasing_mutations_climber.schedule.is_valid()
                 increasing_mutations_climber.display_maluspoints_division('Increasing Mutations Climber')
 
                 increasing_mutations_climber.plot_graph(output_png_name, title='Increasing Mutation Climber', save=True)
@@ -118,8 +123,9 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
 
     # ======== PLANT PROPAGATION ===============
     if algorithm == 'plantprop':
-        plantprop = PlantProp(test_schedule, early_stopping)
+        plantprop = PlantProp(test_schedule, early_stopping=early_stopping)
         plantprop.run(iterations)
+        plantprop.schedule.is_valid()
         plantprop.display_maluspoints_division('Plantprop')
 
         plantprop.plot_graph(output_png_name, title='PlantProp Algorithm', save=True)
@@ -132,9 +138,10 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
                 #create annealing schedule
                 simulated_annealing = SimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential', early_stopping=early_stopping)
                 simulated_annealing.run(iterations)
+                simulated_annealing.schedule.is_valid()
                 simulated_annealing.display_maluspoints_division('Simulated Annealing')
 
-                simulated_annealing.plot_graph(output_png_name, title='Simulated Annealing Algorithm', save=False)
+                simulated_annealing.plot_graph(output_png_name, title='Simulated Annealing Algorithm', save=True)
                 simulated_annealing.schedule.get_output(output_csv_name)
             
             if experiment:
@@ -153,6 +160,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
             # create schedule
             reheat_simulated_annealing = ReheatSimulatedAnnealing(test_schedule, starting_temperature, cooling_function='exponential', reheat_threshold=1200, early_stopping=early_stopping)
             reheat_simulated_annealing.run(iterations)
+            reheat_simulated_annealing.schedule.is_valid()
             reheat_simulated_annealing.display_maluspoints_division('Reheat Simulated Annealing')
 
             reheat_simulated_annealing.plot_graph(output_png_name, title='Reheat Simulated Annealing Algorithm', save=True)
