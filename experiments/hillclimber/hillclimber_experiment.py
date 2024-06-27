@@ -255,7 +255,8 @@ def compare_distributions(type, nr_algorithms=30, nr_iterations=20000):
     plt.legend(versions_list, loc='upper left')
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
-    plt.title(f'Maluspoints Distribution (n={nr_algorithms} per algorithm)')
+    plt.suptitle(f'Maluspoints Distribution', fontsize=12)
+    plt.title(f'per algorithm: {nr_algorithms} runs, {nr_iterations} iterations', loc='left', fontsize=9)
     plt.savefig(f'results/hillclimber/{filename}-{nr_algorithms}-{nr_iterations}.png', dpi=1200)
     plt.show()
 
