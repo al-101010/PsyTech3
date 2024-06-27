@@ -130,7 +130,7 @@ This file can be run by simply calling:
 python ics_visualization.py
 ```
 
-Running this file will write an ICS file to the course_schedules folder for each course. Opening each ICS file and adding it to your calendar will show you the created schedule for the week of june 24 - june 28. 
+Running this file will write an ICS file to the course_schedules folder for each course. Opening each ICS file and adding it to your calendar will show you the created schedule for the week of june 24 - june 28 of 2024. 
 
 It is recommended to save each file as a different calendar with a different color so it is more clear which course is which. Searching for a student name in the search bar will also show that student's personal schedule.
 
