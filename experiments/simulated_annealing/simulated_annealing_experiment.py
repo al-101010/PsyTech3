@@ -201,11 +201,15 @@ def plot_maluspoints_distribution(nr_simal=30, nr_iterations=20000):
     Plots a histogram of the distribution of maluspoints in N schedules.  
     """
 
+    fig, ax = plt.subplots()
+
     maluspoints_df = pd.read_csv(f'results/simulated_annealing/{nr_simal}runs{nr_iterations}iters/final_maluspoints.csv')
 
     maluspoints = maluspoints_df['Final Maluspoints'].to_list()
 
     sns.histplot(maluspoints, bins=5, kde=True, edgecolor='black')
+      
+    ax.set_xbound(0, 300)
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
     plt.title(f'Maluspoints Distribution Simulated Annealing (n={nr_simal})')
