@@ -10,9 +10,9 @@ import csv
 
 
 def write_file(results, nr_algorithms, nr_iterations):
-    '''
+    """
     Writes a csv file from results. 
-    '''
+    """
 
     # get all values for a row 
     values = []

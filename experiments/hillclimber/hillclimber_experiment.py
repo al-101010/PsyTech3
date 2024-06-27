@@ -14,6 +14,7 @@ def select_version(version):
     Selects a version of a hillclimber algorithm and makes a schedule based on selection.
     """
 
+    # pick the needed version of the algorithm 
     if version == 'hillclimber':
         algorithm = Hillclimber
     elif version == 'problematic_students':
@@ -28,11 +29,11 @@ def select_version(version):
     return algorithm
 
 def write_file(results, version, nr_climbers, nr_iterations):
-    '''
-    Writes a csv file from results. 
-    '''
+    """
+    Writes a csv file from results into the directory of the required version.  
+    """
 
-    # get all values for a row 
+    # initialise list of average, min, max tuples   
     values = []
 
     # loop over zipped results 
@@ -48,18 +49,22 @@ def write_file(results, version, nr_climbers, nr_iterations):
                        mean(iteration[3]), min(iteration[3]), max(iteration[3]),
                        mean(iteration[4]), min(iteration[4]), max(iteration[4])))
 
+    # open the file and create writer 
     with open(f"results/{version}/{version}_all_averages-{nr_climbers}-{nr_iterations}.csv", 'w', newline='') as output_file:
         result_writer = csv.writer(output_file, delimiter=',')
         
+        # write each value into separate row 
         for value in values:
             result_writer.writerow(value)
 
 def get_averages(schedule, version, nr_climbers: int =30, nr_iterations: int =20000):
-    ''' 
+    """ 
     Writes a csv data file, storing the average, min, and max values of nr_climbers 
     per each of nr_iterations and for all types of maluspoints.   
     Stores the final schedule of each climber in a separate folder. 
-    '''
+    """
+    
+    # set timer 
     start_time = time.time()
 
     # initialise results and maluspoints collector
@@ -69,9 +74,10 @@ def get_averages(schedule, version, nr_climbers: int =30, nr_iterations: int =20
     # select algorithm version 
     algorithm = select_version(version)
     
-    # if not existing, make separate folder to store schedules 
+    # make directory  
     dir_path = f'results/{version}/{nr_climbers}runs{nr_iterations}iters'
-    
+
+    # if not existing, make separate folder to store schedules
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
 
@@ -95,13 +101,14 @@ def get_averages(schedule, version, nr_climbers: int =30, nr_iterations: int =20
             # run the algorithm for one iteration 
             climber.run(1)
 
+            # collect all maluspoints for iteration
             evening = climber.schedule.get_evening_room_maluspoints()
             overcapacity = climber.schedule.get_overcapacity_maluspoints()
             free_period =  climber.schedule.get_student_maluspoints()[0]
             double_booking = climber.schedule.get_student_maluspoints()[1]
             total = double_booking + overcapacity + evening + free_period
 
-            # store maluspoints for this iteration
+            # store maluspoints for iteration in results 
             result.append((total, evening, overcapacity, free_period, double_booking))
 
         # store final maluspoints of this run separately 
@@ -117,8 +124,10 @@ def get_averages(schedule, version, nr_climbers: int =30, nr_iterations: int =20
     maluspoints = pd.DataFrame(maluspoints, columns=['Final Maluspoints'])
     maluspoints.to_csv(dir_path+'/final_maluspoints.csv')
 
+    # write results file  
     write_file(results, version, nr_climbers, nr_iterations)
 
+    # stop the time and display amount of seconds for experiments 
     end_time = time.time()
     print(f'--- {round(end_time - start_time, 1)} seconds ---')
 
@@ -156,20 +165,24 @@ def plot_averages(version, nr_climbers: int =30, nr_iterations: int =20000):
     # set y axis, range 0 to 1500 works best        
     ax.set_ybound(0, 1500)
 
+    # specify plot details 
     plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'], loc='upper right')
     plt.suptitle(f'Maluspoints {version} (n={nr_climbers})', fontsize=12)
     plt.title(f'maluspoints avg: {round(df["Total Avg"].iloc[-1], 1)}, min: {round(df["Total Min"].iloc[-1], 1)}, max: {round(df["Total Max"].iloc[-1], 1)}', loc='left', fontsize=9)
     plt.ylabel('Average Maluspoints')
     plt.xlabel('Iterations')
 
+    # save figure 
     fig.savefig(f"results/{version}/{version}_all_averages-{nr_climbers}-{nr_iterations}.png", dpi=1200)
     plt.show()
 
 def plot_zoom(version, nr_climbers: int =30, nr_iterations : int =20000, zoom_start : int =15000, zoom_end : int =20000):
-    '''
+    """
     Zooms in to a specific range of hillclimber iterations.
     Plots the averages, min, and max values of all maluspoint types in that range.
-    '''
+    """
+
+    # read in data file 
     names = ['Total Avg', 'Total Min', 'Total Max', 
              'Evening Avg', 'Evening Min', 'Evening Max',
              'Overcap Avg', 'Overcap Min', 'Overcap Max', 
@@ -201,6 +214,7 @@ def plot_zoom(version, nr_climbers: int =30, nr_iterations : int =20000, zoom_st
     # set y axis, 0 to 300 works best for this range of iterations      
     ax.set_ybound(0, 300)
 
+    # specify plot details 
     plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'])
     plt.suptitle(f'Maluspoints {version} (n={nr_climbers})', fontsize=12)
     plt.title(f'maluspoints avg: {round(df["Total Avg"].iloc[-1], 1)}, min: {round(df["Total Min"].iloc[-1], 1)}, max: {round(df["Total Max"].iloc[-1], 1)}', loc='left', fontsize=9)
@@ -214,18 +228,23 @@ def plot_maluspoints_distribution(version, nr_climbers=30, nr_iterations=20000):
     """
     Plots a histogram of the distribution of maluspoints in N schedules.  
     """
-    fig, ax = plt.subplots()
 
+    # read data file 
     maluspoints_df = pd.read_csv(f'results/{version}/{nr_climbers}runs{nr_iterations}iters/final_maluspoints.csv')
 
+    # convert data to list 
     maluspoints = maluspoints_df['Final Maluspoints'].to_list()
     
+    fig, ax = plt.subplots()
+
+    # create histogram 
     sns.histplot(maluspoints, bins=6, kde=True, edgecolor='black')
     
     # only to reproduce example case: adjust the position of the distribution  
     if nr_climbers == 30 and nr_iterations == 20000:
         ax.set_xbound(0, 300)
 
+    # specify plot details  
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
     plt.suptitle(f'Maluspoints distribution {version}', fontsize=12)
@@ -239,6 +258,8 @@ def compare_distributions(type, nr_algorithms=30, nr_iterations=20000):
     Type 'heuristics' compares the normal hillclimber with all heuristics. 
     Any other type indication compares hillclimber with simulated annealing.  
     """
+
+    # specify which comparison you want to make 
     if type == 'heuristics':
         versions_list = ['hillclimber', 'problematic_students', 'problematic_activity', 'mutation_probability', 'increasing_mutations']
         filename = 'compare_heuristics'
@@ -246,8 +267,10 @@ def compare_distributions(type, nr_algorithms=30, nr_iterations=20000):
         versions_list = ['hillclimber', 'simulated_annealing']
         filename = 'compare_annealing'
 
+
     fig, ax = plt.subplots(figsize=(8,5))
 
+    # read in data files of all algorithms in list and create histogram for each of them 
     for version in versions_list:
         
         file = pd.read_csv(f'results/{version}/{nr_algorithms}runs{nr_iterations}iters/final_maluspoints.csv')
@@ -256,9 +279,10 @@ def compare_distributions(type, nr_algorithms=30, nr_iterations=20000):
 
         sns.histplot(maluspoints, bins=6, kde=True, edgecolor='black')
     
-
+    # set the x axis 
     ax.set_xbound(0, 300)
     
+    # specify plot details  
     plt.legend(versions_list, loc='upper left')
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
