@@ -61,12 +61,14 @@ class Schedule:
         Returns True if no student in this schedule has 3 free periods 
         in one day (hard constraint).
         """
+        self.get_total_maluspoints()
         # loop over students and check three free periods attribute
-        for student in self.schedule.students:
+        for student in self.students:
             if student.three_free_periods:
                 print(f"Not a valid schedule! {student} has 3 free periods.")
                 return False
         
+        print("Schedule is valid!")
         return True
 
     def get_students_list(self, data : str) -> list[Student]:

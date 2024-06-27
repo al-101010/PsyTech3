@@ -22,9 +22,10 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
         if not experiment: 
             # create schedule using random algorithm
             random_schedule = Random(test_schedule)
-
+            
             # display malus points
-            random_schedule.display_maluspoint_division('Random')
+            random_schedule.schedule.is_valid()
+            random_schedule.display_maluspoints_division('Random')
             random_schedule.schedule.get_output(output_csv_name)
         
         if experiment:
