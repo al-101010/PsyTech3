@@ -54,7 +54,7 @@ def write_file(results, version, nr_climbers, nr_iterations):
         for value in values:
             result_writer.writerow(value)
 
-def hillclimb_all_averages(schedule, version, nr_climbers: int =30, nr_iterations: int =20000):
+def get_averages(schedule, version, nr_climbers: int =30, nr_iterations: int =20000):
     ''' 
     Writes a csv data file, storing the average, min, and max values of nr_climbers 
     per each of nr_iterations and for all types of maluspoints.   
@@ -122,7 +122,7 @@ def hillclimb_all_averages(schedule, version, nr_climbers: int =30, nr_iteration
     end_time = time.time()
     print(f'--- {round(end_time - start_time, 1)} seconds ---')
 
-def hillclimber_ratios_plot(version, nr_climbers: int =30, nr_iterations: int =20000):
+def plot_averages(version, nr_climbers: int =30, nr_iterations: int =20000):
     '''
     Plots the averages, min, and max values of the maluspoint types of nr_climbers 
     per iteration in nr_iterations.
@@ -165,7 +165,7 @@ def hillclimber_ratios_plot(version, nr_climbers: int =30, nr_iterations: int =2
     fig.savefig(f"results/{version}/{version}_all_averages-{nr_climbers}-{nr_iterations}.png", dpi=1200)
     plt.show()
 
-def hillclimber_ratios_plot_zoom(version, nr_climbers: int =30, nr_iterations : int =20000, zoom_start : int =15000, zoom_end : int =20000):
+def plot_zoom(version, nr_climbers: int =30, nr_iterations : int =20000, zoom_start : int =15000, zoom_end : int =20000):
     '''
     Zooms in to a specific range of hillclimber iterations.
     Plots the averages, min, and max values of all maluspoint types in that range.

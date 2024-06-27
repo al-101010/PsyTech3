@@ -36,9 +36,9 @@ def write_file(results, nr_algorithms, nr_iterations):
         for value in values:
             result_writer.writerow(value)
 
-def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, temp: int =50):
+def get_averages(schedule, nr_algorithms: int =30, nr_iterations: int =20000, temp: int =50):
     ''' 
-    Writes a csv data file, storing the average, min, and max values of nr_simal 
+    Writes a csv data file, storing the average, min, and max values of nr_algorithms 
     per each of nr_iterations and for all types of maluspoints.   
     Stores thei final schedule of each simulated annealing algorithm in a separate folder. 
     '''
@@ -51,13 +51,13 @@ def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, t
     maluspoints = []
     
     # if not existing, make separate folder to store schedules 
-    dir_path = f'results/simulated_annealing/{nr_simal}runs{nr_iterations}iters'
+    dir_path = f'results/simulated_annealing/{nr_algorithms}runs{nr_iterations}iters'
     
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
 
     # set number of runs
-    for i in range(nr_simal):
+    for i in range(nr_algorithms):
         
         # store results of each algorithm iteration 
         result = []
@@ -100,15 +100,15 @@ def simal_all_averages(schedule, nr_simal: int =30, nr_iterations: int =20000, t
     maluspoints = pd.DataFrame(maluspoints, columns=['Final Maluspoints'])
     maluspoints.to_csv(dir_path+'/final_maluspoints.csv')
 
-    write_file(results, nr_simal, nr_iterations)
+    write_file(results, nr_algorithms, nr_iterations)
     
     end_time = time.time()
     print(f'--- {round(end_time - start_time, 1)} seconds ---')
 
 
-def simal_all_averages_plot(nr_simal: int =30, nr_iterations: int =20000):
+def plot_averages(nr_algorithms: int =30, nr_iterations: int =20000):
     '''
-    Plots the averages, min, and max values of the maluspoint types of nr_simal 
+    Plots the averages, min, and max values of the maluspoint types of nr_algorithms 
     per iteration in nr_iterations.
     '''
 
@@ -119,7 +119,7 @@ def simal_all_averages_plot(nr_simal: int =30, nr_iterations: int =20000):
              'Free Avg', 'Free Min', 'Free Max',
              'Double Avg', 'Double Min', 'Double Max']
     
-    df = pd.read_csv(f'results/simulated_annealing/simulated_annealing_all_averages-{nr_simal}-{nr_iterations}.csv', names=names)
+    df = pd.read_csv(f'results/simulated_annealing/simulated_annealing_all_averages-{nr_algorithms}-{nr_iterations}.csv', names=names)
     
     fig, ax = plt.subplots()
 
@@ -141,16 +141,16 @@ def simal_all_averages_plot(nr_simal: int =30, nr_iterations: int =20000):
     ax.set_ybound(0, 1500)
 
     plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'], loc='upper right')
-    plt.suptitle(f'Maluspoints Simulated Annealing (n={nr_simal})', fontsize=12)
+    plt.suptitle(f'Maluspoints Simulated Annealing (n={nr_algorithms})', fontsize=12)
     plt.title(f'maluspoints avg: {round(df["Total Avg"].iloc[-1], 1)}, min: {round(df["Total Min"].iloc[-1], 1)}, max: {round(df["Total Max"].iloc[-1], 1)}', loc='left', fontsize=9)
     plt.title('temp: 50', loc='right', fontsize=9)
     plt.ylabel('Average Maluspoints')
     plt.xlabel('Iterations')
 
-    fig.savefig(f"results/simulated_annealing/simulated_annealing_all_averages-{nr_simal}-{nr_iterations}.png", dpi=1200)
+    fig.savefig(f"results/simulated_annealing/simulated_annealing_all_averages-{nr_algorithms}-{nr_iterations}.png", dpi=1200)
     plt.show()
 
-def simal_all_averages_plot_zoom(nr_simal: int =30, nr_iterations : int =20000, zoom_start : int =15000, zoom_end : int =20000):
+def plot_zoom(nr_algorithms: int =30, nr_iterations : int =20000, zoom_start : int =15000, zoom_end : int =20000):
     '''
     Zooms in to a specific range of simulated annealing iterations.
     Plots the averages, min, and max values of all maluspoint types in that range.
@@ -161,7 +161,7 @@ def simal_all_averages_plot_zoom(nr_simal: int =30, nr_iterations : int =20000, 
              'Free Avg', 'Free Min', 'Free Max',
              'Double Avg', 'Double Min', 'Double Max']
     
-    df = pd.read_csv(f'results/simulated_annealing/simulated_annealing_all_averages-{nr_simal}-{nr_iterations}.csv', names=names)
+    df = pd.read_csv(f'results/simulated_annealing/simulated_annealing_all_averages-{nr_algorithms}-{nr_iterations}.csv', names=names)
     
     # make subset of data to zoom in to
     df = df.iloc[zoom_start:zoom_end]
@@ -187,40 +187,40 @@ def simal_all_averages_plot_zoom(nr_simal: int =30, nr_iterations : int =20000, 
     ax.set_ybound(0, 300)
 
     plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'])
-    plt.suptitle(f'Maluspoints Simulated Annealing (n={nr_simal})', fontsize=12)
+    plt.suptitle(f'Maluspoints Simulated Annealing (n={nr_algorithms})', fontsize=12)
     plt.title(f'maluspoints avg: {round(df["Total Avg"].iloc[-1], 1)}, min: {round(df["Total Min"].iloc[-1], 1)}, max: {round(df["Total Max"].iloc[-1], 1)}', loc='left', fontsize=9)
     plt.title('temp: 50', loc='right', fontsize=9)
     plt.ylabel('Average Maluspoints')
     plt.xlabel('Iterations')
 
-    fig.savefig(f"results/simulated_annealing/simulated_annealing_all_averages_zoom-{nr_simal}-{nr_iterations}.png", dpi=1200)
+    fig.savefig(f"results/simulated_annealing/simulated_annealing_all_averages_zoom-{nr_algorithms}-{nr_iterations}.png", dpi=1200)
     plt.show()
 
-def plot_maluspoints_distribution(nr_simal=30, nr_iterations=20000):
+def plot_maluspoints_distribution(nr_algorithms=30, nr_iterations=20000):
     """
     Plots a histogram of the distribution of maluspoints in N schedules.  
     """
 
     fig, ax = plt.subplots()
 
-    maluspoints_df = pd.read_csv(f'results/simulated_annealing/{nr_simal}runs{nr_iterations}iters/final_maluspoints.csv')
+    maluspoints_df = pd.read_csv(f'results/simulated_annealing/{nr_algorithms}runs{nr_iterations}iters/final_maluspoints.csv')
 
     maluspoints = maluspoints_df['Final Maluspoints'].to_list()
 
     sns.histplot(maluspoints, bins=5, kde=True, edgecolor='black')
       
     # only to reproduce example case: adjust the position of the distribution  
-    if nr_simal == 30 and nr_iterations == 20000:
+    if nr_algorithms == 30 and nr_iterations == 20000:
         ax.set_xbound(0, 300)
     
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
     plt.suptitle(f'Maluspoints Distribution Simulated Annealing', fontsize=12)
-    plt.title(f'{nr_simal} runs, {nr_iterations} iterations', loc='left', fontsize=9)
-    plt.savefig(f'results/simulated_annealing/final_maluspoints-{nr_simal}-{nr_iterations}.png', dpi=1200)
+    plt.title(f'{nr_algorithms} runs, {nr_iterations} iterations', loc='left', fontsize=9)
+    plt.savefig(f'results/simulated_annealing/final_maluspoints-{nr_algorithms}-{nr_iterations}.png', dpi=1200)
     plt.show()
 
-def temperature_comparisons(schedule, nr_simal=10, nr_iterations=1000, temps: list = [50, 100, 500]):
+def temperature_comparisons(schedule, nr_algorithms=10, nr_iterations=1000, temps: list = [50, 100, 500]):
     """
     Makes simulated annealing runs from the range min_temp to max_temp increasing 
     by step. Stores results for each temperature in separate csv.   
@@ -230,7 +230,7 @@ def temperature_comparisons(schedule, nr_simal=10, nr_iterations=1000, temps: li
         
         results = []
         
-        for i in range(nr_simal):
+        for i in range(nr_algorithms):
             result = []
             
             # make a simulated anneaing object 
@@ -259,7 +259,7 @@ def temperature_comparisons(schedule, nr_simal=10, nr_iterations=1000, temps: li
                 result_writer.writerow(value)
 
 
-def temperature_comparisons_plot(temps: list = [50, 100, 500], nr_simal=10, nr_iterations=1000):
+def temperature_comparisons_plot(temps: list = [50, 100, 500], nr_algorithms=10, nr_iterations=1000):
     """
     Makes one plot comparing the results of n simulated annealing algorithms running for X
     iterations each using the same starting point but different temperatures. 
@@ -290,7 +290,7 @@ def temperature_comparisons_plot(temps: list = [50, 100, 500], nr_simal=10, nr_i
     # set y axis, range 0 to 2500 works best        
     ax.set_ybound(0, 2500)
     
-    ax.set_title(f'Simulated Annealing Temperatures (n={nr_simal})')
+    ax.set_title(f'Simulated Annealing Temperatures (n={nr_algorithms})')
     ax.set_xlabel('Iterations')
     ax.set_ylabel('Total Maluspoints')
     plt.legend(temp_names, title='Temperatures')
