@@ -51,7 +51,6 @@ class Hillclimber(Algorithm):
         # compute maluspoints for previous and current schedule 
         previous_maluspoints = previous_schedule.get_total_maluspoints()
         new_maluspoints = self.schedule.get_total_maluspoints()
-        # print(previous_maluspoints, new_maluspoints)
 
         # if improvement, reset counter and add number of maluspoint of new schedule to stats
         if new_maluspoints < previous_maluspoints:
