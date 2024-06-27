@@ -82,14 +82,20 @@ To run an experiment, set the argparse arguments in the following way
 
 Attention: By default, an experiment runs the respective algorithm for 20000 iterations 30 times! This can take up to 17 hours or more with a slow machine. It is possible to test different values by specifying this in the functions in main.py. Below is an example of how to do that: 
 
-To run a hillclimber experiment 10 times with 10 iterations specify in main: 
-- *hillclimber_experiment.hillclimb_all_averages(test_schedule, 10, 10)*
-- *hillclimber_experiment.ratios_plot(10, 10)*
-- *hillclimber_experiment.plot_maluspoints_distribution(10, 10)*
+To run a hillclimber experiment 10 times with 30 iterations specify in main: 
+- *hillclimber_experiment.get_averages(test_schedule, 10, 30)*
+- *hillclimber_experiment.plot_averages(10, 30)*
+- *hillclimber_experiment.plot_maluspoints_distribution(10, 30)*
 
-Running this, you should find a new folder in results with your experiment data and plots. 
+Running this, you should find a new folder in results with your experiment data (identified by number of runs and iterations in the name). Plots are added in the general folder of the respective algorithm. 
 
-Note that for these types of experiments you can comment out the *ratios_plot_zoom()* function as this is mainly a way to zoom in to a specific area of a plot for a better insight into the different maluspoints.  
+Note that for these types of experiments you can comment out the *ratios_plot_zoom()* function as this is mainly a way to zoom in to a specific area of a plot for a better insight into the different maluspoints.
+
+If you want to use the generated data of each algorithm (30 runs with 20K iterations) and just reproduce the plots, you merely have to comment out
+
+- *hillclimber_experiment.get_averages(test_schedule)*
+
+from your experiment of choice. 
 
 ## Visualizations
 ### Visualize.py
