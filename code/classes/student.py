@@ -130,11 +130,6 @@ class Student:
                     if not slots[i]:
                         free_period_count += 1
 
-                # add a maluspoint to first and last activity since they create the free periods
-                for timeslot in [slots[first_activity_index], slots[final_activity_index]]:
-                    for activity in timeslot:
-                        activity.maluspoints += 1
-            
             # update attribute if student has 3 free periods in one day
             if free_period_count == 3:
                 self.three_free_periods = True
