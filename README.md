@@ -93,9 +93,9 @@ Note that for these types of experiments you can comment out the *ratios_plot_zo
 
 If you want to use the generated data of each algorithm (30 runs with 20K iterations) and just reproduce the plots, you merely have to comment out
 
-- *hillclimber_experiment.get_averages(test_schedule)*
+- *# hillclimber_experiment.get_averages(test_schedule)*
 
-from your experiment of choice. 
+from your experiment of choice before running. 
 
 ## Visualizations
 ### Visualize.py
