@@ -140,6 +140,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
                 # simulated annealing experiment
                 simulated_annealing_experiment.simal_all_averages(test_schedule, early_stopping)
                 simulated_annealing_experiment.simal_all_averages_plot()
+                simulated_annealing_experiment.simal_all_averages_plot_zoom()
                 simulated_annealing_experiment.plot_maluspoints_distribution()
 
                 # temperature experiment
