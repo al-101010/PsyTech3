@@ -221,10 +221,15 @@ def plot_maluspoints_distribution(version, nr_climbers=30, nr_iterations=20000):
     maluspoints = maluspoints_df['Final Maluspoints'].to_list()
     
     sns.histplot(maluspoints, bins=6, kde=True, edgecolor='black')
-    ax.set_xbound(0, 300)
+    
+    # only to reproduce example case: adjust the position of the distribution  
+    if nr_climbers == 30 and nr_iterations == 20000:
+        ax.set_xbound(0, 300)
+
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
-    plt.title(f'Maluspoints distribution {version} (n={nr_climbers})')
+    plt.suptitle(f'Maluspoints distribution {version}', fontsize=12)
+    plt.title(f'{nr_climbers} runs, {nr_iterations} iterations', loc='left', fontsize=9)
     plt.savefig(f'results/{version}/final_maluspoints-{nr_climbers}-{nr_iterations}.png', dpi=1200)
     plt.show()
 
@@ -251,7 +256,9 @@ def compare_distributions(type, nr_algorithms=30, nr_iterations=20000):
 
         sns.histplot(maluspoints, bins=6, kde=True, edgecolor='black')
     
+
     ax.set_xbound(0, 300)
+    
     plt.legend(versions_list, loc='upper left')
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')

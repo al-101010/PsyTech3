@@ -30,7 +30,7 @@ def write_file(results, nr_algorithms, nr_iterations):
                        mean(iteration[3]), min(iteration[3]), max(iteration[3]),
                        mean(iteration[4]), min(iteration[4]), max(iteration[4])))
 
-    with open(f"results/simulates_annealing/simulated_annealing_all_averages-{nr_algorithms}-{nr_iterations}.csv", 'w', newline='') as output_file:
+    with open(f"results/simulated_annealing/simulated_annealing_all_averages-{nr_algorithms}-{nr_iterations}.csv", 'w', newline='') as output_file:
         result_writer = csv.writer(output_file, delimiter=',')
         
         for value in values:
@@ -209,33 +209,43 @@ def plot_maluspoints_distribution(nr_simal=30, nr_iterations=20000):
 
     sns.histplot(maluspoints, bins=5, kde=True, edgecolor='black')
       
-    ax.set_xbound(0, 300)
+    # only to reproduce example case: adjust the position of the distribution  
+    if nr_simal == 30 and nr_iterations == 20000:
+        ax.set_xbound(0, 300)
+    
     plt.xlabel('Number Maluspoints')
     plt.ylabel('Number Generated Schedules')
-    plt.title(f'Maluspoints Distribution Simulated Annealing (n={nr_simal})')
+    plt.suptitle(f'Maluspoints Distribution Simulated Annealing', fontsize=12)
+    plt.title(f'{nr_simal} runs, {nr_iterations} iterations', loc='left', fontsize=9)
     plt.savefig(f'results/simulated_annealing/final_maluspoints-{nr_simal}-{nr_iterations}.png', dpi=1200)
     plt.show()
 
-def temperature_comparisons(schedule, n_simal=10, n_iterations=1000, temps: list = [50, 100, 500]):
+def temperature_comparisons(schedule, nr_simal=10, nr_iterations=1000, temps: list = [50, 100, 500]):
     """
     Makes simulated annealing runs from the range min_temp to max_temp increasing 
     by step. Stores results for each temperature in separate csv.   
     """
 
-    for number in temps:
+    for temp in temps:
+        
         results = []
-        for i in range(n_simal):
+        
+        for i in range(nr_simal):
             result = []
             
             # make a simulated anneaing object 
-            simulated_annealing = SimulatedAnnealing(schedule, number)
+            simulated_annealing = SimulatedAnnealing(schedule, temp)
 
             print(f"Running Annealing: {i}")
-            # run algorithm n_iterations amount of times  
-            for j in range(n_iterations):
+            
+            # run algorithm number iterations amount of times  
+            for j in range(nr_iterations):
+                    
                     simulated_annealing.run(1)
+                    
                     # append maluspoints to results of this run  
                     result.append(simulated_annealing.schedule.get_total_maluspoints())
+            
             #append this run to all runs 
             results.append(result)
 
@@ -243,13 +253,13 @@ def temperature_comparisons(schedule, n_simal=10, n_iterations=1000, temps: list
         for iteration in zip(*results):
             values.append((mean(iteration), min(iteration), max(iteration)))
 
-        with open(f"results/simulated_annealing/simulated_annealing_temp_{number}.csv", 'w', newline='') as output_file:
+        with open(f"results/simulated_annealing/simulated_annealing_temp_{temp}.csv", 'w', newline='') as output_file:
             result_writer = csv.writer(output_file, delimiter=',')
             for value in values:
                 result_writer.writerow(value)
 
 
-def temperature_comparisons_plot(temps: list = [50, 100, 500], n_simal=10, nr_iterations=1000):
+def temperature_comparisons_plot(temps: list = [50, 100, 500], nr_simal=10, nr_iterations=1000):
     """
     Makes one plot comparing the results of n simulated annealing algorithms running for X
     iterations each using the same starting point but different temperatures. 
@@ -280,7 +290,7 @@ def temperature_comparisons_plot(temps: list = [50, 100, 500], n_simal=10, nr_it
     # set y axis, range 0 to 2500 works best        
     ax.set_ybound(0, 2500)
     
-    ax.set_title(f'Simulated Annealing Temperatures (n={n_simal})')
+    ax.set_title(f'Simulated Annealing Temperatures (n={nr_simal})')
     ax.set_xlabel('Iterations')
     ax.set_ylabel('Total Maluspoints')
     plt.legend(temp_names, title='Temperatures')
