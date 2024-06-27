@@ -30,7 +30,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
                 random_schedule.schedule.get_output(output_csv_name)
 
             if experiment:
-                random_experiment.visualize_maluspoints_histogram(Random, test_schedule, 5)
+                random_experiment.visualize_maluspoints_histogram(Random, test_schedule)
 
         if version == 'fitted':
             if not experiment:
@@ -43,7 +43,7 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
                 fitted_schedule.schedule.get_output(output_csv_name)
             
             if experiment:
-                random_experiment.visualize_maluspoints_histogram(FittedStart, test_schedule, 5)
+                random_experiment.visualize_maluspoints_histogram(FittedStart, test_schedule)
 
     # ============== HILLCLIMBER =====================
     if algorithm == 'hillclimber':
