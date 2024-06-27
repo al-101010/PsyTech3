@@ -221,6 +221,7 @@ def plot_zoom(version, nr_climbers: int =30, nr_iterations : int =20000, zoom_st
     plt.ylabel('Average Maluspoints')
     plt.xlabel('Iterations')
 
+    # save figure 
     fig.savefig(f"results/{version}/{version}_all_averages_zoom-{nr_climbers}-{nr_iterations}.png", dpi=1200)
     plt.show()
 
@@ -249,6 +250,8 @@ def plot_maluspoints_distribution(version, nr_climbers=30, nr_iterations=20000):
     plt.ylabel('Number Generated Schedules')
     plt.suptitle(f'Maluspoints distribution {version}', fontsize=12)
     plt.title(f'{nr_climbers} runs, {nr_iterations} iterations', loc='left', fontsize=9)
+    
+    # save figure 
     plt.savefig(f'results/{version}/final_maluspoints-{nr_climbers}-{nr_iterations}.png', dpi=1200)
     plt.show()
 
@@ -288,6 +291,8 @@ def compare_distributions(type, nr_algorithms=30, nr_iterations=20000):
     plt.ylabel('Number Generated Schedules')
     plt.suptitle(f'Maluspoints Distribution', fontsize=12)
     plt.title(f'per algorithm: {nr_algorithms} runs, {nr_iterations} iterations', loc='left', fontsize=9)
+    
+    # save figure 
     plt.savefig(f'results/hillclimber/{filename}-{nr_algorithms}-{nr_iterations}.png', dpi=1200)
     plt.show()
 
