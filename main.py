@@ -19,21 +19,31 @@ def main(algorithm, output_csv_name, output_png_name, experiment, iterations, ea
 
     # ============== RANDOM ============================
     if algorithm == 'random':
-        if not experiment: 
-            # create schedule using random algorithm
-            random_schedule = Random(test_schedule)
+        if version == 'normal':
+            if not experiment: 
+                # create schedule using random algorithm
+                random_schedule = Random(test_schedule)
+
+                # display malus points
+                random_schedule.schedule.is_valid()
+                random_schedule.display_maluspoints_division('Random')
+                random_schedule.schedule.get_output(output_csv_name)
+
+            if experiment:
+                random_experiment.visualize_maluspoints_histogram(Random, test_schedule, 5)
+
+        if version == 'fitted':
+            if not experiment:
+                # create schedule using random algorithm
+                fitted_schedule = FittedStart(test_schedule)
+
+                # display malus points
+                fitted_schedule.schedule.is_valid()
+                fitted_schedule.display_maluspoints_division('Fitted')
+                fitted_schedule.schedule.get_output(output_csv_name)
             
-            # display malus points
-            random_schedule.schedule.is_valid()
-            random_schedule.display_maluspoints_division('Random')
-            random_schedule.schedule.get_output(output_csv_name)
-        
-        if experiment:
-            if version == 'normal':
-                random_experiment.visualize_maluspoints_histogram(Random, test_schedule)
-            
-            if version == 'fitted':
-                random_experiment.visualize_maluspoints_histogram(FittedStart, test_schedule)
+            if experiment:
+                random_experiment.visualize_maluspoints_histogram(FittedStart, test_schedule, 5)
 
     # ============== HILLCLIMBER =====================
     if algorithm == 'hillclimber':
