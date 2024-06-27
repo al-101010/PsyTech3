@@ -141,7 +141,7 @@ def simal_all_averages_plot(nr_simal: int =30, nr_iterations: int =20000):
     ax.set_ybound(0, 1500)
 
     plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'], loc='upper right')
-    plt.suptitle(f'Maluspoints (n={nr_simal}) Simulated Annealing', fontsize=12)
+    plt.suptitle(f'Maluspoints Simulated Annealing (n={nr_simal})', fontsize=12)
     plt.title(f'maluspoints avg: {round(df["Total Avg"].iloc[-1], 1)}, min: {round(df["Total Min"].iloc[-1], 1)}, max: {round(df["Total Max"].iloc[-1], 1)}', loc='left', fontsize=9)
     plt.title('temp: 50', loc='right', fontsize=9)
     plt.ylabel('Average Maluspoints')
@@ -187,7 +187,7 @@ def simal_all_averages_plot_zoom(nr_simal: int =30, nr_iterations : int =20000, 
     ax.set_ybound(0, 300)
 
     plt.legend(['Total', 'Evening Room', 'Overcapacity', 'Free Period', 'Double Booking'])
-    plt.suptitle(f'Maluspoints (n={nr_simal}) Simulated Annealing', fontsize=12)
+    plt.suptitle(f'Maluspoints Simulated Annealing (n={nr_simal})', fontsize=12)
     plt.title(f'maluspoints avg: {round(df["Total Avg"].iloc[-1], 1)}, min: {round(df["Total Min"].iloc[-1], 1)}, max: {round(df["Total Max"].iloc[-1], 1)}', loc='left', fontsize=9)
     plt.title('temp: 50', loc='right', fontsize=9)
     plt.ylabel('Average Maluspoints')
