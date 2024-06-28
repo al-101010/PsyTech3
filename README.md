@@ -9,6 +9,19 @@ Each of these study formats needs to be scheduled in one of seven lecture rooms,
 have a certain capacity of students to sit. The task is to make a schedule for the lecture rooms 
 and students to fit all study activities for each course as effectively as possible.
 
+### Constraints
+#### Hard constraints
+1. A schedule can not have more than one activity in a roomslot.
+2. A student can not have 3 or more free periods in one day.
+   - We relaxed this constraint by assigning 100 maluspoints to this violation.
+
+#### Soft constraints
+1. One free period for a student in a day gives a schedule 1 maluspoints.
+2. Two free periods for a student in a day gives a schedule 3 maluspoints.
+3. The use of an evening slot (17 - 19) gives a schedule 5 maluspoints.
+4. For each student that does not fit in a room, the schedule gets 1 maluspoint.
+5. For each extra activity a student has at the same timeslot, the schedule gets 1 maluspoint.
+
 ## Installation
 ### Requirements
 This codebase was programmed using python 3.10.13, the requirements.txt file contains all the need packages to run the code succesfully.
